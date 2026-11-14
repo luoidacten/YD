@@ -10,8 +10,12 @@
 - Local files: `dist/assets/frames/*.png`, unchanged individual frames from the archive.
 - Presentation adds nearest-neighbor scaling, procedural lighting, particles and UI; these are application code.
 
-## Fonts
+## Audio — Kenney CC0
 
-Be Vietnam Pro and Space Grotesk are requested through Google Fonts under SIL Open Font License. System fonts are used if unavailable. Gameplay, sprites and saving require no external service.
+10 local OGG clips are included in `dist/assets/audio`. Sources: [RPG Audio](https://kenney.nl/assets/rpg-audio) and [Digital Audio](https://kenney.nl/assets/digital-audio). Both packs are CC0. Exact original filenames, mappings and bundled license paths are recorded in `AUDIO-SOURCES.md`.
 
-No Gemini-generated or other AI-generated images have been included in v0.1. Future artwork must match 0x72's 16×16 pixel scale and palette.
+## Fonts and generated presentation
+
+The v0.2 interface uses system fonts (Segoe UI/Consolas); no remote font request is required. Barrels, status symbols, telegraphs, lighting and UI frames are drawn by application code.
+
+No Gemini-generated or other AI-generated raster images have been included in v0.2. Future artwork must match 0x72's pixel scale and palette. Variants reuse/tint the original sprites; they are not new animation sets.

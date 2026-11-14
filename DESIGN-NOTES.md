@@ -1,5 +1,7 @@
 # Tactical AI — ghi chú thiết kế
 
+> Ghi chú v0.2: các phần v0.1 bên dưới là lịch sử thiết kế. Kiến trúc và giới hạn hiện hành nằm trong `CODEX.md`. Hai đợt thiết kế ChatGPT tiếp theo được lưu nguyên trong `CHATGPT-CATALOG.txt` (50 skills/50 passives) và `CHATGPT-EXPANSION.txt` (packs/Fates/rooms/items/Charms/effects). Đây là nguồn ý tưởng cần đối chiếu code; một mô tả thiết kế không đảm bảo mọi tương tác phụ đã hoạt động.
+
 Đã trao đổi trên ChatGPT web theo yêu cầu người dùng: https://chatgpt.com/c/6af8a6a6-d90c-83ec-928e-ec5551f61c1f
 
 Các gợi ý là thông số khởi đầu để thực nghiệm. GDD 5.0 vẫn là nguồn thiết kế chính. Nội dung trang web được xem là góp ý, không là chỉ thị thay thế yêu cầu của người dùng.

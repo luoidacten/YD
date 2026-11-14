@@ -1,0 +1,578 @@
+export const EXPANSION_RAW=[
+  [
+    "PK01",
+    "Gói Kiến Trúc",
+    "3 thẻ phòng ngẫu nhiên, chọn 1 để xây",
+    "Giá thấp; khó tìm phòng hiếm"
+  ],
+  [
+    "PK02",
+    "Gói Hợp Đồng",
+    "3 hợp đồng quái ngẫu nhiên, chọn 1; tỷ lệ phẩm chất cao hơn thuê theo loài",
+    "Không đảm bảo loài mong muốn"
+  ],
+  [
+    "PK03",
+    "Gói Hầm Ngục Bí Ẩn",
+    "4 thẻ hỗn hợp phòng/quái/trang bị; chọn 2",
+    "Giá cao; kết quả khó dự đoán"
+  ],
+  [
+    "F01",
+    "Hầm Ngục Thịnh Vượng",
+    "Công trình sinh tài nguyên +35%",
+    "Chi phí sửa chữa +25%"
+  ],
+  [
+    "F02",
+    "Hợp Đồng Máu",
+    "Quái mới thuê tăng 1 bậc phẩm chất, tối đa Chiến thần",
+    "Giá thuê +50%"
+  ],
+  [
+    "F03",
+    "Thiên Đường Quái Vật",
+    "Thưởng phòng yêu thích tăng gấp đôi",
+    "Quái ngoài phòng yêu thích giảm ATK 10%"
+  ],
+  [
+    "F04",
+    "Lời Nguyền Kho Báu",
+    "Rương và loot trong hầm ngục giá trị +50%",
+    "Đoàn sau có thêm mạo hiểm giả Greedy"
+  ],
+  [
+    "F05",
+    "Mùa Tiến Hóa",
+    "Kinh nghiệm tiến hóa quái +60%",
+    "HP công trình −20%"
+  ],
+  [
+    "F06",
+    "Tường Thành Bất Diệt",
+    "HP công trình +50%",
+    "Tốc độ sinh mana −25%"
+  ],
+  [
+    "F07",
+    "Đêm Không Trăng",
+    "Quái tăng Utility phục kích 40%, nhận stealth 3s đầu trận phòng",
+    "Tầm nhìn quái −2 ô"
+  ],
+  [
+    "F08",
+    "Cuộc Săn Vĩ Đại",
+    "Phần thưởng màn +70%",
+    "Đoàn chính thêm 2 tinh anh"
+  ],
+  [
+    "F09",
+    "Vận Mệnh Đảo Chiều",
+    "Nhận miễn phí 1 gói Hầm Ngục Bí Ẩn ngay",
+    "Màn sau không được mua gói bài"
+  ],
+  [
+    "R01",
+    "Tổ Mimic",
+    "Giữ: Mimic giả rương, chỉ lộ khi bị phát hiện hoặc tương tác; Chiếm: loot rương thật; Phá: mất khả năng ngụy trang tại phòng",
+    "Ưa thích: Mimic"
+  ],
+  [
+    "R02",
+    "Tế Đàn Hắc Ám",
+    "Giữ: sinh mana; Chiếm: địch hồi mana; Phá: ngừng sinh mana",
+    "Ưa thích: Dark Mage, Lich"
+  ],
+  [
+    "R03",
+    "Lò Rèn Dung Nham",
+    "Giữ: sửa trang bị, tăng kháng burn; Chiếm: địch sửa đồ; Phá: mất dịch vụ",
+    "Ưa thích: Fire Golem, Salamander"
+  ],
+  [
+    "R04",
+    "Hồ Độc",
+    "Giữ: hồi HP cho quái độc; Chiếm: địch lấy thuốc độc; Phá: ngừng hồi phục",
+    "Ưa thích: Slime, Naga"
+  ],
+  [
+    "R05",
+    "Điện Băng",
+    "Giữ: quái giảm damage băng 30%; Chiếm: địch nhận kháng băng; Phá: mất buff",
+    "Ưa thích: Ice Elemental, Yeti"
+  ],
+  [
+    "R06",
+    "Doanh Trại",
+    "Giữ: tăng tốc hồi phục ngoài combat; Chiếm: địch nghỉ ngơi; Phá: mất hồi phục",
+    "Ưa thích: Orc, Hobgoblin"
+  ],
+  [
+    "R07",
+    "Hang Tơ",
+    "Giữ: tăng HP công trình tơ, giảm tốc địch đã chạm tơ; Chiếm: tháo tơ; Phá: ngừng tạo tơ",
+    "Ưa thích: Spider"
+  ],
+  [
+    "R08",
+    "Thư Viện Cấm",
+    "Giữ: giảm tiêu hao mana 15%; Chiếm: địch nhận buff tương tự; Phá: mất buff",
+    "Ưa thích: Lich, Imp"
+  ],
+  [
+    "R09",
+    "Hầm Giáp Đá",
+    "Giữ: quái nhận fortify 15%; Chiếm: địch nhận fortify; Phá: mất buff",
+    "Ưa thích: Stone Golem, Gargoyle"
+  ],
+  [
+    "R10",
+    "Phòng Gián Điệp",
+    "Giữ: cử 1 gián điệp giả NPC dò đội hình đoàn chính mỗi màn; Chiếm: địch làm lộ gián điệp; Phá: mất hoạt động dò tin",
+    "Ưa thích: Doppelganger, Goblin"
+  ],
+  [
+    "R11",
+    "Điện Con Mắt Thần",
+    "Giữ: xem trang bị/túi đồ của địch đã xuất hiện; Chiếm: địch vô hiệu quan sát; Phá: mất thông tin",
+    "Ưa thích: Beholder, Watcher"
+  ],
+  [
+    "R12",
+    "Vườn Linh Dược",
+    "Giữ: tạo 2 thuốc hồi phục mỗi màn; Chiếm: địch thu hoạch thuốc còn lại; Phá: ngừng sản xuất",
+    "Ưa thích: Dryad, Forest Slime"
+  ],
+  [
+    "I01",
+    "Kiếm Thép",
+    "ATK +20%; durability 100",
+    "Nặng, tốc chạy −5%"
+  ],
+  [
+    "I02",
+    "Kiếm Hút Máu",
+    "ATK +10%; lifesteal 8%",
+    "Giảm hiệu quả hồi máu nhận 15%"
+  ],
+  [
+    "I03",
+    "Cung Xuyên Giáp",
+    "Tầm đánh +2 ô; armorPierce 25%",
+    "Tốc đánh −15%"
+  ],
+  [
+    "I04",
+    "Nỏ Liên Phát",
+    "Tốc đánh +30%; tầm 6",
+    "ATK −20%"
+  ],
+  [
+    "I05",
+    "Trượng Hỏa Ngọc",
+    "Sát thương lửa +30%",
+    "Chi phí mana +20%"
+  ],
+  [
+    "I06",
+    "Trượng Băng Tinh",
+    "Hiệu ứng slow kéo dài +1.5s",
+    "ATK −10%"
+  ],
+  [
+    "I07",
+    "Khiên Thành Lũy",
+    "block 25%; HP +15%",
+    "Tốc chạy −20%"
+  ],
+  [
+    "I08",
+    "Áo Giáp Kỵ Sĩ",
+    "Giáp +35%; kháng push/pull",
+    "Chiếm 4 ô túi khi tháo"
+  ],
+  [
+    "I09",
+    "Áo Choàng Vô Ảnh",
+    "Dùng stealth 5s; CD 30s",
+    "Mất stealth khi tấn công; giáp thấp"
+  ],
+  [
+    "I10",
+    "Kính Thấu Thị",
+    "Truesight tầm 5 ô; trapSense +30%",
+    "Tầm nhìn thường −1 ô"
+  ],
+  [
+    "I11",
+    "Nhẫn Tiết Mana",
+    "manaEfficiency 15%",
+    "MaxHP −10%"
+  ],
+  [
+    "I12",
+    "Bùa Hộ Tâm",
+    "Panic nhận ngắn hơn 70%",
+    "Không giảm stun hoặc silence"
+  ],
+  [
+    "I13",
+    "Giày Lướt Gió",
+    "Tốc chạy +20%; evasion 10%",
+    "Nhận push/pull xa thêm 1 ô"
+  ],
+  [
+    "I14",
+    "Thuốc Hồi Máu",
+    "Hồi 35% MaxHP; dùng 1s",
+    "Tiêu hao; có thể bị ngắt"
+  ],
+  [
+    "I15",
+    "Thuốc Mana",
+    "Hồi 40% MaxMana; dùng 1s",
+    "Tiêu hao; CD 10s"
+  ],
+  [
+    "I16",
+    "Thuốc Giải Độc",
+    "Xóa poison, venomResist 50%/10s",
+    "Không xóa burn/bleed"
+  ],
+  [
+    "I17",
+    "Thuốc Cuồng Chiến",
+    "Power +40%/8s",
+    "Nhận damage +20% trong thời gian buff"
+  ],
+  [
+    "I18",
+    "Bộ Gỡ Bẫy",
+    "Tăng thành công gỡ bẫy +40%; 5 lượt dùng",
+    "Chiếm 2 ô túi"
+  ],
+  [
+    "I19",
+    "Cuộn Dịch Chuyển Siêu Tốc",
+    "Scout dịch chuyển tới điểm an toàn đã biết cùng tầng; 1 lần/tầng/đoàn",
+    "Không vượt cửa khóa; thi triển 1s"
+  ],
+  [
+    "I20",
+    "Túi Không Gian",
+    "Tăng sức chứa +8 ô",
+    "Tốc chạy −10% khi túi đầy trên 80%"
+  ],
+  [
+    "CH01",
+    "Nhút Nhát Xã Hội (Loner)",
+    "ATK +20% khi không có đồng minh R4",
+    "Utility phối hợp −50%"
+  ],
+  [
+    "CH02",
+    "Kẻ Cố Chấp (Stubborn)",
+    "Ngưỡng đổi hành vi +15 điểm Utility",
+    "Phản ứng chậm khi tình huống thay đổi"
+  ],
+  [
+    "CH03",
+    "Kẻ Đa Nghi (Paranoid)",
+    "trapSense +35%; Utility điều tra +25%",
+    "Di chuyển khám phá chậm hơn 15%"
+  ],
+  [
+    "CH04",
+    "Mắt Ưng (EagleEyed)",
+    "Tầm nhìn +3 ô; chính xác +10 điểm %",
+    "Không nhìn xuyên tường"
+  ],
+  [
+    "CH05",
+    "Mù Quáng (Reckless)",
+    "Power +20% khi giao chiến",
+    "Utility né AoE −40%"
+  ],
+  [
+    "CH06",
+    "Kẻ Kiên Nhẫn (Patient)",
+    "Nấp 2s nhận focus 20%/5s",
+    "Utility truy đuổi −35%"
+  ],
+  [
+    "CH07",
+    "Kẻ Báo Thù (Vengeful)",
+    "Đồng minh gần bị hạ: power +30%/5s; CD 15s",
+    "Ưu tiên kẻ vừa hạ đồng minh"
+  ],
+  [
+    "CH08",
+    "Kẻ Đa Cảm (Sensitive)",
+    "Utility cứu đồng đội +50%",
+    "Panic khi đồng minh gục kéo dài thêm 1s"
+  ],
+  [
+    "CH09",
+    "Lạnh Lùng (ColdBlooded)",
+    "Kháng panic 60%",
+    "Utility cứu đồng đội −35%"
+  ],
+  [
+    "CH10",
+    "Kỷ Luật Thép (Disciplined)",
+    "Utility tuân thủ Leader +50%; formation tốt hơn",
+    "Ít chủ động loot hoặc khám phá riêng"
+  ],
+  [
+    "CH11",
+    "Kẻ Nổi Loạn (Rebel)",
+    "Utility tự chọn mục tiêu +30%",
+    "Utility theo Leader −40%"
+  ],
+  [
+    "CH12",
+    "Kẻ Giữ Nhà (Homebound)",
+    "Thưởng phòng yêu thích +100%",
+    "ATK −10% khi ngoài phòng yêu thích"
+  ],
+  [
+    "CH13",
+    "Tham Học (Scholar)",
+    "XP tiến hóa +30%; manaEfficiency 10%",
+    "ATK vật lý −10%"
+  ],
+  [
+    "CH14",
+    "Thiên Tài Chiến Thuật (Tactician)",
+    "Utility cover/kite +30%; reaction delay −0.15s",
+    "Utility đánh trực diện −15%"
+  ],
+  [
+    "CH15",
+    "Kẻ Lười Biếng (Slothful)",
+    "Hồi HP ngoài combat +50%",
+    "Tốc chạy −15%"
+  ],
+  [
+    "CH16",
+    "Kẻ Háu Ăn (Gluttonous)",
+    "Hiệu quả thuốc hồi HP +30%",
+    "Dùng thuốc sớm ngay khi HP dưới 80%"
+  ],
+  [
+    "CH17",
+    "Tiết Kiệm (Frugal)",
+    "Utility giữ vật phẩm hiếm +40%",
+    "Trì hoãn dùng thuốc đến HP thấp hơn"
+  ],
+  [
+    "CH18",
+    "Kẻ Tàn Phá (Destroyer)",
+    "Sát thương công trình +40%",
+    "Utility phá vật cản cao, dễ lãng phí thời gian"
+  ],
+  [
+    "CH19",
+    "Thợ Sửa Chữa (Artificer)",
+    "Sửa trang bị/công trình nhanh hơn 50%",
+    "ATK −10%"
+  ],
+  [
+    "CH20",
+    "Tâm Hồn Mỏng Manh (Fragile)",
+    "MaxMana +30%; sát thương phép +15%",
+    "MaxHP −20%"
+  ],
+  [
+    "CH21",
+    "Cơ Thể Dị Biến (Mutant)",
+    "Hiệu quả bonus biến thể +50%",
+    "XP cần để tiến hóa +25%"
+  ],
+  [
+    "CH22",
+    "Hỏa Tâm (Flameheart)",
+    "Sát thương burn gây ra +35%",
+    "Damage băng nhận +25%"
+  ],
+  [
+    "CH23",
+    "Huyết Băng (Frostblood)",
+    "Kháng slow 50%; damage băng +20%",
+    "Damage lửa nhận +25%"
+  ],
+  [
+    "CH24",
+    "Máu Độc (Toxicblood)",
+    "OnDamage cận chiến: gây poison 3s; CD 6s",
+    "Hồi máu nhận −15%"
+  ],
+  [
+    "CH25",
+    "Thân Đá (Stonebody)",
+    "Giáp +30%; anchored thường trực",
+    "Tốc chạy −25%"
+  ],
+  [
+    "CH26",
+    "Bóng Đêm Thân Thuộc (Nightborn)",
+    "Trong bóng tối: evasion +20%; Utility nấp +30%",
+    "Ngoài bóng tối mất bonus"
+  ],
+  [
+    "CH27",
+    "Kẻ Săn Phù Thủy (MageHunter)",
+    "Damage lên mục tiêu đang thi triển +35%",
+    "Ưu tiên pháp sư dù tanker nguy hiểm hơn"
+  ],
+  [
+    "CH28",
+    "Kẻ Phá Thành (Siegeborn)",
+    "ArmorPierce 20%; damage shield +30%",
+    "Tốc đánh −15%"
+  ],
+  [
+    "CH29",
+    "Người Truyền Lửa (Inspiring)",
+    "Leader: Utility panic đồng đội R5 giảm 40%",
+    "Khi gục, đồng đội chứng kiến dễ panic hơn"
+  ],
+  [
+    "CH30",
+    "Kẻ Giả Chết (FeignDeath)",
+    "HP xuống dưới 15%: stealth 3s; CD 45s",
+    "Không tấn công trong 3s; truesight phát hiện"
+  ],
+  [
+    "E01",
+    "Lifesteal (Hút máu)",
+    "Hồi HP bằng 10% damage thực gây ra",
+    "Shield và giáp giảm lượng hồi"
+  ],
+  [
+    "E02",
+    "ArmorPierce (Xuyên giáp)",
+    "Bỏ qua 25% giáp mục tiêu khi tính damage",
+    "Shield vẫn hấp thụ bình thường"
+  ],
+  [
+    "E03",
+    "Evasion (Né tránh)",
+    "20% tránh strike đủ điều kiện trúng",
+    "AoE không bị né bằng effect này"
+  ],
+  [
+    "E04",
+    "Block (Đỡ đòn)",
+    "25% cơ hội giảm 50% damage strike nhận",
+    "Disarm vô hiệu block từ khiên"
+  ],
+  [
+    "E05",
+    "Focus (Tập trung)",
+    "Chính xác +20 điểm %",
+    "Blind giảm chính xác; cover vẫn hiệu quả"
+  ],
+  [
+    "E06",
+    "Exhausted (Kiệt sức)",
+    "Tốc chạy và tốc đánh −20% trong 5s",
+    "Cleanse, nghỉ ngơi"
+  ],
+  [
+    "E07",
+    "Anchored (Bám trụ)",
+    "Giảm quãng đường push/pull 80%",
+    "Không kháng stun hoặc slow"
+  ],
+  [
+    "E08",
+    "Brittle (Giòn vỡ)",
+    "Giáp giảm 30% trong 6s",
+    "Cleanse, shield"
+  ],
+  [
+    "E09",
+    "Wounded (Trọng thương)",
+    "Hiệu quả hồi HP nhận giảm 50% trong 6s",
+    "Cleanse, dùng shield"
+  ],
+  [
+    "E10",
+    "ManaEfficiency (Tiết mana)",
+    "Chi phí mana kỹ năng −20%, tối thiểu 1",
+    "Không giảm chi phí vật phẩm"
+  ],
+  [
+    "E11",
+    "ManaLeak (Rò mana)",
+    "Mất 3% MaxMana/s trong 5s",
+    "Cleanse, dùng đòn thường"
+  ],
+  [
+    "E12",
+    "VenomResist (Kháng độc)",
+    "Damage poison nhận −50%",
+    "Burn, bleed không bị giảm"
+  ],
+  [
+    "E13",
+    "FireResist (Kháng lửa)",
+    "Damage lửa và burn nhận −40%",
+    "Băng, vật lý"
+  ],
+  [
+    "E14",
+    "FrostResist (Kháng băng)",
+    "Damage băng nhận −40%; slow từ băng ngắn hơn 30%",
+    "Lửa, stun"
+  ],
+  [
+    "E15",
+    "TrapSense (Cảm nhận bẫy)",
+    "Tăng xác suất phát hiện bẫy +30 điểm % trong LOS/tầm dò",
+    "Không tự biết bẫy ngoài tầm"
+  ],
+  [
+    "E16",
+    "Rooted (Trói chân)",
+    "Không thể di chuyển trong 2s; vẫn tấn công/thi triển",
+    "Cleanse, tấn công tầm xa"
+  ],
+  [
+    "E17",
+    "Drenched (Ướt sũng)",
+    "Xóa burn; nhận damage lửa −30%, băng +20% trong 5s",
+    "Tránh kỹ năng băng"
+  ],
+  [
+    "E18",
+    "Conductive (Dẫn điện)",
+    "Damage sét nhận +40% trong 5s",
+    "Cleanse, rời vùng nước"
+  ],
+  [
+    "E19",
+    "Thorns (Phản thương)",
+    "Phản 15% damage cận chiến thực nhận; CD 1s",
+    "Ranged; không phản lại damage phản thương"
+  ],
+  [
+    "E20",
+    "Tenacity (Kiên cường)",
+    "Thời lượng stun/rooted/disarm nhận −40%",
+    "Damage trực tiếp, mark"
+  ],
+  [
+    "E21",
+    "Sunder (Phá khiên)",
+    "Damage gây lên shield +60% trong 6s",
+    "Fortify, giáp, né"
+  ],
+  [
+    "E22",
+    "Overburdened (Quá tải)",
+    "Túi vượt 80% sức chứa: tốc chạy −15%",
+    "Bỏ bớt vật phẩm hoặc đổi túi"
+  ]
+];

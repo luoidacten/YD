@@ -10,11 +10,14 @@
 4. Không anti-alias/blur trên sprite; render nearest-neighbor. Ánh sáng và vignette là lớp trên map, không làm thay đổi đường viền pixel.
 5. Hoạt ảnh idle/run 4 frame theo bộ gốc; hướng trái/phải mirror. Nội dung hiện tại không có đủ 8 hướng, không mô tả như đã có.
 6. Nội thất, portrait nhỏ và icon dùng cùng bộ. Đồ mới phải được thử cạnh Goblin/Skeleton/chest gốc trước khi đưa vào game.
-7. Giao diện quản lý dùng chữ rõ, nền than xanh xám, đường viền mảnh, hạn chế panel che bản đồ. Không dùng ảnh lớn khác phong cách làm phông game.
+7. Giao diện quản lý dùng chữ rõ, nền đá xanh tối, khung đồng vuông và bóng cứng theo cụm pixel. Canvas chiếm chính giữa, không dùng ảnh lớn khác phong cách làm phông game.
+8. Zoom dùng ba mức LOD: toàn tầng dưới 10 px/ô, chiến thuật dưới 23 px/ô và cận cảnh từ 23 px/ô. Hình phòng vẫn giữ đúng footprint vật lý ở cả ba mức; chi tiết nhỏ chỉ vẽ khi tới gần.
+9. Phòng thường có nền 15×13, phòng lớn 21×17, boss 29×23. Hành lang rộng 3 ô. Chiều dài đến từ khoảng cách phòng, không kéo giãn sprite.
+10. Phẩm chất dùng viền chân/màu nhấn; biến thể dùng tint nhẹ và effect dễ nhận biết. Không tuyên bố mỗi biến thể có bộ sprite riêng.
 
 ## Khi cần Gemini để vẽ
 
-Chỉ dùng Gemini cho hình ảnh theo yêu cầu của người dùng. Không cần tài khoản Gemini cho v0.1 vì asset CC0 hiện có đủ để chơi.
+Chỉ dùng Gemini cho hình ảnh theo yêu cầu của người dùng. Không cần tài khoản Gemini cho v0.2 vì asset CC0 hiện có đủ để chơi.
 
 - Đưa một contact sheet tham chiếu từ bộ gốc, bảng màu trích từ ảnh, kích thước sprite chính xác và trạng thái cần vẽ.
 - Tách yêu cầu một nhân vật/một trạng thái hoặc một bộ icon; không yêu cầu AI dựng cả atlas gameplay nhiều ô một lần.
