@@ -76,5 +76,5 @@ test('fixed simulation yields the same result regardless of render grouping',()=
  const a=new Game(),b=new Game();a.start();b.start();step(a,20);for(let group=0;group<150;group++)for(let tick=0;tick<4;tick++)b.tick(1/30);assert.equal(a.serialize(),b.serialize());
 });
 test('a legally prepared defense wins, receives rewards and proceeds to a real second expedition',()=>{
- const g=new Game();for(let i=0;i<3;i++)assert.ok(g.summon('skeleton',12+i,13).ok);assert.ok(g.summon('goblin',13,14).ok);g.start();step(g,180);assert.equal(g.state.phase,'result');assert.ok(g.state.gold>340);g.next();assert.equal(g.state.wave,2);assert.equal(g.state.phase,'prepare');assert.equal(g.state.entities.some(e=>e.faction==='hero'),false);assert.ok(g.start().ok);step(g,180);assert.ok(['result','gameover'].includes(g.state.phase));
+ const g=new Game();for(let i=0;i<3;i++)assert.ok(g.summon('skeleton',12+i,13).ok);assert.ok(g.summon('goblin',13,14).ok);g.start();step(g,180);assert.equal(g.state.phase,'result');assert.ok(g.state.entities.filter(e=>e.faction==='monster').every(e=>e.frenzy===0&&e.scores.length===0));assert.ok(g.state.gold>340);g.next();assert.equal(g.state.wave,2);assert.equal(g.state.phase,'prepare');assert.equal(g.state.entities.some(e=>e.faction==='hero'),false);assert.ok(g.start().ok);step(g,180);assert.ok(['result','gameover'].includes(g.state.phase));
 });
