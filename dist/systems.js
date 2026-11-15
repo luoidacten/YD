@@ -1,76 +1,1687 @@
-import {SPECIES,ROOMS,center,bounds,contains,distance,SETTINGS} from './data.js';
-import {SKILLS,PASSIVES,STATUS,KITS} from './catalog.js';
-
-const has=(e,id)=>e.passiveIds?.includes(id);
-export function installSystems(Game){const P=Game.prototype;
- P.effect=function(e,type){return e.statuses?.find(s=>s.type===type&&s.until>this.state.time)};
- P.applyStatus=function(e,type,duration,value=1,source=null){if(!e||e.status!=='active'||!STATUS[type])return false;if(type==='panic'&&has(e,'P08'))duration*=.4;if(e.boss&&['panic','stun','taunt'].includes(type))duration*=.4;const existing=this.effect(e,type),amount=type==='shield'?e.maxHp*value:value;if(existing){existing.until=Math.max(existing.until,this.state.time+duration);existing.value=Math.max(existing.value,amount);if(source)existing.source=source.id||source}else(e.statuses??=[]).push({type,value:amount,until:this.state.time+duration,source:source?.id||source});return true};
- P.cleanse=function(e,count=99,type=null){let n=0;e.statuses=(e.statuses||[]).filter(s=>{if(STATUS[s.type]?.bad&&(!type||s.type===type)&&n<count){n++;return false}return true});return n};
- P.vision=function(e){return Math.max(3,SETTINGS.vision+(has(e,'P07')?2:0)+(e.charms.includes('seer')?3:0)+(e.scoutLens?2:0)-(this.effect(e,'blind')?6:0)-(this.state.world?.weather==='Sương dày'?2:0))};
- P.canSeeEnemy=function(e,target){if(e.floorId!==target.floorId||distance(e,target)>this.vision(e)||!this.lineOfSight(e,target))return false;const hidden=target.concealed||this.effect(target,'stealth');return !hidden||distance(e,target)<2.5||!!this.effect(e,'truesight')&&distance(e,target)<this.effect(e,'truesight').value||e.charms.includes('seer')&&distance(e,target)<7||!!this.effect(target,'mark')};
- P.roomOperational=function(r){return r.owner==='dungeon'&&r.buildingHp>0};
- P.manaCapacity=function(){return 100+this.state.rooms.filter(r=>r.type==='mana'&&this.roomOperational(r)).reduce((n,r)=>n+60*r.level,0)};
- P.setupSystems=function(){const s=this.state;s.world??={day:1,weather:'Trời quang',road:'Thông suốt',event:'Chợ phiên',threat:1,wealth:1,guildPressure:0,intel:[],rumors:[{title:'Một hầm ngục vừa thức giấc',text:'Công hội chưa có sơ đồ chính xác. Các nhóm thăm dò được cử đi.',day:1,confidence:'Chưa xác minh'}],scoutsLost:0};s.squads??=[];s.lastSystemPulse??=0;this.sightCache=new Map();for(const r of s.rooms){r.owner??='dungeon';r.level??=1;r.buildingMaxHp??=r.type==='boss'||r.type==='treasure'?300:160;r.buildingHp??=r.buildingMaxHp;r.stock??=6;r.captureProgress??=0;r.reclaimProgress??=0;r.pulse??=0}for(const e of s.entities)this.setupKit(e);s.mana=Math.min(s.mana,this.manaCapacity());};
- P.setupKit=function(e){const kit=KITS[e.species]||KITS.goblin;e.role??=kit.role;e.statuses??=[];e.skillCooldowns??={};e.procCooldowns??={};e.threat??={};e.skillIds??=[...kit.skills];e.passiveIds??=kit.passives.slice(0,e.elite||e.boss?4:2);e.leadership??=(e.elite?2:0)+(e.role==='tank'?1:.5)+(e.personality?.teamwork||1);e.quickScrolls??=e.role==='scout'&&e.faction==='hero'?[0,1]:[];if(e.role==='scout'&&e.faction==='hero'){e.scoutLens=true;e.capacity=Math.max(8,e.capacity)}if(!e.passiveStatsApplied){if(has(e,'P01')){e.maxHp=Math.round(e.maxHp*1.2);e.hp=e.maxHp}if(has(e,'P02')){e.maxMana=Math.round(e.maxMana*1.25);e.mana=e.maxMana}e.passiveStatsApplied=true}e.order??='guard';if(e.faction==='monster'&&e.role==='ambusher'&&!e.ambushInitialized){e.order='ambush';e.concealed=true;e.ambushInitialized=true;}};
- const spawn=P.spawn;P.spawn=function(...args){const e=spawn.apply(this,args),options=args[6]||{};if(options.role)e.role=options.role;this.setupKit(e);return e};
- P.activeSkills=function(e){const count=Math.min(4,2+Math.floor(e.level/3));return(e.skillIds||[]).slice(0,count).map(id=>SKILLS[id]).filter(Boolean)};
- P.passiveReady=function(e,id,cd){if((e.procCooldowns[id]||0)>this.state.time)return false;e.procCooldowns[id]=this.state.time+cd;return true};
- P.skillAvailable=function(e,skill){return e.status==='active'&&this.state.time>=(e.skillCooldowns[skill.id]||0)&&e.mana>=skill.mana&&!(skill.mana>0&&this.effect(e,'silence'))&&!this.effect(e,'stun')};
- P.skillTarget=function(e,k,enemies,allies){const visibleAllies=[e,...allies];if(k.kind==='buff')return !this.effect(e,k.effect)&&((enemies.length&&k.effect!=='stealth')||k.effect==='stealth'&&!enemies.length||k.effect==='truesight')?e:null;if(k.kind==='taunt')return enemies.some(a=>distance(e,a)<k.radius&&!this.effect(a,'taunt'))?e:null;if(['strike','aoe','control','push','pull'].includes(k.kind))return enemies.find(a=>distance(e,a)<=k.range&&(!k.effect||!this.effect(a,k.effect)));if(k.kind==='heal'||k.kind==='healArea')return visibleAllies.filter(a=>!a.charms.includes('forsaken')&&a.hp/a.maxHp<.68&&distance(e,a)<=k.range).sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];if(k.kind==='shieldAlly')return visibleAllies.find(a=>distance(e,a)<=k.range&&a.hp/a.maxHp<.8&&!this.effect(a,'shield'));if(k.kind==='mana')return(k.self?[e]:allies).find(a=>a.maxMana>0&&a.mana/a.maxMana<.4&&distance(e,a)<=k.range&&(!k.self?e.mana>k.mana+15:true));if(k.kind==='cleanse')return visibleAllies.find(a=>distance(e,a)<k.range&&a.statuses.some(s=>STATUS[s.type]?.bad&&s.until>this.state.time&&(!k.effect||s.type===k.effect)));if(k.kind==='revive')return this.state.entities.find(a=>a.status==='downed'&&!a.rescued&&a.faction===e.faction&&a.floorId===e.floorId&&distance(e,a)<=k.range&&this.state.time-(a.downedAt||0)<8&&this.lineOfSight(e,a));return null};
- P.castSkill=function(e,id,targetId,complete=false){const k=SKILLS[id],target=this.entity(targetId)||e;if(!k||!complete&&!this.skillAvailable(e,k)||target.floorId!==e.floorId)return false;if(!complete){e.skillCooldowns[id]=this.state.time+k.cd;e.mana-=k.mana;e.concealed=false;if(k.channel){e.channelCast={id,targetId:target.id,started:this.state.time,resolveAt:this.state.time+k.channel};e.action='skill';return true}}
-  if(['strike','control','push','pull'].includes(k.kind)&&(!this.canSeeEnemy(e,target)||distance(e,target)>k.range+.2))return false;
-  const d=SPECIES[e.species],friends=this.state.entities.filter(a=>a.status==='active'&&a.faction===e.faction&&a.floorId===e.floorId&&this.lineOfSight(e,a));
-  if(k.kind==='strike'){let power=d.attack*k.power;if(k.execute&&target.hp/target.maxHp<.25)power*=1+k.execute;if(k.ambush&&!target.seen?.[e.id])power*=1+k.ambush;const shield=this.effect(target,'shield');if(k.breakShield&&shield)shield.value=Math.max(0,shield.value-power*(k.breakShield-1));this.damage(target,power,e,{skill:id,pierce:k.pierce||0});if(k.effect)this.applyStatus(target,k.effect,k.duration,k.value||1,e);e.strike=.2;this.effects.push({x:e.x,y:e.y,tx:target.x,ty:target.y,floorId:e.floorId,beam:true,color:k.mana?'#adc4ed':'#e2bd86',life:.23});}
-  else if(k.kind==='aoe'){const origin=k.self||k.cone?e:target;this.state.telegraphs.push({id:this.id('skill'),source:e.id,skill:id,floorId:e.floorId,type:k.cone?'cone':'circle',x:origin.x,y:origin.y,tx:target.x,ty:target.y,radius:k.radius,width:1.5,createdAt:this.state.time,resolveAt:this.state.time+k.windup,damage:d.attack*k.power,effect:k.effect,effectDuration:k.duration,value:k.value,cloud:k.cloud,markedBonus:k.markedBonus});e.castUntil=this.state.time+Math.min(.6,k.windup);}
-  else if(k.kind==='buff'){for(const a of k.radius?friends.filter(a=>distance(a,e)<=k.radius):[e])this.applyStatus(a,k.effect,k.duration,k.value,e)}
-  else if(k.kind==='heal'||k.kind==='healArea'){for(const a of k.kind==='healArea'?friends.filter(a=>distance(a,target)<=k.radius):[target]){const n=this.heal(a,a.maxHp*k.value);this.effects.push({x:a.x,y:a.y,floorId:e.floorId,text:'+'+Math.round(n),color:'#b4d69e',life:1})}}
-  else if(k.kind==='mana'){const amount=Math.min(target.maxMana-target.mana,target.maxMana*k.value,k.self?Infinity:e.mana);target.mana+=amount;if(!k.self)e.mana-=amount;}
-  else if(k.kind==='cleanse'){for(const a of k.radius?friends.filter(a=>distance(a,e)<=k.radius):[target])this.cleanse(a,k.count||99,k.effect||null)}
-  else if(k.kind==='shieldAlly')this.applyStatus(target,'shield',k.duration,k.value,e);
-  else if(k.kind==='revive'){if(target.status!=='downed'||target.rescued)return false;target.status='active';target.hp=target.maxHp*k.value;target.rescued=true;target.decision=0;}
-  else if(k.kind==='taunt'){for(const a of this.state.entities.filter(a=>a.status==='active'&&a.faction!==e.faction&&a.floorId===e.floorId&&distance(a,e)<=k.radius&&this.canSeeEnemy(e,a))){this.applyStatus(a,'taunt',k.duration,k.value,e);a.threat[e.id]=(a.threat[e.id]||0)+k.value;a.decision=0}this.applyStatus(e,'fortify',3,.12,e)}
-  else if(k.kind==='control'){const targets=k.radius?this.state.entities.filter(a=>a.status==='active'&&a.faction!==e.faction&&a.floorId===e.floorId&&distance(a,target)<k.radius&&this.canSeeEnemy(e,a)):[target];for(const a of targets)this.applyStatus(a,k.effect,k.duration,k.value,e)}
-  else if(k.kind==='push'||k.kind==='pull'){const dx=target.x-e.x,dy=target.y-e.y,dist=Math.hypot(dx,dy)||1,sign=k.kind==='push'?1:-1;const travel=k.value*(1-(this.effect(target,'anchored')?.value||0))*(1+this.gearMod(target,'pushWeak'));for(let n=.2;n<=travel;n+=.2){const p={x:target.x+dx/dist*.2*sign,y:target.y+dy/dist*.2*sign,floorId:target.floorId};if(!this.walkable(p.x,p.y,p.floorId,target)||!this.lineOfSight(target,p))break;target.x=p.x;target.y=p.y;}target.path=[];target.decision=0;}
-  this.event(['heal','healArea','shieldAlly','cleanse','revive'].includes(k.kind)?'heal':'magic',{floorId:e.floorId,x:e.x,y:e.y});this.effects.push({x:e.x,y:e.y,floorId:e.floorId,text:k.name,color:'#c6d9b0',life:1});return true;
- };
- const damage=P.damage;P.damage=function(e,amount,source=null,ctx={}){if(e.status!=='active')return;let value=amount;if(source){if(this.effect(source,'power'))value*=1+this.effect(source,'power').value;if(has(source,'P03'))value*=1.15;if(has(source,'P50')&&this.effect(e,'mark'))value*=1.2;if(this.effect(source,'panic')&&this.random()<.3){this.effects.push({x:e.x,y:e.y,floorId:e.floorId,text:'TRƯỢT',color:'#c3bbb1',life:.7});return}if(this.effect(source,'blind')&&this.random()<Math.max(0,this.effect(source,'blind').value-this.accuracyBonus(source,e))){this.effects.push({x:e.x,y:e.y,floorId:e.floorId,text:'TRƯỢT',color:'#c3bbb1',life:.7});return}if((source.concealed||this.effect(source,'stealth'))&&(!e.seen?.[source.id]||this.state.time-(e.seen[source.id].firstSeen||0)<.8)&&!ctx.secondary){value*=1.25;if(has(source,'P43')&&this.passiveReady(source,'P43',12))value*=1.5;this.applyStatus(e,'panic',2,1,source);source.concealed=false;source.statuses=source.statuses.filter(s=>s.type!=='stealth');this.log(`${source.name} đánh úp ${e.name}, gây hoảng loạn!`,'warning')}e.threat??={};e.threat[source.id]=(e.threat[source.id]||0)+value;}
-  if(this.effect(e,'mark'))value*=1+this.effect(e,'mark').value;if(this.effect(e,'fortify'))value*=1-this.effect(e,'fortify').value;if(has(e,'P04'))value*=1-.17*(1-(ctx.pierce||0));if(has(e,'P09')&&ctx.effect==='poison')value*=.5;if(has(e,'P49')&&this.state.entities.filter(a=>a.id!==e.id&&a.faction===e.faction&&a.floorId===e.floorId&&a.status==='active'&&distance(a,e)<4).length>=2)value*=.85;const home=this.state.rooms.find(r=>r.id===e.roomId);if(home&&this.roomOperational(home)&&e.faction==='monster')value*=1-.04*(home.level-1);const shield=this.effect(e,'shield');if(shield){const absorbed=Math.min(shield.value,value);shield.value-=absorbed;value-=absorbed;if(shield.value<=0)e.statuses=e.statuses.filter(s=>s!==shield)}const hp=e.hp;damage.call(this,e,Math.max(0,value),source);const actual=hp-e.hp;if(e.status==='downed')e.downedAt=this.state.time;
-  if(!ctx.secondary&&source&&actual>0){for(const[id,effect,cd,chance,duration]of[['P11','poison',5,.2,4],['P12','burn',5,.2,3],['P13','bleed',5,.25,4],['P14','stun',8,.15,.8],['P15','slow',4,1,2],['P16','mark',8,.2,4],['P19','silence',10,.15,1.5]])if(has(source,id)&&this.random()<chance&&this.passiveReady(source,id,cd))this.applyStatus(e,effect,duration,effect==='slow'?.2:effect==='mark'?.15:1,source);if(has(source,'P17'))this.heal(source,actual*.08);if(has(source,'P18')&&this.passiveReady(source,'P18',3))source.mana=Math.min(source.maxMana,source.mana+source.maxMana*.03);if(has(source,'P20')&&this.random()<.15&&this.passiveReady(source,'P20',4))this.damage(e,SPECIES[source.species].attack*.4,source,{secondary:true});
-   if(e.status==='downed'){if(has(source,'P45')&&this.passiveReady(source,'P45',8))this.applyStatus(source,'power',5,.25,source);if(has(source,'P46')&&this.passiveReady(source,'P46',8))this.heal(source,source.maxHp*.12);if(has(source,'P47')&&this.passiveReady(source,'P47',6))source.mana=Math.min(source.maxMana,source.mana+source.maxMana*.15);if(has(source,'P48')&&this.passiveReady(source,'P48',15))for(const a of this.state.entities.filter(a=>a.faction!==source.faction&&a.status==='active'&&a.floorId===source.floorId&&distance(a,source)<4&&this.canSeeEnemy(a,source)))this.applyStatus(a,'panic',2,1,source);}
-  }
-  if(e.status==='active'&&actual>0&&!ctx.secondary){const low=e.hp/e.maxHp;for(const[id,type,cd,threshold,duration,value]of[['P22','shield',30,.3,5,.2],['P23','power',10,1,4,.2],['P24','haste',25,.25,3,.4],['P25','fortify',8,1,3,.2],['P29','stealth',35,.2,3,1]])if(has(e,id)&&low<threshold&&this.passiveReady(e,id,cd))this.applyStatus(e,type,duration,value,e);if(has(e,'P26')&&this.effect(e,'panic')&&this.passiveReady(e,'P26',15))this.cleanse(e,1,'panic');if(has(e,'P30')&&(this.effect(e,'slow')||this.effect(e,'blind'))&&this.passiveReady(e,'P30',12)){this.cleanse(e,1,this.effect(e,'slow')?'slow':'blind')}if(has(e,'P27')&&source&&SPECIES[source.species].magic&&this.passiveReady(e,'P27',5))e.mana=Math.min(e.maxMana,e.mana+e.maxMana*.05);if(source&&source.status==='active'&&distance(source,e)<3){if(has(e,'P21')&&this.passiveReady(e,'P21',2))this.damage(source,actual*.15,e,{secondary:true});if(has(e,'P28')&&this.passiveReady(e,'P28',6))this.damage(source,SPECIES[e.species].attack*.6,e,{secondary:true})}}
- };
- P.pulseStatuses=function(e){e.statuses=e.statuses.filter(s=>s.until>this.state.time);if(e.status!=='active')return;for(const effect of e.statuses){if(['poison','burn','bleed'].includes(effect.type))this.damage(e,effect.type==='bleed'?3:4,this.entity(effect.source),{secondary:true,effect:effect.type});if(effect.type==='regen')this.heal(e,e.maxHp*effect.value)}if(has(e,'P31')&&this.passiveReady(e,'P31',2))this.heal(e,e.maxHp*.01);if(has(e,'P32')&&this.passiveReady(e,'P32',3))e.mana=Math.min(e.maxMana,e.mana+e.maxMana*.02);if(has(e,'P33')&&this.state.time-(e.lastDamaged||0)>5&&e.action!=='attack'&&!e.visibleIds?.length)this.heal(e,e.maxHp*.03);if(has(e,'P34')&&this.passiveReady(e,'P34',10)){const ally=this.state.entities.find(a=>a.id!==e.id&&a.faction===e.faction&&a.status==='active'&&a.floorId===e.floorId&&distance(e,a)<2);if(ally)this.applyStatus(ally,'shield',5,.08,e)}if(has(e,'P35')&&this.passiveReady(e,'P35',8)){const ally=this.state.entities.find(a=>a.faction===e.faction&&a.status==='active'&&a.floorId===e.floorId&&distance(e,a)<3&&this.effect(a,'panic'));if(ally)this.cleanse(ally,1,'panic')}if(has(e,'P36')&&this.passiveReady(e,'P36',12))this.applyStatus(e,'truesight',3,5,e);if(has(e,'P37')&&this.passiveReady(e,'P37',5))for(const a of this.state.entities.filter(a=>a.faction!==e.faction&&a.status==='active'&&a.floorId===e.floorId&&distance(e,a)<1.5&&this.canSeeEnemy(e,a)))this.applyStatus(a,'poison',2,1,e);if(has(e,'P38')&&!e.moving&&e.action!=='attack'&&this.state.time-(e.lastDamaged||0)>3&&this.state.time-(e.lastMovedAt||0)>3&&this.passiveReady(e,'P38',12))this.applyStatus(e,'stealth',4,1,e);if(has(e,'P39')&&e.combatTime>=8&&this.passiveReady(e,'P39',12))this.applyStatus(e,'power',4,.15,e);if(has(e,'P40')&&e.hp/e.maxHp<.5&&this.passiveReady(e,'P40',10))this.applyStatus(e,'fortify',4,.15,e);for(const id of Object.keys(e.threat||{})){e.threat[id]*=.92;if(e.threat[id]<.1)delete e.threat[id]}};
- P.meleeSlot=function(e,target){const now=this.state.time;if(e.attackSlot?.target===target.id&&e.attackSlot.until>now&&this.walkable(e.attackSlot.x,e.attackSlot.y,e.floorId,e))return e.attackSlot;const radius=target.boss?2.1:1.1,choices=[];for(let i=0;i<8;i++){const angle=i*Math.PI/4,p={x:target.x+Math.cos(angle)*radius,y:target.y+Math.sin(angle)*radius,floorId:e.floorId};if(!this.walkable(p.x,p.y,p.floorId,e)||!this.lineOfSight(p,target)||this.state.entities.some(a=>a.id!==e.id&&a.status==='active'&&a.floorId===e.floorId&&a.attackSlot?.until>now&&distance(a.attackSlot,p)<.75))continue;choices.push(p)}choices.sort((a,b)=>distance(e,a)-distance(e,b));if(choices[0])e.attackSlot={...choices[0],target:target.id,until:now+1.2};return e.attackSlot?.until>now?e.attackSlot:null};
- const move=P.move;P.move=function(e,target,dt,stop=.35){e.moveFactor=(has(e,'P05')?1.15:1)*(this.effect(e,'haste')?1+this.effect(e,'haste').value:1)*(this.effect(e,'slow')?1-this.effect(e,'slow').value:1)*(e.role==='scout'&&e.faction==='hero'?1.15:1);if(this.effect(e,'stun'))return false;return move.call(this,e,target,dt,stop)};
- const act=P.act;P.act=function(e,dt){if(e.feignUntil>this.state.time){e.moving=false;return}if(['skill','ambush','quickScroll','capture','sabotage'].includes(e.action))e.decision-=dt;if(this.effect(e,'stun')){e.moving=false;e.action='stunned';e.decision=0;return}if(e.channelCast){const cast=e.channelCast;if((e.lastDamaged||0)>cast.started||this.effect(e,'panic')){e.channelCast=null;e.decision=0;return}if(this.state.time>=cast.resolveAt){e.channelCast=null;this.castSkill(e,cast.id,cast.targetId,true);e.decision=0}return}if(e.decision<=0)this.decide(e);if(e.action==='skill'){const target=e.target;e.decision=.3;if(!target||!this.castSkill(e,target.skillId,target.targetId))e.decision=0;return}if(e.action==='ambush'){e.concealed=true;e.moving=false;e.decision-=dt;return}if(e.action==='quickScroll'){if(this.roomForHero(e)||!e.quickScrolls.includes(e.floorId)){e.decision=0;return}e.channel=(e.channel||0)+dt;if((e.lastDamaged||-100)>this.state.time-.4){e.channel=0;return}if(e.channel>=1){e.quickScrolls=e.quickScrolls.filter(f=>f!==e.floorId);const safe=this.state.rooms.find(r=>r.floorId===e.floorId&&['entrance','arrival'].includes(r.type));e.x=safe.x;e.y=safe.y;e.path=[];e.channel=0;e.decision=0;if(e.floorId===0)this.escape(e,true);else e.scoutReturning=true;this.event('magic')}return}if(e.action==='capture'||e.action==='sabotage'){const room=this.state.rooms.find(r=>r.id===e.target);if(!room||e.action==='sabotage'&&room.buildingHp<=0){e.decision=0;e.channel=0;return}if(this.roomMonsters(room).length||!this.move(e,{x:room.x,y:room.y-2,floorId:room.floorId},dt,1.4)){e.channel=0;return}if(e.action==='capture'){e.channel=(e.channel||0)+dt;room.captureProgress=e.channel/5;if(e.channel>=5){room.owner='adventurers';room.captureProgress=0;e.channel=0;e.decision=0;this.state.mana=Math.min(this.state.mana,this.manaCapacity());this.log(`${e.name} chiếm ${ROOMS[room.type].name}. Công trình ngừng phục vụ hầm ngục.`,'warning')}}else{e.cooldown=Math.max(0,e.cooldown-dt);if(e.cooldown===0){room.buildingHp=Math.max(0,room.buildingHp-SPECIES[e.species].attack*2);e.cooldown=1;if(room.buildingHp===0){e.decision=0;this.log(`${ROOMS[room.type].name} bị phá hủy!`,'warning')}}}return}
-  if(e.action==='attack'){const enemy=this.entity(e.target);if(enemy&&this.range(e)<3&&distance(e,enemy)>(this.range(e)+(enemy.boss?.9:0))){const slot=this.meleeSlot(e,enemy);if(slot){this.move(e,slot,dt,.22);e.decision-=dt;e.cooldown=Math.max(0,e.cooldown-dt);return}}if(this.effect(e,'disarm')&&!SPECIES[e.species].magic){e.decision=0;e.cooldown=Math.max(e.cooldown,.3);return}}
-  act.call(this,e,dt);if(this.effect(e,'haste'))e.cooldown=Math.max(0,e.cooldown-dt*.2);if(has(e,'P06'))e.cooldown=Math.max(0,e.cooldown-dt*.15);
- };
- const inDanger=P.inDanger;P.inDanger=function(p,t,padding=0){if(t.type==='cone'){if(p.floorId!==t.floorId||distance(p,t)>t.radius+padding)return false;const dx=t.tx-t.x,dy=t.ty-t.y,px=p.x-t.x,py=p.y-t.y;return(dx*px+dy*py)/(Math.hypot(dx,dy)*Math.hypot(px,py)||1)>.5}return inDanger.call(this,p,t,padding)};
- const resolve=P.resolveWorld;P.resolveWorld=function(dt){const due=this.state.telegraphs.filter(t=>this.state.time>=t.resolveAt&&t.skill);resolve.call(this,dt);for(const t of due){const source=this.entity(t.source);if(!source||source.status!=='active')continue;for(const a of this.state.entities.filter(a=>a.status==='active'&&a.faction!==source.faction&&this.inDanger(a,t))){if(t.effect)this.applyStatus(a,t.effect,t.effectDuration,t.value||1,source);if(t.markedBonus&&this.effect(a,'mark'))this.damage(a,t.damage*t.markedBonus,source,{secondary:true})}if(t.cloud)this.state.hazards.push({id:this.id('gas'),type:'poison',x:t.x,y:t.y,floorId:t.floorId,radius:t.radius,until:this.state.time+t.effectDuration,tick:0})}};
- P.updateSquads=function(){const s=this.state;for(const id of new Set(s.entities.filter(e=>e.squadId).map(e=>e.squadId))){const members=s.entities.filter(e=>e.squadId===id&&e.status==='active');let squad=s.squads.find(a=>a.id===id);if(!squad){squad={id,leaderId:members[0]?.id,mode:'explore',nextElection:0};s.squads.push(squad)}const leader=this.entity(squad.leaderId);if(!leader||leader.status!=='active'){if(!squad.nextElection)squad.nextElection=s.time+1.5;if(s.time>=squad.nextElection){const chosen=members.sort((a,b)=>b.leadership-a.leadership)[0];squad.leaderId=chosen?.id;squad.nextElection=0;if(chosen)this.log(`${chosen.name} tiếp quản Leader của tổ đội.`)}}else{const visible=leader.visibleIds?.map(id=>this.entity(id)).filter(a=>a?.status==='active')||[];squad.mode=visible.length?'engage':members.length&&members.reduce((n,a)=>n+a.hp/a.maxHp,0)/members.length<.35?'withdraw':'explore';squad.focus=visible[0]?{id:visible[0].id,x:visible[0].x,y:visible[0].y,floorId:visible[0].floorId,time:s.time}:null;squad.lastOrder={x:leader.x,y:leader.y,floorId:leader.floorId,time:s.time};for(const member of members)if(member!==leader&&member.floorId===leader.floorId&&distance(member,leader)<8&&this.lineOfSight(member,leader)){if(s.time-(member.orderReceived||0)>.5){member.teamOrder={...squad.lastOrder,mode:squad.mode,leaderId:leader.id,focus:squad.focus?{...squad.focus}:null};member.orderReceived=s.time}}}}};
- P.controlsTick=function(dt){const s=this.state;for(const r of s.rooms){r.pulse+=dt;const residents=this.roomMonsters(r),heroes=s.entities.filter(e=>e.status==='active'&&e.faction==='hero'&&e.floorId===r.floorId&&contains(r,e,1));if(r.owner!=='dungeon'&&residents.length&&!heroes.length){r.reclaimProgress+=dt/4;if(r.reclaimProgress>=1){r.owner='dungeon';r.reclaimProgress=0;this.log(`Cư dân đã chiếm lại ${ROOMS[r.type].name}. Sửa công trình nếu đã bị phá.`)}}else r.reclaimProgress=0;if(r.pulse>=20){r.pulse=0;if(r.type==='mana'&&this.roomOperational(r)){s.mana=Math.min(this.manaCapacity(),s.mana+10*r.level);for(const e of residents)e.mana=Math.min(e.maxMana,e.mana+10*r.level)}if(r.type==='guard'&&this.roomOperational(r)&&s.phase==='prepare')for(const e of residents)this.heal(e,5*r.level)}}};
- P.upgradeRoom=function(id){const r=this.state.rooms.find(r=>r.id===id),cost=(r?.level||1)*80;if(!r||!this.canPrepare()||!this.roomOperational(r)||r.level>=3||this.state.gold<cost)return false;this.state.gold-=cost;r.level++;r.buildingMaxHp+=80;r.buildingHp=r.buildingMaxHp;r.w=Math.min(31,r.w+2);r.h=Math.min(25,r.h+2);for(const e of this.roomMonsters(r)){const add=Math.round(e.maxHp*.1);e.maxHp+=add;e.hp+=add}this.rebuild();this.log(`${ROOMS[r.type].name} nâng lên cấp ${r.level}.`);this.event('build');return true};
- P.repairRoom=function(id){const r=this.state.rooms.find(r=>r.id===id);if(!r||!this.canPrepare()||r.owner!=='dungeon'||r.buildingHp>=r.buildingMaxHp||this.state.gold<40)return false;this.state.gold-=40;r.buildingHp=r.buildingMaxHp;this.event('build');return true};
- P.recordIntel=function(e){const s=this.state,rooms=e.knownRooms.map(id=>s.rooms.find(r=>r.id===id)).filter(Boolean).map(r=>({id:r.id,name:ROOMS[r.type].name,col:r.col,row:r.row,floorId:r.floorId,w:r.w,h:r.h,seenAt:s.wave})),intel={id:this.id('intel'),name:e.name,wave:s.wave,day:s.world.day,rooms,traps:[...e.knownTraps],enemies:Object.keys(e.seen).length,source:e.role==='scout'?'Trinh sát thoát':'Người sống sót',confidence:rooms.length>2?'Khá chắc':'Chưa đầy đủ'};s.world.intel.push(intel);s.world.intel=s.world.intel.slice(-20);s.world.guildPressure+=1;s.world.rumors.unshift({title:`${e.name} đã mang tin trở về`,text:`${rooms.length} phòng, ${e.knownTraps.length} bẫy được ghi nhận ở màn ${s.wave}. Thông tin có thể lỗi thời nếu hầm ngục thay đổi.`,day:s.world.day,confidence:intel.confidence});s.world.rumors=s.world.rumors.slice(0,12);this.log('Một báo cáo thực sự đã tới Công hội. Đoàn sau sẽ thích nghi.','warning')};
- const escape=P.escape;P.escape=function(e,teleport=false){const ok=escape.call(this,e,teleport);if(ok)this.recordIntel(e);return ok};
- const used=P.usedSlots;P.usedSlots=function(e){return used.call(this,e)+(e.quickScrolls?.length||0)};
- const start=P.start;P.start=function(){const r=start.call(this);if(!r.ok)return r;const s=this.state,enc=s.encounter,knownTraps=s.world.intel.reduce((n,i)=>n+i.traps.length,0);if(knownTraps>4)for(let i=2;i<enc.spawnQueue.length;i+=5)enc.spawnQueue[i].species='rogue';if(s.world.event==='Dịch sốt')for(let i=3;i<enc.spawnQueue.length;i+=4)enc.spawnQueue[i].species='priest';if(s.world.event==='Chiến tranh biên giới')for(let i=4;i<enc.spawnQueue.length;i+=4)enc.spawnQueue[i].species='mage';if(s.world.intel.length<3||s.wave%3===0){enc.scouting=true;enc.spawnQueue.unshift({species:'rogue',name:'Iris · Trinh sát',role:'scout',squadId:'scouts-'+s.wave,reinforcement:false},{species:'mage',name:'Quill · Trinh sát',role:'scout',squadId:'scouts-'+s.wave,reinforcement:false})}for(const reinforcement of enc.reinforcements)if(s.world.road==='Lầy lội')reinforcement.at+=20;return r};
- const spawning=P.spawnExpedition;P.spawnExpedition=function(dt){if(this.state.encounter?.scouting&&this.state.battleTime<18&&this.state.encounter.spawnQueue[0]?.role!=='scout')return;spawning.call(this,dt)};
- const tick=P.tick;P.tick=function(dt){const active=!this.state.paused&&!['result','gameover'].includes(this.state.phase);tick.call(this,dt);if(!active)return;this.controlsTick(dt);if(this.state.time-(this.state.lastSquadTick||0)>.45){this.state.lastSquadTick=this.state.time;this.updateSquads()}if(this.state.time-this.state.lastSystemPulse>=1){this.state.lastSystemPulse=this.state.time;for(const e of this.state.entities)this.pulseStatuses(e)}};
- const finish=P.finish;P.finish=function(){const s=this.state;if(s.phase!=='battle')return;const lostScouts=s.entities.filter(e=>e.role==='scout'&&e.faction==='hero'&&e.status!=='escaped').length;s.world.scoutsLost+=lostScouts;if(lostScouts)s.world.rumors.unshift({title:'Đội thăm dò mất liên lạc',text:'Công hội chỉ biết họ chưa về; chưa biết vị trí bẫy hay nguyên nhân thất bại.',day:s.world.day,confidence:'Tin đồn'});finish.call(this);s.world.day++;s.world.weather=['Trời quang','Mưa lớn','Sương dày'][Math.floor(this.random()*3)];s.world.road=s.world.weather==='Mưa lớn'?'Lầy lội':'Thông suốt';s.world.event=['Chợ phiên','Chiến tranh biên giới','Dịch sốt','Mùa tuyển quân'][Math.floor(this.random()*4)];s.world.threat=1+s.statistics.downed/5;s.world.wealth=Math.floor(s.gold/100);for(const r of s.rooms.filter(r=>r.type==='shop'&&this.roomOperational(r)))r.stock=Math.min(8,r.stock+(s.world.event==='Chợ phiên'?4:2))};
- const progress=P.progress;P.progress=function(e){const before=e.evolution;progress.call(this,e);if(!before&&e.evolution){e.skillIds=[...KITS[e.species].skills];if(e.evolution.includes('hộ vệ')){e.skillIds=['C01','B03','S01','H07'];e.passiveIds=[...new Set([...e.passiveIds,'P41'])];e.role='tank';e.evolutionStyle='guard'}else if(e.species==='shaman'){e.passiveIds=[...new Set([...e.passiveIds,'P32'])];e.role='support';e.evolutionStyle='mage'}else{e.skillIds=['S01','B01','A07','C09'];e.passiveIds=[...new Set([...e.passiveIds,'P03'])];e.evolutionStyle='warrior'}}if(e.level>=4){const seed=Number(e.id.replace(/\D/g,''))||1,skill=Object.values(SKILLS).filter(k=>k.mana<=e.maxMana)[(seed+e.level)%Object.values(SKILLS).filter(k=>k.mana<=e.maxMana).length];if(skill&&!e.skillIds.includes(skill.id)&&e.skillIds.length<6)e.skillIds.push(skill.id);const passive='P'+String(1+(seed*7+e.level*3)%50).padStart(2,'0');if(!e.passiveIds.includes(passive)&&e.passiveIds.length<6)e.passiveIds.push(passive)}};
+import {
+ SPECIES,
+ ROOMS,
+ center,
+ bounds,
+ contains,
+ distance,
+ SETTINGS
 }
-
+from './data.js';
+import {
+ SKILLS,
+ PASSIVES,
+ STATUS,
+ KITS
+}
+from './catalog.js';
+const has=(e,
+id)=>e.passiveIds?.includes(id);
+export function installSystems(Game){
+ const P=Game.prototype;
+ P.effect=function(e,
+ type){
+  return e.statuses?.find(s=>s.type===type&&s.until>this.state.time)
+ }
+ ;
+ P.applyStatus=function(e,
+ type,
+ duration,
+ value=1,
+ source=null){
+  if(!e||e.status!=='active'||!STATUS[type])return false;
+  if(type==='panic'&&has(e,
+  'P08'))duration*=.4;
+  if(e.boss&&['panic',
+  'stun',
+  'taunt'].includes(type))duration*=.4;
+  const existing=this.effect(e,
+  type),
+  amount=type==='shield'?e.maxHp*value:value;
+  if(existing){
+   existing.until=Math.max(existing.until,
+   this.state.time+duration);
+   existing.value=Math.max(existing.value,
+   amount);
+   if(source)existing.source=source.id||source
+  }
+  else(e.statuses??=[]).push({
+   type,
+   value:amount,
+   until:this.state.time+duration,
+   source:source?.id||source
+  }
+  );
+  return true
+ }
+ ;
+ P.cleanse=function(e,
+ count=99,
+ type=null){
+  let n=0;
+  e.statuses=(e.statuses||[]).filter(s=>{
+   if(STATUS[s.type]?.bad&&(!type||s.type===type)&&n<count){
+    n++;
+    return false
+   }
+   return true
+  }
+  );
+  return n
+ }
+ ;
+ P.vision=function(e){
+  return Math.max(3,
+  SETTINGS.vision+(has(e,
+  'P07')?2:0)+(e.charms.includes('seer')?3:0)+(e.scoutLens?2:0)-(this.effect(e,
+  'blind')?6:0)-(this.state.world?.weather==='Sương dày'?2:0))
+ }
+ ;
+ P.canSeeEnemy=function(e,
+ target){
+  if(e.floorId!==target.floorId||distance(e,
+  target)>this.vision(e)||!this.lineOfSight(e,
+  target))return false;
+  const hidden=target.concealed||this.effect(target,
+  'stealth');
+  return !hidden||distance(e,
+  target)<2.5||!!this.effect(e,
+  'truesight')&&distance(e,
+  target)<this.effect(e,
+  'truesight').value||e.charms.includes('seer')&&distance(e,
+  target)<7||!!this.effect(target,
+  'mark')
+ }
+ ;
+ P.roomOperational=function(r){
+  return r.owner==='dungeon'&&r.buildingHp>0
+ }
+ ;
+ P.manaCapacity=function(){
+  return 100+this.state.rooms.filter(r=>r.type==='mana'&&this.roomOperational(r)).reduce((n,
+  r)=>n+60*r.level,
+  0)
+ }
+ ;
+ P.setupSystems=function(){
+  const s=this.state;
+  s.world??={
+   day:1,
+   weather:'Trời quang',
+   road:'Thông suốt',
+   event:'Chợ phiên',
+   threat:1,
+   wealth:1,
+   guildPressure:0,
+   intel:[],
+   rumors:[{
+    title:'Một hầm ngục vừa thức giấc',
+    text:'Công hội chưa có sơ đồ chính xác. Các nhóm thăm dò được cử đi.',
+    day:1,
+    confidence:'Chưa xác minh'
+   }
+   ],
+   scoutsLost:0
+  }
+  ;
+  s.squads??=[];
+  s.lastSystemPulse??=0;
+  this.sightCache=new Map();
+  for(const r of s.rooms){
+   r.owner??='dungeon';
+   r.level??=1;
+   r.buildingMaxHp??=r.type==='boss'||r.type==='treasure'?300:160;
+   r.buildingHp??=r.buildingMaxHp;
+   r.stock??=6;
+   r.captureProgress??=0;
+   r.reclaimProgress??=0;
+   r.pulse??=0
+  }
+  for(const e of s.entities)this.setupKit(e);
+  s.mana=Math.min(s.mana,
+  this.manaCapacity());
+ }
+ ;
+ P.setupKit=function(e){
+  const kit=KITS[e.species]||KITS.goblin;
+  e.role??=kit.role;
+  e.statuses??=[];
+  e.skillCooldowns??={
+  }
+  ;
+  e.procCooldowns??={
+  }
+  ;
+  e.threat??={
+  }
+  ;
+  e.skillIds??=[...kit.skills];
+  e.passiveIds??=kit.passives.slice(0,
+  e.elite||e.boss?4:2);
+  e.leadership??=(e.elite?2:0)+(e.role==='tank'?1:.5)+(e.personality?.teamwork||1);
+  e.quickScrolls??=e.role==='scout'&&e.faction==='hero'?[0,
+  1]:[];
+  if(e.role==='scout'&&e.faction==='hero'){
+   e.scoutLens=true;
+   e.capacity=Math.max(8,
+   e.capacity)
+  }
+  if(!e.passiveStatsApplied){
+   if(has(e,
+   'P01')){
+    e.maxHp=Math.round(e.maxHp*1.2);
+    e.hp=e.maxHp
+   }
+   if(has(e,
+   'P02')){
+    e.maxMana=Math.round(e.maxMana*1.25);
+    e.mana=e.maxMana
+   }
+   e.passiveStatsApplied=true
+  }
+  e.order??='guard';
+  if(e.faction==='monster'&&e.role==='ambusher'&&!e.ambushInitialized){
+   e.order='ambush';
+   e.concealed=true;
+   e.ambushInitialized=true;
+  }
+ }
+ ;
+ const spawn=P.spawn;
+ P.spawn=function(...args){
+  const e=spawn.apply(this,
+  args),
+  options=args[6]||{
+  }
+  ;
+  if(options.role)e.role=options.role;
+  this.setupKit(e);
+  return e
+ }
+ ;
+ P.activeSkills=function(e){
+  const count=Math.min(4,
+  2+Math.floor(e.level/3));
+  return(e.skillIds||[]).slice(0,
+  count).map(id=>SKILLS[id]).filter(Boolean)
+ }
+ ;
+ P.passiveReady=function(e,
+ id,
+ cd){
+  if((e.procCooldowns[id]||0)>this.state.time)return false;
+  e.procCooldowns[id]=this.state.time+cd;
+  return true
+ }
+ ;
+ P.skillAvailable=function(e,
+ skill){
+  return e.status==='active'&&this.state.time>=(e.skillCooldowns[skill.id]||0)&&e.mana>=skill.mana&&!(skill.mana>0&&this.effect(e,
+  'silence'))&&!this.effect(e,
+  'stun')
+ }
+ ;
+ P.skillTarget=function(e,
+ k,
+ enemies,
+ allies){
+  const visibleAllies=[e,
+  ...allies];
+  if(k.kind==='buff')return !this.effect(e,
+  k.effect)&&((enemies.length&&k.effect!=='stealth')||k.effect==='stealth'&&!enemies.length||k.effect==='truesight')?e:null;
+  if(k.kind==='taunt')return enemies.some(a=>distance(e,
+  a)<k.radius&&!this.effect(a,
+  'taunt'))?e:null;
+  if(['strike',
+  'aoe',
+  'control',
+  'push',
+  'pull'].includes(k.kind))return enemies.find(a=>distance(e,
+  a)<=k.range&&(!k.effect||!this.effect(a,
+  k.effect)));
+  if(k.kind==='heal'||k.kind==='healArea')return visibleAllies.filter(a=>!a.charms.includes('forsaken')&&a.hp/a.maxHp<.68&&distance(e,
+  a)<=k.range).sort((a,
+  b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
+  if(k.kind==='shieldAlly')return visibleAllies.find(a=>distance(e,
+  a)<=k.range&&a.hp/a.maxHp<.8&&!this.effect(a,
+  'shield'));
+  if(k.kind==='mana')return(k.self?[e]:allies).find(a=>a.maxMana>0&&a.mana/a.maxMana<.4&&distance(e,
+  a)<=k.range&&(!k.self?e.mana>k.mana+15:true));
+  if(k.kind==='cleanse')return visibleAllies.find(a=>distance(e,
+  a)<k.range&&a.statuses.some(s=>STATUS[s.type]?.bad&&s.until>this.state.time&&(!k.effect||s.type===k.effect)));
+  if(k.kind==='revive')return this.state.entities.find(a=>a.status==='downed'&&!a.rescued&&a.faction===e.faction&&a.floorId===e.floorId&&distance(e,
+  a)<=k.range&&this.state.time-(a.downedAt||0)<8&&this.lineOfSight(e,
+  a));
+  return null
+ }
+ ;
+ P.castSkill=function(e,
+ id,
+ targetId,
+ complete=false){
+  const k=SKILLS[id],
+  target=this.entity(targetId)||e;
+  if(!k||!complete&&!this.skillAvailable(e,
+  k)||target.floorId!==e.floorId)return false;
+  if(!complete){
+   e.skillCooldowns[id]=this.state.time+k.cd;
+   e.mana-=k.mana;
+   e.concealed=false;
+   if(k.channel){
+    e.channelCast={
+     id,
+     targetId:target.id,
+     started:this.state.time,
+     resolveAt:this.state.time+k.channel
+    }
+    ;
+    e.action='skill';
+    return true
+   }
+  }
+  if(['strike',
+  'control',
+  'push',
+  'pull'].includes(k.kind)&&(!this.canSeeEnemy(e,
+  target)||distance(e,
+  target)>k.range+.2))return false;
+  const d=SPECIES[e.species],
+  friends=this.state.entities.filter(a=>a.status==='active'&&a.faction===e.faction&&a.floorId===e.floorId&&this.lineOfSight(e,
+  a));
+  if(k.kind==='strike'){
+   let power=d.attack*k.power;
+   if(k.execute&&target.hp/target.maxHp<.25)power*=1+k.execute;
+   if(k.ambush&&!target.seen?.[e.id])power*=1+k.ambush;
+   const shield=this.effect(target,
+   'shield');
+   if(k.breakShield&&shield)shield.value=Math.max(0,
+   shield.value-power*(k.breakShield-1));
+   this.damage(target,
+   power,
+   e,
+   {
+    skill:id,
+    pierce:k.pierce||0
+   }
+   );
+   if(k.effect)this.applyStatus(target,
+   k.effect,
+   k.duration,
+   k.value||1,
+   e);
+   e.strike=.2;
+   this.effects.push({
+    x:e.x,
+    y:e.y,
+    tx:target.x,
+    ty:target.y,
+    floorId:e.floorId,
+    beam:true,
+    color:k.mana?'#adc4ed':'#e2bd86',
+    life:.23
+   }
+   );
+  }
+  else if(k.kind==='aoe'){
+   const origin=k.self||k.cone?e:target;
+   this.state.telegraphs.push({
+    id:this.id('skill'),
+    source:e.id,
+    skill:id,
+    floorId:e.floorId,
+    type:k.cone?'cone':'circle',
+    x:origin.x,
+    y:origin.y,
+    tx:target.x,
+    ty:target.y,
+    radius:k.radius,
+    width:1.5,
+    createdAt:this.state.time,
+    resolveAt:this.state.time+k.windup,
+    damage:d.attack*k.power,
+    effect:k.effect,
+    effectDuration:k.duration,
+    value:k.value,
+    cloud:k.cloud,
+    markedBonus:k.markedBonus
+   }
+   );
+   e.castUntil=this.state.time+Math.min(.6,
+   k.windup);
+  }
+  else if(k.kind==='buff'){
+   for(const a of k.radius?friends.filter(a=>distance(a,
+   e)<=k.radius):[e])this.applyStatus(a,
+   k.effect,
+   k.duration,
+   k.value,
+   e)
+  }
+  else if(k.kind==='heal'||k.kind==='healArea'){
+   for(const a of k.kind==='healArea'?friends.filter(a=>distance(a,
+   target)<=k.radius):[target]){
+    const n=this.heal(a,
+    a.maxHp*k.value);
+    this.effects.push({
+     x:a.x,
+     y:a.y,
+     floorId:e.floorId,
+     text:'+'+Math.round(n),
+     color:'#b4d69e',
+     life:1
+    }
+    )
+   }
+  }
+  else if(k.kind==='mana'){
+   const amount=Math.min(target.maxMana-target.mana,
+   target.maxMana*k.value,
+   k.self?Infinity:e.mana);
+   target.mana+=amount;
+   if(!k.self)e.mana-=amount;
+  }
+  else if(k.kind==='cleanse'){
+   for(const a of k.radius?friends.filter(a=>distance(a,
+   e)<=k.radius):[target])this.cleanse(a,
+   k.count||99,
+   k.effect||null)
+  }
+  else if(k.kind==='shieldAlly')this.applyStatus(target,
+  'shield',
+  k.duration,
+  k.value,
+  e);
+  else if(k.kind==='revive'){
+   if(target.status!=='downed'||target.rescued)return false;
+   target.status='active';
+   target.hp=target.maxHp*k.value;
+   target.rescued=true;
+   target.decision=0;
+  }
+  else if(k.kind==='taunt'){
+   for(const a of this.state.entities.filter(a=>a.status==='active'&&a.faction!==e.faction&&a.floorId===e.floorId&&distance(a,
+   e)<=k.radius&&this.canSeeEnemy(e,
+   a))){
+    this.applyStatus(a,
+    'taunt',
+    k.duration,
+    k.value,
+    e);
+    a.threat[e.id]=(a.threat[e.id]||0)+k.value;
+    a.decision=0
+   }
+   this.applyStatus(e,
+   'fortify',
+   3,
+   .12,
+   e)
+  }
+  else if(k.kind==='control'){
+   const targets=k.radius?this.state.entities.filter(a=>a.status==='active'&&a.faction!==e.faction&&a.floorId===e.floorId&&distance(a,
+   target)<k.radius&&this.canSeeEnemy(e,
+   a)):[target];
+   for(const a of targets)this.applyStatus(a,
+   k.effect,
+   k.duration,
+   k.value,
+   e)
+  }
+  else if(k.kind==='push'||k.kind==='pull'){
+   const dx=target.x-e.x,
+   dy=target.y-e.y,
+   dist=Math.hypot(dx,
+   dy)||1,
+   sign=k.kind==='push'?1:-1;
+   const travel=k.value*(1-(this.effect(target,
+   'anchored')?.value||0))*(1+this.gearMod(target,
+   'pushWeak'));
+   for(let n=.2;
+   n<=travel;
+   n+=.2){
+    const p={
+     x:target.x+dx/dist*.2*sign,
+     y:target.y+dy/dist*.2*sign,
+     floorId:target.floorId
+    }
+    ;
+    if(!this.walkable(p.x,
+    p.y,
+    p.floorId,
+    target)||!this.lineOfSight(target,
+    p))break;
+    target.x=p.x;
+    target.y=p.y;
+   }
+   target.path=[];
+   target.decision=0;
+  }
+  this.event(['heal',
+  'healArea',
+  'shieldAlly',
+  'cleanse',
+  'revive'].includes(k.kind)?'heal':'magic',
+  {
+   floorId:e.floorId,
+   x:e.x,
+   y:e.y
+  }
+  );
+  this.effects.push({
+   x:e.x,
+   y:e.y,
+   floorId:e.floorId,
+   text:k.name,
+   color:'#c6d9b0',
+   life:1
+  }
+  );
+  return true;
+ }
+ ;
+ const damage=P.damage;
+ P.damage=function(e,
+ amount,
+ source=null,
+ ctx={
+ }
+ ){
+  if(e.status!=='active')return;
+  let value=amount;
+  if(source){
+   if(this.effect(source,
+   'power'))value*=1+this.effect(source,
+   'power').value;
+   if(has(source,
+   'P03'))value*=1.15;
+   if(has(source,
+   'P50')&&this.effect(e,
+   'mark'))value*=1.2;
+   if(this.effect(source,
+   'panic')&&this.random()<.3){
+    this.effects.push({
+     x:e.x,
+     y:e.y,
+     floorId:e.floorId,
+     text:'TRƯỢT',
+     color:'#c3bbb1',
+     life:.7
+    }
+    );
+    return
+   }
+   if(this.effect(source,
+   'blind')&&this.random()<Math.max(0,
+   this.effect(source,
+   'blind').value-this.accuracyBonus(source,
+   e))){
+    this.effects.push({
+     x:e.x,
+     y:e.y,
+     floorId:e.floorId,
+     text:'TRƯỢT',
+     color:'#c3bbb1',
+     life:.7
+    }
+    );
+    return
+   }
+   if((source.concealed||this.effect(source,
+   'stealth'))&&(!e.seen?.[source.id]||this.state.time-(e.seen[source.id].firstSeen||0)<.8)&&!ctx.secondary){
+    value*=1.25;
+    if(has(source,
+    'P43')&&this.passiveReady(source,
+    'P43',
+    12))value*=1.5;
+    this.applyStatus(e,
+    'panic',
+    2,
+    1,
+    source);
+    source.concealed=false;
+    source.statuses=source.statuses.filter(s=>s.type!=='stealth');
+    this.log(`${
+source.name
+} đánh úp ${
+e.name
+}, gây hoảng loạn!`,
+    'warning')
+   }
+   e.threat??={
+   }
+   ;
+   e.threat[source.id]=(e.threat[source.id]||0)+value;
+  }
+  if(this.effect(e,
+  'mark'))value*=1+this.effect(e,
+  'mark').value;
+  if(this.effect(e,
+  'fortify'))value*=1-this.effect(e,
+  'fortify').value;
+  if(has(e,
+  'P04'))value*=1-.17*(1-(ctx.pierce||0));
+  if(has(e,
+  'P09')&&ctx.effect==='poison')value*=.5;
+  if(has(e,
+  'P49')&&this.state.entities.filter(a=>a.id!==e.id&&a.faction===e.faction&&a.floorId===e.floorId&&a.status==='active'&&distance(a,
+  e)<4).length>=2)value*=.85;
+  const home=this.state.rooms.find(r=>r.id===e.roomId);
+  if(home&&this.roomOperational(home)&&e.faction==='monster')value*=1-.04*(home.level-1);
+  const shield=this.effect(e,
+  'shield');
+  if(shield){
+   const absorbed=Math.min(shield.value,
+   value);
+   shield.value-=absorbed;
+   value-=absorbed;
+   if(shield.value<=0)e.statuses=e.statuses.filter(s=>s!==shield)
+  }
+  const hp=e.hp;
+  damage.call(this,
+  e,
+  Math.max(0,
+  value),
+  source);
+  const actual=hp-e.hp;
+  if(e.status==='downed')e.downedAt=this.state.time;
+  if(!ctx.secondary&&source&&actual>0){
+   for(const[id,
+   effect,
+   cd,
+   chance,
+   duration]of[['P11',
+   'poison',
+   5,
+   .2,
+   4],
+   ['P12',
+   'burn',
+   5,
+   .2,
+   3],
+   ['P13',
+   'bleed',
+   5,
+   .25,
+   4],
+   ['P14',
+   'stun',
+   8,
+   .15,
+   .8],
+   ['P15',
+   'slow',
+   4,
+   1,
+   2],
+   ['P16',
+   'mark',
+   8,
+   .2,
+   4],
+   ['P19',
+   'silence',
+   10,
+   .15,
+   1.5]])if(has(source,
+   id)&&this.random()<chance&&this.passiveReady(source,
+   id,
+   cd))this.applyStatus(e,
+   effect,
+   duration,
+   effect==='slow'?.2:effect==='mark'?.15:1,
+   source);
+   if(has(source,
+   'P17'))this.heal(source,
+   actual*.08);
+   if(has(source,
+   'P18')&&this.passiveReady(source,
+   'P18',
+   3))source.mana=Math.min(source.maxMana,
+   source.mana+source.maxMana*.03);
+   if(has(source,
+   'P20')&&this.random()<.15&&this.passiveReady(source,
+   'P20',
+   4))this.damage(e,
+   SPECIES[source.species].attack*.4,
+   source,
+   {
+    secondary:true
+   }
+   );
+   if(e.status==='downed'){
+    if(has(source,
+    'P45')&&this.passiveReady(source,
+    'P45',
+    8))this.applyStatus(source,
+    'power',
+    5,
+    .25,
+    source);
+    if(has(source,
+    'P46')&&this.passiveReady(source,
+    'P46',
+    8))this.heal(source,
+    source.maxHp*.12);
+    if(has(source,
+    'P47')&&this.passiveReady(source,
+    'P47',
+    6))source.mana=Math.min(source.maxMana,
+    source.mana+source.maxMana*.15);
+    if(has(source,
+    'P48')&&this.passiveReady(source,
+    'P48',
+    15))for(const a of this.state.entities.filter(a=>a.faction!==source.faction&&a.status==='active'&&a.floorId===source.floorId&&distance(a,
+    source)<4&&this.canSeeEnemy(a,
+    source)))this.applyStatus(a,
+    'panic',
+    2,
+    1,
+    source);
+   }
+  }
+  if(e.status==='active'&&actual>0&&!ctx.secondary){
+   const low=e.hp/e.maxHp;
+   for(const[id,
+   type,
+   cd,
+   threshold,
+   duration,
+   value]of[['P22',
+   'shield',
+   30,
+   .3,
+   5,
+   .2],
+   ['P23',
+   'power',
+   10,
+   1,
+   4,
+   .2],
+   ['P24',
+   'haste',
+   25,
+   .25,
+   3,
+   .4],
+   ['P25',
+   'fortify',
+   8,
+   1,
+   3,
+   .2],
+   ['P29',
+   'stealth',
+   35,
+   .2,
+   3,
+   1]])if(has(e,
+   id)&&low<threshold&&this.passiveReady(e,
+   id,
+   cd))this.applyStatus(e,
+   type,
+   duration,
+   value,
+   e);
+   if(has(e,
+   'P26')&&this.effect(e,
+   'panic')&&this.passiveReady(e,
+   'P26',
+   15))this.cleanse(e,
+   1,
+   'panic');
+   if(has(e,
+   'P30')&&(this.effect(e,
+   'slow')||this.effect(e,
+   'blind'))&&this.passiveReady(e,
+   'P30',
+   12)){
+    this.cleanse(e,
+    1,
+    this.effect(e,
+    'slow')?'slow':'blind')
+   }
+   if(has(e,
+   'P27')&&source&&SPECIES[source.species].magic&&this.passiveReady(e,
+   'P27',
+   5))e.mana=Math.min(e.maxMana,
+   e.mana+e.maxMana*.05);
+   if(source&&source.status==='active'&&distance(source,
+   e)<3){
+    if(has(e,
+    'P21')&&this.passiveReady(e,
+    'P21',
+    2))this.damage(source,
+    actual*.15,
+    e,
+    {
+     secondary:true
+    }
+    );
+    if(has(e,
+    'P28')&&this.passiveReady(e,
+    'P28',
+    6))this.damage(source,
+    SPECIES[e.species].attack*.6,
+    e,
+    {
+     secondary:true
+    }
+    )
+   }
+  }
+ }
+ ;
+ P.pulseStatuses=function(e){
+  e.statuses=e.statuses.filter(s=>s.until>this.state.time);
+  if(e.status!=='active')return;
+  for(const effect of e.statuses){
+   if(['poison',
+   'burn',
+   'bleed'].includes(effect.type))this.damage(e,
+   effect.type==='bleed'?3:4,
+   this.entity(effect.source),
+   {
+    secondary:true,
+    effect:effect.type
+   }
+   );
+   if(effect.type==='regen')this.heal(e,
+   e.maxHp*effect.value)
+  }
+  if(has(e,
+  'P31')&&this.passiveReady(e,
+  'P31',
+  2))this.heal(e,
+  e.maxHp*.01);
+  if(has(e,
+  'P32')&&this.passiveReady(e,
+  'P32',
+  3))e.mana=Math.min(e.maxMana,
+  e.mana+e.maxMana*.02);
+  if(has(e,
+  'P33')&&this.state.time-(e.lastDamaged||0)>5&&e.action!=='attack'&&!e.visibleIds?.length)this.heal(e,
+  e.maxHp*.03);
+  if(has(e,
+  'P34')&&this.passiveReady(e,
+  'P34',
+  10)){
+   const ally=this.state.entities.find(a=>a.id!==e.id&&a.faction===e.faction&&a.status==='active'&&a.floorId===e.floorId&&distance(e,
+   a)<2);
+   if(ally)this.applyStatus(ally,
+   'shield',
+   5,
+   .08,
+   e)
+  }
+  if(has(e,
+  'P35')&&this.passiveReady(e,
+  'P35',
+  8)){
+   const ally=this.state.entities.find(a=>a.faction===e.faction&&a.status==='active'&&a.floorId===e.floorId&&distance(e,
+   a)<3&&this.effect(a,
+   'panic'));
+   if(ally)this.cleanse(ally,
+   1,
+   'panic')
+  }
+  if(has(e,
+  'P36')&&this.passiveReady(e,
+  'P36',
+  12))this.applyStatus(e,
+  'truesight',
+  3,
+  5,
+  e);
+  if(has(e,
+  'P37')&&this.passiveReady(e,
+  'P37',
+  5))for(const a of this.state.entities.filter(a=>a.faction!==e.faction&&a.status==='active'&&a.floorId===e.floorId&&distance(e,
+  a)<1.5&&this.canSeeEnemy(e,
+  a)))this.applyStatus(a,
+  'poison',
+  2,
+  1,
+  e);
+  if(has(e,
+  'P38')&&!e.moving&&e.action!=='attack'&&this.state.time-(e.lastDamaged||0)>3&&this.state.time-(e.lastMovedAt||0)>3&&this.passiveReady(e,
+  'P38',
+  12))this.applyStatus(e,
+  'stealth',
+  4,
+  1,
+  e);
+  if(has(e,
+  'P39')&&e.combatTime>=8&&this.passiveReady(e,
+  'P39',
+  12))this.applyStatus(e,
+  'power',
+  4,
+  .15,
+  e);
+  if(has(e,
+  'P40')&&e.hp/e.maxHp<.5&&this.passiveReady(e,
+  'P40',
+  10))this.applyStatus(e,
+  'fortify',
+  4,
+  .15,
+  e);
+  for(const id of Object.keys(e.threat||{
+  }
+  )){
+   e.threat[id]*=.92;
+   if(e.threat[id]<.1)delete e.threat[id]
+  }
+ }
+ ;
+ P.meleeSlot=function(e,
+ target){
+  const now=this.state.time;
+  if(e.attackSlot?.target===target.id&&e.attackSlot.until>now&&this.walkable(e.attackSlot.x,
+  e.attackSlot.y,
+  e.floorId,
+  e))return e.attackSlot;
+  const radius=target.boss?2.1:1.1,
+  choices=[];
+  for(let i=0;
+  i<8;
+  i++){
+   const angle=i*Math.PI/4,
+   p={
+    x:target.x+Math.cos(angle)*radius,
+    y:target.y+Math.sin(angle)*radius,
+    floorId:e.floorId
+   }
+   ;
+   if(!this.walkable(p.x,
+   p.y,
+   p.floorId,
+   e)||!this.lineOfSight(p,
+   target)||this.state.entities.some(a=>a.id!==e.id&&a.status==='active'&&a.floorId===e.floorId&&a.attackSlot?.until>now&&distance(a.attackSlot,
+   p)<.75))continue;
+   choices.push(p)
+  }
+  choices.sort((a,
+  b)=>distance(e,
+  a)-distance(e,
+  b));
+  if(choices[0])e.attackSlot={
+   ...choices[0],
+   target:target.id,
+   until:now+1.2
+  }
+  ;
+  return e.attackSlot?.until>now?e.attackSlot:null
+ }
+ ;
+ const move=P.move;
+ P.move=function(e,
+ target,
+ dt,
+ stop=.35){
+  e.moveFactor=(has(e,
+  'P05')?1.15:1)*(this.effect(e,
+  'haste')?1+this.effect(e,
+  'haste').value:1)*(this.effect(e,
+  'slow')?1-this.effect(e,
+  'slow').value:1)*(e.role==='scout'&&e.faction==='hero'?1.15:1);
+  if(this.effect(e,
+  'stun'))return false;
+  return move.call(this,
+  e,
+  target,
+  dt,
+  stop)
+ }
+ ;
+ const act=P.act;
+ P.act=function(e,
+ dt){
+  if(e.feignUntil>this.state.time){
+   e.moving=false;
+   return
+  }
+  if(['skill',
+  'ambush',
+  'quickScroll',
+  'capture',
+  'sabotage'].includes(e.action))e.decision-=dt;
+  if(this.effect(e,
+  'stun')){
+   e.moving=false;
+   e.action='stunned';
+   e.decision=0;
+   return
+  }
+  if(e.channelCast){
+   const cast=e.channelCast;
+   if((e.lastDamaged||0)>cast.started||this.effect(e,
+   'panic')){
+    e.channelCast=null;
+    e.decision=0;
+    return
+   }
+   if(this.state.time>=cast.resolveAt){
+    e.channelCast=null;
+    this.castSkill(e,
+    cast.id,
+    cast.targetId,
+    true);
+    e.decision=0
+   }
+   return
+  }
+  if(e.decision<=0)this.decide(e);
+  if(e.action==='skill'){
+   const target=e.target;
+   e.decision=.3;
+   if(!target||!this.castSkill(e,
+   target.skillId,
+   target.targetId))e.decision=0;
+   return
+  }
+  if(e.action==='ambush'){
+   e.concealed=true;
+   e.moving=false;
+   e.decision-=dt;
+   return
+  }
+  if(e.action==='quickScroll'){
+   if(this.roomForHero(e)||!e.quickScrolls.includes(e.floorId)){
+    e.decision=0;
+    return
+   }
+   e.channel=(e.channel||0)+dt;
+   if((e.lastDamaged||-100)>this.state.time-.4){
+    e.channel=0;
+    return
+   }
+   if(e.channel>=1){
+    e.quickScrolls=e.quickScrolls.filter(f=>f!==e.floorId);
+    const safe=this.state.rooms.find(r=>r.floorId===e.floorId&&['entrance',
+    'arrival'].includes(r.type));
+    e.x=safe.x;
+    e.y=safe.y;
+    e.path=[];
+    e.channel=0;
+    e.decision=0;
+    if(e.floorId===0)this.escape(e,
+    true);
+    else e.scoutReturning=true;
+    this.event('magic')
+   }
+   return
+  }
+  if(e.action==='capture'||e.action==='sabotage'){
+   const room=this.state.rooms.find(r=>r.id===e.target);
+   if(!room||e.action==='sabotage'&&room.buildingHp<=0){
+    e.decision=0;
+    e.channel=0;
+    return
+   }
+   if(this.roomMonsters(room).length||!this.move(e,
+   {
+    x:room.x,
+    y:room.y-2,
+    floorId:room.floorId
+   }
+   ,
+   dt,
+   1.4)){
+    e.channel=0;
+    return
+   }
+   if(e.action==='capture'){
+    e.channel=(e.channel||0)+dt;
+    room.captureProgress=e.channel/5;
+    if(e.channel>=5){
+     room.owner='adventurers';
+     room.captureProgress=0;
+     e.channel=0;
+     e.decision=0;
+     this.state.mana=Math.min(this.state.mana,
+     this.manaCapacity());
+     this.log(`${
+e.name
+} chiếm ${
+ROOMS[room.type].name
+}. Công trình ngừng phục vụ hầm ngục.`,
+     'warning')
+    }
+   }
+   else{
+    e.cooldown=Math.max(0,
+    e.cooldown-dt);
+    if(e.cooldown===0){
+     room.buildingHp=Math.max(0,
+     room.buildingHp-SPECIES[e.species].attack*2);
+     e.cooldown=1;
+     if(room.buildingHp===0){
+      e.decision=0;
+      this.log(`${
+ROOMS[room.type].name
+} bị phá hủy!`,
+      'warning')
+     }
+    }
+   }
+   return
+  }
+  if(e.action==='attack'){
+   const enemy=this.entity(e.target);
+   if(enemy&&this.range(e)<3&&distance(e,
+   enemy)>(this.range(e)+(enemy.boss?.9:0))){
+    const slot=this.meleeSlot(e,
+    enemy);
+    if(slot){
+     this.move(e,
+     slot,
+     dt,
+     .22);
+     e.decision-=dt;
+     e.cooldown=Math.max(0,
+     e.cooldown-dt);
+     return
+    }
+   }
+   if(this.effect(e,
+   'disarm')&&!SPECIES[e.species].magic){
+    e.decision=0;
+    e.cooldown=Math.max(e.cooldown,
+    .3);
+    return
+   }
+  }
+  act.call(this,
+  e,
+  dt);
+  if(this.effect(e,
+  'haste'))e.cooldown=Math.max(0,
+  e.cooldown-dt*.2);
+  if(has(e,
+  'P06'))e.cooldown=Math.max(0,
+  e.cooldown-dt*.15);
+ }
+ ;
+ const inDanger=P.inDanger;
+ P.inDanger=function(p,
+ t,
+ padding=0){
+  if(t.type==='cone'){
+   if(p.floorId!==t.floorId||distance(p,
+   t)>t.radius+padding)return false;
+   const dx=t.tx-t.x,
+   dy=t.ty-t.y,
+   px=p.x-t.x,
+   py=p.y-t.y;
+   return(dx*px+dy*py)/(Math.hypot(dx,
+   dy)*Math.hypot(px,
+   py)||1)>.5
+  }
+  return inDanger.call(this,
+  p,
+  t,
+  padding)
+ }
+ ;
+ const resolve=P.resolveWorld;
+ P.resolveWorld=function(dt){
+  const due=this.state.telegraphs.filter(t=>this.state.time>=t.resolveAt&&t.skill);
+  resolve.call(this,
+  dt);
+  for(const t of due){
+   const source=this.entity(t.source);
+   if(!source||source.status!=='active')continue;
+   for(const a of this.state.entities.filter(a=>a.status==='active'&&a.faction!==source.faction&&this.inDanger(a,
+   t))){
+    if(t.effect)this.applyStatus(a,
+    t.effect,
+    t.effectDuration,
+    t.value||1,
+    source);
+    if(t.markedBonus&&this.effect(a,
+    'mark'))this.damage(a,
+    t.damage*t.markedBonus,
+    source,
+    {
+     secondary:true
+    }
+    )
+   }
+   if(t.cloud)this.state.hazards.push({
+    id:this.id('gas'),
+    type:'poison',
+    x:t.x,
+    y:t.y,
+    floorId:t.floorId,
+    radius:t.radius,
+    until:this.state.time+t.effectDuration,
+    tick:0
+   }
+   )
+  }
+ }
+ ;
+ P.updateSquads=function(){
+  const s=this.state;
+  for(const id of new Set(s.entities.filter(e=>e.squadId).map(e=>e.squadId))){
+   const members=s.entities.filter(e=>e.squadId===id&&e.status==='active');
+   let squad=s.squads.find(a=>a.id===id);
+   if(!squad){
+    squad={
+     id,
+     leaderId:members[0]?.id,
+     mode:'explore',
+     nextElection:0
+    }
+    ;
+    s.squads.push(squad)
+   }
+   const leader=this.entity(squad.leaderId);
+   if(!leader||leader.status!=='active'){
+    if(!squad.nextElection)squad.nextElection=s.time+1.5;
+    if(s.time>=squad.nextElection){
+     const chosen=members.sort((a,
+     b)=>b.leadership-a.leadership)[0];
+     squad.leaderId=chosen?.id;
+     squad.nextElection=0;
+     if(chosen)this.log(`${
+chosen.name
+} tiếp quản Leader của tổ đội.`)
+    }
+   }
+   else{
+    const visible=leader.visibleIds?.map(id=>this.entity(id)).filter(a=>a?.status==='active')||[];
+    squad.mode=visible.length?'engage':members.length&&members.reduce((n,
+    a)=>n+a.hp/a.maxHp,
+    0)/members.length<.35?'withdraw':'explore';
+    squad.focus=visible[0]?{
+     id:visible[0].id,
+     x:visible[0].x,
+     y:visible[0].y,
+     floorId:visible[0].floorId,
+     time:s.time
+    }
+    :null;
+    squad.lastOrder={
+     x:leader.x,
+     y:leader.y,
+     floorId:leader.floorId,
+     time:s.time
+    }
+    ;
+    for(const member of members)if(member!==leader&&member.floorId===leader.floorId&&distance(member,
+    leader)<8&&this.lineOfSight(member,
+    leader)){
+     if(s.time-(member.orderReceived||0)>.5){
+      member.teamOrder={
+       ...squad.lastOrder,
+       mode:squad.mode,
+       leaderId:leader.id,
+       focus:squad.focus?{
+        ...squad.focus
+       }
+       :null
+      }
+      ;
+      member.orderReceived=s.time
+     }
+    }
+   }
+  }
+ }
+ ;
+ P.controlsTick=function(dt){
+  const s=this.state;
+  for(const r of s.rooms){
+   r.pulse+=dt;
+   const residents=this.roomMonsters(r),
+   heroes=s.entities.filter(e=>e.status==='active'&&e.faction==='hero'&&e.floorId===r.floorId&&contains(r,
+   e,
+   1));
+   if(r.owner!=='dungeon'&&residents.length&&!heroes.length){
+    r.reclaimProgress+=dt/4;
+    if(r.reclaimProgress>=1){
+     r.owner='dungeon';
+     r.reclaimProgress=0;
+     this.log(`Cư dân đã chiếm lại ${
+ROOMS[r.type].name
+}. Sửa công trình nếu đã bị phá.`)
+    }
+   }
+   else r.reclaimProgress=0;
+   if(r.pulse>=20){
+    r.pulse=0;
+    if(r.type==='mana'&&this.roomOperational(r)){
+     s.mana=Math.min(this.manaCapacity(),
+     s.mana+10*r.level);
+     for(const e of residents)e.mana=Math.min(e.maxMana,
+     e.mana+10*r.level)
+    }
+    if(r.type==='guard'&&this.roomOperational(r)&&s.phase==='prepare')for(const e of residents)this.heal(e,
+    5*r.level)
+   }
+  }
+ }
+ ;
+ P.upgradeRoom=function(id){
+  const r=this.state.rooms.find(r=>r.id===id),
+  cost=(r?.level||1)*80;
+  if(!r||!this.canPrepare()||!this.roomOperational(r)||r.level>=3||this.state.gold<cost)return false;
+  this.state.gold-=cost;
+  r.level++;
+  r.buildingMaxHp+=80;
+  r.buildingHp=r.buildingMaxHp;
+  r.w=Math.min(31,
+  r.w+2);
+  r.h=Math.min(25,
+  r.h+2);
+  for(const e of this.roomMonsters(r)){
+   const add=Math.round(e.maxHp*.1);
+   e.maxHp+=add;
+   e.hp+=add
+  }
+  this.rebuild();
+  this.log(`${
+ROOMS[r.type].name
+} nâng lên cấp ${
+r.level
+}.`);
+  this.event('build');
+  return true
+ }
+ ;
+ P.repairRoom=function(id){
+  const r=this.state.rooms.find(r=>r.id===id);
+  if(!r||!this.canPrepare()||r.owner!=='dungeon'||r.buildingHp>=r.buildingMaxHp||this.state.gold<40)return false;
+  this.state.gold-=40;
+  r.buildingHp=r.buildingMaxHp;
+  this.event('build');
+  return true
+ }
+ ;
+ P.recordIntel=function(e){
+  const s=this.state,
+  rooms=e.knownRooms.map(id=>s.rooms.find(r=>r.id===id)).filter(Boolean).map(r=>({
+   id:r.id,
+   name:ROOMS[r.type].name,
+   col:r.col,
+   row:r.row,
+   floorId:r.floorId,
+   w:r.w,
+   h:r.h,
+   seenAt:s.wave
+  }
+  )),
+  intel={
+   id:this.id('intel'),
+   name:e.name,
+   wave:s.wave,
+   day:s.world.day,
+   rooms,
+   traps:[...e.knownTraps],
+   enemies:Object.keys(e.seen).length,
+   source:e.role==='scout'?'Trinh sát thoát':'Người sống sót',
+   confidence:rooms.length>2?'Khá chắc':'Chưa đầy đủ'
+  }
+  ;
+  s.world.intel.push(intel);
+  s.world.intel=s.world.intel.slice(-20);
+  s.world.guildPressure+=1;
+  s.world.rumors.unshift({
+   title:`${
+e.name
+} đã mang tin trở về`,
+   text:`${
+rooms.length
+} phòng, ${
+e.knownTraps.length
+} bẫy được ghi nhận ở màn ${
+s.wave
+}. Thông tin có thể lỗi thời nếu hầm ngục thay đổi.`,
+   day:s.world.day,
+   confidence:intel.confidence
+  }
+  );
+  s.world.rumors=s.world.rumors.slice(0,
+  12);
+  this.log('Một báo cáo thực sự đã tới Công hội. Đoàn sau sẽ thích nghi.',
+  'warning')
+ }
+ ;
+ const escape=P.escape;
+ P.escape=function(e,
+ teleport=false){
+  const ok=escape.call(this,
+  e,
+  teleport);
+  if(ok)this.recordIntel(e);
+  return ok
+ }
+ ;
+ const used=P.usedSlots;
+ P.usedSlots=function(e){
+  return used.call(this,
+  e)+(e.quickScrolls?.length||0)
+ }
+ ;
+ const start=P.start;
+ P.start=function(){
+  const r=start.call(this);
+  if(!r.ok)return r;
+  const s=this.state,
+  enc=s.encounter,
+  knownTraps=s.world.intel.reduce((n,
+  i)=>n+i.traps.length,
+  0);
+  if(knownTraps>4)for(let i=2;
+  i<enc.spawnQueue.length;
+  i+=5)enc.spawnQueue[i].species='rogue';
+  if(s.world.event==='Dịch sốt')for(let i=3;
+  i<enc.spawnQueue.length;
+  i+=4)enc.spawnQueue[i].species='priest';
+  if(s.world.event==='Chiến tranh biên giới')for(let i=4;
+  i<enc.spawnQueue.length;
+  i+=4)enc.spawnQueue[i].species='mage';
+  if(s.world.intel.length<3||s.wave%3===0){
+   enc.scouting=true;
+   enc.spawnQueue.unshift({
+    species:'rogue',
+    name:'Iris · Trinh sát',
+    role:'scout',
+    squadId:'scouts-'+s.wave,
+    reinforcement:false
+   }
+   ,
+   {
+    species:'mage',
+    name:'Quill · Trinh sát',
+    role:'scout',
+    squadId:'scouts-'+s.wave,
+    reinforcement:false
+   }
+   )
+  }
+  for(const reinforcement of enc.reinforcements)if(s.world.road==='Lầy lội')reinforcement.at+=20;
+  return r
+ }
+ ;
+ const spawning=P.spawnExpedition;
+ P.spawnExpedition=function(dt){
+  if(this.state.encounter?.scouting&&this.state.battleTime<18&&this.state.encounter.spawnQueue[0]?.role!=='scout')return;
+  spawning.call(this,
+  dt)
+ }
+ ;
+ const tick=P.tick;
+ P.tick=function(dt){
+  const active=!this.state.paused&&!['result',
+  'gameover'].includes(this.state.phase);
+  tick.call(this,
+  dt);
+  if(!active)return;
+  this.controlsTick(dt);
+  if(this.state.time-(this.state.lastSquadTick||0)>.45){
+   this.state.lastSquadTick=this.state.time;
+   this.updateSquads()
+  }
+  if(this.state.time-this.state.lastSystemPulse>=1){
+   this.state.lastSystemPulse=this.state.time;
+   for(const e of this.state.entities)this.pulseStatuses(e)
+  }
+ }
+ ;
+ const finish=P.finish;
+ P.finish=function(){
+  const s=this.state;
+  if(s.phase!=='battle')return;
+  const lostScouts=s.entities.filter(e=>e.role==='scout'&&e.faction==='hero'&&e.status!=='escaped').length;
+  s.world.scoutsLost+=lostScouts;
+  if(lostScouts)s.world.rumors.unshift({
+   title:'Đội thăm dò mất liên lạc',
+   text:'Công hội chỉ biết họ chưa về; chưa biết vị trí bẫy hay nguyên nhân thất bại.',
+   day:s.world.day,
+   confidence:'Tin đồn'
+  }
+  );
+  finish.call(this);
+  s.world.day++;
+  s.world.weather=['Trời quang',
+  'Mưa lớn',
+  'Sương dày'][Math.floor(this.random()*3)];
+  s.world.road=s.world.weather==='Mưa lớn'?'Lầy lội':'Thông suốt';
+  s.world.event=['Chợ phiên',
+  'Chiến tranh biên giới',
+  'Dịch sốt',
+  'Mùa tuyển quân'][Math.floor(this.random()*4)];
+  s.world.threat=1+s.statistics.downed/5;
+  s.world.wealth=Math.floor(s.gold/100);
+  for(const r of s.rooms.filter(r=>r.type==='shop'&&this.roomOperational(r)))r.stock=Math.min(8,
+  r.stock+(s.world.event==='Chợ phiên'?4:2))
+ }
+ ;
+ const progress=P.progress;
+ P.progress=function(e){
+  const before=e.evolution;
+  progress.call(this,
+  e);
+  if(!before&&e.evolution){
+   e.skillIds=[...KITS[e.species].skills];
+   if(e.evolution.includes('hộ vệ')){
+    e.skillIds=['C01',
+    'B03',
+    'S01',
+    'H07'];
+    e.passiveIds=[...new Set([...e.passiveIds,
+    'P41'])];
+    e.role='tank';
+    e.evolutionStyle='guard'
+   }
+   else if(e.species==='shaman'){
+    e.passiveIds=[...new Set([...e.passiveIds,
+    'P32'])];
+    e.role='support';
+    e.evolutionStyle='mage'
+   }
+   else{
+    e.skillIds=['S01',
+    'B01',
+    'A07',
+    'C09'];
+    e.passiveIds=[...new Set([...e.passiveIds,
+    'P03'])];
+    e.evolutionStyle='warrior'
+   }
+  }
+  if(e.level>=4){
+   const seed=Number(e.id.replace(/\D/g,
+   ''))||1,
+   skill=Object.values(SKILLS).filter(k=>k.mana<=e.maxMana)[(seed+e.level)%Object.values(SKILLS).filter(k=>k.mana<=e.maxMana).length];
+   if(skill&&!e.skillIds.includes(skill.id)&&e.skillIds.length<6)e.skillIds.push(skill.id);
+   const passive='P'+String(1+(seed*7+e.level*3)%50).padStart(2,
+   '0');
+   if(!e.passiveIds.includes(passive)&&e.passiveIds.length<6)e.passiveIds.push(passive)
+  }
+ }
+ ;
+}
 // Adds context-sensitive candidates before the shared hysteresis selects one.
-export function augmentChoices(game,e,{enemies,allies,room,locked,add}){
- const s=game.state,enemy=enemies[0],status=type=>game.effect(e,type),hero=e.faction==='hero';if(status('panic')){const threat=enemy||e.seen[status('panic').source]||{x:e.x+2,y:e.y};const roomHome=hero?room:s.rooms.find(r=>r.id===e.roomId),b=roomHome?bounds(roomHome):null;for(let i=0;i<8;i++){const a=i*Math.PI/4,p={x:Math.round(e.x+Math.cos(a)*3),y:Math.round(e.y+Math.sin(a)*3),floorId:e.floorId};if(game.walkable(p.x,p.y,e.floorId,e)&&distance(p,threat)>distance(e,threat)&&(!locked||contains(locked,p,1))&&game.path(e,p).length){add('dodge',3.2,p,'Hoảng loạn vì đánh úp; rời nguy hiểm trong giới hạn cửa khóa');break}}}
- for(const k of game.activeSkills(e)){if(!game.skillAvailable(e,k))continue;const target=game.skillTarget(e,k,enemies,allies);if(!target)continue;let score=['heal','healArea','shieldAlly','revive','cleanse'].includes(k.kind)?1.35:['control','taunt'].includes(k.kind)?1.05:k.kind==='buff'?enemy?1.02:.45:1.0;if(k.kind==='aoe'){const count=enemies.filter(a=>distance(a,target)<=k.radius).length;score+=Math.min(.3,count*.08)}if(k.kind==='taunt'&&e.role==='tank')score=1.3;add('skill',score,{skillId:k.id,targetId:target.id},`${k.name}: ${k.description}`)}
- if(!hero&&e.order==='ambush'&&!enemy&&Object.keys(e.seen).length===0&&game.state.time-(e.lastDamaged||-10)>3)add('ambush',.5,null,'Giữ phòng, ẩn mình chờ mục tiêu chưa phát hiện tiếp cận');
- if(hero&&e.role==='scout'&&!locked&&e.quickScrolls.includes(e.floorId)&&(e.knownRooms.length>=2&&enemies.length||e.knownRooms.length>=3||e.hp/e.maxHp<.45||e.scoutReturning))add('quickScroll',2.6,null,'Trinh sát đã có thông tin: cuộn siêu tốc dùng một lần trên tầng này');
- if(hero&&e.scoutReturning&&!locked)add('retreat',2.6,null,'Mang thông tin tầng sâu về Công hội');
- if(hero&&!locked){const squad=s.squads.find(a=>a.id===e.squadId),leader=game.entity(squad?.leaderId);if(leader){e.isLeader=leader.id===e.id;if(leader!==e&&e.teamOrder&&e.teamOrder.floorId===e.floorId&&s.time-e.teamOrder.time<4&&!e.charms.includes('greedy')){const dist=distance(e,e.teamOrder);if(!enemy&&dist>3.2){const members=s.entities.filter(a=>a.squadId===e.squadId&&a.status==='active'),index=members.indexOf(e),offset=e.role==='support'?-3:e.role==='ranged'?-2:1;const p=game.findFreeNear({x:e.teamOrder.x+offset,y:e.teamOrder.y+(index%2?1:-1),floorId:e.floorId});if(p)add('regroup',.72,p,'Theo lệnh Leader; giữ đội hình khi khám phá')}if(e.teamOrder.mode==='withdraw')add('retreat',2.1,null,'Leader ra lệnh rút lui dựa trên tình trạng tổ đội')}if(leader===e&&!enemy){const trailing=allies.find(a=>a.squadId===e.squadId&&distance(a,e)>7);if(trailing)add('wait',.78,{x:e.x,y:e.y,floorId:e.floorId},'Leader chờ tuyến sau tập hợp trước khi vào phòng mới')}}}
- if(enemy&&game.range(e)>=4){const tank=allies.find(a=>a.role==='tank'&&distance(a,enemy)<4);if(tank&&distance(e,enemy)<4){const dx=tank.x-enemy.x,dy=tank.y-enemy.y,n=Math.hypot(dx,dy)||1,p=game.findFreeNear({x:tank.x+dx/n*3,y:tank.y+dy/n*3,floorId:e.floorId},hero?null:s.rooms.find(r=>r.id===e.roomId));if(p&&game.lineOfSight(p,enemy)&&game.path(e,p).length)add('kite',1.5,p,'Tuyến trước đang giữ aggro; lùi sau tanker và giữ đường bắn')}}
- if(hero&&room&&!game.roomMonsters(room).length&&!locked&&e.role!=='scout'&&!['entrance','arrival','boss','treasure'].includes(room.type)){if(room.owner==='dungeon')add('capture',e.role==='tank'?.58:.62,room.id,'Quét sạch phòng rồi chiếm công trình để cắt nguồn lực hầm ngục');else if(room.buildingHp>0&&e.charms.includes('violent'))add('sabotage',.6,room.id,'Công trình bị chiếm: phá hủy để ngăn đối phương sửa và khai thác lại')}
+export function augmentChoices(game,
+e,
+{
+ enemies,
+ allies,
+ room,
+ locked,
+ add
+}
+){
+ const s=game.state,
+ enemy=enemies[0],
+ status=type=>game.effect(e,
+ type),
+ hero=e.faction==='hero';
+ if(status('panic')){
+  const threat=enemy||e.seen[status('panic').source]||{
+   x:e.x+2,
+   y:e.y
+  }
+  ;
+  const roomHome=hero?room:s.rooms.find(r=>r.id===e.roomId),
+  b=roomHome?bounds(roomHome):null;
+  for(let i=0;
+  i<8;
+  i++){
+   const a=i*Math.PI/4,
+   p={
+    x:Math.round(e.x+Math.cos(a)*3),
+    y:Math.round(e.y+Math.sin(a)*3),
+    floorId:e.floorId
+   }
+   ;
+   if(game.walkable(p.x,
+   p.y,
+   e.floorId,
+   e)&&distance(p,
+   threat)>distance(e,
+   threat)&&(!locked||contains(locked,
+   p,
+   1))&&game.path(e,
+   p).length){
+    add('dodge',
+    3.2,
+    p,
+    'Hoảng loạn vì đánh úp; rời nguy hiểm trong giới hạn cửa khóa');
+    break
+   }
+  }
+ }
+ for(const k of game.activeSkills(e)){
+  if(!game.skillAvailable(e,
+  k))continue;
+  const target=game.skillTarget(e,
+  k,
+  enemies,
+  allies);
+  if(!target)continue;
+  let score=['heal',
+  'healArea',
+  'shieldAlly',
+  'revive',
+  'cleanse'].includes(k.kind)?1.35:['control',
+  'taunt'].includes(k.kind)?1.05:k.kind==='buff'?enemy?1.02:.45:1.0;
+  if(k.kind==='aoe'){
+   const count=enemies.filter(a=>distance(a,
+   target)<=k.radius).length;
+   score+=Math.min(.3,
+   count*.08)
+  }
+  if(k.kind==='taunt'&&e.role==='tank')score=1.3;
+  add('skill',
+  score,
+  {
+   skillId:k.id,
+   targetId:target.id
+  }
+  ,
+  `${
+k.name
+}: ${
+k.description
+}`)
+ }
+ if(!hero&&e.order==='ambush'&&!enemy&&Object.keys(e.seen).length===0&&game.state.time-(e.lastDamaged||-10)>3)add('ambush',
+ .5,
+ null,
+ 'Giữ phòng, ẩn mình chờ mục tiêu chưa phát hiện tiếp cận');
+ if(hero&&e.role==='scout'&&!locked&&e.quickScrolls.includes(e.floorId)&&(e.knownRooms.length>=2&&enemies.length||e.knownRooms.length>=3||e.hp/e.maxHp<.45||e.scoutReturning))add(
+ 'quickScroll',
+ 2.6,
+ null,
+ 'Trinh sát đã có thông tin: cuộn siêu tốc dùng một lần trên tầng này');
+ if(hero&&e.scoutReturning&&!locked)add('retreat',
+ 2.6,
+ null,
+ 'Mang thông tin tầng sâu về Công hội');
+ if(hero&&!locked){
+  const squad=s.squads.find(a=>a.id===e.squadId),
+  leader=game.entity(squad?.leaderId);
+  if(leader){
+   e.isLeader=leader.id===e.id;
+   if(leader!==e&&e.teamOrder&&e.teamOrder.floorId===e.floorId&&s.time-e.teamOrder.time<4&&!e.charms.includes('greedy')){
+    const dist=distance(e,
+    e.teamOrder);
+    if(!enemy&&dist>3.2){
+     const members=s.entities.filter(a=>a.squadId===e.squadId&&a.status==='active'),
+     index=members.indexOf(e),
+     offset=e.role==='support'?-3:e.role==='ranged'?-2:1;
+     const p=game.findFreeNear({
+      x:e.teamOrder.x+offset,
+      y:e.teamOrder.y+(index%2?1:-1),
+      floorId:e.floorId
+     }
+     );
+     if(p)add('regroup',
+     .72,
+     p,
+     'Theo lệnh Leader; giữ đội hình khi khám phá')
+    }
+    if(e.teamOrder.mode==='withdraw')add('retreat',
+    2.1,
+    null,
+    'Leader ra lệnh rút lui dựa trên tình trạng tổ đội')
+   }
+   if(leader===e&&!enemy){
+    const trailing=allies.find(a=>a.squadId===e.squadId&&distance(a,
+    e)>7);
+    if(trailing)add('wait',
+    .78,
+    {
+     x:e.x,
+     y:e.y,
+     floorId:e.floorId
+    }
+    ,
+    'Leader chờ tuyến sau tập hợp trước khi vào phòng mới')
+   }
+  }
+ }
+ if(enemy&&game.range(e)>=4){
+  const tank=allies.find(a=>a.role==='tank'&&distance(a,
+  enemy)<4);
+  if(tank&&distance(e,
+  enemy)<4){
+   const dx=tank.x-enemy.x,
+   dy=tank.y-enemy.y,
+   n=Math.hypot(dx,
+   dy)||1,
+   p=game.findFreeNear({
+    x:tank.x+dx/n*3,
+    y:tank.y+dy/n*3,
+    floorId:e.floorId
+   }
+   ,
+   hero?null:s.rooms.find(r=>r.id===e.roomId));
+   if(p&&game.lineOfSight(p,
+   enemy)&&game.path(e,
+   p).length)add('kite',
+   1.5,
+   p,
+   'Tuyến trước đang giữ aggro; lùi sau tanker và giữ đường bắn')
+  }
+ }
+ if(hero&&room&&!game.roomMonsters(room).length&&!locked&&e.role!=='scout'&&!['entrance',
+ 'arrival',
+ 'boss',
+ 'treasure'].includes(room.type)){
+  if(room.owner==='dungeon')add('capture',
+  e.role==='tank'?.58:.62,
+  room.id,
+  'Quét sạch phòng rồi chiếm công trình để cắt nguồn lực hầm ngục');
+  else if(room.buildingHp>0&&e.charms.includes('violent'))add('sabotage',
+  .6,
+  room.id,
+  'Công trình bị chiếm: phá hủy để ngăn đối phương sửa và khai thác lại')
+ }
 }

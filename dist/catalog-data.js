@@ -1,702 +1,702 @@
 export const RAW=[
-  [
-    "S01",
-    "Trảm Kích",
-    "strike",
-    "140% ATK; tầm 1; CD 4s",
-    "Giáp, shield"
-  ],
-  [
-    "S02",
-    "Đâm Xuyên",
-    "strike",
-    "100% ATK; bỏ qua 30% giáp; CD 6s",
-    "Né, giữ khoảng cách"
-  ],
-  [
-    "S03",
-    "Song Kích",
-    "strike",
-    "2×75% ATK; CD 5s",
-    "Shield, disarm"
-  ],
-  [
-    "S04",
-    "Tiễn Chính Xác",
-    "strike",
-    "130% ATK; tầm 8; CD 5s",
-    "Cover, blind"
-  ],
-  [
-    "S05",
-    "Độc Nha",
-    "strike",
-    "80% ATK; poison 5s; CD 7s",
-    "Cleanse"
-  ],
-  [
-    "S06",
-    "Hỏa Trảm",
-    "strike",
-    "120% ATK; burn 4s; CD 6s",
-    "Cleanse, thùng nước"
-  ],
-  [
-    "S07",
-    "Vết Thương Sâu",
-    "strike",
-    "90% ATK; bleed 6s; CD 7s",
-    "Heal, cleanse"
-  ],
-  [
-    "S08",
-    "Phá Khiên",
-    "strike",
-    "90% ATK; sát thương lên shield ×2; CD 6s",
-    "Né, giữ khoảng cách"
-  ],
-  [
-    "S09",
-    "Kết Liễu",
-    "strike",
-    "100% ATK; mục tiêu dưới 25% HP nhận thêm 80%; CD 10s",
-    "Heal, shield"
-  ],
-  [
-    "S10",
-    "Ám Kích",
-    "strike",
-    "100% ATK; từ stealth thêm 60% và panic 2s; CD 12s",
-    "Truesight, đi theo nhóm"
-  ],
-  [
-    "A01",
-    "Hỏa Cầu",
-    "aoe",
-    "180% ATK; R3; báo 1.2s; CD 10s",
-    "Tản đội, rời vùng"
-  ],
-  [
-    "A02",
-    "Mưa Tên",
-    "aoe",
-    "130% ATK; R3; báo 1.5s; CD 9s",
-    "Cover, di chuyển"
-  ],
-  [
-    "A03",
-    "Địa Chấn",
-    "aoe",
-    "120% ATK; R4; stun 1s; báo 1.5s; CD 14s",
-    "Rời vùng, shield"
-  ],
-  [
-    "A04",
-    "Băng Bạo",
-    "aoe",
-    "90% ATK; R3; slow 40%/4s; báo 1s; CD 11s",
-    "Cleanse, haste"
-  ],
-  [
-    "A05",
-    "Mây Độc",
-    "aoe",
-    "R3; poison 6s; báo 1s; CD 12s",
-    "Rời vùng, cleanse"
-  ],
-  [
-    "A06",
-    "Lôi Vực",
-    "aoe",
-    "150% ATK; R2; báo 0.8s; CD 10s",
-    "Tản đội, stun pháp sư"
-  ],
-  [
-    "A07",
-    "Quét Cuồng Phong",
-    "aoe",
-    "140% ATK; nón 120°, tầm 4; báo 0.8s; CD 8s",
-    "Né sang bên"
-  ],
-  [
-    "A08",
-    "Vòng Lửa",
-    "aoe",
-    "100% ATK; R4 quanh bản thân; burn 4s; báo 1.2s; CD 12s",
-    "Ranged, kite"
-  ],
-  [
-    "A09",
-    "Búa Thiên Thạch",
-    "aoe",
-    "250% ATK; R2; báo 2.2s; CD 20s",
-    "Né sớm, ngắt thi triển"
-  ],
-  [
-    "A10",
-    "Phán Quyết",
-    "aoe",
-    "100% ATK; R3; mục tiêu mark nhận thêm 50%; báo 1.5s; CD 14s",
-    "Cleanse mark, tản đội"
-  ],
-  [
-    "B01",
-    "Cuồng Nộ",
-    "buff",
-    "power +30%/6s; CD 15s",
-    "Nấp, kéo dài giao tranh"
-  ],
-  [
-    "B02",
-    "Thần Tốc",
-    "buff",
-    "haste +30%/5s; CD 14s",
-    "Slow, stun"
-  ],
-  [
-    "B03",
-    "Thân Thép",
-    "buff",
-    "fortify giảm damage 25%/6s; CD 16s",
-    "Chờ hết buff"
-  ],
-  [
-    "B04",
-    "Khiên Linh Lực",
-    "buff",
-    "shield 30% MaxHP/8s; CD 18s",
-    "Phá khiên"
-  ],
-  [
-    "B05",
-    "Hồi Sinh Lực",
-    "buff",
-    "regen 3% MaxHP/s trong 6s; CD 18s",
-    "Burst, poison"
-  ],
-  [
-    "B06",
-    "Mắt Chân Thực",
-    "buff",
-    "truesight tầm 8/8s; CD 20s",
-    "Cover, rời LOS"
-  ],
-  [
-    "B07",
-    "Ẩn Ảnh",
-    "buff",
-    "stealth 7s; mất khi tấn công; CD 18s",
-    "Truesight, quan sát gần"
-  ],
-  [
-    "B08",
-    "Chiến Ca",
-    "buff",
-    "đồng minh R5 nhận power +20%/5s; CD 20s",
-    "Tản đội, trì hoãn"
-  ],
-  [
-    "B09",
-    "Hành Quân",
-    "buff",
-    "đồng minh R5 nhận haste +20%/6s; CD 20s",
-    "Slow, control"
-  ],
-  [
-    "B10",
-    "Thành Lũy",
-    "buff",
-    "đồng minh R3 nhận fortify 20%/5s; CD 22s",
-    "AoE, đổi mục tiêu"
-  ],
-  [
-    "H01",
-    "Chữa Lành",
-    "heal",
-    "hồi 25% MaxHP; tầm 7; CD 7s",
-    "Silence, áp sát healer"
-  ],
-  [
-    "H02",
-    "Suối Sinh Mệnh",
-    "healArea",
-    "hồi 15% MaxHP; R3; tầm 6; CD 14s",
-    "Chia cắt đội hình"
-  ],
-  [
-    "H03",
-    "Truyền Mana",
-    "mana",
-    "đồng minh +25% MaxMana; bản thân mất lượng tương ứng; CD 12s",
-    "Silence, ngắt hỗ trợ"
-  ],
-  [
-    "H04",
-    "Thanh Tẩy",
-    "cleanse",
-    "xóa 2 debuff; tầm 6; CD 10s",
-    "Áp lại debuff"
-  ],
-  [
-    "H05",
-    "Cứu Tỉnh",
-    "revive",
-    "hồi đồng minh gục trong 8s với 20% HP; thi triển 3s; CD 60s; 1 lần/trận",
-    "Ngắt thi triển"
-  ],
-  [
-    "H06",
-    "Hộ Thuẫn",
-    "shieldAlly",
-    "shield 35% MaxHP mục tiêu/8s; tầm 7; CD 12s",
-    "Phá khiên, đổi mục tiêu"
-  ],
-  [
-    "H07",
-    "Trấn An",
-    "cleanse",
-    "xóa panic cho đồng minh R5; CD 12s",
-    "Chia cắt Leader"
-  ],
-  [
-    "H08",
-    "Cứu Thương",
-    "heal",
-    "hồi 40% MaxHP; tầm 2; thi triển 2s; CD 15s",
-    "Ngắt thi triển"
-  ],
-  [
-    "H09",
-    "Tĩnh Tâm",
-    "mana",
-    "bản thân hồi 35% MaxMana trong 4s; nhận damage thì ngắt; CD 25s",
-    "Duy trì áp lực"
-  ],
-  [
-    "H10",
-    "Giải Giới",
-    "cleanse",
-    "xóa toàn bộ debuff trên 1 đồng minh; tầm 6; CD 24s",
-    "Ép dùng sớm, tái áp hiệu ứng"
-  ],
-  [
-    "C01",
-    "Khiêu Khích",
-    "taunt",
-    "threat +80; R4; 3s; CD 10s",
-    "Rời LOS, kháng taunt"
-  ],
-  [
-    "C02",
-    "Băng Trói",
-    "control",
-    "slow 60%/4s; tầm 6; CD 9s",
-    "Cleanse, haste"
-  ],
-  [
-    "C03",
-    "Choáng Váng",
-    "control",
-    "stun 1.5s; tầm 2; CD 12s",
-    "Né, cleanse"
-  ],
-  [
-    "C04",
-    "Dấu Tử Thần",
-    "control",
-    "mark +25% damage nhận/6s; tầm 7; CD 12s",
-    "Cleanse, shield"
-  ],
-  [
-    "C05",
-    "Câm Lặng",
-    "control",
-    "silence 3s; tầm 6; CD 14s",
-    "Đánh thường, cleanse"
-  ],
-  [
-    "C06",
-    "Màn Chói",
-    "control",
-    "blind giảm chính xác 50%/4s; R3; CD 12s",
-    "Cleanse, AoE"
-  ],
-  [
-    "C07",
-    "Tước Vũ Khí",
-    "control",
-    "disarm 3s; tầm 2; CD 12s",
-    "Phép thuật, rút lui"
-  ],
-  [
-    "C08",
-    "Tiếng Thét Kinh Hoàng",
-    "control",
-    "panic 3s; R3; CD 16s",
-    "Trấn An, cleanse"
-  ],
-  [
-    "C09",
-    "Đẩy Lùi",
-    "push",
-    "đẩy mục tiêu 3 ô; tầm 2; CD 8s",
-    "Giữ khoảng cách, vật cản"
-  ],
-  [
-    "C10",
-    "Dây Linh Lực",
-    "pull",
-    "kéo mục tiêu 3 ô; tầm 6; CD 10s",
-    "Cover, đứt LOS"
-  ],
-  [
-    "P01",
-    "Thể Chất Bền Bỉ",
-    "buff",
-    "stat: MaxHP +20%; thường trực",
-    "Damage theo %HP"
-  ],
-  [
-    "P02",
-    "Thiên Phú Pháp Thuật",
-    "buff",
-    "stat: MaxMana +25%; thường trực",
-    "Ép tiêu hao mana"
-  ],
-  [
-    "P03",
-    "Cơ Bắp Cường Hóa",
-    "buff",
-    "stat: ATK +15%; thường trực",
-    "Giáp, disarm"
-  ],
-  [
-    "P04",
-    "Da Cứng",
-    "buff",
-    "stat: giáp +20%; thường trực",
-    "Đâm Xuyên"
-  ],
-  [
-    "P05",
-    "Chân Nhẹ",
-    "buff",
-    "stat: tốc chạy +15%; thường trực",
-    "Slow"
-  ],
-  [
-    "P06",
-    "Tay Nhanh",
-    "buff",
-    "stat: tốc đánh +15%; thường trực",
-    "Disarm, blind"
-  ],
-  [
-    "P07",
-    "Mắt Diều Hâu",
-    "buff",
-    "stat: tầm nhìn +2 ô; vẫn cần LOS",
-    "Cover, góc khuất"
-  ],
-  [
-    "P08",
-    "Tinh Thần Thép",
-    "buff",
-    "stat: thời lượng panic nhận −60%",
-    "Stun, slow"
-  ],
-  [
-    "P09",
-    "Kháng Độc",
-    "buff",
-    "stat: damage poison nhận −50%",
-    "Burn, bleed"
-  ],
-  [
-    "P10",
-    "Tập Trung",
-    "buff",
-    "stat: chính xác +15 điểm %",
-    "Cover, blind"
-  ],
-  [
-    "P11",
-    "Lưỡi Dao Độc",
-    "control",
-    "onHit: 20% gây poison 4s; CD proc 5s",
-    "Cleanse"
-  ],
-  [
-    "P12",
-    "Tàn Lửa",
-    "control",
-    "onHit: 20% gây burn 3s; CD proc 5s",
-    "Thùng nước, cleanse"
-  ],
-  [
-    "P13",
-    "Răng Cưa",
-    "control",
-    "onHit: 25% gây bleed 4s; CD proc 5s",
-    "Heal, cleanse"
-  ],
-  [
-    "P14",
-    "Đòn Nặng",
-    "control",
-    "onHit: 15% gây stun 0.8s; CD proc 8s",
-    "Kite, né"
-  ],
-  [
-    "P15",
-    "Săn Đuổi",
-    "control",
-    "onHit: gây slow 20%/2s; CD proc 4s",
-    "Haste"
-  ],
-  [
-    "P16",
-    "Kẻ Đánh Dấu",
-    "control",
-    "onHit: 20% gây mark +15%/4s; CD proc 8s",
-    "Cleanse"
-  ],
-  [
-    "P17",
-    "Hút Sinh Lực",
-    "heal",
-    "onHit: hồi 8% damage thực gây ra",
-    "Shield, giảm damage"
-  ],
-  [
-    "P18",
-    "Hấp Thụ Linh Lực",
-    "mana",
-    "onHit: hồi 3% MaxMana; CD proc 3s",
-    "Disarm, silence"
-  ],
-  [
-    "P19",
-    "Phá Tập Trung",
-    "control",
-    "onHit: 15% gây silence 1.5s; CD proc 10s",
-    "Cleanse, đánh thường"
-  ],
-  [
-    "P20",
-    "Đòn Hiểm",
-    "strike",
-    "onHit: 15% gây thêm 40% ATK; CD proc 4s",
-    "Giáp, shield"
-  ],
-  [
-    "P21",
-    "Da Gai",
-    "strike",
-    "onDamage: phản 15% damage cận chiến; CD proc 2s",
-    "Ranged"
-  ],
-  [
-    "P22",
-    "Phòng Vệ Bản Năng",
-    "buff",
-    "onDamage: HP xuống dưới 30%, shield 20% MaxHP/5s; CD 30s",
-    "Chờ khiên hết"
-  ],
-  [
-    "P23",
-    "Máu Nóng",
-    "buff",
-    "onDamage: power +20%/4s; CD proc 10s",
-    "Kite, trì hoãn"
-  ],
-  [
-    "P24",
-    "Thoát Hiểm",
-    "buff",
-    "onDamage: HP xuống dưới 25%, haste +40%/3s; CD 25s",
-    "Slow, stun"
-  ],
-  [
-    "P25",
-    "Giáp Phản Ứng",
-    "buff",
-    "onDamage: fortify 20%/3s; CD proc 8s",
-    "Đánh ngắt quãng"
-  ],
-  [
-    "P26",
-    "Bình Tĩnh",
-    "cleanse",
-    "onDamage: xóa panic trên bản thân nếu có; CD proc 15s",
-    "Tái áp panic"
-  ],
-  [
-    "P27",
-    "Hấp Thụ Phép",
-    "mana",
-    "onDamage: nhận damage phép, hồi 5% MaxMana; CD 5s",
-    "Damage vật lý"
-  ],
-  [
-    "P28",
-    "Phản Kích",
-    "strike",
-    "onDamage: địch cận chiến gây damage, phản đòn 60% ATK; CD 6s",
-    "Ranged, disarm"
-  ],
-  [
-    "P29",
-    "Bóng Ma",
-    "buff",
-    "onDamage: HP xuống dưới 20%, stealth 3s; CD 35s",
-    "Truesight"
-  ],
-  [
-    "P30",
-    "Chống Chịu",
-    "cleanse",
-    "onDamage: nếu có slow hoặc blind, xóa 1 hiệu ứng; CD 12s",
-    "Stun, mark"
-  ],
-  [
-    "P31",
-    "Tái Tạo",
-    "heal",
-    "tick: hồi 1% MaxHP mỗi 2s",
-    "Burst"
-  ],
-  [
-    "P32",
-    "Dòng Chảy Mana",
-    "mana",
-    "tick: hồi 2% MaxMana mỗi 3s",
-    "Ép dùng kỹ năng"
-  ],
-  [
-    "P33",
-    "Hồi Phục An Toàn",
-    "heal",
-    "tick: ngoài giao chiến 5s, hồi 3% MaxHP/s",
-    "Duy trì áp lực"
-  ],
-  [
-    "P34",
-    "Hào Quang Hộ Vệ",
-    "shieldAlly",
-    "tick: mỗi 10s, đồng minh gần nhất R2 nhận shield 8% MaxHP/5s",
-    "Tách đội"
-  ],
-  [
-    "P35",
-    "Tinh Thần Đồng Đội",
-    "cleanse",
-    "tick: mỗi 8s, xóa panic cho 1 đồng minh R3",
-    "Chia cắt support"
-  ],
-  [
-    "P36",
-    "Trực Giác",
-    "buff",
-    "tick: mỗi 12s, truesight tầm 5 trong 3s",
-    "Chờ hết, giữ khoảng cách"
-  ],
-  [
-    "P37",
-    "Hơi Thở Độc",
-    "control",
-    "tick: mỗi 5s, địch thấy được trong R1.5 nhận poison 2s",
-    "Ranged, cleanse"
-  ],
-  [
-    "P38",
-    "Tĩnh Lặng",
-    "buff",
-    "tick: đứng yên ngoài giao chiến 3s, stealth 4s; CD 12s",
-    "Truesight, áp sát"
-  ],
-  [
-    "P39",
-    "Nhịp Chiến Đấu",
-    "buff",
-    "tick: giao chiến liên tục 8s, power +15%/4s; CD 12s",
-    "Ngắt giao tranh"
-  ],
-  [
-    "P40",
-    "Khí Thế Kiên Cường",
-    "buff",
-    "tick: mỗi 10s, fortify 15%/4s nếu HP dưới 50%",
-    "Burst, mark"
-  ],
-  [
-    "P41",
-    "Hộ Vệ Trung Thành",
-    "buff",
-    "context: có đồng minh dưới 30% HP trong R4, Utility bảo vệ +40%",
-    "Chia cắt đội"
-  ],
-  [
-    "P42",
-    "Xạ Thủ Kỷ Luật",
-    "buff",
-    "context: có frontline giữa mình và địch, chính xác +20 điểm %",
-    "Áp sát tuyến sau"
-  ],
-  [
-    "P43",
-    "Kẻ Phục Kích",
-    "strike",
-    "context: đòn đầu từ stealth thêm 50% ATK; CD proc 12s",
-    "Truesight"
-  ],
-  [
-    "P44",
-    "Tham Lam",
-    "buff",
-    "context: thấy vật phẩm hiếm, Utility loot +60%",
-    "Dụ bằng loot, phục kích"
-  ],
-  [
-    "P45",
-    "Cuồng Chiến",
-    "buff",
-    "onKill: power +25%/5s; CD proc 8s",
-    "Nấp, kéo dài giao tranh"
-  ],
-  [
-    "P46",
-    "Kẻ Sinh Tồn",
-    "heal",
-    "onKill: hồi 12% MaxHP; CD proc 8s",
-    "Heal, ngăn kết liễu"
-  ],
-  [
-    "P47",
-    "Thu Hoạch Mana",
-    "mana",
-    "onKill: hồi 15% MaxMana; CD proc 6s",
-    "Ngăn kết liễu"
-  ],
-  [
-    "P48",
-    "Bá Chủ",
-    "control",
-    "onKill: địch chứng kiến trong R4 nhận panic 2s; CD 15s",
-    "Trấn An, tản đội"
-  ],
-  [
-    "P49",
-    "Đoàn Kết",
-    "buff",
-    "context: có ít nhất 2 đồng minh R4, fortify 15%",
-    "Chia cắt đội hình"
-  ],
-  [
-    "P50",
-    "Thiên Địch",
-    "buff",
-    "context: mục tiêu có mark, damage gây lên nó +20%",
-    "Cleanse mark"
-  ]
+[
+"S01",
+"Trảm Kích",
+"strike",
+"140% ATK; tầm 1; CD 4s",
+"Giáp, shield"
+],
+[
+"S02",
+"Đâm Xuyên",
+"strike",
+"100% ATK; bỏ qua 30% giáp; CD 6s",
+"Né, giữ khoảng cách"
+],
+[
+"S03",
+"Song Kích",
+"strike",
+"2×75% ATK; CD 5s",
+"Shield, disarm"
+],
+[
+"S04",
+"Tiễn Chính Xác",
+"strike",
+"130% ATK; tầm 8; CD 5s",
+"Cover, blind"
+],
+[
+"S05",
+"Độc Nha",
+"strike",
+"80% ATK; poison 5s; CD 7s",
+"Cleanse"
+],
+[
+"S06",
+"Hỏa Trảm",
+"strike",
+"120% ATK; burn 4s; CD 6s",
+"Cleanse, thùng nước"
+],
+[
+"S07",
+"Vết Thương Sâu",
+"strike",
+"90% ATK; bleed 6s; CD 7s",
+"Heal, cleanse"
+],
+[
+"S08",
+"Phá Khiên",
+"strike",
+"90% ATK; sát thương lên shield ×2; CD 6s",
+"Né, giữ khoảng cách"
+],
+[
+"S09",
+"Kết Liễu",
+"strike",
+"100% ATK; mục tiêu dưới 25% HP nhận thêm 80%; CD 10s",
+"Heal, shield"
+],
+[
+"S10",
+"Ám Kích",
+"strike",
+"100% ATK; từ stealth thêm 60% và panic 2s; CD 12s",
+"Truesight, đi theo nhóm"
+],
+[
+"A01",
+"Hỏa Cầu",
+"aoe",
+"180% ATK; R3; báo 1.2s; CD 10s",
+"Tản đội, rời vùng"
+],
+[
+"A02",
+"Mưa Tên",
+"aoe",
+"130% ATK; R3; báo 1.5s; CD 9s",
+"Cover, di chuyển"
+],
+[
+"A03",
+"Địa Chấn",
+"aoe",
+"120% ATK; R4; stun 1s; báo 1.5s; CD 14s",
+"Rời vùng, shield"
+],
+[
+"A04",
+"Băng Bạo",
+"aoe",
+"90% ATK; R3; slow 40%/4s; báo 1s; CD 11s",
+"Cleanse, haste"
+],
+[
+"A05",
+"Mây Độc",
+"aoe",
+"R3; poison 6s; báo 1s; CD 12s",
+"Rời vùng, cleanse"
+],
+[
+"A06",
+"Lôi Vực",
+"aoe",
+"150% ATK; R2; báo 0.8s; CD 10s",
+"Tản đội, stun pháp sư"
+],
+[
+"A07",
+"Quét Cuồng Phong",
+"aoe",
+"140% ATK; nón 120°, tầm 4; báo 0.8s; CD 8s",
+"Né sang bên"
+],
+[
+"A08",
+"Vòng Lửa",
+"aoe",
+"100% ATK; R4 quanh bản thân; burn 4s; báo 1.2s; CD 12s",
+"Ranged, kite"
+],
+[
+"A09",
+"Búa Thiên Thạch",
+"aoe",
+"250% ATK; R2; báo 2.2s; CD 20s",
+"Né sớm, ngắt thi triển"
+],
+[
+"A10",
+"Phán Quyết",
+"aoe",
+"100% ATK; R3; mục tiêu mark nhận thêm 50%; báo 1.5s; CD 14s",
+"Cleanse mark, tản đội"
+],
+[
+"B01",
+"Cuồng Nộ",
+"buff",
+"power +30%/6s; CD 15s",
+"Nấp, kéo dài giao tranh"
+],
+[
+"B02",
+"Thần Tốc",
+"buff",
+"haste +30%/5s; CD 14s",
+"Slow, stun"
+],
+[
+"B03",
+"Thân Thép",
+"buff",
+"fortify giảm damage 25%/6s; CD 16s",
+"Chờ hết buff"
+],
+[
+"B04",
+"Khiên Linh Lực",
+"buff",
+"shield 30% MaxHP/8s; CD 18s",
+"Phá khiên"
+],
+[
+"B05",
+"Hồi Sinh Lực",
+"buff",
+"regen 3% MaxHP/s trong 6s; CD 18s",
+"Burst, poison"
+],
+[
+"B06",
+"Mắt Chân Thực",
+"buff",
+"truesight tầm 8/8s; CD 20s",
+"Cover, rời LOS"
+],
+[
+"B07",
+"Ẩn Ảnh",
+"buff",
+"stealth 7s; mất khi tấn công; CD 18s",
+"Truesight, quan sát gần"
+],
+[
+"B08",
+"Chiến Ca",
+"buff",
+"đồng minh R5 nhận power +20%/5s; CD 20s",
+"Tản đội, trì hoãn"
+],
+[
+"B09",
+"Hành Quân",
+"buff",
+"đồng minh R5 nhận haste +20%/6s; CD 20s",
+"Slow, control"
+],
+[
+"B10",
+"Thành Lũy",
+"buff",
+"đồng minh R3 nhận fortify 20%/5s; CD 22s",
+"AoE, đổi mục tiêu"
+],
+[
+"H01",
+"Chữa Lành",
+"heal",
+"hồi 25% MaxHP; tầm 7; CD 7s",
+"Silence, áp sát healer"
+],
+[
+"H02",
+"Suối Sinh Mệnh",
+"healArea",
+"hồi 15% MaxHP; R3; tầm 6; CD 14s",
+"Chia cắt đội hình"
+],
+[
+"H03",
+"Truyền Mana",
+"mana",
+"đồng minh +25% MaxMana; bản thân mất lượng tương ứng; CD 12s",
+"Silence, ngắt hỗ trợ"
+],
+[
+"H04",
+"Thanh Tẩy",
+"cleanse",
+"xóa 2 debuff; tầm 6; CD 10s",
+"Áp lại debuff"
+],
+[
+"H05",
+"Cứu Tỉnh",
+"revive",
+"hồi đồng minh gục trong 8s với 20% HP; thi triển 3s; CD 60s; 1 lần/trận",
+"Ngắt thi triển"
+],
+[
+"H06",
+"Hộ Thuẫn",
+"shieldAlly",
+"shield 35% MaxHP mục tiêu/8s; tầm 7; CD 12s",
+"Phá khiên, đổi mục tiêu"
+],
+[
+"H07",
+"Trấn An",
+"cleanse",
+"xóa panic cho đồng minh R5; CD 12s",
+"Chia cắt Leader"
+],
+[
+"H08",
+"Cứu Thương",
+"heal",
+"hồi 40% MaxHP; tầm 2; thi triển 2s; CD 15s",
+"Ngắt thi triển"
+],
+[
+"H09",
+"Tĩnh Tâm",
+"mana",
+"bản thân hồi 35% MaxMana trong 4s; nhận damage thì ngắt; CD 25s",
+"Duy trì áp lực"
+],
+[
+"H10",
+"Giải Giới",
+"cleanse",
+"xóa toàn bộ debuff trên 1 đồng minh; tầm 6; CD 24s",
+"Ép dùng sớm, tái áp hiệu ứng"
+],
+[
+"C01",
+"Khiêu Khích",
+"taunt",
+"threat +80; R4; 3s; CD 10s",
+"Rời LOS, kháng taunt"
+],
+[
+"C02",
+"Băng Trói",
+"control",
+"slow 60%/4s; tầm 6; CD 9s",
+"Cleanse, haste"
+],
+[
+"C03",
+"Choáng Váng",
+"control",
+"stun 1.5s; tầm 2; CD 12s",
+"Né, cleanse"
+],
+[
+"C04",
+"Dấu Tử Thần",
+"control",
+"mark +25% damage nhận/6s; tầm 7; CD 12s",
+"Cleanse, shield"
+],
+[
+"C05",
+"Câm Lặng",
+"control",
+"silence 3s; tầm 6; CD 14s",
+"Đánh thường, cleanse"
+],
+[
+"C06",
+"Màn Chói",
+"control",
+"blind giảm chính xác 50%/4s; R3; CD 12s",
+"Cleanse, AoE"
+],
+[
+"C07",
+"Tước Vũ Khí",
+"control",
+"disarm 3s; tầm 2; CD 12s",
+"Phép thuật, rút lui"
+],
+[
+"C08",
+"Tiếng Thét Kinh Hoàng",
+"control",
+"panic 3s; R3; CD 16s",
+"Trấn An, cleanse"
+],
+[
+"C09",
+"Đẩy Lùi",
+"push",
+"đẩy mục tiêu 3 ô; tầm 2; CD 8s",
+"Giữ khoảng cách, vật cản"
+],
+[
+"C10",
+"Dây Linh Lực",
+"pull",
+"kéo mục tiêu 3 ô; tầm 6; CD 10s",
+"Cover, đứt LOS"
+],
+[
+"P01",
+"Thể Chất Bền Bỉ",
+"buff",
+"stat: MaxHP +20%; thường trực",
+"Damage theo %HP"
+],
+[
+"P02",
+"Thiên Phú Pháp Thuật",
+"buff",
+"stat: MaxMana +25%; thường trực",
+"Ép tiêu hao mana"
+],
+[
+"P03",
+"Cơ Bắp Cường Hóa",
+"buff",
+"stat: ATK +15%; thường trực",
+"Giáp, disarm"
+],
+[
+"P04",
+"Da Cứng",
+"buff",
+"stat: giáp +20%; thường trực",
+"Đâm Xuyên"
+],
+[
+"P05",
+"Chân Nhẹ",
+"buff",
+"stat: tốc chạy +15%; thường trực",
+"Slow"
+],
+[
+"P06",
+"Tay Nhanh",
+"buff",
+"stat: tốc đánh +15%; thường trực",
+"Disarm, blind"
+],
+[
+"P07",
+"Mắt Diều Hâu",
+"buff",
+"stat: tầm nhìn +2 ô; vẫn cần LOS",
+"Cover, góc khuất"
+],
+[
+"P08",
+"Tinh Thần Thép",
+"buff",
+"stat: thời lượng panic nhận −60%",
+"Stun, slow"
+],
+[
+"P09",
+"Kháng Độc",
+"buff",
+"stat: damage poison nhận −50%",
+"Burn, bleed"
+],
+[
+"P10",
+"Tập Trung",
+"buff",
+"stat: chính xác +15 điểm %",
+"Cover, blind"
+],
+[
+"P11",
+"Lưỡi Dao Độc",
+"control",
+"onHit: 20% gây poison 4s; CD proc 5s",
+"Cleanse"
+],
+[
+"P12",
+"Tàn Lửa",
+"control",
+"onHit: 20% gây burn 3s; CD proc 5s",
+"Thùng nước, cleanse"
+],
+[
+"P13",
+"Răng Cưa",
+"control",
+"onHit: 25% gây bleed 4s; CD proc 5s",
+"Heal, cleanse"
+],
+[
+"P14",
+"Đòn Nặng",
+"control",
+"onHit: 15% gây stun 0.8s; CD proc 8s",
+"Kite, né"
+],
+[
+"P15",
+"Săn Đuổi",
+"control",
+"onHit: gây slow 20%/2s; CD proc 4s",
+"Haste"
+],
+[
+"P16",
+"Kẻ Đánh Dấu",
+"control",
+"onHit: 20% gây mark +15%/4s; CD proc 8s",
+"Cleanse"
+],
+[
+"P17",
+"Hút Sinh Lực",
+"heal",
+"onHit: hồi 8% damage thực gây ra",
+"Shield, giảm damage"
+],
+[
+"P18",
+"Hấp Thụ Linh Lực",
+"mana",
+"onHit: hồi 3% MaxMana; CD proc 3s",
+"Disarm, silence"
+],
+[
+"P19",
+"Phá Tập Trung",
+"control",
+"onHit: 15% gây silence 1.5s; CD proc 10s",
+"Cleanse, đánh thường"
+],
+[
+"P20",
+"Đòn Hiểm",
+"strike",
+"onHit: 15% gây thêm 40% ATK; CD proc 4s",
+"Giáp, shield"
+],
+[
+"P21",
+"Da Gai",
+"strike",
+"onDamage: phản 15% damage cận chiến; CD proc 2s",
+"Ranged"
+],
+[
+"P22",
+"Phòng Vệ Bản Năng",
+"buff",
+"onDamage: HP xuống dưới 30%, shield 20% MaxHP/5s; CD 30s",
+"Chờ khiên hết"
+],
+[
+"P23",
+"Máu Nóng",
+"buff",
+"onDamage: power +20%/4s; CD proc 10s",
+"Kite, trì hoãn"
+],
+[
+"P24",
+"Thoát Hiểm",
+"buff",
+"onDamage: HP xuống dưới 25%, haste +40%/3s; CD 25s",
+"Slow, stun"
+],
+[
+"P25",
+"Giáp Phản Ứng",
+"buff",
+"onDamage: fortify 20%/3s; CD proc 8s",
+"Đánh ngắt quãng"
+],
+[
+"P26",
+"Bình Tĩnh",
+"cleanse",
+"onDamage: xóa panic trên bản thân nếu có; CD proc 15s",
+"Tái áp panic"
+],
+[
+"P27",
+"Hấp Thụ Phép",
+"mana",
+"onDamage: nhận damage phép, hồi 5% MaxMana; CD 5s",
+"Damage vật lý"
+],
+[
+"P28",
+"Phản Kích",
+"strike",
+"onDamage: địch cận chiến gây damage, phản đòn 60% ATK; CD 6s",
+"Ranged, disarm"
+],
+[
+"P29",
+"Bóng Ma",
+"buff",
+"onDamage: HP xuống dưới 20%, stealth 3s; CD 35s",
+"Truesight"
+],
+[
+"P30",
+"Chống Chịu",
+"cleanse",
+"onDamage: nếu có slow hoặc blind, xóa 1 hiệu ứng; CD 12s",
+"Stun, mark"
+],
+[
+"P31",
+"Tái Tạo",
+"heal",
+"tick: hồi 1% MaxHP mỗi 2s",
+"Burst"
+],
+[
+"P32",
+"Dòng Chảy Mana",
+"mana",
+"tick: hồi 2% MaxMana mỗi 3s",
+"Ép dùng kỹ năng"
+],
+[
+"P33",
+"Hồi Phục An Toàn",
+"heal",
+"tick: ngoài giao chiến 5s, hồi 3% MaxHP/s",
+"Duy trì áp lực"
+],
+[
+"P34",
+"Hào Quang Hộ Vệ",
+"shieldAlly",
+"tick: mỗi 10s, đồng minh gần nhất R2 nhận shield 8% MaxHP/5s",
+"Tách đội"
+],
+[
+"P35",
+"Tinh Thần Đồng Đội",
+"cleanse",
+"tick: mỗi 8s, xóa panic cho 1 đồng minh R3",
+"Chia cắt support"
+],
+[
+"P36",
+"Trực Giác",
+"buff",
+"tick: mỗi 12s, truesight tầm 5 trong 3s",
+"Chờ hết, giữ khoảng cách"
+],
+[
+"P37",
+"Hơi Thở Độc",
+"control",
+"tick: mỗi 5s, địch thấy được trong R1.5 nhận poison 2s",
+"Ranged, cleanse"
+],
+[
+"P38",
+"Tĩnh Lặng",
+"buff",
+"tick: đứng yên ngoài giao chiến 3s, stealth 4s; CD 12s",
+"Truesight, áp sát"
+],
+[
+"P39",
+"Nhịp Chiến Đấu",
+"buff",
+"tick: giao chiến liên tục 8s, power +15%/4s; CD 12s",
+"Ngắt giao tranh"
+],
+[
+"P40",
+"Khí Thế Kiên Cường",
+"buff",
+"tick: mỗi 10s, fortify 15%/4s nếu HP dưới 50%",
+"Burst, mark"
+],
+[
+"P41",
+"Hộ Vệ Trung Thành",
+"buff",
+"context: có đồng minh dưới 30% HP trong R4, Utility bảo vệ +40%",
+"Chia cắt đội"
+],
+[
+"P42",
+"Xạ Thủ Kỷ Luật",
+"buff",
+"context: có frontline giữa mình và địch, chính xác +20 điểm %",
+"Áp sát tuyến sau"
+],
+[
+"P43",
+"Kẻ Phục Kích",
+"strike",
+"context: đòn đầu từ stealth thêm 50% ATK; CD proc 12s",
+"Truesight"
+],
+[
+"P44",
+"Tham Lam",
+"buff",
+"context: thấy vật phẩm hiếm, Utility loot +60%",
+"Dụ bằng loot, phục kích"
+],
+[
+"P45",
+"Cuồng Chiến",
+"buff",
+"onKill: power +25%/5s; CD proc 8s",
+"Nấp, kéo dài giao tranh"
+],
+[
+"P46",
+"Kẻ Sinh Tồn",
+"heal",
+"onKill: hồi 12% MaxHP; CD proc 8s",
+"Heal, ngăn kết liễu"
+],
+[
+"P47",
+"Thu Hoạch Mana",
+"mana",
+"onKill: hồi 15% MaxMana; CD proc 6s",
+"Ngăn kết liễu"
+],
+[
+"P48",
+"Bá Chủ",
+"control",
+"onKill: địch chứng kiến trong R4 nhận panic 2s; CD 15s",
+"Trấn An, tản đội"
+],
+[
+"P49",
+"Đoàn Kết",
+"buff",
+"context: có ít nhất 2 đồng minh R4, fortify 15%",
+"Chia cắt đội hình"
+],
+[
+"P50",
+"Thiên Địch",
+"buff",
+"context: mục tiêu có mark, damage gây lên nó +20%",
+"Cleanse mark"
+]
 ];

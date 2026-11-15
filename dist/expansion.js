@@ -1,21 +1,659 @@
-import {EXPANSION_RAW as RAW} from './expansion-data.js';
-import {CARDS,ROOMS,SPECIES,CHARMS} from './data.js';
-import {STATUS} from './catalog.js';
-const group=prefix=>Object.fromEntries(RAW.filter(r=>new RegExp('^'+prefix+'\\d+$').test(r[0])).map(r=>[r[0],{id:r[0],name:r[1],description:r[2],counter:r[3]}]));
+import {
+ EXPANSION_RAW as RAW
+}
+from './expansion-data.js';
+import {
+ CARDS,
+ ROOMS,
+ SPECIES,
+ CHARMS
+}
+from './data.js';
+import {
+ STATUS
+}
+from './catalog.js';
+const group=prefix=>Object.fromEntries(RAW.filter(r=>new RegExp('^'+prefix+'\\d+$').test(r[0])).map(r=>[r[0],
+{
+ id:r[0],
+ name:r[1],
+ description:r[2],
+ counter:r[3]
+}
+]));
 export const FATES=group('F');
-export const QUALITIES=[{id:'common',name:'Thường',hp:1,attack:1,color:'#b7c6ad'},{id:'elite',name:'Tinh anh',hp:1.3,attack:1.12,color:'#9fc8bb'},{id:'warrior',name:'Chiến binh',hp:1.5,attack:1.2,color:'#a8bce0'},{id:'veteran',name:'Kỳ cựu',hp:1.8,attack:1.3,color:'#c2add9'},{id:'conqueror',name:'Chinh phạt',hp:2.2,attack:1.42,color:'#d9b87d'},{id:'wargod',name:'Chiến thần',hp:2.8,attack:1.6,color:'#e39e82'}];
-export const VARIANTS={normal:{name:'Nguyên bản'},poison:{name:'Độc',effect:'poison',color:'#a0c66e'},fire:{name:'Lửa',effect:'burn',color:'#e8a16d'},frost:{name:'Băng',effect:'slow',color:'#9bcddd'},swift:{name:'Nhanh',speed:1.25,color:'#c7d99b'},stone:{name:'Đá',hp:1.3,speed:.85,color:'#b5b9ac'},shadow:{name:'Bóng tối',effect:'stealth',color:'#c6aad7'}};
-const effectIds=['lifesteal','armorPierce','evasion','block','focus','exhausted','anchored','brittle','wounded','manaEfficiency','manaLeak','venomResist','fireResist','frostResist','trapSense','rooted','drenched','conductive','thorns','tenacity','sunder','overburdened'];
-for(let i=0;i<effectIds.length;i++){const row=RAW.find(r=>r[0]==='E'+String(i+1).padStart(2,'0')),id=effectIds[i];STATUS[id]={name:row[1].split('(')[1]?.replace(')','')||row[1],symbol:['lifesteal','thorns'].includes(id)?'♢':'✧',description:row[2],counter:row[3],bad:['exhausted','brittle','wounded','manaLeak','rooted','drenched','conductive','overburdened'].includes(id),color:['venomResist'].includes(id)?'#b4cc85':'#b0c7c9'}}
-const charmMods={CH01:{soloAttack:.2,teamwork:-.5},CH02:{hysteresis:.15},CH03:{trapSense:.35,speed:-.15},CH04:{vision:3,accuracy:.1},CH05:{attack:.2,dodge:-.4},CH06:{patient:true},CH07:{vengeful:true},CH08:{rescue:.5,panicDuration:1},CH09:{panicResist:.6,rescue:-.35},CH10:{formation:.5,loot:-.2},CH11:{formation:-.4,attack:.08},CH12:{favorite:1,outsideAttack:-.1},CH13:{xp:.3,manaEfficiency:.1,attack:-.1},CH14:{tactics:.3,reaction:-.15,attack:-.15},CH15:{regen:.5,speed:-.15},CH16:{healing:.3,potionThreshold:.8},CH17:{potionThreshold:.35},CH18:{siege:.4},CH19:{repair:.5,attack:-.1},CH20:{mana:.3,attack:.15,hp:-.2},CH21:{variant:.5,xp:-.2},CH22:{burn:.35,frostWeak:.25},CH23:{slowResist:.5,frost:.2,fireWeak:.25},CH24:{toxicBlood:true,healing:-.15},CH25:{armor:.3,speed:-.25,anchored:.8},CH26:{nightborn:true,tactics:.3},CH27:{mageHunter:.35},CH28:{armorPierce:.2,sunder:.3,attackSpeed:-.15},CH29:{inspiring:true},CH30:{feignDeath:true}};
-for(const c of Object.values(group('CH')))CHARMS[c.id]={...c,symbol:'✦',type:['CH01','CH05','CH08','CH11','CH12','CH15','CH17','CH20','CH21','CH22','CH23','CH24','CH25','CH28','CH30'].includes(c.id)?'mixed':'positive',mods:charmMods[c.id]};
-const roomRows=group('R'),roomIds=['mimic','darkaltar','forge','poisonpool','icehall','barracks','webnest','library','stonevault','spyroom','oracle','herbgarden'],icons=['chest_mimic_open_anim_f2','flask_big_blue','weapon_big_hammer','flask_green','flask_blue','goblin_idle_anim_f0','skull','necromancer_anim_f0','column','elf_m_idle_anim_f0','flask_yellow','flask_big_green'];
-for(let i=0;i<roomIds.length;i++){const r=roomRows['R'+String(i+1).padStart(2,'0')],id=roomIds[i];ROOMS[id]={name:r.name,description:r.description+' · '+r.counter,tag:'CÔNG TRÌNH CHUYÊN BIỆT',color:['#b4a4c5','#8ab5c5','#d3ad7b','#a0b975'][i%4],icon:icons[i],cost:5};CARDS.push({id,kind:'room',name:r.name,category:'BẢN THIẾT KẾ',cost:5,resource:'mana',art:icons[i],description:r.description,tone:['violet','blue','gold','green'][i%4]})}
-SPECIES.mimic={name:'Mimic',sprite:'chest_mimic',hp:155,attack:18,speed:1.8,range:1.4,capacity:8,magic:false};
-export const FAVORITES={goblin:['guard','barracks','spyroom'],skeleton:['grave','forge','stonevault'],slime:['poisonpool','herbgarden','mana'],shaman:['mana','darkaltar','library'],mimic:['mimic','loot','shop'],warden:['boss','stonevault','forge'],lord:['treasure','darkaltar']};
+export const QUALITIES=[{
+ id:'common',
+ name:'Thường',
+ hp:1,
+ attack:1,
+ color:'#b7c6ad'
+}
+,
+{
+ id:'elite',
+ name:'Tinh anh',
+ hp:1.3,
+ attack:1.12,
+ color:'#9fc8bb'
+}
+,
+{
+ id:'warrior',
+ name:'Chiến binh',
+ hp:1.5,
+ attack:1.2,
+ color:'#a8bce0'
+}
+,
+{
+ id:'veteran',
+ name:'Kỳ cựu',
+ hp:1.8,
+ attack:1.3,
+ color:'#c2add9'
+}
+,
+{
+ id:'conqueror',
+ name:'Chinh phạt',
+ hp:2.2,
+ attack:1.42,
+ color:'#d9b87d'
+}
+,
+{
+ id:'wargod',
+ name:'Chiến thần',
+ hp:2.8,
+ attack:1.6,
+ color:'#e39e82'
+}
+];
+export const VARIANTS={
+ normal:{
+  name:'Nguyên bản'
+ }
+ ,
+ poison:{
+  name:'Độc',
+  effect:'poison',
+  color:'#a0c66e'
+ }
+ ,
+ fire:{
+  name:'Lửa',
+  effect:'burn',
+  color:'#e8a16d'
+ }
+ ,
+ frost:{
+  name:'Băng',
+  effect:'slow',
+  color:'#9bcddd'
+ }
+ ,
+ swift:{
+  name:'Nhanh',
+  speed:1.25,
+  color:'#c7d99b'
+ }
+ ,
+ stone:{
+  name:'Đá',
+  hp:1.3,
+  speed:.85,
+  color:'#b5b9ac'
+ }
+ ,
+ shadow:{
+  name:'Bóng tối',
+  effect:'stealth',
+  color:'#c6aad7'
+ }
+}
+;
+const effectIds=['lifesteal',
+'armorPierce',
+'evasion',
+'block',
+'focus',
+'exhausted',
+'anchored',
+'brittle',
+'wounded',
+'manaEfficiency',
+'manaLeak',
+'venomResist',
+'fireResist',
+'frostResist',
+'trapSense',
+'rooted',
+'drenched',
+'conductive',
+'thorns',
+'tenacity',
+'sunder',
+'overburdened'];
+for(let i=0;
+i<effectIds.length;
+i++){
+ const row=RAW.find(r=>r[0]==='E'+String(i+1).padStart(2,
+ '0')),
+ id=effectIds[i];
+ STATUS[id]={
+  name:row[1].split('(')[1]?.replace(')',
+  '')||row[1],
+  symbol:['lifesteal',
+  'thorns'].includes(id)?'♢':'✧',
+  description:row[2],
+  counter:row[3],
+  bad:['exhausted',
+  'brittle',
+  'wounded',
+  'manaLeak',
+  'rooted',
+  'drenched',
+  'conductive',
+  'overburdened'].includes(id),
+  color:['venomResist'].includes(id)?'#b4cc85':'#b0c7c9'
+ }
+}
+const charmMods={
+ CH01:{
+  soloAttack:.2,
+  teamwork:-.5
+ }
+ ,
+ CH02:{
+  hysteresis:.15
+ }
+ ,
+ CH03:{
+  trapSense:.35,
+  speed:-.15
+ }
+ ,
+ CH04:{
+  vision:3,
+  accuracy:.1
+ }
+ ,
+ CH05:{
+  attack:.2,
+  dodge:-.4
+ }
+ ,
+ CH06:{
+  patient:true
+ }
+ ,
+ CH07:{
+  vengeful:true
+ }
+ ,
+ CH08:{
+  rescue:.5,
+  panicDuration:1
+ }
+ ,
+ CH09:{
+  panicResist:.6,
+  rescue:-.35
+ }
+ ,
+ CH10:{
+  formation:.5,
+  loot:-.2
+ }
+ ,
+ CH11:{
+  formation:-.4,
+  attack:.08
+ }
+ ,
+ CH12:{
+  favorite:1,
+  outsideAttack:-.1
+ }
+ ,
+ CH13:{
+  xp:.3,
+  manaEfficiency:.1,
+  attack:-.1
+ }
+ ,
+ CH14:{
+  tactics:.3,
+  reaction:-.15,
+  attack:-.15
+ }
+ ,
+ CH15:{
+  regen:.5,
+  speed:-.15
+ }
+ ,
+ CH16:{
+  healing:.3,
+  potionThreshold:.8
+ }
+ ,
+ CH17:{
+  potionThreshold:.35
+ }
+ ,
+ CH18:{
+  siege:.4
+ }
+ ,
+ CH19:{
+  repair:.5,
+  attack:-.1
+ }
+ ,
+ CH20:{
+  mana:.3,
+  attack:.15,
+  hp:-.2
+ }
+ ,
+ CH21:{
+  variant:.5,
+  xp:-.2
+ }
+ ,
+ CH22:{
+  burn:.35,
+  frostWeak:.25
+ }
+ ,
+ CH23:{
+  slowResist:.5,
+  frost:.2,
+  fireWeak:.25
+ }
+ ,
+ CH24:{
+  toxicBlood:true,
+  healing:-.15
+ }
+ ,
+ CH25:{
+  armor:.3,
+  speed:-.25,
+  anchored:.8
+ }
+ ,
+ CH26:{
+  nightborn:true,
+  tactics:.3
+ }
+ ,
+ CH27:{
+  mageHunter:.35
+ }
+ ,
+ CH28:{
+  armorPierce:.2,
+  sunder:.3,
+  attackSpeed:-.15
+ }
+ ,
+ CH29:{
+  inspiring:true
+ }
+ ,
+ CH30:{
+  feignDeath:true
+ }
+}
+;
+for(const c of Object.values(group('CH')))CHARMS[c.id]={
+ ...c,
+ symbol:'✦',
+ type:['CH01',
+ 'CH05',
+ 'CH08',
+ 'CH11',
+ 'CH12',
+ 'CH15',
+ 'CH17',
+ 'CH20',
+ 'CH21',
+ 'CH22',
+ 'CH23',
+ 'CH24',
+ 'CH25',
+ 'CH28',
+ 'CH30'].includes(c.id)?'mixed':'positive',
+ mods:charmMods[c.id]
+}
+;
+const roomRows=group('R'),
+roomIds=['mimic',
+'darkaltar',
+'forge',
+'poisonpool',
+'icehall',
+'barracks',
+'webnest',
+'library',
+'stonevault',
+'spyroom',
+'oracle',
+'herbgarden'],
+icons=['chest_mimic_open_anim_f2',
+'flask_big_blue',
+'weapon_big_hammer',
+'flask_green',
+'flask_blue',
+'goblin_idle_anim_f0',
+'skull',
+'necromancer_anim_f0',
+'column',
+'elf_m_idle_anim_f0',
+'flask_yellow',
+'flask_big_green'];
+for(let i=0;
+i<roomIds.length;
+i++){
+ const r=roomRows['R'+String(i+1).padStart(2,
+ '0')],
+ id=roomIds[i];
+ ROOMS[id]={
+  name:r.name,
+  description:r.description+' · '+r.counter,
+  tag:'CÔNG TRÌNH CHUYÊN BIỆT',
+  color:['#b4a4c5',
+  '#8ab5c5',
+  '#d3ad7b',
+  '#a0b975'][i%4],
+  icon:icons[i],
+  cost:5
+ }
+ ;
+ CARDS.push({
+  id,
+  kind:'room',
+  name:r.name,
+  category:'BẢN THIẾT KẾ',
+  cost:5,
+  resource:'mana',
+  art:icons[i],
+  description:r.description,
+  tone:['violet',
+  'blue',
+  'gold',
+  'green'][i%4]
+ }
+ )
+}
+SPECIES.mimic={
+ name:'Mimic',
+ sprite:'chest_mimic',
+ hp:155,
+ attack:18,
+ speed:1.8,
+ range:1.4,
+ capacity:8,
+ magic:false
+}
+;
+export const FAVORITES={
+ goblin:['guard',
+ 'barracks',
+ 'spyroom'],
+ skeleton:['grave',
+ 'forge',
+ 'stonevault'],
+ slime:['poisonpool',
+ 'herbgarden',
+ 'mana'],
+ shaman:['mana',
+ 'darkaltar',
+ 'library'],
+ mimic:['mimic',
+ 'loot',
+ 'shop'],
+ warden:['boss',
+ 'stonevault',
+ 'forge'],
+ lord:['treasure',
+ 'darkaltar']
+}
+;
 export const ITEMS=group('I');
-const itemSpecs={I01:{slot:'weapon',power:.2,speed:-.05,art:'weapon_knight_sword'},I02:{slot:'weapon',power:.1,healing:-.15,effects:{lifesteal:.08},art:'weapon_red_gem_sword'},I03:{slot:'weapon',range:2,attackSpeed:-.15,effects:{armorPierce:.25},art:'weapon_bow'},I04:{slot:'weapon',power:-.2,range:3,attackSpeed:.3,art:'weapon_bow_2'},I05:{slot:'weapon',burn:.3,manaCost:.2,art:'weapon_red_magic_staff'},I06:{slot:'weapon',slowDuration:1.5,power:-.1,art:'weapon_green_magic_staff'},I07:{slot:'armor',hp:.15,speed:-.2,effects:{block:.25},art:'weapon_big_hammer'},I08:{slot:'armor',armor:.35,slotCost:4,effects:{anchored:.8},art:'weapon_knight_sword'},I09:{slot:'trinket',grantSkill:'B07',art:'elf_f_idle_anim_f0'},I10:{slot:'trinket',vision:-1,effects:{truesight:5,trapSense:.3},art:'flask_yellow'},I11:{slot:'trinket',hp:-.1,effects:{manaEfficiency:.15},art:'flask_blue'},I12:{slot:'trinket',panicResist:.7,art:'flask_yellow'},I13:{slot:'boots',speed:.2,pushWeak:.33,effects:{evasion:.1},art:'elf_m_idle_anim_f0'},I14:{kind:'heal',value:.35,channel:1,art:'flask_big_red'},I15:{kind:'mana',value:.4,channel:1,art:'flask_big_blue'},I16:{kind:'antidote',effect:'venomResist',value:.5,duration:10,art:'flask_big_green'},I17:{kind:'buff',effect:'power',value:.4,duration:8,drawback:'mark',art:'flask_big_yellow'},I18:{kind:'tool',charges:5,slotCost:2,art:'lever_right'},I19:{kind:'scroll',channel:1,art:'flask_yellow'},I20:{slot:'bag',capacity:8,art:'crate'}};
-for(const item of Object.values(ITEMS)){Object.assign(item,itemSpecs[item.id]);CARDS.push({id:item.id,kind:'item',name:item.name,category:'VẬT PHẨM',cost:0,resource:'mana',art:item.art,description:item.description,tone:'gold'})}
-CARDS.push({id:'mimic-unit',species:'mimic',kind:'creature',name:'Mimic',category:'HỢP ĐỒNG',cost:35,resource:'mana',art:'chest_mimic_open_anim_f2',description:'Giả rương · phục kích',tone:'violet'});
-for(const c of CARDS)if(c.kind==='room'){c.cost=5;c.resource='mana'}else if(['trap','prop'].includes(c.kind)){c.cost=3;c.resource='mana'}
-export const PACKS={architecture:{name:'Gói Kiến Trúc',cost:80,count:3,picks:1,description:'Lật 3 bản thiết kế, giữ 1.'},contracts:{name:'Gói Hợp Đồng',cost:120,count:3,picks:1,description:'Lật 3 hợp đồng, giữ 1; phẩm chất tốt hơn thuê thường.'},mystery:{name:'Gói Bí Ẩn',cost:150,count:4,picks:2,description:'Lật 4 lá hỗn hợp, giữ 2.'}};
+const itemSpecs={
+ I01:{
+  slot:'weapon',
+  power:.2,
+  speed:-.05,
+  art:'weapon_knight_sword'
+ }
+ ,
+ I02:{
+  slot:'weapon',
+  power:.1,
+  healing:-.15,
+  effects:{
+   lifesteal:.08
+  }
+  ,
+  art:'weapon_red_gem_sword'
+ }
+ ,
+ I03:{
+  slot:'weapon',
+  range:2,
+  attackSpeed:-.15,
+  effects:{
+   armorPierce:.25
+  }
+  ,
+  art:'weapon_bow'
+ }
+ ,
+ I04:{
+  slot:'weapon',
+  power:-.2,
+  range:3,
+  attackSpeed:.3,
+  art:'weapon_bow_2'
+ }
+ ,
+ I05:{
+  slot:'weapon',
+  burn:.3,
+  manaCost:.2,
+  art:'weapon_red_magic_staff'
+ }
+ ,
+ I06:{
+  slot:'weapon',
+  slowDuration:1.5,
+  power:-.1,
+  art:'weapon_green_magic_staff'
+ }
+ ,
+ I07:{
+  slot:'armor',
+  hp:.15,
+  speed:-.2,
+  effects:{
+   block:.25
+  }
+  ,
+  art:'weapon_big_hammer'
+ }
+ ,
+ I08:{
+  slot:'armor',
+  armor:.35,
+  slotCost:4,
+  effects:{
+   anchored:.8
+  }
+  ,
+  art:'weapon_knight_sword'
+ }
+ ,
+ I09:{
+  slot:'trinket',
+  grantSkill:'B07',
+  art:'elf_f_idle_anim_f0'
+ }
+ ,
+ I10:{
+  slot:'trinket',
+  vision:-1,
+  effects:{
+   truesight:5,
+   trapSense:.3
+  }
+  ,
+  art:'flask_yellow'
+ }
+ ,
+ I11:{
+  slot:'trinket',
+  hp:-.1,
+  effects:{
+   manaEfficiency:.15
+  }
+  ,
+  art:'flask_blue'
+ }
+ ,
+ I12:{
+  slot:'trinket',
+  panicResist:.7,
+  art:'flask_yellow'
+ }
+ ,
+ I13:{
+  slot:'boots',
+  speed:.2,
+  pushWeak:.33,
+  effects:{
+   evasion:.1
+  }
+  ,
+  art:'elf_m_idle_anim_f0'
+ }
+ ,
+ I14:{
+  kind:'heal',
+  value:.35,
+  channel:1,
+  art:'flask_big_red'
+ }
+ ,
+ I15:{
+  kind:'mana',
+  value:.4,
+  channel:1,
+  art:'flask_big_blue'
+ }
+ ,
+ I16:{
+  kind:'antidote',
+  effect:'venomResist',
+  value:.5,
+  duration:10,
+  art:'flask_big_green'
+ }
+ ,
+ I17:{
+  kind:'buff',
+  effect:'power',
+  value:.4,
+  duration:8,
+  drawback:'mark',
+  art:'flask_big_yellow'
+ }
+ ,
+ I18:{
+  kind:'tool',
+  charges:5,
+  slotCost:2,
+  art:'lever_right'
+ }
+ ,
+ I19:{
+  kind:'scroll',
+  channel:1,
+  art:'flask_yellow'
+ }
+ ,
+ I20:{
+  slot:'bag',
+  capacity:8,
+  art:'crate'
+ }
+}
+;
+for(const item of Object.values(ITEMS)){
+ Object.assign(item,
+ itemSpecs[item.id]);
+ CARDS.push({
+  id:item.id,
+  kind:'item',
+  name:item.name,
+  category:'VẬT PHẨM',
+  cost:0,
+  resource:'mana',
+  art:item.art,
+  description:item.description,
+  tone:'gold'
+ }
+ )
+}
+CARDS.push({
+ id:'mimic-unit',
+ species:'mimic',
+ kind:'creature',
+ name:'Mimic',
+ category:'HỢP ĐỒNG',
+ cost:35,
+ resource:'mana',
+ art:'chest_mimic_open_anim_f2',
+ description:'Giả rương · phục kích',
+ tone:'violet'
+}
+);
+for(const c of CARDS)if(c.kind==='room'){
+ c.cost=5;
+ c.resource='mana'
+}
+else if(['trap',
+'prop'].includes(c.kind)){
+ c.cost=3;
+ c.resource='mana'
+}
+export const PACKS={
+ architecture:{
+  name:'Gói Kiến Trúc',
+  cost:80,
+  count:3,
+  picks:1,
+  description:'Lật 3 bản thiết kế, giữ 1.'
+ }
+ ,
+ contracts:{
+  name:'Gói Hợp Đồng',
+  cost:120,
+  count:3,
+  picks:1,
+  description:'Lật 3 hợp đồng, giữ 1; phẩm chất tốt hơn thuê thường.'
+ }
+ ,
+ mystery:{
+  name:'Gói Bí Ẩn',
+  cost:150,
+  count:4,
+  picks:2,
+  description:'Lật 4 lá hỗn hợp, giữ 2.'
+ }
+}
+;

@@ -1,32 +1,707 @@
-import {SPECIES,center,contains,distance} from './data.js';
-import {SKILLS} from './catalog.js';
-const has=(e,id)=>e.passiveIds?.includes(id);
-export function installTactics(Game){const P=Game.prototype;
- P.nearGeometry=function(e,type,radius=1.6){return this.state.props.some(p=>!p.destroyed&&p.floorId===e.floorId&&p.type===type&&distance(e,p)<=radius)};
- P.trapCaution=function(e){return e.charms.includes('CH36')?.4:e.faction==='monster'?.7:1};
- P.updateCommanders=function(force=false){const s=this.state;for(const r of s.rooms){const members=this.roomMonsters(r),previous=this.entity(r.commanderId);for(const e of s.entities.filter(e=>e.faction==='monster'&&e.roomId===r.id))e.isCommander=false;const score=e=>e.maxHp+SPECIES[e.species].attack*4+e.level*20+(e.qualityPower||1)*30;if(force||!previous||previous.status!=='active'){if(!force&&previous&&!r.commanderElectionAt)r.commanderElectionAt=s.time+2;if(!force&&r.commanderElectionAt>s.time)continue;const chosen=[...members].sort((a,b)=>score(b)-score(a)||a.id.localeCompare(b.id))[0];r.commanderId=chosen?.id||null;r.commanderElectionAt=0}const leader=this.entity(r.commanderId);if(!leader||leader.status!=='active')continue;leader.isCommander=true;const enemy=(leader.visibleIds||[]).map(id=>this.entity(id)).find(e=>e?.status==='active');r.commandMode=leader.intelligence<20?'free':enemy?leader.intelligence>=60?'trap-ambush':leader.intelligence>=40?'hold-choke':'focus':'guard';for(const e of members){if(e===leader){e.roomOrder={leaderId:e.id,time:s.time,mode:r.commandMode,focus:enemy?{id:enemy.id,x:enemy.x,y:enemy.y,floorId:enemy.floorId}:null};continue}if(distance(e,leader)<10&&this.lineOfSight(e,leader)&&s.time-(e.roomOrder?.time||-1)>.5)e.roomOrder={leaderId:leader.id,time:s.time,mode:r.commandMode,focus:enemy?{id:enemy.id,x:enemy.x,y:enemy.y,floorId:enemy.floorId}:null}}}};
- const controls=P.controlsTick;P.controlsTick=function(dt){controls.call(this,dt);for(const t of this.state.traps)if(!t.disabled&&t.cooldown>0&&this.state.entities.some(e=>e.faction==='monster'&&e.status==='active'&&e.floorId===t.floorId&&has(e,'PS58')&&e.knownTraps.includes(t.id)&&distance(e,t)<3))t.cooldown=Math.max(0,t.cooldown-dt);if(this.state.time-(this.state.lastCommanderTick||-1)>.5){this.state.lastCommanderTick=this.state.time;this.updateCommanders(this.state.phase==='prepare')}};
- const pulse=P.pulseStatuses;P.pulseStatuses=function(e){pulse.call(this,e);if(e.status!=='active')return;if(has(e,'PS51')&&this.nearGeometry(e,'pit'))this.applyStatus(e,'anchored',1.5,.8,e);if(has(e,'PS56')&&this.passiveReady(e,'PS56',3))this.applyStatus(e,'trapSense',1,.25,e)};
- const damage=P.damage;P.damage=function(e,n,source=null,ctx={}){let value=n;if(ctx.trap){if(has(e,'PS57'))value*=.65;if(source?.charms.includes('CH37'))value*=1.25}if(ctx.explosion){value*=has(e,'PS53')?.65:1;value*=1-this.gearMod(e,'blastResist')}if(source?.charms.includes('CH31')&&!SPECIES[source.species].magic)value*=1.2;if(source&&has(e,'PS52')&&this.range(source)>=4&&!ctx.aoe&&!ctx.secondary&&this.nearGeometry(e,'wall')&&this.random()<.15)return;return damage.call(this,e,value,source,ctx)};
- const propDamage=P.damageProp;P.damageProp=function(prop,n,source=null,...rest){return propDamage.call(this,prop,n*(source&&has(source,'PS54')?1.5:1),source,...rest)};
- P.vaultLanding=function(e,target){if(!target||target.floorId!==e.floorId)return null;const room=this.roomAt(e.x,e.y,e.floorId);if(!room)return null;for(const length of[3,4])for(let i=0;i<8;i++){const angle=i*Math.PI/4,p={x:Math.round(e.x+Math.cos(angle)*length),y:Math.round(e.y+Math.sin(angle)*length),floorId:e.floorId};if(!contains(room,p,1)||!this.walkable(p.x,p.y,p.floorId,e)||!this.lineOfSight(e,p)||distance(p,target)>=distance(e,target)-1||this.state.entities.some(a=>a.status==='active'&&a.floorId===e.floorId&&distance(a,p)<.9))continue;let crossed=false,valid=true;for(let t=.1;t<1;t+=.1){const x=e.x+(p.x-e.x)*t,y=e.y+(p.y-e.y)*t,prop=this.propsByTile.get(`${e.floorId}:${Math.round(x)},${Math.round(y)}`);if(prop?.type==='pit')crossed=true;else if(!this.walkable(x,y,e.floorId,e))valid=false}if(crossed&&valid)return p}return null};
- P.safeBarrel=function(e,prop,enemies){if(prop.type!=='explosive'||prop.destroyed||prop.floorId!==e.floorId||distance(e,prop)<3.8||!this.lineOfSight(e,prop))return false;const hits=enemies.filter(a=>distance(a,prop)<3.2).length,friends=this.state.entities.filter(a=>a.status==='active'&&a.faction===e.faction&&a.floorId===e.floorId&&distance(a,prop)<(e.charms.includes('CH33')?2.5:3.6)).length;return hits>0&&!friends};
- const skillTarget=P.skillTarget;P.skillTarget=function(e,k,enemies,allies){if(['trapControl','trapTrigger'].includes(k.kind))return this.state.traps.find(t=>!t.disabled&&t.floorId===e.floorId&&e.knownTraps.includes(t.id)&&distance(e,t)<=k.range&&this.lineOfSight(e,t)&&enemies.some(a=>distance(a,t)<(t.type==='spikes'?1.5:3))&&(k.kind==='trapControl'?e.faction==='hero'&&t.affectsFaction!=='monster':e.faction==='monster'&&t.cooldown<=0));if(k.kind==='vault'){if(e.charms.includes('CH32'))return null;return enemies.find(a=>this.vaultLanding(e,a))}if(k.kind==='smash')return this.state.props.find(p=>!p.destroyed&&['wood','crate','explosive','poison','water'].includes(p.type)&&p.floorId===e.floorId&&distance(e,p)<=k.range&&this.lineOfSight(e,p)&&(['wood','crate'].includes(p.type)&&enemies.length||this.safeBarrel(e,p,enemies)));if(k.kind==='detonate')return this.state.props.find(p=>distance(e,p)<=k.range&&this.safeBarrel(e,p,enemies));if(k.kind==='bulwark')return enemies.length&&!this.effect(e,'shield')?e:null;if(k.kind==='hook')return this.rescueTarget(e);return skillTarget.call(this,e,k,enemies,allies)};
- const cast=P.castSkill;P.castSkill=function(e,id,targetId,complete=false){const k=SKILLS[id];if(!['vault','smash','bulwark','hook','detonate','trapControl','trapTrigger'].includes(k?.kind))return cast.call(this,e,id,targetId,complete);if(!this.skillAvailable(e,k))return false;const target=this.entity(targetId)||this.state.props.find(p=>p.id===targetId)||this.state.traps.find(t=>t.id===targetId)||e;if(target.floorId!==e.floorId||distance(e,target)>k.range+.2&&!['bulwark','vault'].includes(k.kind)||!this.lineOfSight(e,target))return false;let landing;if(k.kind==='vault'){landing=this.vaultLanding(e,target);if(!landing)return false}if(k.kind==='hook'&&target.status!=='downed')return false;if(['smash','detonate'].includes(k.kind)&&(!target.type||target.destroyed||['wall','pit','pillar'].includes(target.type)))return false;if(['trapControl','trapTrigger'].includes(k.kind)&&(!this.state.traps.includes(target)||!e.knownTraps.includes(target.id)||target.disabled))return false;e.mana-=this.skillCost(e,k);e.skillCooldowns[id]=this.state.time+k.cd;if(k.kind==='trapControl'){target.affectsFaction='monster';target.affectsUntil=this.state.time+10;target.activatedBy=e.id;target.windup=.7;target.cooldown=0}if(k.kind==='trapTrigger'){target.activatedBy=e.id;target.windup=.7}if(k.kind==='vault'){e.x=landing.x;e.y=landing.y;e.path=[]}if(k.kind==='smash'||k.kind==='detonate')this.damageProp(target,k.kind==='detonate'?100:SPECIES[e.species].attack*k.power,e);if(k.kind==='bulwark'){this.applyStatus(e,'shield',5,.4,e);this.applyStatus(e,'block',5,.3,e)}if(k.kind==='hook')this.pullBody(e,target,4);this.effects.push({x:e.x,y:e.y,floorId:e.floorId,text:k.name,color:'#c9d1ad',life:1});this.event('magic');return true};
- P.freeKeySlot=function(e){if(this.usedSlots(e)<e.capacity)return true;const item=e.inventory.map(id=>this.state.items.find(i=>i.id===id)).filter(Boolean).sort((a,b)=>(a.value||0)-(b.value||0))[0];if(!item)return false;e.inventory=e.inventory.filter(id=>id!==item.id);Object.assign(item,{owner:null,x:Math.round(e.x),y:Math.round(e.y),floorId:e.floorId,location:'ground'});return this.usedSlots(e)<e.capacity};
- const move=P.move;P.move=function(e,target,dt,stop){const core=this.state.rooms.find(r=>r.type==='treasure');if(e.faction==='hero'&&this.state.keyQuest?.locked&&core&&target&&core.floorId===e.floorId&&contains(core,{...target,floorId:e.floorId},0)){const approach=this.keyApproach(e);if(approach)return move.call(this,e,approach,dt,.8)}return move.call(this,e,target,dt,stop)};
- P.keyApproach=function(e){const core=this.state.rooms.find(r=>r.type==='treasure');if(!core)return null;return(core.doors||[]).map(d=>({x:d.x+(d.axis==='x'?Math.sign(d.x-core.x)*2:0),y:d.y+(d.axis==='y'?Math.sign(d.y-core.y)*2:0),floorId:core.floorId})).filter(p=>this.walkable(p.x,p.y,p.floorId)).sort((a,b)=>distance(e,a)-distance(e,b))[0]};
- const choices=P.extendChoices;P.extendChoices=function(e,context){choices.call(this,e,context);const{enemies,room,locked,add}=context,s=this.state;
-  for(const body of s.entities.filter(a=>a.status==='downed'&&a.floorId===e.floorId&&distance(e,a)<=this.vision(e)&&this.lineOfSight(e,a))){e.bodyMemories[body.id]={id:body.id,x:body.x,y:body.y,floorId:body.floorId,time:s.time,faction:body.faction}}for(const[id,m]of Object.entries(e.bodyMemories))if(s.time-m.time>7)delete e.bodyMemories[id];
-  if(e.faction==='monster'){const order=e.roomOrder,leader=this.entity(order?.leaderId),brain=leader?.intelligence||e.intelligence;if(order?.focus&&s.time-order.time<3&&brain>=20){const enemy=enemies.find(a=>a.id===order.focus.id);if(enemy)add('attack',.98,enemy.id,'Theo chỉ huy: tập trung mục tiêu cả tổ thực sự nhìn thấy')}
-   const enemy=enemies[0];if(enemy&&brain>=40){const home=s.rooms.find(r=>r.id===e.roomId),trap=s.traps.filter(t=>!t.disabled&&t.floorId===e.floorId&&t.roomId===e.roomId&&e.knownTraps.includes(t.id)&&distance(t,enemy)<8).sort((a,b)=>distance(a,enemy)-distance(b,enemy))[0];if(trap&&brain>=60){const dx=trap.x-enemy.x,dy=trap.y-enemy.y,n=Math.hypot(dx,dy)||1,p=this.findFreeNear({x:trap.x+dx/n*2,y:trap.y+dy/n*2,floorId:e.floorId},home);if(p&&this.path(e,p).length&&distance(e,p)>1)add('kite',1.12+(e.charms.includes('CH37')?.2:0),p,'Chỉ huy nhử đối thủ qua bẫy nhà đã biết')}else if(e.role==='tank'){const d=(home.doors||[]).sort((a,b)=>distance(a,enemy)-distance(b,enemy))[0];if(d){const dx=home.x-d.x,dy=home.y-d.y,n=Math.hypot(dx,dy)||1,p=this.findFreeNear({x:d.x+dx/n*2,y:d.y+dy/n*2,floorId:e.floorId},home);if(p&&distance(enemy,p)<6&&distance(e,p)>1)add('guard',.93+(e.charms.includes('CH35')?.2:0),p,'Giữ chỗ nghẽn để tuyến sau có đường bắn')}}}}
-  if(e.intelligence>=45||e.charms.includes('CH33'))for(const prop of s.props)if(distance(e,prop)<=this.range(e)&&this.range(e)>=4&&this.safeBarrel(e,prop,enemies))add('barrel',e.charms.includes('CH33')?1.55:1.12,prop.id,'Bắn thùng đã thấy để tận dụng nổ; xét vị trí đồng minh');
-  const k=s.keyQuest;if(e.faction!=='hero'||!k?.locked)return;const core=s.rooms.find(r=>r.type==='treasure');if(!core)return;
-  if(k.placed&&!k.owner&&k.floorId===e.floorId&&distance(e,k)<=this.vision(e)&&this.lineOfSight(e,k))e.knownKey={x:k.x,y:k.y,floorId:k.floorId,time:s.time};for(const ally of s.entities.filter(a=>a.faction===e.faction&&a.id!==e.id&&a.status==='active'&&a.floorId===e.floorId&&distance(a,e)<6&&this.lineOfSight(a,e)))if(ally.knownKey&&s.time-ally.knownKey.time>.35&&(!e.knownKey||e.knownKey.time<ally.knownKey.time))e.knownKey={...ally.knownKey};
-  const approach=this.keyApproach(e);if(approach?.floorId===e.floorId&&distance(e,approach)<4&&this.lineOfSight(e,approach)){e.needsKey=true;e.destinationRoom=null;if(!e.visitedRooms.includes(core.id))e.visitedRooms.push(core.id)}
-  if(k.owner===e.id&&!locked){add('unlock-core',2.4,approach,'Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây');return}if(e.knownKey&&(!locked||contains(locked,e.knownKey,1)))add('take-key',1.25,{...e.knownKey},'Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo');
-  if(e.needsKey&&!locked&&!enemies.length&&!e.knownKey&&!this.rooms(e.floorId).some(r=>r!==core&&!e.visitedRooms.includes(r.id)&&(e.knownRooms.includes(r.id)||room&&Math.abs(room.col-r.col)+Math.abs(room.row-r.row)===1))){const rooms=this.rooms(e.floorId).filter(r=>r!==core&&e.knownRooms.includes(r.id));if(rooms.length){e.keySearchIndex??=0;const stair=s.rooms.find(r=>r.type==='boss');if(e.floorId===0&&s.rooms.some(r=>r.floorId===1)&&stair&&e.knownRooms.includes(stair.id)&&!this.roomMonsters(stair).length&&e.keySearchIndex>=rooms.length*5)add('down',.8,null,'Đã kiểm tra tầng trên: xuống tìm chìa ở các phòng còn lại');const r=rooms[Math.floor(e.keySearchIndex/5)%rooms.length],points=[center(r),{x:r.x-5,y:r.y-4},{x:r.x+5,y:r.y-4},{x:r.x+5,y:r.y+4},{x:r.x-5,y:r.y+4}],p={...points[e.keySearchIndex%5],floorId:e.floorId};if(distance(e,p)<1)e.keySearchIndex++;const reachable=this.findFreeNear(p);if(reachable)add('explore',.74,reachable,'Đã thấy cổng khóa: tìm chìa bằng cách kiểm tra những phòng đã biết')}}
- };
- const act=P.act;P.act=function(e,dt){if(!['take-key','unlock-core'].includes(e.action))return act.call(this,e,dt);e.decision-=dt;if(e.decision<=0){this.decide(e);if(!['take-key','unlock-core'].includes(e.action))return act.call(this,e,dt)}if(this.effect(e,'stun'))return;const k=this.state.keyQuest;if(!k?.locked){e.decision=0;return}if(e.action==='take-key'){const p=e.target;if(!p){e.decision=0;return}if(p.floorId!==e.floorId){this.stairs(e,dt,p.floorId>e.floorId?'down':'up');return}if(this.move(e,p,dt,.8)){if(k.placed&&!k.owner&&k.floorId===e.floorId&&distance(e,k)<1.4&&this.freeKeySlot(e)){Object.assign(k,{owner:e.id,x:null,y:null});e.knownKey=null;this.log(`${e.name} nhặt chìa khóa phòng rương.`,'warning')}else e.knownKey=null;e.decision=0}return}
-  const core=this.state.rooms.find(r=>r.type==='treasure');if(k.owner!==e.id||!core){e.decision=0;return}if(e.floorId!==core.floorId){this.stairs(e,dt,core.floorId>e.floorId?'down':'up');return}const p=this.keyApproach(e);if(!p)return;if(!this.move(e,p,dt,.8)){e.keyChannel=0;return}if(this.state.time-(e.lastDamaged||-100)<.5){e.keyChannel=0;return}e.keyChannel=(e.keyChannel||0)+dt;if(e.keyChannel>=2){k.locked=false;k.owner=null;k.placed=false;e.keyChannel=0;e.decision=0;for(const a of this.state.entities.filter(a=>a.faction==='hero')){a.knownKey=null;a.visitedRooms=a.visitedRooms.filter(id=>id!==core.id)}this.rebuild();this.log(`${e.name} mở cổng phòng rương bằng chìa khóa!`,'warning');this.event('boss')}};
+import {
+ SPECIES,
+ center,
+ contains,
+ distance
+}
+from './data.js';
+import {
+ SKILLS
+}
+from './catalog.js';
+const has=(e,
+id)=>e.passiveIds?.includes(id);
+export function installTactics(Game){
+ const P=Game.prototype;
+ P.nearGeometry=function(e,
+ type,
+ radius=1.6){
+  return this.state.props.some(p=>!p.destroyed&&p.floorId===e.floorId&&p.type===type&&distance(e,
+  p)<=radius)
+ }
+ ;
+ P.trapCaution=function(e){
+  return e.charms.includes('CH36')?.4:e.faction==='monster'?.7:1
+ }
+ ;
+ P.updateCommanders=function(force=false){
+  const s=this.state;
+  for(const r of s.rooms){
+   const members=this.roomMonsters(r),
+   previous=this.entity(r.commanderId);
+   for(const e of s.entities.filter(e=>e.faction==='monster'&&e.roomId===r.id))e.isCommander=false;
+   const score=e=>e.maxHp+SPECIES[e.species].attack*4+e.level*20+(e.qualityPower||1)*30;
+   if(force||!previous||previous.status!=='active'){
+    if(!force&&previous&&!r.commanderElectionAt)r.commanderElectionAt=s.time+2;
+    if(!force&&r.commanderElectionAt>s.time)continue;
+    const chosen=[...members].sort((a,
+    b)=>score(b)-score(a)||a.id.localeCompare(b.id))[0];
+    r.commanderId=chosen?.id||null;
+    r.commanderElectionAt=0
+   }
+   const leader=this.entity(r.commanderId);
+   if(!leader||leader.status!=='active')continue;
+   leader.isCommander=true;
+   const enemy=(leader.visibleIds||[]).map(id=>this.entity(id)).find(e=>e?.status==='active');
+   r.commandMode=leader.intelligence<20?'free':enemy?leader.intelligence>=60?'trap-ambush':leader.intelligence>=40?'hold-choke':'focus':'guard';
+   for(const e of members){
+    if(e===leader){
+     e.roomOrder={
+      leaderId:e.id,
+      time:s.time,
+      mode:r.commandMode,
+      focus:enemy?{
+       id:enemy.id,
+       x:enemy.x,
+       y:enemy.y,
+       floorId:enemy.floorId
+      }
+      :null
+     }
+     ;
+     continue
+    }
+    if(distance(e,
+    leader)<10&&this.lineOfSight(e,
+    leader)&&s.time-(e.roomOrder?.time||-1)>.5)e.roomOrder={
+     leaderId:leader.id,
+     time:s.time,
+     mode:r.commandMode,
+     focus:enemy?{
+      id:enemy.id,
+      x:enemy.x,
+      y:enemy.y,
+      floorId:enemy.floorId
+     }
+     :null
+    }
+   }
+  }
+ }
+ ;
+ const controls=P.controlsTick;
+ P.controlsTick=function(dt){
+  controls.call(this,
+  dt);
+  for(const t of this.state.traps)if(!t.disabled&&t.cooldown>0&&this.state.entities.some(e=>e.faction==='monster'&&e.status==='active'&&e.floorId===t.floorId&&has(e,
+  'PS58')&&e.knownTraps.includes(t.id)&&distance(e,
+  t)<3))t.cooldown=Math.max(0,
+  t.cooldown-dt);
+  if(this.state.time-(this.state.lastCommanderTick||-1)>.5){
+   this.state.lastCommanderTick=this.state.time;
+   this.updateCommanders(this.state.phase==='prepare')
+  }
+ }
+ ;
+ const pulse=P.pulseStatuses;
+ P.pulseStatuses=function(e){
+  pulse.call(this,
+  e);
+  if(e.status!=='active')return;
+  if(has(e,
+  'PS51')&&this.nearGeometry(e,
+  'pit'))this.applyStatus(e,
+  'anchored',
+  1.5,
+  .8,
+  e);
+  if(has(e,
+  'PS56')&&this.passiveReady(e,
+  'PS56',
+  3))this.applyStatus(e,
+  'trapSense',
+  1,
+  .25,
+  e)
+ }
+ ;
+ const damage=P.damage;
+ P.damage=function(e,
+ n,
+ source=null,
+ ctx={
+ }
+ ){
+  let value=n;
+  if(ctx.trap){
+   if(has(e,
+   'PS57'))value*=.65;
+   if(source?.charms.includes('CH37'))value*=1.25
+  }
+  if(ctx.explosion){
+   value*=has(e,
+   'PS53')?.65:1;
+   value*=1-this.gearMod(e,
+   'blastResist')
+  }
+  if(source?.charms.includes('CH31')&&!SPECIES[source.species].magic)value*=1.2;
+  if(source&&has(e,
+  'PS52')&&this.range(source)>=4&&!ctx.aoe&&!ctx.secondary&&this.nearGeometry(e,
+  'wall')&&this.random()<.15)return;
+  return damage.call(this,
+  e,
+  value,
+  source,
+  ctx)
+ }
+ ;
+ const propDamage=P.damageProp;
+ P.damageProp=function(prop,
+ n,
+ source=null,
+ ...rest){
+  return propDamage.call(this,
+  prop,
+  n*(source&&has(source,
+  'PS54')?1.5:1),
+  source,
+  ...rest)
+ }
+ ;
+ P.vaultLanding=function(e,
+ target){
+  if(!target||target.floorId!==e.floorId)return null;
+  const room=this.roomAt(e.x,
+  e.y,
+  e.floorId);
+  if(!room)return null;
+  for(const length of[3,
+  4])for(let i=0;
+  i<8;
+  i++){
+   const angle=i*Math.PI/4,
+   p={
+    x:Math.round(e.x+Math.cos(angle)*length),
+    y:Math.round(e.y+Math.sin(angle)*length),
+    floorId:e.floorId
+   }
+   ;
+   if(!contains(room,
+   p,
+   1)||!this.walkable(p.x,
+   p.y,
+   p.floorId,
+   e)||!this.lineOfSight(e,
+   p)||distance(p,
+   target)>=distance(e,
+   target)-1||this.state.entities.some(a=>a.status==='active'&&a.floorId===e.floorId&&distance(a,
+   p)<.9))continue;
+   let crossed=false,
+   valid=true;
+   for(let t=.1;
+   t<1;
+   t+=.1){
+    const x=e.x+(p.x-e.x)*t,
+    y=e.y+(p.y-e.y)*t,
+    prop=this.propsByTile.get(`${
+e.floorId
+}:${
+Math.round(x)
+},${
+Math.round(y)
+}`);
+    if(prop?.type==='pit')crossed=true;
+    else if(!this.walkable(x,
+    y,
+    e.floorId,
+    e))valid=false
+   }
+   if(crossed&&valid)return p
+  }
+  return null
+ }
+ ;
+ P.safeBarrel=function(e,
+ prop,
+ enemies){
+  if(prop.type!=='explosive'||prop.destroyed||prop.floorId!==e.floorId||distance(e,
+  prop)<3.8||!this.lineOfSight(e,
+  prop))return false;
+  const hits=enemies.filter(a=>distance(a,
+  prop)<3.2).length,
+  friends=this.state.entities.filter(a=>a.status==='active'&&a.faction===e.faction&&a.floorId===e.floorId&&distance(a,
+  prop)<(e.charms.includes('CH33')?2.5:3.6)).length;
+  return hits>0&&!friends
+ }
+ ;
+ const skillTarget=P.skillTarget;
+ P.skillTarget=function(e,
+ k,
+ enemies,
+ allies){
+  if(['trapControl',
+  'trapTrigger'].includes(k.kind))return this.state.traps.find(t=>!t.disabled&&t.floorId===e.floorId&&e.knownTraps.includes(t.id)&&distance(e,
+  t)<=k.range&&this.lineOfSight(e,
+  t)&&enemies.some(a=>distance(a,
+  t)<(t.type==='spikes'?1.5:3))&&(k.kind==='trapControl'?e.faction==='hero'&&t.affectsFaction!=='monster':e.faction==='monster'&&t.cooldown<=0));
+  if(k.kind==='vault'){
+   if(e.charms.includes('CH32'))return null;
+   return enemies.find(a=>this.vaultLanding(e,
+   a))
+  }
+  if(k.kind==='smash')return this.state.props.find(p=>!p.destroyed&&['wood',
+  'crate',
+  'explosive',
+  'poison',
+  'water'].includes(p.type)&&p.floorId===e.floorId&&distance(e,
+  p)<=k.range&&this.lineOfSight(e,
+  p)&&(['wood',
+  'crate'].includes(p.type)&&enemies.length||this.safeBarrel(e,
+  p,
+  enemies)));
+  if(k.kind==='detonate')return this.state.props.find(p=>distance(e,
+  p)<=k.range&&this.safeBarrel(e,
+  p,
+  enemies));
+  if(k.kind==='bulwark')return enemies.length&&!this.effect(e,
+  'shield')?e:null;
+  if(k.kind==='hook')return this.rescueTarget(e);
+  return skillTarget.call(this,
+  e,
+  k,
+  enemies,
+  allies)
+ }
+ ;
+ const cast=P.castSkill;
+ P.castSkill=function(e,
+ id,
+ targetId,
+ complete=false){
+  const k=SKILLS[id];
+  if(!['vault',
+  'smash',
+  'bulwark',
+  'hook',
+  'detonate',
+  'trapControl',
+  'trapTrigger'].includes(k?.kind))return cast.call(this,
+  e,
+  id,
+  targetId,
+  complete);
+  if(!this.skillAvailable(e,
+  k))return false;
+  const target=this.entity(targetId)||this.state.props.find(p=>p.id===targetId)||this.state.traps.find(t=>t.id===targetId)||e;
+  if(target.floorId!==e.floorId||distance(e,
+  target)>k.range+.2&&!['bulwark',
+  'vault'].includes(k.kind)||!this.lineOfSight(e,
+  target))return false;
+  let landing;
+  if(k.kind==='vault'){
+   landing=this.vaultLanding(e,
+   target);
+   if(!landing)return false
+  }
+  if(k.kind==='hook'&&target.status!=='downed')return false;
+  if(['smash',
+  'detonate'].includes(k.kind)&&(!target.type||target.destroyed||['wall',
+  'pit',
+  'pillar'].includes(target.type)))return false;
+  if(['trapControl',
+  'trapTrigger'].includes(k.kind)&&(!this.state.traps.includes(target)||!e.knownTraps.includes(target.id)||target.disabled))return false;
+  e.mana-=this.skillCost(e,
+  k);
+  e.skillCooldowns[id]=this.state.time+k.cd;
+  if(k.kind==='trapControl'){
+   target.affectsFaction='monster';
+   target.affectsUntil=this.state.time+10;
+   target.activatedBy=e.id;
+   target.windup=.7;
+   target.cooldown=0
+  }
+  if(k.kind==='trapTrigger'){
+   target.activatedBy=e.id;
+   target.windup=.7
+  }
+  if(k.kind==='vault'){
+   e.x=landing.x;
+   e.y=landing.y;
+   e.path=[]
+  }
+  if(k.kind==='smash'||k.kind==='detonate')this.damageProp(target,
+  k.kind==='detonate'?100:SPECIES[e.species].attack*k.power,
+  e);
+  if(k.kind==='bulwark'){
+   this.applyStatus(e,
+   'shield',
+   5,
+   .4,
+   e);
+   this.applyStatus(e,
+   'block',
+   5,
+   .3,
+   e)
+  }
+  if(k.kind==='hook')this.pullBody(e,
+  target,
+  4);
+  this.effects.push({
+   x:e.x,
+   y:e.y,
+   floorId:e.floorId,
+   text:k.name,
+   color:'#c9d1ad',
+   life:1
+  }
+  );
+  this.event('magic');
+  return true
+ }
+ ;
+ P.freeKeySlot=function(e){
+  if(this.usedSlots(e)<e.capacity)return true;
+  const item=e.inventory.map(id=>this.state.items.find(i=>i.id===id)).filter(Boolean).sort((a,
+  b)=>(a.value||0)-(b.value||0))[0];
+  if(!item)return false;
+  e.inventory=e.inventory.filter(id=>id!==item.id);
+  Object.assign(item,
+  {
+   owner:null,
+   x:Math.round(e.x),
+   y:Math.round(e.y),
+   floorId:e.floorId,
+   location:'ground'
+  }
+  );
+  return this.usedSlots(e)<e.capacity
+ }
+ ;
+ const move=P.move;
+ P.move=function(e,
+ target,
+ dt,
+ stop){
+  const core=this.state.rooms.find(r=>r.type==='treasure');
+  if(e.faction==='hero'&&this.state.keyQuest?.locked&&core&&target&&core.floorId===e.floorId&&contains(core,
+  {
+   ...target,
+   floorId:e.floorId
+  }
+  ,
+  0)){
+   const approach=this.keyApproach(e);
+   if(approach)return move.call(this,
+   e,
+   approach,
+   dt,
+   .8)
+  }
+  return move.call(this,
+  e,
+  target,
+  dt,
+  stop)
+ }
+ ;
+ P.keyApproach=function(e){
+  const core=this.state.rooms.find(r=>r.type==='treasure');
+  if(!core)return null;
+  return(core.doors||[]).map(d=>({
+   x:d.x+(d.axis==='x'?Math.sign(d.x-core.x)*2:0),
+   y:d.y+(d.axis==='y'?Math.sign(d.y-core.y)*2:0),
+   floorId:core.floorId
+  }
+  )).filter(p=>this.walkable(p.x,
+  p.y,
+  p.floorId)).sort((a,
+  b)=>distance(e,
+  a)-distance(e,
+  b))[0]
+ }
+ ;
+ const choices=P.extendChoices;
+ P.extendChoices=function(e,
+ context){
+  choices.call(this,
+  e,
+  context);
+  const{
+   enemies,
+   room,
+   locked,
+   add
+  }
+  =context,
+  s=this.state;
+  for(const body of s.entities.filter(a=>a.status==='downed'&&a.floorId===e.floorId&&distance(e,
+  a)<=this.vision(e)&&this.lineOfSight(e,
+  a))){
+   e.bodyMemories[body.id]={
+    id:body.id,
+    x:body.x,
+    y:body.y,
+    floorId:body.floorId,
+    time:s.time,
+    faction:body.faction
+   }
+  }
+  for(const[id,
+  m]of Object.entries(e.bodyMemories))if(s.time-m.time>7)delete e.bodyMemories[id];
+  if(e.faction==='monster'){
+   const order=e.roomOrder,
+   leader=this.entity(order?.leaderId),
+   brain=leader?.intelligence||e.intelligence;
+   if(order?.focus&&s.time-order.time<3&&brain>=20){
+    const enemy=enemies.find(a=>a.id===order.focus.id);
+    if(enemy)add('attack',
+    .98,
+    enemy.id,
+    'Theo chỉ huy: tập trung mục tiêu cả tổ thực sự nhìn thấy')
+   }
+   const enemy=enemies[0];
+   if(enemy&&brain>=40){
+    const home=s.rooms.find(r=>r.id===e.roomId),
+    trap=s.traps.filter(t=>!t.disabled&&t.floorId===e.floorId&&t.roomId===e.roomId&&e.knownTraps.includes(t.id)&&distance(t,
+    enemy)<8).sort((a,
+    b)=>distance(a,
+    enemy)-distance(b,
+    enemy))[0];
+    if(trap&&brain>=60){
+     const dx=trap.x-enemy.x,
+     dy=trap.y-enemy.y,
+     n=Math.hypot(dx,
+     dy)||1,
+     p=this.findFreeNear({
+      x:trap.x+dx/n*2,
+      y:trap.y+dy/n*2,
+      floorId:e.floorId
+     }
+     ,
+     home);
+     if(p&&this.path(e,
+     p).length&&distance(e,
+     p)>1)add('kite',
+     1.12+(e.charms.includes('CH37')?.2:0),
+     p,
+     'Chỉ huy nhử đối thủ qua bẫy nhà đã biết')
+    }
+    else if(e.role==='tank'){
+     const d=(home.doors||[]).sort((a,
+     b)=>distance(a,
+     enemy)-distance(b,
+     enemy))[0];
+     if(d){
+      const dx=home.x-d.x,
+      dy=home.y-d.y,
+      n=Math.hypot(dx,
+      dy)||1,
+      p=this.findFreeNear({
+       x:d.x+dx/n*2,
+       y:d.y+dy/n*2,
+       floorId:e.floorId
+      }
+      ,
+      home);
+      if(p&&distance(enemy,
+      p)<6&&distance(e,
+      p)>1)add('guard',
+      .93+(e.charms.includes('CH35')?.2:0),
+      p,
+      'Giữ chỗ nghẽn để tuyến sau có đường bắn')
+     }
+    }
+   }
+  }
+  if(e.intelligence>=45||e.charms.includes('CH33'))for(const prop of s.props)if(distance(e,
+  prop)<=this.range(e)&&this.range(e)>=4&&this.safeBarrel(e,
+  prop,
+  enemies))add('barrel',
+  e.charms.includes('CH33')?1.55:1.12,
+  prop.id,
+  'Bắn thùng đã thấy để tận dụng nổ; xét vị trí đồng minh');
+  const k=s.keyQuest;
+  if(e.faction!=='hero'||!k?.locked)return;
+  const core=s.rooms.find(r=>r.type==='treasure');
+  if(!core)return;
+  if(k.placed&&!k.owner&&k.floorId===e.floorId&&distance(e,
+  k)<=this.vision(e)&&this.lineOfSight(e,
+  k))e.knownKey={
+   x:k.x,
+   y:k.y,
+   floorId:k.floorId,
+   time:s.time
+  }
+  ;
+  for(const ally of s.entities.filter(a=>a.faction===e.faction&&a.id!==e.id&&a.status==='active'&&a.floorId===e.floorId&&distance(a,
+  e)<6&&this.lineOfSight(a,
+  e)))if(ally.knownKey&&s.time-ally.knownKey.time>.35&&(!e.knownKey||e.knownKey.time<ally.knownKey.time))e.knownKey={
+   ...ally.knownKey
+  }
+  ;
+  const approach=this.keyApproach(e);
+  if(approach?.floorId===e.floorId&&distance(e,
+  approach)<4&&this.lineOfSight(e,
+  approach)){
+   e.needsKey=true;
+   e.destinationRoom=null;
+   if(!e.visitedRooms.includes(core.id))e.visitedRooms.push(core.id)
+  }
+  if(k.owner===e.id&&!locked){
+   add('unlock-core',
+   2.4,
+   approach,
+   'Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây');
+   return
+  }
+  if(e.knownKey&&(!locked||contains(locked,
+  e.knownKey,
+  1)))add('take-key',
+  1.25,
+  {
+   ...e.knownKey
+  }
+  ,
+  'Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo');
+  if(e.needsKey&&!locked&&!enemies.length&&!e.knownKey&&!this.rooms(e.floorId).some(r=>r!==core&&!e.visitedRooms.includes(r.id)&&(e.knownRooms.includes(r.id)||room&&Math.abs(room.col-r.
+  col)+Math.abs(room.row-r.row)===1))){
+   const rooms=this.rooms(e.floorId).filter(r=>r!==core&&e.knownRooms.includes(r.id));
+   if(rooms.length){
+    e.keySearchIndex??=0;
+    const stair=s.rooms.find(r=>r.type==='boss');
+    if(e.floorId===0&&s.rooms.some(r=>r.floorId===1)&&stair&&e.knownRooms.includes(stair.id)&&!this.roomMonsters(stair).length&&e.keySearchIndex>=rooms.length*5)add('down',
+    .8,
+    null,
+    'Đã kiểm tra tầng trên: xuống tìm chìa ở các phòng còn lại');
+    const r=rooms[Math.floor(e.keySearchIndex/5)%rooms.length],
+    points=[center(r),
+    {
+     x:r.x-5,
+     y:r.y-4
+    }
+    ,
+    {
+     x:r.x+5,
+     y:r.y-4
+    }
+    ,
+    {
+     x:r.x+5,
+     y:r.y+4
+    }
+    ,
+    {
+     x:r.x-5,
+     y:r.y+4
+    }
+    ],
+    p={
+     ...points[e.keySearchIndex%5],
+     floorId:e.floorId
+    }
+    ;
+    if(distance(e,
+    p)<1)e.keySearchIndex++;
+    const reachable=this.findFreeNear(p);
+    if(reachable)add('explore',
+    .74,
+    reachable,
+    'Đã thấy cổng khóa: tìm chìa bằng cách kiểm tra những phòng đã biết')
+   }
+  }
+ }
+ ;
+ const act=P.act;
+ P.act=function(e,
+ dt){
+  if(!['take-key',
+  'unlock-core'].includes(e.action))return act.call(this,
+  e,
+  dt);
+  e.decision-=dt;
+  if(e.decision<=0){
+   this.decide(e);
+   if(!['take-key',
+   'unlock-core'].includes(e.action))return act.call(this,
+   e,
+   dt)
+  }
+  if(this.effect(e,
+  'stun'))return;
+  const k=this.state.keyQuest;
+  if(!k?.locked){
+   e.decision=0;
+   return
+  }
+  if(e.action==='take-key'){
+   const p=e.target;
+   if(!p){
+    e.decision=0;
+    return
+   }
+   if(p.floorId!==e.floorId){
+    this.stairs(e,
+    dt,
+    p.floorId>e.floorId?'down':'up');
+    return
+   }
+   if(this.move(e,
+   p,
+   dt,
+   .8)){
+    if(k.placed&&!k.owner&&k.floorId===e.floorId&&distance(e,
+    k)<1.4&&this.freeKeySlot(e)){
+     Object.assign(k,
+     {
+      owner:e.id,
+      x:null,
+      y:null
+     }
+     );
+     e.knownKey=null;
+     this.log(`${
+e.name
+} nhặt chìa khóa phòng rương.`,
+     'warning')
+    }
+    else e.knownKey=null;
+    e.decision=0
+   }
+   return
+  }
+  const core=this.state.rooms.find(r=>r.type==='treasure');
+  if(k.owner!==e.id||!core){
+   e.decision=0;
+   return
+  }
+  if(e.floorId!==core.floorId){
+   this.stairs(e,
+   dt,
+   core.floorId>e.floorId?'down':'up');
+   return
+  }
+  const p=this.keyApproach(e);
+  if(!p)return;
+  if(!this.move(e,
+  p,
+  dt,
+  .8)){
+   e.keyChannel=0;
+   return
+  }
+  if(this.state.time-(e.lastDamaged||-100)<.5){
+   e.keyChannel=0;
+   return
+  }
+  e.keyChannel=(e.keyChannel||0)+dt;
+  if(e.keyChannel>=2){
+   k.locked=false;
+   k.owner=null;
+   k.placed=false;
+   e.keyChannel=0;
+   e.decision=0;
+   for(const a of this.state.entities.filter(a=>a.faction==='hero')){
+    a.knownKey=null;
+    a.visitedRooms=a.visitedRooms.filter(id=>id!==core.id)
+   }
+   this.rebuild();
+   this.log(`${
+e.name
+} mở cổng phòng rương bằng chìa khóa!`,
+   'warning');
+   this.event('boss')
+  }
+ }
+ ;
 }
