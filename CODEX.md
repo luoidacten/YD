@@ -1,10 +1,10 @@
-# CODEX — YOUR DUNGEON? v0.3
+# CODEX — YOUR DUNGEON? v0.4
 
 Đọc trước khi sửa code. Đây là prototype chạy hoàn toàn trong trình duyệt. `GDD.md` là thiết kế gốc; các bản thiết kế từ ChatGPT không phải bằng chứng mọi tương tác đã hoàn thiện.
 
 ## Chạy
 
-Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0.1:4173. Kiểm tra bằng `node scripts/build.mjs` và `node --test tests/v2.test.mjs tests/lair.test.mjs tests/room-life.test.mjs`. Hosting phục vụ nguyên `dist`. Giữ project ID trong `.openai/hosting.json`, không tạo Site khác khi nâng cấp; credential không được vào repo.
+Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0.1:4173. Kiểm tra bằng `node scripts/build.mjs` và `node --run test`. Hosting phục vụ nguyên `dist`. Giữ project ID trong `.openai/hosting.json`, không tạo Site khác khi nâng cấp; credential không được vào repo.
 
 ## Kiến trúc đã có
 
@@ -17,17 +17,20 @@ Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0
 | `dist/systems.js` | Skill/passive/status, Leader/scout/intel, công trình, thế giới, tiến hóa |
 | `dist/content-systems.js` | Packs/Fates, gear/items, phẩm chất/biến thể, Charms, Mimic/spy/Oracle |
 | `dist/catalog.js`, `catalog-data.js` | 50 định nghĩa nền + 8 địa hình = 58 kỹ năng, 58 nội tại khi nạp Game; kit/status nền |
-| `dist/expansion.js`, `expansion-data.js` | Nền mở rộng; tổng hiện tại 22 phòng, 47 Charm, 40 effects, 35 items, 6 phẩm chất, 7 biến thể |
+| `dist/expansion.js`, `expansion-data.js` | Nền mở rộng; tổng hiện tại 22 phòng, 47 Charm, 40 effects, 45 items, 6 phẩm chất, 7 biến thể |
 | `dist/lair.js`, `lair-data.js` | Run trống, xây nền móng, quota cư dân, khóa/chìa, kit địa hình |
 | `dist/rescue.js` | Gục/chết, cứu hộ có tiến độ, thuốc hồi sinh, kéo, ký ức thi thể |
 | `dist/terrain-tactics.js` | Chỉ huy/trí khôn, kỹ năng địa hình/bẫy, AI tìm chìa/mở cổng |
 | `dist/room-life.js` | Rương dọn phòng, tuần tra/tản quân, trở về phòng, nhường hành lang |
 | `dist/arsenal.js`, `arsenal-data.js` | 10 loài quái + cung thủ, 12 vũ khí, reach/projectile, gói vũ khí |
+| `dist/v04.js`, `v04-data.js` | 10 weapon W13–W22, 4 hero có trọng số, 4 quái, sửa đồ/hiếm/sự kiện; cài cuối cùng |
+| `dist/icons.js` | Manifest UI cùng origin, glyph/sprite fallback, khung bài 9-slice |
+| `scripts/icon-assets.mjs`, `sprite-audit.mjs` | Kiểm PNG alpha/kích thước và kiểm kê 370 frame CC0 |
 | `dist/painter.js` | Canvas/camera/LOD/fog/minimap/sprites/telegraph |
 | `dist/audio.js` | 10 SFX CC0, rate limit và giới hạn số giọng |
 | `dist/app.css`, `fantasy.css` | Bố cục và khung đá/đồng pixel fantasy |
 
-`simulation.js` gọi `installSystems(Game)` trước `installContent(Game)`, cuối cùng `installLair(Game)` (cài rescue, tactics, room-life rồi arsenal). Các lớp mở rộng bọc phương thức gốc có chủ ý: phải đọc toàn chuỗi wrapper trước khi sửa `act`, `tick`, `damage`, `move`, `spawn`. `expansion.js` bổ sung vào dữ liệu dùng chung; kit Mimic đăng ký trước lúc tạo Game. AI là Utility AI JavaScript, không dùng Unity AI hoặc LLM trong runtime.
+`simulation.js` gọi `installSystems(Game)` trước `installContent(Game)`, cuối cùng `installLair(Game)` (cài rescue, tactics, room-life rồi arsenal, v04). Các lớp mở rộng bọc phương thức gốc có chủ ý: phải đọc toàn chuỗi wrapper trước khi sửa `act`, `tick`, `damage`, `move`, `spawn`. `expansion.js` bổ sung vào dữ liệu dùng chung; kit Mimic đăng ký trước lúc tạo Game. AI là Utility AI JavaScript, không dùng Unity AI hoặc LLM trong runtime.
 
 ## Bất biến gameplay
 
@@ -60,7 +63,7 @@ LocalStorage `your-dungeon-v2` theo origin. Khi chưa có v2 có thể đọc v1
 - 58 skills/58 passives dùng các handler chung, chưa có bộ animation riêng cho từng kỹ năng. Nhánh/biến thể dùng lại sprite với tint/vũ khí. Số lượng catalog không đồng nghĩa đã cân bằng thương mại.
 - Văn bản ChatGPT là thiết kế mở rộng. Một số tương tác phụ trong mô tả (như thu hoạch thuốc của vườn đã chiếm, riêng từng animation Mimic) chưa có mô phỏng chuyên biệt. Khi bổ sung phải sửa cả code, mô tả và kiểm tra liên quan.
 - AI có LOS/ký ức/tổ đội/cá tính nhưng chưa mô phỏng đầy đủ con người; cần cân bằng nhiều seed/trận dài.
-- Âm thanh là SFX, chưa có nhạc/ambient dài. Không có ảnh Gemini mới; dùng 0x72 CC0 đồng nhất.
+- Âm thanh là SFX, chưa có nhạc/ambient dài. Nhân vật/vũ khí gameplay dùng 0x72 CC0. HUD nạp icon Gemini đã được director duyệt; không gọi AI trong runtime.
 
 ## Sửa tiếp
 
@@ -87,7 +90,7 @@ Thiết kế bổ sung tham khảo ChatGPT web tại https://chatgpt.com/c/6af8a
 - Mở rương cần LOS, cùng tầng, túi trống, phòng không seal/không còn quái, channel 1,2s; sát thương ngắt. Hai hero không được mở trùng. Gold dùng `transfer`, tuân thủ Fate/túi/ownership. Rương lưu qua load và reset khi trận mới bắt đầu.
 - Quái đi tuần chậm trong chuẩn bị; điểm tuần tránh vật cản/bẫy và ưu tiên xa đồng đội. Pause/menu dừng. Trong trận, quái không thấy địch trở về home rồi đi tuần; phục kích/Mimic vẫn giữ vị trí. `finish` giữ vị trí quái sống, đợt chuẩn bị tiếp mới đi bộ về home. Confinement không đổi.
 - Nhường đường trong `room-life`: hero ưu tiên người mang kho báu/người rút lui; đồng đội không thấy địch bước sang ô bên cạnh trong tối đa 2,5s rồi tiếp tục. Không xuyên tường/cổng/pit hoặc teleport qua đoàn.
-- 10 quái mới dùng 10 bộ idle/run 0x72 đã có nhưng trước đây chưa đưa vào gameplay; đều có KITS, FAVORITES, trí khôn, contract card, thuê thường/ngẫu nhiên. Thi Khổng Lồ chiếm 2 ô quân. Hero Cung Thủ tham gia đoàn chính. Tổng 22 species (cả hai phe và boss).
+- 10 quái mới dùng 10 bộ idle/run 0x72 đã có nhưng trước đây chưa đưa vào gameplay; đều có KITS, FAVORITES, trí khôn, contract card, thuê thường/ngẫu nhiên. Thi Khổng Lồ chiếm 2 ô quân. Hero Cung Thủ tham gia đoàn chính. Trước CODEX_02 có 22 species (cả hai phe và boss); v0.4 có 30.
 - W01–W12 thêm 12 vũ khí, trong đó 6 tầm xa (hai cung, rìu/dao ném, hai trượng). `reach` là tầm tuyệt đối, khác `range` cộng thêm của item cũ. Toàn bộ attack/meleeSlot/kite/barrel/đội hình phải dùng `Game.range(e)`, không dùng thẳng SPECIES.range để quyết định tiếp cận. Vũ khí vật lý không cần mana để bắn/giữ tầm.
 - Đạn là hoạt ảnh thị giác dựa trên đòn thường hiện có; sát thương vẫn giải quyết khi đòn được phát, có kiểm tra LOS. Chưa có hệ va chạm đạn bay độc lập. Không trình bày chúng như đạn có thể chặn sau lúc đã bắn.
 - `Gói Vũ Khí` 90 vàng: ba lá weapon, giữ một; đi qua cùng API pack/seed/save. Run mới có thêm hợp đồng xạ thủ và ba vũ khí mẫu. Renderer vẽ đúng vũ khí trang bị, đạn và dấu cấp rương, giữ nearest-neighbor.
@@ -105,3 +108,45 @@ Các nguyên nhân đã có regression riêng trong `tests/soak.test.mjs`: tin c
 Chạy `node --run test` (cùng script mà `npm test` gọi), `node scripts/build.mjs`, `node scripts/format-check.mjs`. Máy tác vụ có Node 24 nhưng không có npm trong PATH; không giả lập npm và không cài dependency. Test save/migration và `?sandbox=1` vẫn tách save thật.
 
 Đếm catalog từ runtime: `node scripts/catalog-counts.mjs`. Trước CODEX_02: 58 skill, 58 passive, 40 status, 47 Charm, 22 phòng, 35 item (18 weapon), 22 species, 6 quality, 7 variant, 4 pack.
+
+
+## Nội dung v0.4 — CODEX_02
+
+Catalog thực khi nạp Game: **58 skills, 58 passives, 40 status, 47 Charm, 22 phòng, 45 item (28 weapon), 30 species, 6 quality, 7 variant, 4 pack**. `v04-data.js` đăng ký vào cùng ITEMS/CARDS/SPECIES/KITS/FAVORITES, không tạo kho dữ liệu thứ hai.
+
+W13 Kiếm Gỉ dùng `brittle` 2s (+15% sát thương nhận) vì không có status weaken. W14 chuẩn; W15 nhanh nhẹ; W16 xuyên giáp; W17 phá khiên; W18 seeded 15% choáng 0,4s; W19 chảy máu ngắn; W20 thưởng khi slow/rooted; W21 thưởng vàng qua transfer (mỗi item vàng một lần); W22 mỗi ba đòn thường nhận haste 1,5s. W21/W22 không trong bộ khởi đầu/mystery: trọng số 0,15 trong armory, hoặc roll 12% một lần khi mở rương IV/V. Không tăng catalog status.
+
+Nữ kỵ sĩ, thợ mỏ và thợ rèn có trọng số từ wave 2; thiên sứ từ wave 3, tối đa **một trong toàn cuộc thám hiểm** (đoàn chính + viện binh), kể cả đơn vị đang chờ spawn. Thợ mỏ dùng phát hiện/gỡ bẫy, tool và trinket có sẵn; chưa có API đào nên không đào tường. Thợ rèn sửa +20 durability mỗi 5s khi nghỉ, gần đồng đội cùng tổ và có LOS; ở forge đã chiếm nâng power +0,05 một lần/weapon/wave, tối đa +0,15. Thiên sứ dùng kit cứu nhanh PS55 và không hồi/cứu Forsaken.
+
+iceZombie làm chậm, muddy tank 1 slot, swampy gây độc, pumpkin nổ qua API thùng nổ đúng một lần khi active → downed, có friendly fire/chain. Pumpkin chỉ bán/roll hợp đồng ở sự kiện Chợ phiên; hợp đồng đã sở hữu dùng được sau sự kiện. Ba quái single-animation không dùng tên idle/run. Frame trúng đòn chỉ áp dụng những thân người có frame gốc tương ứng. Goo/hole lưu theo layoutSeed; cần gạt/nút không thay hình học khóa. Tim inspector: 5 tim, mỗi tim 20% HP.
+
+`showcase.html` là fixture QA sử dụng Game/Painter thật, không ghi LocalStorage. Ảnh `screenshots/v04-sprites.jpg` cho thấy bốn hero, bốn quái và W13/W18/W22 đang trang bị. Các file director cung cấp trong `assets/frames/yd/` chưa đăng ký vào gameplay của CODEX_02, không được gộp thành thành quả CC0.
+
+### Kiểm kê sprite còn chưa dùng
+
+Chạy `node scripts/sprite-audit.mjs`: **370 stock frame, 321 tham chiếu, 49 ngoại lệ có lý do, 0 không giải thích**. Script mở rộng bằng `Painter.bodySprite()` thật cho idle/run/hit/single/mimic, cộng các selector động môi trường. Chỉ tính các PNG gốc ở thư mục frames, không tính thư mục project art `yd/`. Report đầy đủ: `tests/fixtures/sprite-audit.json`; lý do máy đọc: `scripts/sprite-exemptions.json`. Không tự vẽ loài trùng chỉ để tăng tỉ lệ sử dụng.
+
+| Frame chưa dùng | Lý do |
+| --- | --- |
+| `bomb_f1`, `bomb_f2` | Bomb prop currently uses static f0; countdown is drawn by the existing effect renderer. |
+| `chest_empty_open_anim_f0`, `chest_empty_open_anim_f1`, `chest_full_open_anim_f1` | Chest UI commits closed/open states; intermediate opening frames are not animated yet. |
+| `column_wall` | Wall-attached column requires a matching masonry topology; current free-standing props use column. |
+| `doc_run_anim_f0`, `doc_run_anim_f1`, `doc_run_anim_f2`, `doc_run_anim_f3` | Shopkeeper is stationary; idle frames are used. |
+| `doors_frame_left`, `doors_frame_right`, `doors_frame_top`, `doors_leaf_closed`, `doors_leaf_open` | Stock one-tile doorway does not fit the three-tile corridors; existing seal and gate renderer retained. |
+| `edge_down`, `floor_ladder`, `hole` | Alternative vertical passage/pit edge tiles; current two-floor stairs and connected pits use existing geometry. |
+| `flask_red` | Small red flask is not assigned a separate item; healing potions use flask_big_red. |
+| `slug_anim_f0`, `slug_anim_f1`, `slug_anim_f2`, `slug_anim_f3` | Alternative slug body; current slime uses tiny_slug, so no duplicate species was invented. |
+| `wall_edge_bottom_left`, `wall_edge_bottom_right`, `wall_edge_left`, `wall_edge_mid_left`, `wall_edge_mid_right`, `wall_edge_right`, `wall_edge_top_left`, `wall_edge_top_right`, `wall_edge_tshape_bottom_left`, `wall_edge_tshape_bottom_right`, `wall_edge_tshape_left`, `wall_edge_tshape_right`, `wall_outer_front_left`, `wall_outer_front_right`, `wall_outer_mid_left`, `wall_outer_mid_right`, `wall_outer_top_left`, `wall_outer_top_right`, `wall_top_left`, `wall_top_right` | Unused autotile junction/corner variants: current wall renderer uses straight north/perimeter faces; complete topology autotiling is not implemented. |
+| `wall_fountain_top_2`, `wall_fountain_top_3` | Alternate fountain caps; current blue/red fountain layout uses top_1. |
+| `zombie_anim_f1`, `zombie_anim_f10`, `zombie_anim_f2`, `zombie_anim_f3` | Legacy alternate zombie animation including source f10 naming; current species uses big_zombie/tiny_zombie/ice_zombie. |
+
+
+## UI pixel — CODEX_03
+
+`art/ICON-MANIFEST.json` do director sở hữu, code chỉ đọc `status:done`. Build tạo `assets/ui/manifest.json` chỉ các asset đã duyệt và tồn tại; lỗi file thiếu, PNG sai kích thước hoặc alpha khác 0/255 sẽ fail. HUD/room 16×16, status 8×8 hoặc 16×16, card 48×64. Hiện director đã giao **14 HUD icon** (tăng từ 6 lúc giao đề); status/room/card chưa có bản done nên giữ fallback. Build báo toàn bộ 22 room id còn thiếu để director bổ sung, không tự sửa hợp đồng.
+
+App nạp manifest cùng origin; không request dịch vụ/font ngoài. `icon()` giữ glyph khi thiếu, `roomIcon()` giữ sprite phòng cũ. Camera/tốc độ có lookup nhưng chưa có ảnh approved nên giữ ký tự. Pause/audio chọn id theo trạng thái. Canvas vẽ status vào ô 8px nearest-neighbor, tọa độ nguyên; room overview dùng manifest khi có. `border-image` khung bài 9-slice 6px chỉ bật khi có frame_<tone>.png. Không đổi bố cục HUD; giữ title/aria-label, bổ sung tên truy cập cho nút chỉ có hình.
+
+`?icons=off` mô phỏng registry rỗng để QA. Ảnh `v04-hud-before.jpg` và `v04-hud-fallback.jpg`: so RGB 1280×720, **0 pixel đổi**, ghi ở `tests/fixtures/hud-fallback-proof.json`. `v04-hud-icons.jpg` là bản bật manifest. PNG 17×16/alpha128 bị từ chối trong test fixture tạm, không thay artwork của director. Kiểm chứng canvas cũng khóa kích thước 8px và vị trí nguyên.
+
+CODEX_02 phát hiện thêm lỗi slot cận chiến lệch tâm ô: A* kết thúc ở tâm ô nhưng đích bao vây là tọa độ thực. `move` nay hoàn tất đoạn trong cùng ô, melee slot chừa biên trong tầm đánh. Regression và report trước sửa giữ nguyên để kiểm toán. Không nới ngưỡng soak.

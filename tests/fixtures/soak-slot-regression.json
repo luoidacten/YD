@@ -1,0 +1,54 @@
+{
+ "schema": 1,
+ "fixture": "seeded-independent-waves-v1",
+ "step": 0.03333333333333333,
+ "generatedAt": "2026-11-15T15:41:55.771Z",
+ "summary": {
+  "battles": 3,
+  "defenderWins": 1,
+  "medianSeconds": 166.233,
+  "limitHits": 0,
+  "stuckEpisodes": 0
+ },
+ "battles": [
+  {
+   "seed": 24,
+   "wave": 1,
+   "hash": "db4c76618595552ea69230441f05c392321340cb7cac6d97e528ce41f850cf2d",
+   "result": "gameover",
+   "time": 166.233,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 24,
+   "wave": 2,
+   "hash": "5ce756b958b9b94b8e311f88dd8c65ed5de8f6f36fb3c03309fa5d64e226a763",
+   "result": "result",
+   "time": 356.533,
+   "escaped": 16,
+   "downed": 0,
+   "dead": 5,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 24,
+   "wave": 3,
+   "hash": "8c2e98e95e0f500f3078f4d18dc1f126b15d6340079854cb3961e9318b2483c3",
+   "result": "gameover",
+   "time": 141.633,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  }
+ ]
+}
