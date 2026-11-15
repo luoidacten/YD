@@ -1,0 +1,8280 @@
+{
+ "schema": 1,
+ "fixture": "seeded-independent-waves-v1",
+ "step": 0.03333333333333333,
+ "generatedAt": "2026-11-15T14:49:06.324Z",
+ "summary": {
+  "battles": 20,
+  "defenderWins": 10,
+  "medianSeconds": 184.0165,
+  "limitHits": 0,
+  "stuckEpisodes": 209
+ },
+ "battles": [
+  {
+   "seed": 1,
+   "wave": 1,
+   "hash": "de5b5b2fe961814ffe36ccc71ff8d54602dddfb313638ce11d2c8a3c3105835d",
+   "result": "result",
+   "time": 330.433,
+   "escaped": 14,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 37.667,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.6,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 38.333,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity202",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 38.4,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.6,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 41.933,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity177",
+     "name": "Skeleton 176",
+     "faction": "monster",
+     "tile": "0:45,47",
+     "action": "attack",
+     "time": 60.767,
+     "target": "entity193",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.98,
+       "reason": "Theo chỉ huy: tập trung mục tiêu cả tổ thực sự nhìn thấy"
+      },
+      {
+       "action": "attack",
+       "score": 0.64,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity236",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 75.233,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity179",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:45,46",
+     "action": "guard-body",
+     "time": 75.9,
+     "target": {
+      "id": "entity193",
+      "x": 45.373465,
+      "y": 48,
+      "floorId": 0,
+      "time": 75.53333333333161,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity198",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 76.3,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity240",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 76.867,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity215",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 77.033,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity211",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 77.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity178",
+     "name": "Goblin Shaman 177",
+     "faction": "monster",
+     "tile": "0:46,46",
+     "action": "guard-body",
+     "time": 79.467,
+     "target": {
+      "id": "entity193",
+      "x": 45.373465,
+      "y": 48,
+      "floorId": 0,
+      "time": 78.86666666666476,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 82.6,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity250",
+     "name": "Hậu quân 1-5",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 83.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 83.933,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity232",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 85,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 1,
+     "wave": 1,
+     "id": "entity246",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 111.6,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.433333333333458
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 2,
+   "wave": 1,
+   "hash": "f6886dea16899cdf415809557a73ba4a81b7b1a179a46f38da76dcad17628916",
+   "result": "result",
+   "time": 164.333,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 14,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 2,
+     "wave": 1,
+     "id": "entity174",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:46,48",
+     "action": "guard-body",
+     "time": 28.7,
+     "target": {
+      "id": "entity178",
+      "x": 45.21323412891785,
+      "y": 45.99999999999999,
+      "floorId": 0,
+      "time": 27.966666666667216,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 2,
+     "wave": 1,
+     "id": "entity173",
+     "name": "Goblin Shaman 172",
+     "faction": "monster",
+     "tile": "0:47,47",
+     "action": "attack",
+     "time": 31.3,
+     "target": "entity196",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.62,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 2,
+     "wave": 1,
+     "id": "entity174",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:46,46",
+     "action": "guard-body",
+     "time": 163.567,
+     "target": {
+      "id": "entity260",
+      "x": 46.18761467114731,
+      "y": 46.058950245482855,
+      "floorId": 0,
+      "time": 158.66666666666023,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 3,
+   "wave": 1,
+   "hash": "07006865e5bc098356db9718998e6e6e222a8a247f5c71d0a820456fb7a29bad",
+   "result": "gameover",
+   "time": 196.2,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 5,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 3,
+     "wave": 1,
+     "id": "entity197",
+     "name": "Goblin 196",
+     "faction": "monster",
+     "tile": "0:54,45",
+     "action": "attack",
+     "time": 22.633,
+     "target": "entity203",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.71,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 3,
+     "wave": 1,
+     "id": "entity251",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:21,45",
+     "action": "explore",
+     "time": 77.267,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 3,
+     "wave": 1,
+     "id": "entity222",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:36,45",
+     "action": "take-key",
+     "time": 77.333,
+     "target": {
+      "x": 48,
+      "y": 45,
+      "floorId": 0,
+      "time": 62.59999999999901
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 3,
+     "wave": 1,
+     "id": "entity227",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:35,45",
+     "action": "take-key",
+     "time": 77.833,
+     "target": {
+      "x": 48,
+      "y": 45,
+      "floorId": 0,
+      "time": 62.59999999999901
+     },
+     "path": [
+      {
+       "x": 36,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 37,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 38,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 39,
+       "y": 45,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "attack",
+       "score": 0.77,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      }
+     ]
+    },
+    {
+     "seed": 3,
+     "wave": 1,
+     "id": "entity240",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:30,46",
+     "action": "take-key",
+     "time": 77.833,
+     "target": {
+      "x": 48,
+      "y": 45,
+      "floorId": 0,
+      "time": 62.59999999999901
+     },
+     "path": [
+      {
+       "x": 31,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 32,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 32,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 33,
+       "y": 45,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.72,
+       "reason": "Theo lệnh Leader; giữ đội hình khi khám phá"
+      },
+      {
+       "action": "regroup",
+       "score": 0.6,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      }
+     ]
+    },
+    {
+     "seed": 3,
+     "wave": 1,
+     "id": "entity260",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:36,46",
+     "action": "take-key",
+     "time": 124,
+     "target": {
+      "x": 49,
+      "y": 46,
+      "floorId": 0,
+      "time": 82.2999999999979
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 3,
+     "wave": 1,
+     "id": "entity256",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:42,45",
+     "action": "take-key",
+     "time": 124.333,
+     "target": {
+      "x": 49,
+      "y": 46,
+      "floorId": 0,
+      "time": 82.2999999999979
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 4,
+   "wave": 1,
+   "hash": "5cdfc01c1ce8605f2dcf8d123a9dc028234d9b68b445294c408d8f252b316e5a",
+   "result": "gameover",
+   "time": 181.633,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 4,
+     "wave": 1,
+     "id": "entity181",
+     "name": "Goblin 180",
+     "faction": "monster",
+     "tile": "0:53,45",
+     "action": "attack",
+     "time": 27.867,
+     "target": "entity188",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.68,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 4,
+     "wave": 1,
+     "id": "entity207",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:36,46",
+     "action": "take-key",
+     "time": 64.967,
+     "target": {
+      "x": 49,
+      "y": 46,
+      "floorId": 0,
+      "time": 50.46666666666636
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 4,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:34,46",
+     "action": "take-key",
+     "time": 65,
+     "target": {
+      "x": 49,
+      "y": 46,
+      "floorId": 0,
+      "time": 50.46666666666636
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 4,
+     "wave": 1,
+     "id": "entity203",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:42,46",
+     "action": "take-key",
+     "time": 65.5,
+     "target": {
+      "x": 49,
+      "y": 46,
+      "floorId": 0,
+      "time": 50.46666666666636
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.72,
+       "reason": "Theo lệnh Leader; giữ đội hình khi khám phá"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 4,
+     "wave": 1,
+     "id": "entity182",
+     "name": "Skeleton 181",
+     "faction": "monster",
+     "tile": "0:48,46",
+     "action": "attack",
+     "time": 77.3,
+     "target": "entity199",
+     "path": [
+      {
+       "x": 49,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "skill",
+       "score": 1,
+       "reason": "Phá Khiên: 90% ATK; sát thương lên shield ×2; CD 6s"
+      },
+      {
+       "action": "attack",
+       "score": 0.98,
+       "reason": "Theo chỉ huy: tập trung mục tiêu cả tổ thực sự nhìn thấy"
+      },
+      {
+       "action": "attack",
+       "score": 0.68,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 5,
+   "wave": 1,
+   "hash": "18fd7c1387730019570417d9e27993cebe5defdf61b4244746d3707ab0aed28b",
+   "result": "gameover",
+   "time": 192.6,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity310",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 38,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity271",
+     "name": "Quill · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 38.167,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "regroup",
+       "score": 1.275,
+       "reason": "Kỷ luật: bám sát đội hình Leader"
+      },
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity296",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 38.733,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity282",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 38.8,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity300",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 41.133,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity277",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 41.233,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity305",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 42.2,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity290",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 42.333,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity320",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 75.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity331",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 76.767,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity305",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 76.867,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity325",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 77.2,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity316",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:18,48",
+     "action": "take-key",
+     "time": 78.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity277",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 78.8,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity335",
+     "name": "Hậu quân 1-5",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 79.867,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.300000000000118
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.72,
+       "reason": "Theo lệnh Leader; giữ đội hình khi khám phá"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 6,
+   "wave": 1,
+   "hash": "a6f70c002c3956810727129d1e4bf3ad4e00074b99f99164ac365a90f7634da1",
+   "result": "gameover",
+   "time": 158.7,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 6,
+     "wave": 1,
+     "id": "entity240",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:29,46",
+     "action": "explore",
+     "time": 67.433,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 6,
+     "wave": 1,
+     "id": "entity209",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:34,46",
+     "action": "explore",
+     "time": 67.767,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 6,
+     "wave": 1,
+     "id": "entity236",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:42,45",
+     "action": "take-key",
+     "time": 67.833,
+     "target": {
+      "x": 47,
+      "y": 48,
+      "floorId": 0,
+      "time": 52.566666666666244
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 6,
+     "wave": 1,
+     "id": "entity218",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:31,46",
+     "action": "explore",
+     "time": 67.967,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 6,
+     "wave": 1,
+     "id": "entity222",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:46,44",
+     "action": "cover",
+     "time": 70.033,
+     "target": {
+      "x": 46,
+      "y": 41,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "cover",
+       "score": 1.25,
+       "reason": "Giữ chỗ nấp tối thiểu 1,3 giây, không đổi ý liên tục"
+      },
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "attack",
+       "score": 0.71,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 7,
+   "wave": 1,
+   "hash": "99225cba00c61cda380ce478ee8f6dced783015fcf818d017fecd6ab22037ee0",
+   "result": "result",
+   "time": 330.933,
+   "escaped": 19,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 36.433,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity215",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 36.8,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "regroup",
+       "score": 0.6,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 39.1,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 40.2,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity192",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 43.4,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 64.867,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 64.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity202",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 65.3,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity177",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:54,47",
+     "action": "guard-body",
+     "time": 65.867,
+     "target": {
+      "id": "entity211",
+      "x": 52.690781212382866,
+      "y": 45.11102371385046,
+      "floorId": 0,
+      "time": 65.16666666666553,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity197",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 65.933,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity232",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 97,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity202",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 97.633,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity197",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 97.733,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity236",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 98.467,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 19,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 98.933,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity250",
+     "name": "Hậu quân 1-5",
+     "faction": "hero",
+     "tile": "0:18,44",
+     "action": "take-key",
+     "time": 100.6,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 101.067,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity245",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 101.133,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity240",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 102.467,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 103.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity240",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 131.133,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity271",
+     "name": "Hậu quân 1-9",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 131.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity232",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 132.133,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity215",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 132.5,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 132.833,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity250",
+     "name": "Hậu quân 1-5",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 132.933,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity245",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "0:18,44",
+     "action": "take-key",
+     "time": 134.367,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity260",
+     "name": "Hậu quân 1-7",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 134.8,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity255",
+     "name": "Hậu quân 1-6",
+     "faction": "hero",
+     "tile": "0:16,45",
+     "action": "take-key",
+     "time": 134.867,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity236",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:20,46",
+     "action": "take-key",
+     "time": 137.033,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 19,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity275",
+     "name": "Hậu quân 1-10",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 137.2,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity255",
+     "name": "Hậu quân 1-6",
+     "faction": "hero",
+     "tile": "0:16,45",
+     "action": "take-key",
+     "time": 153.267,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity255",
+     "name": "Hậu quân 1-6",
+     "faction": "hero",
+     "tile": "0:16,45",
+     "action": "take-key",
+     "time": 283.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 7,
+     "wave": 1,
+     "id": "entity255",
+     "name": "Hậu quân 1-6",
+     "faction": "hero",
+     "tile": "0:16,45",
+     "action": "take-key",
+     "time": 317.233,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.433333333333508
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 8,
+   "wave": 1,
+   "hash": "beadfa33dce123657dff29fe0bacdcb7cbffd7baf89b3c316228f6aae275f3c6",
+   "result": "result",
+   "time": 330.333,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity230",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 37.5,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity185",
+     "name": "Goblin 184",
+     "faction": "monster",
+     "tile": "0:54,45",
+     "action": "attack",
+     "time": 38.067,
+     "target": "entity197",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.98,
+       "reason": "Theo chỉ huy: tập trung mục tiêu cả tổ thực sự nhìn thấy"
+      },
+      {
+       "action": "attack",
+       "score": 0.73,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity216",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 38.4,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity202",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 38.467,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity210",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 39.867,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.6,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 40.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 41,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity230",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 63.667,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 63.7,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 64,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 64.167,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity181",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:51,47",
+     "action": "guard-body",
+     "time": 64.433,
+     "target": {
+      "id": "entity197",
+      "x": 48.790971544413445,
+      "y": 46.00058175240485,
+      "floorId": 0,
+      "time": 63.699999999998944,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 101.067,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity216",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 101.267,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity238",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 101.367,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity210",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 102.967,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity242",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 103.467,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 105.333,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 105.333,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 8,
+     "wave": 1,
+     "id": "entity230",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 108.067,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 21.433333333333557
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 9,
+   "wave": 1,
+   "hash": "3785edf733eee48cd3e50d5005651a636c545c1b796cf7657e45488ff4cd67a4",
+   "result": "gameover",
+   "time": 169.267,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 9,
+     "wave": 1,
+     "id": "entity188",
+     "name": "Goblin 187",
+     "faction": "monster",
+     "tile": "0:53,45",
+     "action": "attack",
+     "time": 42.167,
+     "target": "entity221",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.76,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 9,
+     "wave": 1,
+     "id": "entity211",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:31,46",
+     "action": "explore",
+     "time": 60.1,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 9,
+     "wave": 1,
+     "id": "entity236",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:26,47",
+     "action": "explore",
+     "time": 60.133,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 9,
+     "wave": 1,
+     "id": "entity232",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:30,46",
+     "action": "explore",
+     "time": 60.3,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 9,
+     "wave": 1,
+     "id": "entity236",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:41,45",
+     "action": "take-key",
+     "time": 99.467,
+     "target": {
+      "x": 46,
+      "y": 42,
+      "floorId": 0,
+      "time": 83.69999999999781
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 10,
+   "wave": 1,
+   "hash": "277d1f83770544ff73fa16c0a7b862479f68734102076b91aef75c5bfa4a0254",
+   "result": "gameover",
+   "time": 192.767,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity315",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 37.833,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity306",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 38.8,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity293",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 38.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity302",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 39.033,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity289",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 39.667,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity310",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 50.367,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity284",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 51.133,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity306",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 79.6,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity327",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 80.433,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity289",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 80.5,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity331",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 81.5,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity315",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 81.767,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity323",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 82.733,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.766666666666858
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 11,
+   "wave": 1,
+   "hash": "b781df42ecdce7c2df98e0e6e00047abe716958ce7fda7350b2a3b2546ec5d2b",
+   "result": "result",
+   "time": 150.967,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 11,
+     "wave": 1,
+     "id": "entity210",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:40,45",
+     "action": "take-key",
+     "time": 76.4,
+     "target": {
+      "x": 46,
+      "y": 46,
+      "floorId": 0,
+      "time": 61.199999999999086
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 11,
+     "wave": 1,
+     "id": "entity182",
+     "name": "Goblin Shaman 181",
+     "faction": "monster",
+     "tile": "0:48,47",
+     "action": "guard-body",
+     "time": 105.8,
+     "target": {
+      "id": "entity197",
+      "x": 46.18034718489437,
+      "y": 45.99999999904337,
+      "floorId": 0,
+      "time": 99.66666666666357,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      }
+     ]
+    },
+    {
+     "seed": 11,
+     "wave": 1,
+     "id": "entity182",
+     "name": "Goblin Shaman 181",
+     "faction": "monster",
+     "tile": "0:47,48",
+     "action": "guard-body",
+     "time": 140.8,
+     "target": {
+      "id": "entity245",
+      "x": 45.178319448636,
+      "y": 46.26502432446338,
+      "floorId": 0,
+      "time": 140.43333333332794,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 12,
+   "wave": 1,
+   "hash": "51e1de36b3c0354aa00bd0086d957101af2dd69257ff283ba3f1442849682ee9",
+   "result": "result",
+   "time": 330.567,
+   "escaped": 16,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity230",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 39.4,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity215",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 39.633,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity235",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 39.967,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity211",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 40.267,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity240",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 41.667,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity226",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 42.5,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity206",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 44.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity188",
+     "name": "Goblin Shaman 187",
+     "faction": "monster",
+     "tile": "0:47,45",
+     "action": "guard-body",
+     "time": 61,
+     "target": {
+      "id": "entity220",
+      "x": 49.11564819332187,
+      "y": 45.999824343032145,
+      "floorId": 0,
+      "time": 60.29999999999914,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity247",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 76.333,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity226",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 77.167,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity251",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 78.233,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity230",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 78.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity255",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 80.467,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity235",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 82.3,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity240",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 83.167,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity235",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 139.033,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity265",
+     "name": "Hậu quân 1-5",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 139.467,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity275",
+     "name": "Hậu quân 1-7",
+     "faction": "hero",
+     "tile": "0:16,46",
+     "action": "take-key",
+     "time": 139.733,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity255",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 140.4,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity215",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 140.433,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity230",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 140.433,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity270",
+     "name": "Hậu quân 1-6",
+     "faction": "hero",
+     "tile": "0:18,48",
+     "action": "take-key",
+     "time": 140.733,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 12,
+     "wave": 1,
+     "id": "entity261",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 142.167,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 20.133333333333493
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 13,
+   "wave": 1,
+   "hash": "b7ab3179e76470ffaf037e55fe0c40556537f8767b18b430c7d2d6eeec3c65ba",
+   "result": "result",
+   "time": 140.233,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 6,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 13,
+     "wave": 1,
+     "id": "entity179",
+     "name": "Goblin 178",
+     "faction": "monster",
+     "tile": "0:54,45",
+     "action": "attack",
+     "time": 44.233,
+     "target": "entity201",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.8,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 14,
+   "wave": 1,
+   "hash": "e2758da108d4a851235287a3e43929911667e922f669e23d78b9bc6839df21fe",
+   "result": "result",
+   "time": 138.133,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 14,
+     "wave": 1,
+     "id": "entity177",
+     "name": "Goblin 176",
+     "faction": "monster",
+     "tile": "0:53,45",
+     "action": "attack",
+     "time": 27.8,
+     "target": "entity184",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.68,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 14,
+     "wave": 1,
+     "id": "entity196",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:54,46",
+     "action": "attack",
+     "time": 67.5,
+     "target": "entity175",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.77,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      }
+     ]
+    },
+    {
+     "seed": 14,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:38,47",
+     "action": "explore",
+     "time": 75.633,
+     "target": {
+      "x": 54,
+      "y": 46,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 15,
+   "wave": 1,
+   "hash": "2f17cc4398bfca9c661eb2ad8ec73ad50976ad74fda556321bd29957af6bcee1",
+   "result": "gameover",
+   "time": 186.4,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity272",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 37.567,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity280",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 39.633,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity286",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 40.767,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity301",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 41.033,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity290",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 41.633,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity267",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 43.267,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity295",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 46.3,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity267",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 61.667,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity311",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 83.333,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 1.02,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity307",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 83.567,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 19,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity286",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 83.967,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity295",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 84.233,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity267",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 84.3,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity315",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 84.4,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 15,
+     "wave": 1,
+     "id": "entity321",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 85.833,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.200000000000113
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 16,
+   "wave": 1,
+   "hash": "df79a516e16b4b207f505109996274734b2381f1746ab88c1b5474b02f5b89f8",
+   "result": "result",
+   "time": 330.267,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity205",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 35.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.6,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 37.633,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity201",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 38.267,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "regroup",
+       "score": 0.6,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 38.667,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity211",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 39.767,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity197",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 47.433,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity215",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 51.833,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity205",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 68.8,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity177",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:46,47",
+     "action": "guard-body",
+     "time": 69.2,
+     "target": {
+      "id": "entity192",
+      "x": 46.49310903411442,
+      "y": 44.7770618966015,
+      "floorId": 0,
+      "time": 68.59999999999867,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity197",
+     "name": "Ren",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 71.933,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.92,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity215",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 76.2,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 80.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity205",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 85.233,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity220",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 101.933,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity177",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:51,45",
+     "action": "patrol",
+     "time": 104.8,
+     "target": {
+      "x": 54,
+      "y": 45,
+      "floorId": 0
+     },
+     "path": [
+      {
+       "x": 52,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 53,
+       "y": 45,
+       "floorId": 0
+      },
+      {
+       "x": 54,
+       "y": 45,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity237",
+     "name": "Hậu quân 1-2",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 118.033,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 17,
+       "y": 46,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity232",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 118.167,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity205",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 118.533,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity241",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 118.9,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 47,
+       "floorId": 0
+      },
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 119.067,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 16,
+     "wave": 1,
+     "id": "entity201",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "take-key",
+     "time": 119.167,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.700000000000138
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 17,
+   "wave": 1,
+   "hash": "53203a39f31f326a01d8623be2fab7664c24ee991d472c2bb6d58f21022cef21",
+   "result": "result",
+   "time": 127.133,
+   "escaped": 3,
+   "downed": 0,
+   "dead": 10,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 17,
+     "wave": 1,
+     "id": "entity176",
+     "name": "Goblin Shaman 175",
+     "faction": "monster",
+     "tile": "0:48,47",
+     "action": "attack",
+     "time": 31.667,
+     "target": "entity202",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.66,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 18,
+   "wave": 1,
+   "hash": "b8e5687d68482c82447cf60c38a4f02b01ffb8abbc48276102a6c7660e3ede85",
+   "result": "gameover",
+   "time": 160.2,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 19,
+   "wave": 1,
+   "hash": "2532532d8dce2469023b8f12353db1d0f553a925efff821b310cbe3ffe30a60e",
+   "result": "gameover",
+   "time": 139.533,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 19,
+     "wave": 1,
+     "id": "entity205",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:40,46",
+     "action": "take-key",
+     "time": 58.267,
+     "target": {
+      "x": 56,
+      "y": 46,
+      "floorId": 0,
+      "time": 42.73333333333347
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 19,
+     "wave": 1,
+     "id": "entity225",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:39,46",
+     "action": "take-key",
+     "time": 58.333,
+     "target": {
+      "x": 56,
+      "y": 46,
+      "floorId": 0,
+      "time": 42.73333333333347
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "seed": 20,
+   "wave": 1,
+   "hash": "54ff40efd53017444bd7428d301df8f0fed522cd81fa9ca9e09b755cd16e6c29",
+   "result": "gameover",
+   "time": 299.2,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity290",
+     "name": "Lyra",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 37.267,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity280",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "take-key",
+     "time": 37.667,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity300",
+     "name": "Mira",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "take-key",
+     "time": 41.3,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity276",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "take-key",
+     "time": 41.433,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity267",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:17,47",
+     "action": "take-key",
+     "time": 41.6,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity261",
+     "name": "Quill · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 44.467,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "regroup",
+       "score": 1.275,
+       "reason": "Kỷ luật: bám sát đội hình Leader"
+      },
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity295",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:17,45",
+     "action": "take-key",
+     "time": 45.133,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity286",
+     "name": "Borin",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "take-key",
+     "time": 50.233,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity261",
+     "name": "Quill · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "take-key",
+     "time": 64.5,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "regroup",
+       "score": 1.275,
+       "reason": "Kỷ luật: bám sát đội hình Leader"
+      },
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "open-chest",
+       "score": 0.57,
+       "reason": "Phòng đã sạch; mở rương nhìn thấy để lấy chiến lợi phẩm"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity295",
+     "name": "Cyrus",
+     "faction": "hero",
+     "tile": "0:17,46",
+     "action": "take-key",
+     "time": 68.6,
+     "target": {
+      "x": 18,
+      "y": 46,
+      "floorId": 0,
+      "time": 19.733333333333473
+     },
+     "path": [
+      {
+       "x": 18,
+       "y": 46,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity326",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "0:40,45",
+     "action": "wait",
+     "time": 156.567,
+     "target": {
+      "x": 39.99254221320557,
+      "y": 45.110857456284236,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.78,
+       "reason": "Leader chờ tuyến sau tập hợp trước khi vào phòng mới"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity308",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "1:87,48",
+     "action": "wait",
+     "time": 217.5,
+     "target": {
+      "x": 86.988810201031,
+      "y": 47.92032094769128,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.1,
+       "reason": "Chờ cửa mở hoặc cơ hội tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity316",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "1:86,48",
+     "action": "wait",
+     "time": 217.667,
+     "target": {
+      "x": 86.02881056271902,
+      "y": 47.921154278849066,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.1,
+       "reason": "Chờ cửa mở hoặc cơ hội tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity326",
+     "name": "Hậu quân 1-4",
+     "faction": "hero",
+     "tile": "1:86,46",
+     "action": "wait",
+     "time": 252.967,
+     "target": {
+      "x": 85.52103398690002,
+      "y": 46.00000000000002,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.1,
+       "reason": "Chờ cửa mở hoặc cơ hội tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity280",
+     "name": "Seren",
+     "faction": "hero",
+     "tile": "1:27,46",
+     "action": "wait",
+     "time": 262,
+     "target": {
+      "x": 27.350322568088156,
+      "y": 45.99999998320679,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.1,
+       "reason": "Chờ cửa mở hoặc cơ hội tiếp theo"
+      }
+     ]
+    },
+    {
+     "seed": 20,
+     "wave": 1,
+     "id": "entity276",
+     "name": "Elara",
+     "faction": "hero",
+     "tile": "1:26,46",
+     "action": "wait",
+     "time": 262.133,
+     "target": {
+      "x": 26.390322568088163,
+      "y": 46.000000054893555,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.1,
+       "reason": "Chờ cửa mở hoặc cơ hội tiếp theo"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
