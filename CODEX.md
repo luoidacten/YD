@@ -177,3 +177,12 @@ Kỹ thuật dùng skill catalog hiện có: blade B03, katana S10, axe S02, blu
 `classes-data.js` thêm ninja/priestess/nun/arcaneArcher/crossbowman, giữ id knight, paladin/berserker đã có từ CODEX_04. Class mới có 4 skill/2 passive catalog và Charm/đồ khởi đầu đúng thông thạo. Knight giữ kit cũ. Pool chính và viện binh đi qua `chooseHeroSpecies`: wave 1 không class mới, ninja/nun/crossbowman từ wave 2, priestess/arcaneArcher/paladin từ wave 3. Paladin khởi đầu chùy thánh + khiên; ninja có phi tiêu và katana trong túi.
 
 `classes.js` thêm Utility dựa trên enemies/allies thực sự nhìn thấy: ninja chọn đối thủ yếu và rút ở 42% HP khi không seal; priestess kite giữ tuyến sau; crossbowman tìm vị trí sau khiên có LOS/đường đi; berserker không tăng Utility rút chỉ vì HP thấp (vẫn mang kho báu về/rút khi hết mục tiêu hoặc giới hạn trận). Hero elite knight có đường dẫn knight_errant sẵn cho renderer ở CODEX_05-D. Save cũ không bị thay vũ khí đang cầm bằng đồ khởi đầu mới.
+
+
+## CODEX_05-C — 16 chủng loài
+
+`species-data.js` đăng ký 16 loài cùng KITS/FAVORITES/contract/brain/slots/hireCost và ngoại lệ thông thạo. Chỉ dùng phòng hiện có (herbgarden thay garden, bỏ sewer). Các loài nhìn như bay vẫn đi theo walkable/confinement như bình thường. `species.js` dùng API chung: Harpy transfer một đồ nhẹ tối đa mỗi 8s; Gnoll +20% hit trực tiếp nếu có ít nhất 2 Gnoll sống cùng phòng; Werewolf nhận power 20%/5s khi thấy đồng đội cùng phòng gục. Minotaur dùng C09, push từng bước và không xuyên vật cản.
+
+Troll dùng P31 nhưng wrapper pulse đánh dấu regeneration context để burn chặn hồi từ pulse, không chặn healer bình thường. Treant nhận burn/fire ×1,5. Salamander miễn burn; living_armor miễn poison/bleed ở cả applyStatus và damage tick. Gargoyle dùng order ambush/P38 đã có, không tạo hệ ẩn thân thứ hai. Lich/vua xương cần nghĩa địa hoạt động cùng tầng và chỉ hồi skeleton cùng phòng.
+
+`Game.createTrap` là constructor chung cho player.place và Kobold. Kobold chỉ đặt trong battle, tối đa 1 bẫy/đợt, channel 0,6s, tốn 8 mana cá nhân, sát thương ngắt, không đặt lên người/vật cản/bẫy khác hoặc ngoài phòng. Bẫy không chặn di chuyển. Run trống và lúc chuẩn bị không tự mọc bẫy. Soak đo cả reloadChannel/trapChannel thực tăng tiến độ và xuất weaponMetrics, không nới ngưỡng 15s.
