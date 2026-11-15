@@ -892,7 +892,8 @@ VARIANTS[e.variant].name
   s=this.state;
   if(!p||!this.canPrepare()||s.deck.pendingPack||!free&&s.deck.activeFate?.id==='F09'||!free&&s.gold<p.cost)return false;
   if(!free)s.gold-=p.cost;
-  const candidates=CARDS.filter(c=>type==='architecture'?c.kind==='room':type==='contracts'?c.kind==='creature':type==='armory'?c.kind==='item'&&ITEMS[c.id]?.slot==='weapon':!['upgrade'].
+  const candidates=CARDS.filter(c=>
+   type==='architecture'?c.kind==='room':type==='contracts'?c.kind==='creature':type==='armory'?c.kind==='item'&&(['weapon','offhand'].includes(ITEMS[c.id]?.slot)||ITEMS[c.id]?.kind==='bomb'):!['upgrade'].
   includes(c.kind));
   const cards=[];
   for(let i=0;

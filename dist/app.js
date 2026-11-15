@@ -1,3 +1,4 @@
+import {equipControl,weaponSummary} from './weapon-ui.js';
 import {loadIcons,hydrateIcons,icon,roomIcon,cardFrame} from './icons.js';
 import {
  Game
@@ -360,7 +361,7 @@ e.variant!=='normal'?' · '+variant.name:''
 }${
 e.status!=='active'?' · '+(e.status==='downed'?'Đang gục':e.status==='dead'?'Đã chết':'Đã rời đi'):''
 }</div>${
-hearts(e)+meter('Sinh lực',
+weaponSummary(game,e)+hearts(e)+meter('Sinh lực',
 e.hp,
 e.maxHp)
 }${
@@ -466,17 +467,13 @@ e.capacity
 } ô</b></div>${
 Object.values(e.gearSlots).map(id=>s.items.find(i=>i.id===id)).filter(Boolean).map(i=>`<div class="info-row"><span>${
 esc(i.name)
-}</span><b>Đang trang bị</b></div>`).join('')
+}</span><b>Đang trang bị <button data-unequip="${ITEMS[i.definitionId].slot}" ${!game.canPrepare()?'disabled':''}>Cất</button></b></div>`).join('')
 }${
 e.inventory.map(id=>s.items.find(i=>i.id===id)).filter(Boolean).map(i=>
 `<div class="info-row"><span>${
 esc(i.name)
 }</span><b>${
-ITEMS[i.definitionId]?.slot&&e.faction==='monster'&&e.status==='active'?`<button data-equip="${
-i.id
-}" ${
-!game.canPrepare()?'disabled':''
-}>Trang bị</button>`:(i.charges||1)+' lượt'
+ITEMS[i.definitionId]?.slot&&e.faction==='monster'&&e.status==='active'?equipControl(game,e,i):(i.charges||1)+' lượt'
 }</b></div>`
 ).join('')
 }<div class="info-row"><span>Thuốc / cuộn siêu tốc</span><b>${
@@ -629,6 +626,10 @@ function renderInspector(){
  if(modalMode==='inspect'&&$('#modal').open)$('#modal-content').innerHTML=html
 }
 function inspectorClick(event){
+ const remove=event.target.closest('[data-unequip]');
+ if(remove){const e=game.entity(selection);
+  if(game.canPrepare()&&e?.faction==='monster'&&game.unequipItem(e,remove.dataset.unequip)){save();update()}return;
+ }
  const gear=event.target.closest('[data-equip]');
  if(gear){
   const e=game.entity(selection),

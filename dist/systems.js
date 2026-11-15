@@ -1582,6 +1582,7 @@ e,
   score,
   {
    skillId:k.id,
+   weaponTechnique:!!k.weaponTechnique,
    targetId:target.id
   }
   ,

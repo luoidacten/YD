@@ -13,3 +13,5 @@
 .resources .px-icon,.room-button .px-icon{width:16px;height:16px;max-height:16px}
 .status .px-icon{width:16px;height:16px}.brand-sigil .px-icon{width:32px;height:32px}
 .brand-sigil[data-px-id]{display:block!important;font-size:32px!important;line-height:1!important}
+
+.equip-reason{display:block;color:#e5ad84;font-size:11px;max-width:180px}.weapon-summary{margin:10px 0;padding:8px;border:1px solid #74745b;font-size:11px}.weapon-summary p{margin:5px 0}

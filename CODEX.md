@@ -159,3 +159,14 @@ CODEX_02 phát hiện thêm lỗi slot cận chiến lệch tâm ô: A* kết th
 `art-metadata.js` được sinh từ header PNG bất biến bởi `scripts/art-metadata.mjs`. Painter vẽ asset yd ở kích thước gốc nhân số nguyên, chân trên cùng baseline, không tint. `fxSprite()` ánh xạ 8 bộ phép 4 frame, 8 FPS theo thời gian renderer. `Game.visualEvents` là queue ngoài save/RNG (tối đa 40); Painter nhận cue heal/poison/stun/holy và shield đang hiệu lực, chỉ vẽ khi LOD/POV cho phép. Không thêm damage/status song song. Arrow/axe/knife giữ kiểu cũ; fire/frost/curse dùng ảnh phép.
 
 Soak CODEX_04: `tests/fixtures/soak-code04.json`, 150 trận, 0 kẹt, 0 limit, 5/150 thắng, trung vị 151,083s. Baseline v0.4.0: 8/150 thắng; thay đổi −2 điểm phần trăm, trong ±15 điểm. Đây là fixture độc lập, không phải số đo cân bằng campaign. Các asset của CODEX_05 đã có trên đĩa nhưng chỉ được kích hoạt ở commit sau; không tính metadata là gameplay hoàn thiện.
+
+
+## CODEX_05-A — vũ khí
+
+`weapon-data.js` gán family/hands/req/strict/technique cho W01–W53 và 6 item vũ khí cũ; W32/W33 là offhand, W35/W36 là bomb consumable. `weapons.js` cài sau bestiary. `canEquip` là boolean; `equipIssue` trả lý do tiếng Việt. `weaponFactor` 0/0,7/1/1,1 nhân 0,6 khi thiếu brain; vũ khí strict bị từ chối thay vì phạt. Damage chỉ nhân ở wrapper `weapons.damage` đúng một lần cho hit trực tiếp, không nhân lại secondary. Attack-speed chỉ điều chỉnh cooldown ở `weapons.act` đúng một lần mỗi đòn thường đã phát; các mod gear/Charm cũ vẫn do content xử lý.
+
+`gearSlots.offhand` là nguồn ownership duy nhất, thiếu ở save cũ sẽ thành null. Không đồng thời dùng khiên và vũ khí 2 tay; cất đồ qua API `unequipItem`, túi đầy thì rơi hợp lệ. Khiên giảm projectile hit từ phía trước cho người cầm và đồng minh trong 3 ô đứng sau cùng đường bắn, không chặn AoE. UI dùng `weapon-ui.js` để hiện lý do chặn và hệ số thực; không auto-equip đồ trái class. Armory giờ có cả khiên/bom.
+
+Súng dùng `gunState` lưu trong save: ready/progress/jammed; sát thương mới ngắt channel nạp, không bắn trước khi xong. Người vụng có 18% kẹt qua RNG seeded, nạp kẹt lâu ×1,5. Phát súng tạo noise qua hearing 18 ô; không cấp mục tiêu ngoài LOS. Bom tiêu hao charge một lần, nổ qua damageProp hiện có; brain<35 có 25% lệch seeded 1–2 ô. AI có trí khôn chỉ ném khi tránh được đồng đội trong bán kính nổ.
+
+Kỹ thuật dùng skill catalog hiện có: blade B03, katana S10, axe S02, blunt C03, polearm C09, bow/crossbow/gun S04, thrown S03, staff A01, wand C04, holy H06, exotic C10; một số món đổi sang skill gần hơn. Đây là các phiên bản gần nhất được đề cho phép, không giả lập một hệ skill thứ hai. Crossbow thêm hit xuyên mục tiêu thứ hai trên cùng đường LOS; thrown thêm phát thứ ba sau S03. Technique chỉ gắn marker vào Utility khi đủ brain/thông thạo; skill gốc của class vẫn là skill class. Metrics nằm trong `state.weaponMetrics`.

@@ -1,0 +1,16 @@
+✔ weapon requirements distinguish prohibited families, strict brain and usable weapons with Vietnamese UI reasons (31.189ms)
+✔ proficiency factors are 0.7, 1, 1.1 and insufficient brain adds one 0.6 penalty (13.7103ms)
+✔ offhand and two-handed weapons are mutually exclusive and saved without duplicating item ownership (12.0554ms)
+✔ gun jams repeat exactly after restoring the seeded save and reloading interrupts on damage (15.9879ms)
+✔ firing a gun uses LOS, starts reload and creates a noise without leaking targets through walls (16.7286ms)
+✔ bomb consumes one charge and shares barrel friendly-fire and chain-once behavior (12.3588ms)
+✔ front-facing shield protects its carrier and an ally behind it but not a rear shot or AoE (13.6078ms)
+✔ weapon techniques require both proficiency and brain; off-class upgrades remain in the bag (12.6723ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 342.0984

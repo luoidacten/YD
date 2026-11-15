@@ -1,3 +1,4 @@
+import {installWeapons} from './weapons.js';
 import {installBestiary} from './bestiary.js';
 import {installV04} from './v04.js';
 import './lair-data.js';
@@ -605,4 +606,5 @@ owner.name
  installArsenal(Game);
  installV04(Game);
  installBestiary(Game);
+ installWeapons(Game);
 }
