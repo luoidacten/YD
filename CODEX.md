@@ -16,7 +16,7 @@ Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0
 | `dist/ai.js` | Perception/ký ức, Utility/hysteresis, cover/kite, reservation, khám phá |
 | `dist/systems.js` | Skill/passive/status, Leader/scout/intel, công trình, thế giới, tiến hóa |
 | `dist/content-systems.js` | Packs/Fates, gear/items, phẩm chất/biến thể, Charms, Mimic/spy/Oracle |
-| `dist/catalog.js`, `catalog-data.js` | 50 kỹ năng, 50 nội tại, kit theo loài, status nền |
+| `dist/catalog.js`, `catalog-data.js` | 50 định nghĩa nền + 8 địa hình = 58 kỹ năng, 58 nội tại khi nạp Game; kit/status nền |
 | `dist/expansion.js`, `expansion-data.js` | Nền mở rộng; tổng hiện tại 22 phòng, 47 Charm, 40 effects, 35 items, 6 phẩm chất, 7 biến thể |
 | `dist/lair.js`, `lair-data.js` | Run trống, xây nền móng, quota cư dân, khóa/chìa, kit địa hình |
 | `dist/rescue.js` | Gục/chết, cứu hộ có tiến độ, thuốc hồi sinh, kéo, ký ức thi thể |
@@ -91,3 +91,17 @@ Thiết kế bổ sung tham khảo ChatGPT web tại https://chatgpt.com/c/6af8a
 - W01–W12 thêm 12 vũ khí, trong đó 6 tầm xa (hai cung, rìu/dao ném, hai trượng). `reach` là tầm tuyệt đối, khác `range` cộng thêm của item cũ. Toàn bộ attack/meleeSlot/kite/barrel/đội hình phải dùng `Game.range(e)`, không dùng thẳng SPECIES.range để quyết định tiếp cận. Vũ khí vật lý không cần mana để bắn/giữ tầm.
 - Đạn là hoạt ảnh thị giác dựa trên đòn thường hiện có; sát thương vẫn giải quyết khi đòn được phát, có kiểm tra LOS. Chưa có hệ va chạm đạn bay độc lập. Không trình bày chúng như đạn có thể chặn sau lúc đã bắn.
 - `Gói Vũ Khí` 90 vàng: ba lá weapon, giữ một; đi qua cùng API pack/seed/save. Run mới có thêm hợp đồng xạ thủ và ba vũ khí mẫu. Renderer vẽ đúng vũ khí trang bị, đạn và dấu cấp rương, giữ nearest-neighbor.
+
+## Kiểm chứng (CODEX_01)
+
+`node scripts/compare-soak.mjs` so SHA-256 của **toàn bộ save cuối trận**, không chỉ thắng/thua: 20/20 seed trùng trước và sau commit `76a7143` chỉ định dạng. Dữ liệu gốc ở `tests/fixtures/soak-baseline.json`, sau định dạng ở `soak-formatted.json`. Các sửa logic sau đó chủ ý đổi hash, không được dùng chúng để thay baseline định dạng.
+
+`node scripts/soak.mjs --seeds 1-50 --waves 3 --strict` dựng fixture hợp lệ qua API bài/thuê/chìa, chạy 150 trận độc lập (mỗi seed × wave 1–3) ở 1/30s. Mỗi wave dựng lại cùng layout seed, với quân số và sức mạnh theo wave; đây không phải campaign nối save. Các seed chia hết 5 dùng hai tầng ít phòng thủ, seed khác có đội giữ phòng và nội thất. `soak-report.json` chứa thời gian, kết quả, số thoát/gục/chết, ngưỡng 480s, hash và dấu vết quyết định.
+
+Bộ đo đánh dấu 15s sống liên tục, đứng nguyên ô, không đánh hoặc tăng tiến độ channel, không guard/ambush. Khoảng đang gục và khoảng có lệnh guard/ambush kết thúc cửa sổ đo cũ. Đổi action/decision đơn thuần không được tính tiến triển. Cảnh báo được giữ nguyên trong các report trước sửa; không tăng ngưỡng hoặc thêm teleport để vượt kiểm tra. Channel buff/item và cooldown thực được đo; thời gian máy chạy không vào hash.
+
+Các nguyên nhân đã có regression riêng trong `tests/soak.test.mjs`: tin chìa âm tính không được lưu, đường tìm đích đi qua cửa đang khóa, bán kính nhặt không tới ô tiếp cận, đuổi mục tiêu ngoài phòng, dồn vào đồng đội đứng yên, lệnh đội hình sai tầng/quá hạn, Leader chờ nhau, tầm nhìn hardcode khác perception, canh thi thể không có vị trí đi tới, dùng đồ channel liên tục giữa các nhịp sát thương. Guard vẫn phản ứng khi cửa mở hoặc xuất hiện địch.
+
+Chạy `node --run test` (cùng script mà `npm test` gọi), `node scripts/build.mjs`, `node scripts/format-check.mjs`. Máy tác vụ có Node 24 nhưng không có npm trong PATH; không giả lập npm và không cài dependency. Test save/migration và `?sandbox=1` vẫn tách save thật.
+
+Đếm catalog từ runtime: `node scripts/catalog-counts.mjs`. Trước CODEX_02: 58 skill, 58 passive, 40 status, 47 Charm, 22 phòng, 35 item (18 weapon), 22 species, 6 quality, 7 variant, 4 pack.

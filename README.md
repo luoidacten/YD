@@ -33,3 +33,5 @@ Nguồn art/audio CC0 ở [ASSET-LICENSES.md](ASSET-LICENSES.md), [AUDIO-SOURCES
 V0.3 thêm quota phòng, địa hình tường/vực liên thông theo seed, trí khôn/chỉ huy, AI tận dụng bẫy/thùng, cứu hộ chậm/kéo người gục/thuốc hồi sinh. Save cũ giữ nguyên; bắt đầu run mới trong Trợ giúp để thiết kế từ trống. `?sandbox=1` dành cho QA với save riêng.
 
 Menu và Reset ở thanh đầu. Dọn sạch bất kỳ phòng nào đều có rương cấp I–V, một lần mỗi đợt. Quái tản ra tuần tra trong phòng, trở về sau chiến đấu. Thêm 10 loài quái có sprite riêng, Cung Thủ, 12 vũ khí và Gói Vũ Khí. Cấp thẻ vũ khí cho quái rồi chọn Trang bị trong túi.
+
+Kiểm chứng: `node --run test`, `node scripts/build.mjs`, `node scripts/format-check.mjs`; soak 50 seed × 3 wave: `node scripts/soak.mjs --seeds 1-50 --waves 3 --strict`. So hash định dạng bằng `node scripts/compare-soak.mjs`. Lấy số catalog bằng `node scripts/catalog-counts.mjs`.
