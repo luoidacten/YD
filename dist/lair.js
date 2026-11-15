@@ -1,4 +1,6 @@
 import './lair-data.js';
+import {installRoomLife} from './room-life.js';
+import {installArsenal} from './arsenal.js';
 import {ROOMS,SPECIES,SETTINGS,center,bounds,contains,distance} from './data.js';
 import {roomShape,roomDoors,tileKey} from './world.js';
 import {installRescue} from './rescue.js';
@@ -29,5 +31,5 @@ export function installLair(Game){const P=Game.prototype;
  const drop=P.drop;P.drop=function(e){drop.call(this,e);const k=this.state.keyQuest;if(k?.owner===e.id){const p=this.findFreeNear({x:e.x,y:e.y,floorId:e.floorId})||e;Object.assign(k,{owner:null,x:Math.round(p.x),y:Math.round(p.y),floorId:e.floorId});this.log('Chìa khóa phòng rương đã rơi xuống sàn.','warning')}};
  const escape=P.escape;P.escape=function(e,...args){const ok=escape.call(this,e,...args),k=this.state.keyQuest;if(ok&&k?.owner===e.id){const entry=this.state.rooms.find(r=>r.type==='entrance');Object.assign(k,{owner:null,x:entry.x,y:entry.y,floorId:entry.floorId});this.log('Người rút lui để lại chìa khóa ở cổng hầm ngục.','warning')}return ok};
  const next=P.next;P.next=function(){const was=this.state.phase,result=next.call(this);if(was==='result'&&this.state.phase==='prepare'){const k=this.state.keyQuest;Object.assign(k,{required:true,locked:true,placed:false,owner:null,x:null,y:null});for(const e of this.state.entities){e.bodyMemories={};e.knownKey=null;e.needsKey=false}this.rebuild()}return result};
- installRescue(Game);installTactics(Game);
+ installRescue(Game);installTactics(Game);installRoomLife(Game);installArsenal(Game);
 }

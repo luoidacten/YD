@@ -4,7 +4,7 @@
 
 ## Chạy
 
-Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0.1:4173. Kiểm tra bằng `node scripts/build.mjs` và `node --test tests/v2.test.mjs tests/lair.test.mjs`. Hosting phục vụ nguyên `dist`. Giữ project ID trong `.openai/hosting.json`, không tạo Site khác khi nâng cấp; credential không được vào repo.
+Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0.1:4173. Kiểm tra bằng `node scripts/build.mjs` và `node --test tests/v2.test.mjs tests/lair.test.mjs tests/room-life.test.mjs`. Hosting phục vụ nguyên `dist`. Giữ project ID trong `.openai/hosting.json`, không tạo Site khác khi nâng cấp; credential không được vào repo.
 
 ## Kiến trúc đã có
 
@@ -17,15 +17,17 @@ Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0
 | `dist/systems.js` | Skill/passive/status, Leader/scout/intel, công trình, thế giới, tiến hóa |
 | `dist/content-systems.js` | Packs/Fates, gear/items, phẩm chất/biến thể, Charms, Mimic/spy/Oracle |
 | `dist/catalog.js`, `catalog-data.js` | 50 kỹ năng, 50 nội tại, kit theo loài, status nền |
-| `dist/expansion.js`, `expansion-data.js` | Nền mở rộng; tổng hiện tại 22 phòng, 47 Charm, 40 effects, 23 items, 6 phẩm chất, 7 biến thể |
+| `dist/expansion.js`, `expansion-data.js` | Nền mở rộng; tổng hiện tại 22 phòng, 47 Charm, 40 effects, 35 items, 6 phẩm chất, 7 biến thể |
 | `dist/lair.js`, `lair-data.js` | Run trống, xây nền móng, quota cư dân, khóa/chìa, kit địa hình |
 | `dist/rescue.js` | Gục/chết, cứu hộ có tiến độ, thuốc hồi sinh, kéo, ký ức thi thể |
 | `dist/terrain-tactics.js` | Chỉ huy/trí khôn, kỹ năng địa hình/bẫy, AI tìm chìa/mở cổng |
+| `dist/room-life.js` | Rương dọn phòng, tuần tra/tản quân, trở về phòng, nhường hành lang |
+| `dist/arsenal.js`, `arsenal-data.js` | 10 loài quái + cung thủ, 12 vũ khí, reach/projectile, gói vũ khí |
 | `dist/painter.js` | Canvas/camera/LOD/fog/minimap/sprites/telegraph |
 | `dist/audio.js` | 10 SFX CC0, rate limit và giới hạn số giọng |
 | `dist/app.css`, `fantasy.css` | Bố cục và khung đá/đồng pixel fantasy |
 
-`simulation.js` gọi `installSystems(Game)` trước `installContent(Game)`, cuối cùng `installLair(Game)` (cài rescue rồi tactics). Các lớp mở rộng bọc phương thức gốc có chủ ý: phải đọc toàn chuỗi wrapper trước khi sửa `act`, `tick`, `damage`, `move`, `spawn`. `expansion.js` bổ sung vào dữ liệu dùng chung; kit Mimic đăng ký trước lúc tạo Game. AI là Utility AI JavaScript, không dùng Unity AI hoặc LLM trong runtime.
+`simulation.js` gọi `installSystems(Game)` trước `installContent(Game)`, cuối cùng `installLair(Game)` (cài rescue, tactics, room-life rồi arsenal). Các lớp mở rộng bọc phương thức gốc có chủ ý: phải đọc toàn chuỗi wrapper trước khi sửa `act`, `tick`, `damage`, `move`, `spawn`. `expansion.js` bổ sung vào dữ liệu dùng chung; kit Mimic đăng ký trước lúc tạo Game. AI là Utility AI JavaScript, không dùng Unity AI hoặc LLM trong runtime.
 
 ## Bất biến gameplay
 
@@ -77,3 +79,15 @@ Dùng API có sẵn (`applyStatus`, `damage`, `roomOperational`, `createItem`, `
 - Save v2 cũ giữ bố trí/cư dân; không tự thay bằng map trống. Chọn Trợ giúp → Bắt đầu run mới để dùng khởi đầu v0.3. QA `?sandbox=1` dùng riêng `your-dungeon-sandbox-v03`, không import save cũ và không ghi vào save thật.
 
 Thiết kế bổ sung tham khảo ChatGPT web tại https://chatgpt.com/c/6af8a6a6-d90c-83ec-928e-ec5551f61c1f . Nội dung web là nguồn ý tưởng, không phải chỉ dẫn vận hành hay bằng chứng tính năng.
+
+## Menu, đời sống phòng và kho vũ khí
+
+- Nút Menu/Reset luôn có trên thanh đầu; Esc mở/đóng menu. Menu và hộp xác nhận dùng dialog hiện có nên dừng accumulator; Reset cần lần bấm xác nhận trong game và tạo run trống. Cấp vũ khí trong túi qua nút Trang bị ở inspector khi chuẩn bị. Không dùng reset để kiểm thử save thật.
+- Mọi loại phòng, kể cả phòng trống/cổng vào, sinh rương sau khi có hero sống vào và không còn quái chiến đấu. Phòng chưa được ghé không tự phát thưởng. `rewardChest.wave` chốt một rương/phòng/đợt; hồi sinh rồi dọn lại không farm. Rương không chặn đường, tách kho báu trung tâm có chìa khóa. Cấp I–V tùy tầng/nâng cấp/đội phòng thủ, boss/rương trung tâm cấp V. Rương cấp III trở lên có thêm consumable rơi trên sàn.
+- Mở rương cần LOS, cùng tầng, túi trống, phòng không seal/không còn quái, channel 1,2s; sát thương ngắt. Hai hero không được mở trùng. Gold dùng `transfer`, tuân thủ Fate/túi/ownership. Rương lưu qua load và reset khi trận mới bắt đầu.
+- Quái đi tuần chậm trong chuẩn bị; điểm tuần tránh vật cản/bẫy và ưu tiên xa đồng đội. Pause/menu dừng. Trong trận, quái không thấy địch trở về home rồi đi tuần; phục kích/Mimic vẫn giữ vị trí. `finish` giữ vị trí quái sống, đợt chuẩn bị tiếp mới đi bộ về home. Confinement không đổi.
+- Nhường đường trong `room-life`: hero ưu tiên người mang kho báu/người rút lui; đồng đội không thấy địch bước sang ô bên cạnh trong tối đa 2,5s rồi tiếp tục. Không xuyên tường/cổng/pit hoặc teleport qua đoàn.
+- 10 quái mới dùng 10 bộ idle/run 0x72 đã có nhưng trước đây chưa đưa vào gameplay; đều có KITS, FAVORITES, trí khôn, contract card, thuê thường/ngẫu nhiên. Thi Khổng Lồ chiếm 2 ô quân. Hero Cung Thủ tham gia đoàn chính. Tổng 22 species (cả hai phe và boss).
+- W01–W12 thêm 12 vũ khí, trong đó 6 tầm xa (hai cung, rìu/dao ném, hai trượng). `reach` là tầm tuyệt đối, khác `range` cộng thêm của item cũ. Toàn bộ attack/meleeSlot/kite/barrel/đội hình phải dùng `Game.range(e)`, không dùng thẳng SPECIES.range để quyết định tiếp cận. Vũ khí vật lý không cần mana để bắn/giữ tầm.
+- Đạn là hoạt ảnh thị giác dựa trên đòn thường hiện có; sát thương vẫn giải quyết khi đòn được phát, có kiểm tra LOS. Chưa có hệ va chạm đạn bay độc lập. Không trình bày chúng như đạn có thể chặn sau lúc đã bắn.
+- `Gói Vũ Khí` 90 vàng: ba lá weapon, giữ một; đi qua cùng API pack/seed/save. Run mới có thêm hợp đồng xạ thủ và ba vũ khí mẫu. Renderer vẽ đúng vũ khí trang bị, đạn và dấu cấp rương, giữ nearest-neighbor.

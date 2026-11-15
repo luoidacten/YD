@@ -9,7 +9,7 @@ Node.js 20+, không cần dependency:
 ```powershell
 node server.mjs
 node scripts/build.mjs
-node --test tests/v2.test.mjs tests/lair.test.mjs
+node --test tests/v2.test.mjs tests/lair.test.mjs tests/room-life.test.mjs
 ```
 
 Mở http://127.0.0.1:4173. Host nguyên thư mục `dist`.
@@ -24,10 +24,12 @@ Mở http://127.0.0.1:4173. Host nguyên thư mục `dist`.
 - Sau trận chọn Fate trước màn tiếp. Công trình mất quyền phải chiếm lại và sửa nếu bị phá.
 - Space pause; 1/2/3 camera; G lưới; WASD/kéo chuột phải pan; cuộn zoom; nhấp đôi phòng nhìn gần.
 
-Catalog: 58 kỹ năng, 58 nội tại, 40 effects, 47 Charms, 22 loại phòng, 23 items, 6 phẩm chất, 7 biến thể. Đây vẫn là prototype cần cân bằng, nhiều kỹ năng chia sẻ handler/animation; chưa phải toàn bộ campaign GDD. Xem [CODEX.md](CODEX.md) để biết kiến trúc, bất biến và giới hạn chính xác.
+Catalog: 58 kỹ năng, 58 nội tại, 40 effects, 47 Charms, 22 loại phòng, 35 items, 6 phẩm chất, 7 biến thể. Đây vẫn là prototype cần cân bằng, nhiều kỹ năng chia sẻ handler/animation; chưa phải toàn bộ campaign GDD. Xem [CODEX.md](CODEX.md) để biết kiến trúc, bất biến và giới hạn chính xác.
 
 Save LocalStorage `your-dungeon-v2` theo origin, tự lưu và có nút Lưu; giữ save v1 khi chuyển bản. Save localhost và Site không tự chuyển nhau.
 
 Nguồn art/audio CC0 ở [ASSET-LICENSES.md](ASSET-LICENSES.md), [AUDIO-SOURCES.md](AUDIO-SOURCES.md).
 
 V0.3 thêm quota phòng, địa hình tường/vực liên thông theo seed, trí khôn/chỉ huy, AI tận dụng bẫy/thùng, cứu hộ chậm/kéo người gục/thuốc hồi sinh. Save cũ giữ nguyên; bắt đầu run mới trong Trợ giúp để thiết kế từ trống. `?sandbox=1` dành cho QA với save riêng.
+
+Menu và Reset ở thanh đầu. Dọn sạch bất kỳ phòng nào đều có rương cấp I–V, một lần mỗi đợt. Quái tản ra tuần tra trong phòng, trở về sau chiến đấu. Thêm 10 loài quái có sprite riêng, Cung Thủ, 12 vũ khí và Gói Vũ Khí. Cấp thẻ vũ khí cho quái rồi chọn Trang bị trong túi.

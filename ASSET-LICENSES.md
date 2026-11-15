@@ -19,3 +19,7 @@
 The v0.2 interface uses system fonts (Segoe UI/Consolas); no remote font request is required. Barrels, status symbols, telegraphs, lighting and UI frames are drawn by application code.
 
 No Gemini-generated or other AI-generated raster images have been included in v0.2. Future artwork must match 0x72's pixel scale and palette. Variants reuse/tint the original sprites; they are not new animation sets.
+
+## Bổ sung kho quái/vũ khí (2026-11-15)
+
+Đã kiểm tra lại trang tác giả https://0x72.itch.io/dungeontileset-ii : CC0. Không tải pack pha phong cách khác. Đưa thêm các frame nguyên gốc đã đóng gói vào gameplay: imp, chort, wogol, orc_warrior, orc_shaman, masked_orc, lizard_m, lizard_f, tiny_zombie, big_zombie; elf_f cho cung thủ. Weapon frames gồm bow/bow_2, throwing_axe, knife, red/green_magic_staff, double_axe, katana, baton_with_spikes, spear, saw_sword, hammer. Vẫn dùng animation idle/run gốc; projectile và dấu cấp rương do renderer vẽ.
