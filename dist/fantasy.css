@@ -7,3 +7,9 @@
 .catalog-icon{float:right;width:32px;height:40px;object-fit:contain;image-rendering:pixelated;margin:0 0 5px 8px}[data-equip]{font-size:10px;color:#ddc58c;padding:3px 6px}
 
 .health-hearts{display:flex;gap:4px;align-items:center;margin:12px 0 8px}.health-hearts img{width:16px;height:16px;image-rendering:pixelated}
+
+.px-icon{image-rendering:pixelated;width:16px;height:16px;object-fit:contain;display:inline-block;vertical-align:middle;flex:none}
+[data-px-id],.px-icon-fallback{display:contents!important;font:inherit!important;margin:0!important}
+.resources .px-icon,.room-button .px-icon{width:16px;height:16px;max-height:16px}
+.status .px-icon{width:16px;height:16px}.brand-sigil .px-icon{width:32px;height:32px}
+.brand-sigil[data-px-id]{display:block!important;font-size:32px!important;line-height:1!important}

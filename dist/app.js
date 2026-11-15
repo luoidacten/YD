@@ -1,3 +1,4 @@
+import {loadIcons,hydrateIcons,icon,roomIcon,cardFrame} from './icons.js';
 import {
  Game
 }
@@ -41,6 +42,8 @@ import {
  FATES
 }
 from './expansion.js';
+await loadIcons({disabled:new URLSearchParams(location.search).get('icons')==='off'});
+hydrateIcons();
 const $=q=>document.querySelector(q),
 $$=q=>[...document.querySelectorAll(q)],
 esc=s=>String(s??'').replace(/[&<>"']/g,
@@ -158,6 +161,7 @@ function modal(html,
 mode=null){
  modalMode=mode;
  $('#modal-content').innerHTML=html;
+ hydrateIcons($('#modal-content'));
  if(!$('#modal').open)$('#modal').showModal()
 }
 function closeModal(){
@@ -206,7 +210,7 @@ alt=""><span class="card-name">Mở gói bài</span><span class="card-cost">80+ 
 c.def.tone
 } ${
 chosen?.uid===c.uid?'selected':''
-}" data-card="${
+}"${cardFrame(c.def.tone)} data-card="${
 c.uid
 }" title="${
 esc(c.def.description)
@@ -377,7 +381,7 @@ STATUS[a.type]?.bad?'bad':''
 }" title="${
 esc(STATUS[a.type]?.description||STATUS[a.type]?.name)
 }">${
-STATUS[a.type]?.symbol||'✧'
+icon('status',a.type,STATUS[a.type]?.symbol||'✧')
 } ${
 STATUS[a.type]?.name||a.type
 } ${
@@ -513,9 +517,7 @@ e.status==='active'?`<button data-action="view-pov">◉ Góc nhìn nhân vật</
  if(r){
   const d=ROOMS[r.type],
   monsters=game.roomMonsters(r);
-  return`<div class="portrait"><img src="assets/frames/${
-d.icon
-}.png" alt=""><span>PHÒNG LV. ${
+  return`<div class="portrait">${roomIcon(r.type,d.icon)}<span>PHÒNG LV. ${
 r.level
 }</span></div><div class="entity-title"><h2>${
 esc(d.name)
@@ -766,7 +768,7 @@ p.cards.map(c=>{
  const d=CARDS.find(a=>a.id===c.definitionId);
  return`<button class="pack-card ${
 p.chosen.includes(c.uid)?'picked':''
-}" data-keep="${
+}"${cardFrame(d.tone)} data-keep="${
 c.uid
 }" ${
 p.chosen.includes(c.uid)?'disabled':''
@@ -1273,7 +1275,7 @@ function update(){
  if(s.phase==='prepare'&&s.manualStart)$('#clock').textContent=game.layoutIssues().length?'CHƯA ĐỦ':'SẴN SÀNG';
  $('#start').textContent=s.phase==='battle'?'Đang phòng thủ':s.phase==='result'?'Chọn định mệnh':s.phase==='gameover'?'Run mới ↻':'Mở cổng ↗';
  $('#start').disabled=s.phase==='battle';
- $('#pause').textContent=s.paused?'▶':'Ⅱ';
+ $('#pause').innerHTML=icon('hud',s.paused?'resume':'pause',s.paused?'▶':'Ⅱ');
  $('#pause').classList.toggle('active',
  s.paused);
  $$('[data-speed]').forEach(b=>b.classList.toggle('active',
@@ -1329,9 +1331,7 @@ ROOMS[r.type].name
 r.w-2
 }×${
 r.h-2
-} ô"><img src="assets/frames/${
-ROOMS[r.type].icon
-}.png" alt=""><span>${
+} ô">${roomIcon(r.type,ROOMS[r.type].icon)}<span>${
 ROOMS[r.type].name
 }</span><i class="room-status"></i></button>`
   ).join('');
@@ -1429,7 +1429,8 @@ $('#fog').onchange=()=>{
 ;
 $('#audio').onclick=async()=>{
  const enabled=await sound.toggle();
- $('#audio').innerHTML=enabled?'♪ <span>Âm thanh bật</span>':'♪ <span>Bật âm thanh</span>';
+ $('#audio').innerHTML=icon('hud',enabled?'audio_on':'audio_off','♪')+
+  (enabled?' <span>Âm thanh bật</span>':' <span>Bật âm thanh</span>');
  $('#audio').setAttribute('aria-pressed',
  String(enabled))
 }
@@ -1688,11 +1689,11 @@ hòng, cư dân và chìa khóa.</p><div class="menu-actions"><button id="confir
 function showMenu(){
  modal(
  `<div class="game-menu"><span class="eyebrow">YOUR DUNGEON?</span><h2>Menu hầm ngục</h2><p>Mô phỏng tạm dừng khi mở menu.</p><div class="menu-grid"><b\
-utton id="menu-resume" class="primary">▶ Tiếp tục</button><button id="menu-save">↓ Lưu tiến trình</button><button id="menu-layout">▦ Bản thiết kế</but\
-ton><button id="menu-roster">♟ Cư dân / Tuyển quái</button><button id="menu-packs">▣ Gói bài</button><button id="menu-catalog">✦ Vũ khí & Bách khoa</b\
-utton><button id="menu-world">⚑ Tình hình bên ngoài</button><button id="menu-help">? Hướng dẫn</button><button id="menu-audio">♪ ${
+utton id="menu-resume" class="primary">▶ Tiếp tục</button><button id="menu-save">${icon('hud','save','↓')} Lưu tiến trình</button><button id="menu-layout">${icon('hud','layout','▦')} Bản thiết kế</but\
+ton><button id="menu-roster">♟ Cư dân / Tuyển quái</button><button id="menu-packs">▣ Gói bài</button><button id="menu-catalog">${icon('hud','catalog','✦')} Vũ khí & Bách khoa</b\
+utton><button id="menu-world">${icon('hud','world','⚑')} Tình hình bên ngoài</button><button id="menu-help">${icon('hud','help','?')} Hướng dẫn</button><button id="menu-audio">♪ ${
 sound.enabled?'Tắt':'Bật'
-} âm thanh</button><button id="menu-reset" class="reset-menu">↻ Reset run</button></div><small>Esc đóng menu · Space tạm dừng ngoài bản đồ</small></di\
+} âm thanh</button><button id="menu-reset" class="reset-menu">${icon('hud','reset','↻')} Reset run</button></div><small>Esc đóng menu · Space tạm dừng ngoài bản đồ</small></di\
 v>`
  ,
  'menu');

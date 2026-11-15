@@ -1,0 +1,77 @@
+{
+ "hud": {
+  "sigil": {
+   "src": "assets/ui/hud/sigil.png",
+   "width": 16,
+   "height": 16
+  },
+  "menu": {
+   "src": "assets/ui/hud/menu.png",
+   "width": 16,
+   "height": 16
+  },
+  "reset": {
+   "src": "assets/ui/hud/reset.png",
+   "width": 16,
+   "height": 16
+  },
+  "layout": {
+   "src": "assets/ui/hud/layout.png",
+   "width": 16,
+   "height": 16
+  },
+  "world": {
+   "src": "assets/ui/hud/world.png",
+   "width": 16,
+   "height": 16
+  },
+  "catalog": {
+   "src": "assets/ui/hud/catalog.png",
+   "width": 16,
+   "height": 16
+  },
+  "audio_on": {
+   "src": "assets/ui/hud/audio_on.png",
+   "width": 16,
+   "height": 16
+  },
+  "save": {
+   "src": "assets/ui/hud/save.png",
+   "width": 16,
+   "height": 16
+  },
+  "help": {
+   "src": "assets/ui/hud/help.png",
+   "width": 16,
+   "height": 16
+  },
+  "souls": {
+   "src": "assets/ui/hud/souls.png",
+   "width": 16,
+   "height": 16
+  },
+  "pause": {
+   "src": "assets/ui/hud/pause.png",
+   "width": 16,
+   "height": 16
+  },
+  "grid": {
+   "src": "assets/ui/hud/grid.png",
+   "width": 16,
+   "height": 16
+  },
+  "zoom_in": {
+   "src": "assets/ui/hud/zoom_in.png",
+   "width": 16,
+   "height": 16
+  },
+  "zoom_out": {
+   "src": "assets/ui/hud/zoom_out.png",
+   "width": 16,
+   "height": 16
+  }
+ },
+ "status": {},
+ "room": {},
+ "card": {}
+}

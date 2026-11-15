@@ -1,0 +1,391 @@
+{
+  "_note": "Owned by the art director. status = done | wip | todo. Codex only reads entries with status done. Missing room ids: Codex reads the ROOMS keys at build time and reports them; the art director adds them here.",
+  "hud": {
+    "sigil": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "dungeon emblem: small stone tower with a gold keyhole",
+      "source": "gemini sheet_v2 2026-11-15"
+    },
+    "menu": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "three stacked bronze bars",
+      "source": "gemini sheet_v2 2026-11-15"
+    },
+    "reset": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "circular arrow carved in stone",
+      "source": "gemini sheet_v2 2026-11-15 + hand fix"
+    },
+    "layout": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "rolled parchment blueprint with grid",
+      "source": "gemini sheet_v1 2026-11-15"
+    },
+    "world": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "small red pennant flag on a pole",
+      "source": "gemini sheet_v1 2026-11-15"
+    },
+    "catalog": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "closed leather tome with gold star",
+      "source": "gemini sheet_v1 2026-11-15"
+    },
+    "audio_on": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "brass hand bell ringing",
+      "source": "gemini sheet_v1 2026-11-15"
+    },
+    "audio_off": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "brass hand bell with red cross"
+    },
+    "save": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "sealed scroll with red wax seal",
+      "source": "gemini sheet_v1 2026-11-15"
+    },
+    "help": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "stone tablet with question mark",
+      "source": "gemini sheet_v1 2026-11-15"
+    },
+    "souls": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "pale blue soul flame wisp",
+      "source": "gemini sheet_v2 2026-11-15"
+    },
+    "pause": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "two stone pillars",
+      "source": "gemini sheet_v2 2026-11-15"
+    },
+    "speed1": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "one gold chevron"
+    },
+    "speed2": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "two gold chevrons"
+    },
+    "speed4": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "four tiny gold chevrons 2x2"
+    },
+    "grid": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "3x3 floor tile grid",
+      "source": "gemini sheet_v2 2026-11-15"
+    },
+    "zoom_in": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "magnifying lens with plus",
+      "source": "gemini sheet_v2 2026-11-15 + hand fix"
+    },
+    "zoom_out": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "done",
+      "brief": "magnifying lens with minus",
+      "source": "gemini sheet_v2 2026-11-15 + hand fix"
+    }
+  },
+  "status": {
+    "power": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "red up arrow / flexed fist"
+    },
+    "haste": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "yellow winged boot"
+    },
+    "fortify": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "steel kite shield outline"
+    },
+    "shield": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "blue magic hexagon barrier"
+    },
+    "regen": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "green leaf with plus"
+    },
+    "truesight": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "open gold eye"
+    },
+    "stealth": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "dark gray hood silhouette"
+    },
+    "panic": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "pale sweating face / exclamation"
+    },
+    "slow": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "blue snail shell"
+    },
+    "stun": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "yellow spinning stars"
+    },
+    "mark": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "red crosshair"
+    },
+    "silence": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "purple mouth with X"
+    },
+    "blind": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "closed eye with dark band"
+    },
+    "disarm": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "broken sword"
+    },
+    "poison": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "green drop with skull"
+    },
+    "burn": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "orange flame"
+    },
+    "bleed": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "dark red blood drop"
+    },
+    "taunt": {
+      "size": [
+        8,
+        8
+      ],
+      "status": "todo",
+      "brief": "angry red face / shouting mouth"
+    }
+  },
+  "room": {
+    "entrance": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "stone archway with stairs"
+    },
+    "guard": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "crossed spears over a shield"
+    },
+    "trap": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "spike floor tile"
+    },
+    "treasure": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "glowing gold heart-shaped gem"
+    },
+    "grave": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "cracked tombstone"
+    },
+    "mana": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "blue mana fountain"
+    },
+    "shop": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "coin pouch on a counter"
+    },
+    "loot": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "pile of coins and a goblet"
+    },
+    "boss": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "horned demon skull"
+    },
+    "arrival": {
+      "size": [
+        16,
+        16
+      ],
+      "status": "todo",
+      "brief": "stairs going down with arrow"
+    }
+  }
+}

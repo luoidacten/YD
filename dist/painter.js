@@ -1,3 +1,4 @@
+import {iconAsset} from './icons.js';
 import {
  STATUS
 }
@@ -62,6 +63,14 @@ name
    this.images[name]=im
   }
   return this.images[name]
+ }
+ uiIcon(group,id,x,y,size=16){
+  const asset=iconAsset(group,id);if(!asset)return false;
+  const key=group+':'+id;
+  if(!this.images[key]){const im=new Image();im.src=asset.src;this.images[key]=im}
+  const im=this.images[key];if(!im.complete||!im.naturalWidth)return false;
+  const p=this.point(x,y),c=this.ctx;c.imageSmoothingEnabled=false;
+  c.drawImage(im,Math.round(p.x-size/2),Math.round(p.y-size/2),size,size);return true;
  }
  get level(){
   return this.camera.tile<10?'overview':this.camera.tile<23?'tactical':'detail'
@@ -427,7 +436,7 @@ size
    b.h,
    room.sealed?'#d47761':this.selected===room.id?'#e1bf7a':'#78847a',
    this.selected===room.id?2:1);
-   this.sprite(def.icon,
+   if(!this.uiIcon('room',room.type,p.x,p.y,32))this.sprite(def.icon,
    p.x-1.7,
    p.y-2.2,
    3.4,
@@ -775,7 +784,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   statuses.length);
   i++){
    const d=STATUS[statuses[i].type];
-   if(d)this.label(d.symbol,
+   if(d&&!this.uiIcon('status',statuses[i].type,e.x+(i-1)*.45,e.y-size*aspect-.65,8))this.label(d.symbol,
    e.x+(i-1)*.45,
    e.y-size*aspect-.65,
    d.color||'#d3d8b2',
