@@ -1,10 +1,10 @@
-# CODEX — YOUR DUNGEON? v0.2
+# CODEX — YOUR DUNGEON? v0.3
 
 Đọc trước khi sửa code. Đây là prototype chạy hoàn toàn trong trình duyệt. `GDD.md` là thiết kế gốc; các bản thiết kế từ ChatGPT không phải bằng chứng mọi tương tác đã hoàn thiện.
 
 ## Chạy
 
-Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0.1:4173. Kiểm tra bằng `node scripts/build.mjs` và `node --test tests/v2.test.mjs`. Hosting phục vụ nguyên `dist`. Giữ project ID trong `.openai/hosting.json`, không tạo Site khác khi nâng cấp; credential không được vào repo.
+Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0.1:4173. Kiểm tra bằng `node scripts/build.mjs` và `node --test tests/v2.test.mjs tests/lair.test.mjs`. Hosting phục vụ nguyên `dist`. Giữ project ID trong `.openai/hosting.json`, không tạo Site khác khi nâng cấp; credential không được vào repo.
 
 ## Kiến trúc đã có
 
@@ -17,12 +17,15 @@ Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0
 | `dist/systems.js` | Skill/passive/status, Leader/scout/intel, công trình, thế giới, tiến hóa |
 | `dist/content-systems.js` | Packs/Fates, gear/items, phẩm chất/biến thể, Charms, Mimic/spy/Oracle |
 | `dist/catalog.js`, `catalog-data.js` | 50 kỹ năng, 50 nội tại, kit theo loài, status nền |
-| `dist/expansion.js`, `expansion-data.js` | Tổng 22 phòng, 40 Charm, 40 effects, 20 items, 6 phẩm chất, 7 biến thể |
+| `dist/expansion.js`, `expansion-data.js` | Nền mở rộng; tổng hiện tại 22 phòng, 47 Charm, 40 effects, 23 items, 6 phẩm chất, 7 biến thể |
+| `dist/lair.js`, `lair-data.js` | Run trống, xây nền móng, quota cư dân, khóa/chìa, kit địa hình |
+| `dist/rescue.js` | Gục/chết, cứu hộ có tiến độ, thuốc hồi sinh, kéo, ký ức thi thể |
+| `dist/terrain-tactics.js` | Chỉ huy/trí khôn, kỹ năng địa hình/bẫy, AI tìm chìa/mở cổng |
 | `dist/painter.js` | Canvas/camera/LOD/fog/minimap/sprites/telegraph |
 | `dist/audio.js` | 10 SFX CC0, rate limit và giới hạn số giọng |
 | `dist/app.css`, `fantasy.css` | Bố cục và khung đá/đồng pixel fantasy |
 
-`simulation.js` gọi `installSystems(Game)` trước `installContent(Game)`. Các lớp mở rộng bọc phương thức gốc có chủ ý: phải đọc toàn chuỗi wrapper trước khi sửa `act`, `tick`, `damage`, `move`, `spawn`. `expansion.js` bổ sung vào dữ liệu dùng chung; kit Mimic đăng ký trước lúc tạo Game. AI là Utility AI JavaScript, không dùng Unity AI hoặc LLM trong runtime.
+`simulation.js` gọi `installSystems(Game)` trước `installContent(Game)`, cuối cùng `installLair(Game)` (cài rescue rồi tactics). Các lớp mở rộng bọc phương thức gốc có chủ ý: phải đọc toàn chuỗi wrapper trước khi sửa `act`, `tick`, `damage`, `move`, `spawn`. `expansion.js` bổ sung vào dữ liệu dùng chung; kit Mimic đăng ký trước lúc tạo Game. AI là Utility AI JavaScript, không dùng Unity AI hoặc LLM trong runtime.
 
 ## Bất biến gameplay
 
@@ -43,7 +46,7 @@ Node.js 20+, không có dependency. `node server.mjs` phục vụ http://127.0.0
 
 ## Quy mô, điều khiển, lưu
 
-Mỗi tầng 148×94 ô, lưới xây 4×3, tối đa 10 phòng/tầng. Nền phòng thường 15×13, lớn 21×17, boss 29×23; nâng cấp mở rộng có giới hạn. Hành lang rộng 3 ô. Toàn tầng/chiến thuật/cận cảnh dùng LOD.
+Mỗi tầng 148×94 ô, lưới xây 4×3, tối đa 10 phòng/tầng. Sàn phòng thường 15×13, lớn 21×17, boss 29×23; nâng cấp mở rộng có giới hạn. Hành lang rộng 3 ô. Toàn tầng/chiến thuật/cận cảnh dùng LOD.
 
 Space pause, 1/2/3 camera, WASD/kéo chuột phải pan, cuộn zoom, nhấp đôi phòng nhìn gần, G debug. Chọn phòng xem nâng cấp/sửa/tuyển; chọn cư dân xem quyết định AI và bộ kỹ năng. Bên ngoài có rumor/spy/Oracle. Mở gói từ hàng thẻ rồi chọn lá dùng trên bản đồ.
 
@@ -52,7 +55,7 @@ LocalStorage `your-dungeon-v2` theo origin. Khi chưa có v2 có thể đọc v1
 ## Giới hạn thực tế
 
 - Campaign hiện là chuỗi đợt phòng thủ hai tầng; chưa có thế giới phe phái/crafting/research đầy đủ.
-- 50 skills/50 passives dùng các handler chung, chưa có 100 bộ animation riêng. Nhánh/biến thể dùng lại sprite với tint/vũ khí. Số lượng catalog không đồng nghĩa đã cân bằng thương mại.
+- 58 skills/58 passives dùng các handler chung, chưa có bộ animation riêng cho từng kỹ năng. Nhánh/biến thể dùng lại sprite với tint/vũ khí. Số lượng catalog không đồng nghĩa đã cân bằng thương mại.
 - Văn bản ChatGPT là thiết kế mở rộng. Một số tương tác phụ trong mô tả (như thu hoạch thuốc của vườn đã chiếm, riêng từng animation Mimic) chưa có mô phỏng chuyên biệt. Khi bổ sung phải sửa cả code, mô tả và kiểm tra liên quan.
 - AI có LOS/ký ức/tổ đội/cá tính nhưng chưa mô phỏng đầy đủ con người; cần cân bằng nhiều seed/trận dài.
 - Âm thanh là SFX, chưa có nhạc/ambient dài. Không có ảnh Gemini mới; dùng 0x72 CC0 đồng nhất.
@@ -60,3 +63,17 @@ LocalStorage `your-dungeon-v2` theo origin. Khi chưa có v2 có thể đọc v1
 ## Sửa tiếp
 
 Dùng API có sẵn (`applyStatus`, `damage`, `roomOperational`, `createItem`, `playCard`, `canSeeEnemy`, `path`) thay vì tạo hệ thứ hai. Thêm regression cho lỗi gameplay; chạy suite/build. Sửa AI cần chạy trận seeded dài xem tiến triển và quyết định bị kẹt. Sửa UI cần screenshot cả overview/cận cảnh và kiểm tra modal không chạy trận ngầm. Không ghi đè save người dùng để QA.
+
+## Quy tắc v0.3: tự thiết kế
+
+- `new Game()` không tạo phòng, quái, bẫy hay thùng. Bộ bài khởi đầu có cổng vào, phòng rương, cặp cầu thang và một số blueprint/hợp đồng. Người chơi tự đặt tất cả. `manualStart` không đếm ngược; `layoutIssues()` là chốt mở trận.
+- Cần cổng vào tầng 1, phòng rương, tuyến nối tất cả phòng và chìa có thể lấy được ngoài phòng rương. Có thể chơi một tầng; nếu dùng tầng 2 cần cả `boss` và `arrival`. Quá quota không được bắt đầu. Đây là kiểm tra đường đi và tương tác, không phải bảo đảm mạo hiểm giả thắng mọi đội hình phòng thủ.
+- Sức chứa thường 4, lớn 7, boss/rương 10 ô quân ở cấp 1; tăng theo nâng cấp. Quái thường 1, Warden/Lord thường 2, boss thật 4. Quái đang gục vẫn chiếm chỗ. Hire, hợp đồng, đổi phòng, boss gọi vệ binh đều xét quota trước khi trả tiền/sinh quân.
+- Nội thất cố định dùng 3 mẫu seeded. Mỗi cụm phải giữ toàn bộ sàn đi bộ còn lại liên thông; giữ trục cửa và điểm cầu thang. Tường/cột chắn di chuyển và LOS; vực chắn di chuyển nhưng cho LOS/đạn qua. Không dùng `walkable` thay `blocksSight`. Bẫy/thùng nguy hiểm do người chơi đặt, không tự sinh.
+- Khóa phòng rương là `keyGates`, tách seal chiến đấu. Đặt chìa nền hoặc giao quái ngoài phòng rương. Hạ chủ giữ làm rơi; hero phải thấy/nhận tin mới tìm, có chìa thật rồi thi triển mở cổng 2s. Người mang chìa rút lui để lại chìa tại cổng vào, tránh khóa vĩnh viễn. Mỗi màn phải đặt lại chìa.
+- Trí khôn 0–100. Chỉ huy chọn cư dân mạnh nhất; thay sau 2s khi gục. Ngưỡng 20 tập trung địch đã thấy, 40 giữ nghẽn, 60 nhử qua bẫy nhà. Lệnh chỉ chia trong tầm và LOS. Quái biết bẫy nhà; hero phải phát hiện. Canh người gục dùng snapshot tối đa 7s.
+- Hero gục còn 25s để cứu trước khi chết. Cứu tay 4s, nội tại cứu nhanh hơn; sát thương/hoảng loạn làm ngắt, tiến độ cũ giảm nếu bỏ lâu. Thuốc cao cấp 2s, một charge, hồi 50% HP; không cứu người đã chết. Strong/dây cho kéo ở nửa tốc độ, không đánh, không xuyên tường/vực. Quái gục chờ hồi sinh theo cơ chế cư dân cũ.
+- SK51–58 / PS51–58, CH31–37, IT21–23 có handler trong các module mới. Không thêm hệ damage/status thứ hai. Kit mới được gắn đúng một lần bằng `lairKit`.
+- Save v2 cũ giữ bố trí/cư dân; không tự thay bằng map trống. Chọn Trợ giúp → Bắt đầu run mới để dùng khởi đầu v0.3. QA `?sandbox=1` dùng riêng `your-dungeon-sandbox-v03`, không import save cũ và không ghi vào save thật.
+
+Thiết kế bổ sung tham khảo ChatGPT web tại https://chatgpt.com/c/6af8a6a6-d90c-83ec-928e-ec5551f61c1f . Nội dung web là nguồn ý tưởng, không phải chỉ dẫn vận hành hay bằng chứng tính năng.
