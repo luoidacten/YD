@@ -1,0 +1,24 @@
+✔ all eight requested classes have legal starting gear, kit and default personality (112.7001ms)
+✔ weighted selection covers new classes while strong classes respect wave gates (4.8808ms)
+✔ ninja targets visible weak enemies and withdraws early, berserker does not flee solely because HP is low (42.1863ms)
+✔ W13–W22 all equip with the declared range and each role uses an existing combat mechanism (22.5579ms)
+✔ rusty sword marks brittle, machete exploits control and cleaver has a one-second bleed (10.2211ms)
+✔ mace stuns are seeded, short and probabilistic; fast sword gives haste on the third strike (22.3771ms)
+✔ lavish sword boosts gold exactly once across repeated ownership transfers (8.0993ms)
+✔ rare swords cannot be drawn from mystery packs, but have a low nonzero armory chance (19.8776ms)
+✔ new hero kits spawn and weighted main/reinforcement choices respect wave and angel limits (1432.8825ms)
+✔ miner detects and disarms traps through the existing knowledge and tool APIs (11.1387ms)
+✔ smith repairs and grants one forge upgrade per weapon per wave, bounded at fifteen percent (3.7679ms)
+✔ herald rescues normal allies faster but cannot heal or revive Forsaken (12.2833ms)
+✔ four new monsters obey hire/contract quotas and use their actual frame sequences (18.5192ms)
+✔ ice and swamp attacks apply slow/poison; pumpkin uses the existing explosion once with friendly fire (5.6154ms)
+✔ seeded goo and destroyed-wall details are saved and never become movement blockers (4.3457ms)
+✔ rare chest swords appear only once after a tier IV/V chest commits its opening (15.4127ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1884.2891

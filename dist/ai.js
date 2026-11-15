@@ -377,7 +377,7 @@ e){
   const carrying=s.treasure.carrier===e.id,
   filled=game.usedSlots(e)>=e.capacity;
   if(!locked)add('retreat',
-  carrying?2.5:(ratio<.28?(has('fearful')?1.8:1.1):filled?.95:0)*(has('proud')?.3:1),
+  carrying?2.5:(ratio<.28&&e.species!=='berserker'?(has('fearful')?1.8:1.1):filled?.95:0)*(has('proud')?.3:1),
   null,
   carrying?'Mang kho báu, trở về lối ra qua cầu thang':'Bị thương nặng hoặc túi đầy; cửa không bị khóa');
   if(locked&&!enemy)add('explore',

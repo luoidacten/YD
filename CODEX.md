@@ -170,3 +170,10 @@ Soak CODEX_04: `tests/fixtures/soak-code04.json`, 150 trận, 0 kẹt, 0 limit, 
 Súng dùng `gunState` lưu trong save: ready/progress/jammed; sát thương mới ngắt channel nạp, không bắn trước khi xong. Người vụng có 18% kẹt qua RNG seeded, nạp kẹt lâu ×1,5. Phát súng tạo noise qua hearing 18 ô; không cấp mục tiêu ngoài LOS. Bom tiêu hao charge một lần, nổ qua damageProp hiện có; brain<35 có 25% lệch seeded 1–2 ô. AI có trí khôn chỉ ném khi tránh được đồng đội trong bán kính nổ.
 
 Kỹ thuật dùng skill catalog hiện có: blade B03, katana S10, axe S02, blunt C03, polearm C09, bow/crossbow/gun S04, thrown S03, staff A01, wand C04, holy H06, exotic C10; một số món đổi sang skill gần hơn. Đây là các phiên bản gần nhất được đề cho phép, không giả lập một hệ skill thứ hai. Crossbow thêm hit xuyên mục tiêu thứ hai trên cùng đường LOS; thrown thêm phát thứ ba sau S03. Technique chỉ gắn marker vào Utility khi đủ brain/thông thạo; skill gốc của class vẫn là skill class. Metrics nằm trong `state.weaponMetrics`.
+
+
+## CODEX_05-B — class và đội hình
+
+`classes-data.js` thêm ninja/priestess/nun/arcaneArcher/crossbowman, giữ id knight, paladin/berserker đã có từ CODEX_04. Class mới có 4 skill/2 passive catalog và Charm/đồ khởi đầu đúng thông thạo. Knight giữ kit cũ. Pool chính và viện binh đi qua `chooseHeroSpecies`: wave 1 không class mới, ninja/nun/crossbowman từ wave 2, priestess/arcaneArcher/paladin từ wave 3. Paladin khởi đầu chùy thánh + khiên; ninja có phi tiêu và katana trong túi.
+
+`classes.js` thêm Utility dựa trên enemies/allies thực sự nhìn thấy: ninja chọn đối thủ yếu và rút ở 42% HP khi không seal; priestess kite giữ tuyến sau; crossbowman tìm vị trí sau khiên có LOS/đường đi; berserker không tăng Utility rút chỉ vì HP thấp (vẫn mang kho báu về/rút khi hết mục tiêu hoặc giới hạn trận). Hero elite knight có đường dẫn knight_errant sẵn cho renderer ở CODEX_05-D. Save cũ không bị thay vũ khí đang cầm bằng đồ khởi đầu mới.
