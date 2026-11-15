@@ -150,3 +150,12 @@ App nạp manifest cùng origin; không request dịch vụ/font ngoài. `icon()
 `?icons=off` mô phỏng registry rỗng để QA. Ảnh `v04-hud-before.jpg` và `v04-hud-fallback.jpg`: so RGB 1280×720, **0 pixel đổi**, ghi ở `tests/fixtures/hud-fallback-proof.json`. `v04-hud-icons.jpg` là bản bật manifest. PNG 17×16/alpha128 bị từ chối trong test fixture tạm, không thay artwork của director. Kiểm chứng canvas cũng khóa kích thước 8px và vị trí nguyên.
 
 CODEX_02 phát hiện thêm lỗi slot cận chiến lệch tâm ô: A* kết thúc ở tâm ô nhưng đích bao vây là tọa độ thực. `move` nay hoàn tất đoạn trong cùng ô, melee slot chừa biên trong tầm đánh. Regression và report trước sửa giữ nguyên để kiểm toán. Không nới ngưỡng soak.
+
+
+## CODEX_04 — project art đã kích hoạt
+
+`bestiary-data.js` đăng ký 5 hero, 11 quái (8 loài Gemini + dark_knight và hai vua), W23–W30 vào bảng chung. `bestiary.js` cài sau v04: chọn hero có trọng số từ wave 2, paladin wave 3; kings giá thuê 190 vàng, hợp đồng 90 mana; king skeleton chỉ dùng hồi sinh trên skeleton trong nghĩa địa hoạt động. Không có bay xuyên vật cản hoặc split slime mới. Berserker dùng P23/P40 có sẵn thay vì tạo passive mới.
+
+`art-metadata.js` được sinh từ header PNG bất biến bởi `scripts/art-metadata.mjs`. Painter vẽ asset yd ở kích thước gốc nhân số nguyên, chân trên cùng baseline, không tint. `fxSprite()` ánh xạ 8 bộ phép 4 frame, 8 FPS theo thời gian renderer. `Game.visualEvents` là queue ngoài save/RNG (tối đa 40); Painter nhận cue heal/poison/stun/holy và shield đang hiệu lực, chỉ vẽ khi LOD/POV cho phép. Không thêm damage/status song song. Arrow/axe/knife giữ kiểu cũ; fire/frost/curse dùng ảnh phép.
+
+Soak CODEX_04: `tests/fixtures/soak-code04.json`, 150 trận, 0 kẹt, 0 limit, 5/150 thắng, trung vị 151,083s. Baseline v0.4.0: 8/150 thắng; thay đổi −2 điểm phần trăm, trong ±15 điểm. Đây là fixture độc lập, không phải số đo cân bằng campaign. Các asset của CODEX_05 đã có trên đĩa nhưng chỉ được kích hoạt ở commit sau; không tính metadata là gameplay hoàn thiện.

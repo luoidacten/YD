@@ -1,0 +1,27 @@
+✔ project bodies have full idle/run frames and every art hero has an existing four-skill kit (28.2717ms)
+✔ W23–W30 equip through the existing ownership API at their declared reach (37.7385ms)
+✔ all project monsters can be hired, obey slots, and visually flying units cannot cross pits or walls (172.439ms)
+✔ art hero weighted selection preserves wave gates and kings charge their advertised hire price (14.6131ms)
+✔ visual effects are transient, capped, and do not touch saved state or gameplay RNG (15.3586ms)
+✔ every room type rewards a living visitor after clearing, never during preparation or at a distance (126.9945ms)
+✔ last defender unlocks exactly one chest; revival and another clear do not farm a second reward (14.1354ms)
+✔ chest grades scale with room level, floor and defenders; boss chests are ancient (6.8484ms)
+✔ opening channels, interrupts on damage, commits one owner and cannot duplicate loot (41.5773ms)
+✔ heroes do not target an unseen chest or open one with a full bag or across floors (7.9935ms)
+✔ preparation residents spread and keep walking within their own room; pause freezes patrols (88.9919ms)
+✔ a defender returns home after combat and a Mimic keeps its disguise instead of wandering (20.0378ms)
+✔ all ten new monsters can be hired and summoned by actual contract cards with valid sprite frames (171.7277ms)
+✔ large new monsters obey quota and rejected contracts preserve card and resources (5.7615ms)
+✔ equipping each new weapon applies its actual reach while preserving equipment ownership (7.7267ms)
+✔ physical bows attack at long range with zero mana and produce an arrow instead of a melee swing (8.2619ms)
+✔ a physical bow user can choose kiting with zero mana and fire staff inflicts its stated effect (9.8233ms)
+✔ idle allies yield a corridor lane to the treasure carrier instead of blocking passage forever (10.8143ms)
+✔ weapon packs only offer usable weapons and keep their exact results across save/load (7.0719ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 814.8565

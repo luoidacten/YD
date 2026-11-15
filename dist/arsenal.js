@@ -71,13 +71,14 @@ export function installArsenal(Game){
   r=this.roomAt(x,
   y,
   floorId);
+  const summonCost=NEW_MONSTERS[species].summonCost||35;
   if(!this.canPrepare()||!r||!this.walkable(x,
   y,
   floorId)||!this.roomHasSpace(r,
   {
    species
   }
-  )||s.mana<35||s.entities.filter(e=>e.faction==='monster').length>=SETTINGS.residentLimit)return{
+  )||s.mana<summonCost||s.entities.filter(e=>e.faction==='monster').length>=SETTINGS.residentLimit)return{
    ok:false,
    message:'Cần nền trống, 35 mana và đủ ô quân trong phòng.'
   }
@@ -92,7 +93,7 @@ export function installArsenal(Game){
    message:'Ô này đang có cư dân.'
   }
   ;
-  s.mana-=35;
+  s.mana-=summonCost;
   const e=this.spawn(species,
   'monster',
   Math.round(x),
@@ -137,7 +138,7 @@ e.name
    random=!species,
    cost=Math.ceil((random?110:75)*(this.state.deck.activeFate?.id==='F02'?1.5:1));
    const chosen=species||this.pickWeighted(MONSTER_HIRES.map(id=>[id,
-    id==='pumpkin'?(this.state.world.event==='Chợ phiên'?.1:0):1]));
+    id==='pumpkin'?(this.state.world.event==='Chợ phiên'?.1:0):SPECIES[id]?.rare?.15:1]));
    if(!this.canPrepare()||!r||!this.roomOperational(r)||!this.roomHasSpace(r,
    {
     species:chosen

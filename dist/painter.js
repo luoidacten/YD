@@ -1,3 +1,5 @@
+import {ART_SIZE} from './art-metadata.js';
+import {FX_KINDS} from './bestiary-data.js';
 import {iconAsset} from './icons.js';
 import {
  STATUS
@@ -611,10 +613,38 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   def.color,
   10);
  }
+ nativeSprite(name,x,y,flip=false,anchor='feet'){
+  const im=this.image(name);if(!im.complete||!im.naturalWidth)return;
+  const scale=Math.max(1,Math.round(this.bounds.tile/16)),p=this.point(x,y),c=this.ctx;
+  const w=im.naturalWidth*scale,h=im.naturalHeight*scale;
+  c.save();c.imageSmoothingEnabled=false;c.translate(Math.round(p.x),Math.round(p.y));
+  if(flip)c.scale(-1,1);c.drawImage(im,-Math.round(w/2),anchor==='center'?-Math.round(h/2):-h,w,h);c.restore();
+ }
+ fxSprite(kind){
+  const mapped={fire:'fireball',revive:'holy',stun:'lightning'}[kind]||kind;
+  return FX_KINDS.includes(mapped)?Array.from({length:4},(_,f)=>`yd/fx/fx_${mapped}_anim_f${f}`):null;
+ }
+ drawFx(){
+  this.fx??=[];this.lastVisualEvent??=0;
+  for(const cue of this.game.visualEvents||[])if(cue.id>this.lastVisualEvent){
+   this.fx.push({...cue,expires:this.time+.5});this.lastVisualEvent=cue.id;
+  }
+  this.fx=this.fx.filter(f=>f.expires>this.time).slice(-40);
+  if(this.level==='overview')return;
+  const shields=this.game.state.entities.filter(e=>e.status==='active'&&e.floorId===this.floor&&
+   this.game.effect(e,'shield')&&this.isUnitVisible(e)).map(e=>({...e,kind:'shield'}));
+  const effects=this.fxBudget>0?[...shields,...this.fx].slice(-this.fxBudget):[];this.renderedFx=0;
+  for(const f of effects){
+   if(f.floorId!==this.floor||this.visibleTiles&&!this.visibleTiles[Math.round(f.y)*WIDTH+Math.round(f.x)])continue;
+   const frames=this.fxSprite(f.kind);if(!frames)continue;
+   this.nativeSprite(frames[Math.floor(this.time*8)%4],f.x,f.y-.7,false,'center');this.renderedFx++;
+  }
+ }
  bodySprite(e,frame){
   const d=SPECIES[e.species];
   const hit=['knight_m','knight_f','elf_m','elf_f','lizard_m','lizard_f','dwarf_m','dwarf_f','wizzard_m','wizzard_f'];
-  if(this.game.state.time-(e.lastDamaged??-100)<.15&&hit.includes(d.sprite))return d.sprite+'_hit_anim_f0';
+  if(this.game.state.time-(e.lastDamaged??-100)<.15&&(hit.includes(d.sprite)||ART_SIZE[d.sprite+'_hit_anim_f0']))
+   return d.sprite+'_hit_anim_f0';
   if(e.species==='mimic')return 'chest_mimic_open_anim_f'+(e.disguised?0:frame%3);
   if(['slime','shaman'].includes(e.species)||d.animation==='single')return d.sprite+'_anim_f'+frame;
   return d.sprite+'_'+(e.moving?'run':'idle')+'_anim_f'+frame;
@@ -698,9 +728,11 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    c.stroke()
   }
   c.save();
-  c.filter=e.variant==='frost'?'hue-rotate(125deg) saturate(.75)':e.variant==='fire'?'sepia(.5) saturate(1.3)':e.variant==='shadow'?'hue-rotate(220deg)':e.variant==='poison'?
+  c.filter=SPECIES[e.species].sprite.startsWith('yd/')?'none':
+   e.variant==='frost'?'hue-rotate(125deg) saturate(.75)':e.variant==='fire'?'sepia(.5) saturate(1.3)':e.variant==='shadow'?'hue-rotate(220deg)':e.variant==='poison'?
   'hue-rotate(40deg)':'none';
-  this.sprite(sprite,
+  if(sprite.startsWith('yd/'))this.nativeSprite(sprite,e.x,e.y+.35,e.flip);
+  else this.sprite(sprite,
   e.x-size/2+(e.strike?Math.sin(e.strike*20)*.13:0),
   e.y-size*aspect+.35,
   size,
@@ -708,7 +740,9 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   e.flip);
   c.restore();
   const weapon=this.game.weaponDefinition(e);
-  if(weapon&&!e.disguised&&this.level==='detail')this.sprite(weapon.art,
+  if(weapon&&!e.disguised&&this.level==='detail'&&weapon.art.startsWith('yd/'))
+   this.nativeSprite(weapon.art,e.x+(e.flip?-.6:.6),e.y-.3,e.flip);
+  else if(weapon&&!e.disguised&&this.level==='detail')this.sprite(weapon.art,
   e.x+(e.flip?-.85:.25),
   e.y-1.2+(e.strike?-.12:0),
   .65,
@@ -803,6 +837,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
  }
  draw(delta){
   this.time+=delta;
+  this.fxBudget=40;
   const{
    w,
    h,
@@ -1256,6 +1291,7 @@ t.windup>0||t.cooldown>4?2:0
    f.color,
    12)
   }
+  this.drawFx();
   const key=s.keyQuest;
   if(key?.locked){
    const holder=this.game.entity(key.owner),
@@ -1319,8 +1355,14 @@ t.windup>0||t.cooldown>4?2:0
   x=f.x+(f.tx-f.x)*progress,
   y=f.y+(f.ty-f.y)*progress-.5,
   c=this.ctx;
+  const frames=this.fxSprite(f.projectile);
+  if(frames&&this.level!=='overview'){
+   if(this.fxBudget<=0)return;this.fxBudget--;
+   this.nativeSprite(frames[Math.floor(this.time*8)%4],x,y,false,'center');return;
+  }
   if(['fire',
   'frost',
+  'curse',
   'magic'].includes(f.projectile)){
    const color=f.projectile==='fire'?'#f5b36e':f.projectile==='frost'?'#9bdef4':'#bda9ef';
    this.rect(x-.15,

@@ -11,7 +11,7 @@ export function installV04(Game){const P=Game.prototype;
   return entries.at(-1)?.[0];
  };
  P.pickCardDefinition=function(pool,type){
-  return this.pickWeighted(pool.map(c=>[c,c.rare?(type==='armory'?.15:0):
+  return this.pickWeighted(pool.map(c=>[c,c.rare?(['armory','contracts'].includes(type)?.15:0):
    c.species==='pumpkin'?(this.state.world.event==='Chợ phiên'?.1:0):1]));
  };
  P.chooseHeroSpecies=function(base){
