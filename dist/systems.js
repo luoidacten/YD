@@ -882,7 +882,7 @@ e.name
   e.attackSlot.y,
   e.floorId,
   e))return e.attackSlot;
-  const radius=target.boss?2.1:1.1,
+  const radius=Math.min(target.boss?2.1:1.1,this.range(e)+(target.boss?.9:0)-.15),
   choices=[];
   for(let i=0;
   i<8;
@@ -1078,7 +1078,7 @@ ROOMS[room.type].name
      this.move(e,
      slot,
      dt,
-     .22);
+     .1);
      e.decision-=dt;
      e.cooldown=Math.max(0,
      e.cooldown-dt);

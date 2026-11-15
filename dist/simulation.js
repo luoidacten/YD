@@ -787,6 +787,9 @@ Math.round(end.y)
   if(e.navRevision!==this.navRevision||e.pathEnd!==key||!e.path.length){
    e.path=this.path(e,
    end);
+   // A* uses tile centers; finish the remaining sub-tile segment too.
+   if(!e.path.length&&Math.round(e.x)===Math.round(end.x)&&
+    Math.round(e.y)===Math.round(end.y)&&this.lineOfSight(e,end))e.path=[{x:end.x,y:end.y,floorId:e.floorId}];
    e.waitingGate=null;
    if(!e.path.length&&e.faction==='hero'){
     const route=this.path(e,end,{ignoreGates:true});

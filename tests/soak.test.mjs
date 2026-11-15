@@ -88,3 +88,10 @@ test('five seeded battles finish naturally without a living entity stagnating fo
  assert.equal(s.limitHits,0,JSON.stringify(battles.filter(b=>b.limit)));
  assert.equal(s.stuckEpisodes,0,JSON.stringify(battles.flatMap(b=>b.stuck)));
 });
+
+test('movement finishes a fractional melee slot inside the current tile',()=>{
+ const {g}=fixture(),e=unit(g,'goblin','monster',50.08,43.9);
+ const target=unit(g,'rogue','hero',48.56,43.8);
+ for(let i=0;i<60;i++)g.move(e,{x:49.66,y:43.8,floorId:0},1/30,.1);
+ assert.ok(distance(e,target)<g.range(e));
+});
