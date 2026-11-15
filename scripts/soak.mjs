@@ -31,7 +31,7 @@ export function runBattle(seed,wave=1){
   for(const e of g.state.entities){
    if(e.status!=='active'){tracking.delete(e.id);continue}
    const tile=`${e.floorId}:${Math.round(e.x)},${Math.round(e.y)}`;
-   const channel=[e.channel||0,e.chestChannel||0,e.rescueChannel||0,e.keyChannel||0,e.itemChannel||0];
+   const channel=[e.channel||0,e.chestChannel||0,e.rescueChannel||0,e.keyChannel||0,e.itemChannel||0,e.reloadChannel||0,e.trapChannel||0];
    const skill=JSON.stringify(e.skillCooldowns),prev=tracking.get(e.id);
    const active=e.strike>0||e.channelCast?.resolveAt>g.state.time||channel.some((n,i)=>n>0&&n>(prev?.channel[i]||0));
    const allowed=['guard','ambush'].includes(e.action);
@@ -54,7 +54,7 @@ export function runBattle(seed,wave=1){
  const hash=createHash('sha256').update(g.serialize()).digest('hex');
  return{seed,wave,hash,result:s.phase,time:+s.battleTime.toFixed(3),escaped:heroes.filter(e=>e.status==='escaped').length,
   downed:heroes.filter(e=>e.status==='downed').length,dead:heroes.filter(e=>e.status==='dead').length,
-  monstersDowned:monsters.filter(e=>e.status==='downed').length,limit:s.battleTime>=480,stuck};
+  monstersDowned:monsters.filter(e=>e.status==='downed').length,limit:s.battleTime>=480,weaponMetrics:s.weaponMetrics,stuck};
 }
 
 export function summarize(battles){

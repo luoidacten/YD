@@ -1,3 +1,4 @@
+import {installSpecies} from './species.js';
 import {installClasses} from './classes.js';
 import {installWeapons} from './weapons.js';
 import {installBestiary} from './bestiary.js';
@@ -609,4 +610,5 @@ owner.name
  installBestiary(Game);
  installWeapons(Game);
  installClasses(Game);
+ installSpecies(Game);
 }

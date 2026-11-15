@@ -1062,20 +1062,7 @@ ROOMS[room.type].name
   }
   ;
   if(trap){
-   this.state.traps.push({
-    id:this.id('trap'),
-    type:kind,
-    x,
-    y,
-    floorId,
-    roomId:room?.id,
-    corridorId:corridor?.id,
-    disabled:false,
-    revealed:false,
-    cooldown:0,
-    windup:0
-   }
-   )
+   if(!this.createTrap(kind,{x,y,floorId}))return{ok:false,message:'Vị trí bẫy không hợp lệ.'};
   }
   else{
    if(!room||Math.abs(x-room.x)<=2||Math.abs(y-room.y)<=2)return{

@@ -1,0 +1,63 @@
+✔ project bodies have full idle/run frames and every art hero has an existing four-skill kit (28.4164ms)
+✔ W23–W30 equip through the existing ownership API at their declared reach (52.1508ms)
+✔ all project monsters can be hired, obey slots, and visually flying units cannot cross pits or walls (206.46ms)
+✔ art hero weighted selection preserves wave gates and kings charge their advertised hire price (20.1948ms)
+✔ visual effects are transient, capped, and do not touch saved state or gameplay RNG (16.7772ms)
+✔ every room type rewards a living visitor after clearing, never during preparation or at a distance (141.3949ms)
+✔ last defender unlocks exactly one chest; revival and another clear do not farm a second reward (17.6722ms)
+✔ chest grades scale with room level, floor and defenders; boss chests are ancient (5.1217ms)
+✔ opening channels, interrupts on damage, commits one owner and cannot duplicate loot (46.7767ms)
+✔ heroes do not target an unseen chest or open one with a full bag or across floors (12.2757ms)
+✔ preparation residents spread and keep walking within their own room; pause freezes patrols (91.9451ms)
+✔ a defender returns home after combat and a Mimic keeps its disguise instead of wandering (21.2594ms)
+✔ all ten new monsters can be hired and summoned by actual contract cards with valid sprite frames (174.4759ms)
+✔ large new monsters obey quota and rejected contracts preserve card and resources (5.6955ms)
+✖ equipping each new weapon applies its actual reach while preserving equipment ownership (16.2848ms)
+✔ physical bows attack at long range with zero mana and produce an arrow instead of a melee swing (6.1275ms)
+✔ a physical bow user can choose kiting with zero mana and fire staff inflicts its stated effect (10.1199ms)
+✔ idle allies yield a corridor lane to the treasure carrier instead of blocking passage forever (11.7519ms)
+✔ weapon packs only offer usable weapons and keep their exact results across save/load (8.2937ms)
+✔ W13–W22 all equip with the declared range and each role uses an existing combat mechanism (39.1131ms)
+✔ rusty sword marks brittle, machete exploits control and cleaver has a one-second bleed (10.8662ms)
+✔ mace stuns are seeded, short and probabilistic; fast sword gives haste on the third strike (23.246ms)
+✔ lavish sword boosts gold exactly once across repeated ownership transfers (6.3099ms)
+✔ rare swords cannot be drawn from mystery packs, but have a low nonzero armory chance (22.2354ms)
+✔ new hero kits spawn and weighted main/reinforcement choices respect wave and angel limits (1536.9456ms)
+✔ miner detects and disarms traps through the existing knowledge and tool APIs (9.7395ms)
+✔ smith repairs and grants one forge upgrade per weapon per wave, bounded at fifteen percent (3.0635ms)
+✔ herald rescues normal allies faster but cannot heal or revive Forsaken (11.0996ms)
+✔ four new monsters obey hire/contract quotas and use their actual frame sequences (17.4575ms)
+✔ ice and swamp attacks apply slow/poison; pumpkin uses the existing explosion once with friendly fire (5.3164ms)
+✔ seeded goo and destroyed-wall details are saved and never become movement blockers (3.9559ms)
+✔ rare chest swords appear only once after a tier IV/V chest commits its opening (13.1266ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 31
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2057.0279
+
+✖ failing tests:
+
+test at tests\room-life.test.mjs:42:1
+✖ equipping each new weapon applies its actual reach while preserving equipment ownership (16.2848ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(g.useItem(e,item.id))
+  
+      at TestContext.<anonymous> (file:///C:/Users/ACER/Desktop/YD/your-dungeon/tests/room-life.test.mjs:43:155)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

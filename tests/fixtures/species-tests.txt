@@ -1,0 +1,28 @@
+✔ every room type rewards a living visitor after clearing, never during preparation or at a distance (115.3156ms)
+✔ last defender unlocks exactly one chest; revival and another clear do not farm a second reward (15.3808ms)
+✔ chest grades scale with room level, floor and defenders; boss chests are ancient (5.1708ms)
+✔ opening channels, interrupts on damage, commits one owner and cannot duplicate loot (41.3973ms)
+✔ heroes do not target an unseen chest or open one with a full bag or across floors (7.8045ms)
+✔ preparation residents spread and keep walking within their own room; pause freezes patrols (83.0702ms)
+✔ a defender returns home after combat and a Mimic keeps its disguise instead of wandering (17.8272ms)
+✔ all ten new monsters can be hired and summoned by actual contract cards with valid sprite frames (247.5066ms)
+✔ large new monsters obey quota and rejected contracts preserve card and resources (4.7175ms)
+✔ equipping each new weapon applies its actual reach while preserving equipment ownership (6.8654ms)
+✔ physical bows attack at long range with zero mana and produce an arrow instead of a melee swing (7.1891ms)
+✔ a physical bow user can choose kiting with zero mana and fire staff inflicts its stated effect (9.7555ms)
+✔ idle allies yield a corridor lane to the treasure carrier instead of blocking passage forever (8.1755ms)
+✔ weapon packs only offer usable weapons and keep their exact results across save/load (8.4577ms)
+✔ sixteen species hire and contract correctly with valid room favorites, kits and quota rejection (272.3713ms)
+✔ harpy steals only a light bag item through transfer with a single owner (13.6131ms)
+✔ gnoll pack and werewolf loss response require living same-room allies (14.0558ms)
+✔ burn stops troll regeneration; treant takes extra fire and immunities reject both status and periodic damage (11.3698ms)
+✔ minotaur push stops at a wall and lich resurrection needs an operational grave (14.2123ms)
+✔ kobold lays one nonblocking trap per wave with an interruptible channel and spends personal mana (28.8159ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 821.8685
