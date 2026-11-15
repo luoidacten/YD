@@ -136,7 +136,8 @@ e.name
    const r=this.state.rooms.find(r=>r.id===roomId),
    random=!species,
    cost=Math.ceil((random?110:75)*(this.state.deck.activeFate?.id==='F02'?1.5:1));
-   const chosen=species||MONSTER_HIRES[Math.floor(this.random()*MONSTER_HIRES.length)];
+   const chosen=species||this.pickWeighted(MONSTER_HIRES.map(id=>[id,
+    id==='pumpkin'?(this.state.world.event==='Chợ phiên'?.1:0):1]));
    if(!this.canPrepare()||!r||!this.roomOperational(r)||!this.roomHasSpace(r,
    {
     species:chosen

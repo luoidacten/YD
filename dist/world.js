@@ -209,6 +209,7 @@ id){
    )
   }
  }
+ room.wallDecorations=wallDecorations(room);
  return out;
 }
 export function connectedInterior(room,
@@ -315,4 +316,16 @@ p){
  }
  ,
  1)
+}
+
+export function wallDecorations(room){
+ const b=bounds(room),random=seeded((room.layoutSeed||1)^0x6873),out=[];
+ const x=room.x+(random()<.5?-4:4);
+ if(['grave','poisonpool'].includes(room.type)){
+  out.push({art:'wall_goo',x:x-.5,y:b.y});
+  out.push({art:'wall_goo_base',x:x-.5,y:b.y+1});
+ }
+ for(const side of [-1,1])out.push({art:'wall_hole_'+(random()<.5?1:2),
+  x:room.x+side*(Math.floor(b.w/2)-2)-.5,y:b.y,requiresDestroyed:true});
+ return out;
 }

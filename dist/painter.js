@@ -592,12 +592,23 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    .7,
    .7);
   }
+  for(const p of room.wallDecorations||[]){
+   if(!p.requiresDestroyed||room.buildingHp<=0)this.sprite(p.art,p.x,p.y);
+  }
   if(level==='detail')this.drawFacility(room);
   if(t<18||this.selected===room.id)this.label(def.name.toUpperCase(),
   p.x,
   b.y+b.h+1.1,
   def.color,
   10);
+ }
+ bodySprite(e,frame){
+  const d=SPECIES[e.species];
+  const hit=['knight_m','knight_f','elf_m','elf_f','lizard_m','lizard_f','dwarf_m','dwarf_f','wizzard_m','wizzard_f'];
+  if(this.game.state.time-(e.lastDamaged??-100)<.15&&hit.includes(d.sprite))return d.sprite+'_hit_anim_f0';
+  if(e.species==='mimic')return 'chest_mimic_open_anim_f'+(e.disguised?0:frame%3);
+  if(['slime','shaman'].includes(e.species)||d.animation==='single')return d.sprite+'_anim_f'+frame;
+  return d.sprite+'_'+(e.moving?'run':'idle')+'_anim_f'+frame;
  }
  entity(e){
   const c=this.ctx,
@@ -646,25 +657,14 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   }
   const big=!!e.boss,
   size=big?e.boss==='warden'?2.7:3:(SPECIES[e.species].size||1),
-  aspect=big||SPECIES[e.species].size||['slime',
+  aspect=big||SPECIES[e.species].size||['angelHerald','iceZombie','muddy','swampy','slime',
   'mimic',
   'imp',
   'wogol',
   'zombie'].includes(e.species)?1:1.5;
   const f=Math.floor(this.time*6)%4,
   def=SPECIES[e.species],
-  sprite=e.species==='mimic'?('chest_mimic_open_anim_f'+(e.disguised?0:f%3)):e.species==='slime'?`tiny_slug_anim_f${
-f
-}`:e.species==='shaman'?`necromancer_anim_f${
-f
-}`:
-  `${
-def.sprite
-}_${
-e.moving?'run':'idle'
-}_anim_f${
-f
-}`;
+  sprite=this.bodySprite(e,f);
   c.fillStyle='#02070977';
   c.beginPath();
   c.ellipse(point.x,
@@ -1273,6 +1273,11 @@ t.windup>0||t.cooldown>4?2:0
     '#f4dfae',
     16)
    }
+  }
+  const coreRoom=rooms.find(r=>r.type==='treasure');
+  if(key&&coreRoom&&level!=='overview')for(const [i,d]of coreRoom.doors.entries()){
+   this.sprite(key.locked?'lever_left':'lever_right',d.x+1,d.y-1);
+   this.sprite('button_'+(i%2?'red':'blue')+'_'+(key.locked?'up':'down'),d.x+1,d.y);
   }
   const gradient=c.createRadialGradient(w/2,
   h/2,

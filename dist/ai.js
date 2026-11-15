@@ -78,12 +78,12 @@ e){
  ;
  for(const t of s.traps){
   if(t.floorId!==e.floorId||t.disabled||e.knownTraps.includes(t.id))continue;
-  const range=(e.species==='rogue'||e.elite?5:2.2)+(game.effect(e,
+  const range=(e.species==='rogue'||SPECIES[e.species].trapExpert||e.elite?5:2.2)+(game.effect(e,
   'trapSense')?1:0);
   if(distance(e,
   t)>range||!game.lineOfSight(e,
   t))continue;
-  if(t.revealed||game.random()<((e.species==='rogue'?.65:.18)+(game.effect(e,
+  if(t.revealed||game.random()<((e.species==='rogue'||SPECIES[e.species].trapExpert?.65:.18)+(game.effect(e,
   'trapSense')?.value||0)))e.knownTraps.push(t.id)
  }
  const heard=s.noises.filter(n=>n.floorId===e.floorId&&s.time-n.time<5&&distance(e,
@@ -345,7 +345,7 @@ e){
   prop.id,
   'Hai đối thủ gần thùng nguy hiểm, không thấy đồng minh trong vùng nổ');
  }
- if(hero&&(e.species==='rogue'||e.elite)){
+ if(hero&&(e.species==='rogue'||SPECIES[e.species].trapExpert||e.elite)){
   const trap=s.traps.find(t=>!t.disabled&&t.floorId===e.floorId&&e.knownTraps.includes(t.id)&&distance(t,
   e)<5&&game.lineOfSight(e,
   t));

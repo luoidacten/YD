@@ -132,6 +132,7 @@ const roleNames={
 }
 ;
 function portrait(e){
+ if(SPECIES[e.species].animation==='single')return SPECIES[e.species].sprite+'_anim_f0';
  return e.species==='slime'?'tiny_slug_anim_f0':e.species==='shaman'?'necromancer_anim_f0':e.species==='mimic'?'chest_mimic_open_anim_f2':`${
 SPECIES[e.species].sprite
 }_idle_anim_f0`
@@ -355,7 +356,7 @@ e.variant!=='normal'?' · '+variant.name:''
 }${
 e.status!=='active'?' · '+(e.status==='downed'?'Đang gục':e.status==='dead'?'Đã chết':'Đã rời đi'):''
 }</div>${
-meter('Sinh lực',
+hearts(e)+meter('Sinh lực',
 e.hp,
 e.maxHp)
 }${
@@ -930,8 +931,8 @@ game.roomCapacity(r)
 'lord'].map(id=>
 `<button class="list-row" data-hire="${
 id
-}"><img src="assets/frames/${
-id==='mimic'?'chest_mimic_open_anim_f2':id==='shaman'?'necromancer_anim_f0':id==='slime'?'tiny_slug_anim_f0':SPECIES[id].sprite+'_idle_anim_f0'
+}" ${game.canHireSpecies(id)?'':'disabled title="Chỉ xuất hiện tại Chợ phiên"'}><img src="assets/frames/${
+portrait({species:id})
 }.png" alt=""><b>${
 SPECIES[id].name
 }</b><span>${
@@ -1171,7 +1172,7 @@ d.description||''
   d])=>
   `<div class="catalog-card">${
 d.art||d.sprite?`<img class="catalog-icon" src="assets/frames/${
-d.art||d.sprite+'_idle_anim_f0'
+d.art||portrait({species:id})
 }.png" alt="">`:""
 }<b>${
 esc(d.name)
@@ -1708,4 +1709,13 @@ v>`
   $('#audio').click();
   closeModal()
  }
+}
+
+function hearts(e){
+ const ratio=Math.max(0,Math.min(1,e.hp/e.maxHp));
+ const images=Array.from({length:5},(_,i)=>{
+  const fill=ratio*5-i,frame=fill>=1?'full':fill>0?'half':'empty';
+  return `<img src="assets/frames/ui_heart_${frame}.png" alt="">`;
+ }).join('');
+ return `<div class="health-hearts" aria-label="Sinh lực ${Math.round(ratio*100)}%">${images}</div>`;
 }

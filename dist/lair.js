@@ -1,3 +1,4 @@
+import {installV04} from './v04.js';
 import './lair-data.js';
 import {
  installRoomLife
@@ -601,4 +602,5 @@ owner.name
  installTactics(Game);
  installRoomLife(Game);
  installArsenal(Game);
+ installV04(Game);
 }

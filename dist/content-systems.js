@@ -898,7 +898,7 @@ VARIANTS[e.variant].name
   for(let i=0;
   i<p.count;
   i++){
-   const c=candidates[Math.floor(this.random()*candidates.length)];
+   const c=this.pickCardDefinition(candidates,type);
    cards.push(this.makeCard(c.id,
    c.kind==='creature'?this.rollGrade(true):null,
    c.kind==='creature'?Object.keys(VARIANTS)[Math.floor(this.random()*7)]:null))
