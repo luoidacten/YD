@@ -1,0 +1,2661 @@
+{
+ "schema": 1,
+ "fixture": "seeded-independent-waves-v1",
+ "step": 0.03333333333333333,
+ "generatedAt": "2026-11-15T15:08:22.802Z",
+ "summary": {
+  "battles": 150,
+  "defenderWins": 18,
+  "medianSeconds": 162.533,
+  "limitHits": 0,
+  "stuckEpisodes": 14
+ },
+ "battles": [
+  {
+   "seed": 1,
+   "wave": 1,
+   "hash": "f1571cc60a8fd94d4522004bd0577fa99e548686d7ffb2d8175e3ad1db746f7c",
+   "result": "gameover",
+   "time": 120.333,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 1,
+   "wave": 2,
+   "hash": "b603f43561d24509a806c390931734fafe28b18ae4251f37e493c0902bd42899",
+   "result": "gameover",
+   "time": 163.267,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 1,
+   "wave": 3,
+   "hash": "32aee2942e195e4309a9b5ac13d54ad8a77d6e95a109786abee9cafa51eb2768",
+   "result": "gameover",
+   "time": 134.433,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 2,
+   "wave": 1,
+   "hash": "6daff1748db29cc4a666fb09115d128fa9518b5d4d481fb58077b1d0e2383662",
+   "result": "result",
+   "time": 154.367,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 9,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 2,
+   "wave": 2,
+   "hash": "e968ee1f0934b46707acb0444b79a49c12978448d671882cd3bccfd4268ab2ad",
+   "result": "gameover",
+   "time": 171.133,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 2,
+   "wave": 3,
+   "hash": "53fe872bccf543671721fa902263d88898eb6049e1f86b5a3dac35495c2df9db",
+   "result": "gameover",
+   "time": 135.9,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 3,
+   "wave": 1,
+   "hash": "121e6d2f619660985b8472fa68109fdeb2aad33b3089bf5332d7ecd756270e9d",
+   "result": "gameover",
+   "time": 112.033,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 3,
+   "wave": 2,
+   "hash": "62bafd76ab4bea7a83604fb983d47ddd8372584411e493c949e7b0c551df9384",
+   "result": "gameover",
+   "time": 146.4,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 3,
+   "wave": 3,
+   "hash": "ae069a57966418a6f35c136782f7b6e9634b0d729c0a9901fef0eb58e99327f7",
+   "result": "gameover",
+   "time": 141.533,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 4,
+   "wave": 1,
+   "hash": "0b38085b356f5316eba4a916a2945b84c75960196fd4ead1d20fe82ec830ddfb",
+   "result": "gameover",
+   "time": 182.433,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 4,
+   "wave": 2,
+   "hash": "7593bbcb8b344024492fc58a2894d0ad1c3ff9489a1c3ae602794063b3436f8e",
+   "result": "gameover",
+   "time": 139.2,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 4,
+   "wave": 3,
+   "hash": "83eaf131eb47b2c75aed3ed587fb3b61ea17e4147987b1eef1169fe29154cd0d",
+   "result": "gameover",
+   "time": 151.133,
+   "escaped": 13,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 5,
+   "wave": 1,
+   "hash": "47726b7f492ba60ff8918cf3c0ba0810b9b612d16abe64bd2fe5221794ddcfae",
+   "result": "gameover",
+   "time": 205.333,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity323",
+     "name": "Hậu quân 1-1",
+     "faction": "hero",
+     "tile": "0:42,46",
+     "action": "wait",
+     "time": 94.467,
+     "target": {
+      "x": 42.103138765334805,
+      "y": 45.99862818103322,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.78,
+       "reason": "Leader chờ tuyến sau tập hợp trước khi vào phòng mới"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 95,
+      "mana": 0,
+      "statuses": [],
+      "decision": 0.2,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 79.73333333333137
+     }
+    }
+   ]
+  },
+  {
+   "seed": 5,
+   "wave": 2,
+   "hash": "4071c36ce73a2633f175df52f6d22ff6d464ba2d1658987d034c18c2eb743fb4",
+   "result": "gameover",
+   "time": 263.4,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 5,
+   "wave": 3,
+   "hash": "74bea6050040fceb8b5aeba8c7321dcb201d7a23a46b0f87ffc881f0dda2ba14",
+   "result": "gameover",
+   "time": 269.5,
+   "escaped": 13,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 5,
+     "wave": 3,
+     "id": "entity277",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:25,47",
+     "action": "wait",
+     "time": 45.6,
+     "target": {
+      "x": 25.09414936374839,
+      "y": 47.24458211529553,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.78,
+       "reason": "Leader chờ tuyến sau tập hợp trước khi vào phòng mới"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 177,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 270.6999999999981,
+        "source": "entity277"
+       },
+       {
+        "type": "block",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity277",
+        "permanent": true,
+        "gearSlot": "armor"
+       }
+      ],
+      "decision": 0.16666666666666669,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 30.833333333334025
+     }
+    }
+   ]
+  },
+  {
+   "seed": 6,
+   "wave": 1,
+   "hash": "1649c18bdef97e383257908062602a11d5d6a4ded3a525717421453e63a2ed5e",
+   "result": "gameover",
+   "time": 170.467,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 6,
+   "wave": 2,
+   "hash": "9919acb1a24bbc2ca687d4669a9aff12d868a39eb7bc0cda77d97509f9381594",
+   "result": "gameover",
+   "time": 111.367,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 6,
+   "wave": 3,
+   "hash": "7e40c695e00c13d1389f92a6ee0412b26f911b0f8889a3cd0a8db5f9616fe6ae",
+   "result": "gameover",
+   "time": 149.3,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 7,
+   "wave": 1,
+   "hash": "ae7a74fbc65785871ef8d63a63a95924749790959cff52f5a910477b4af21267",
+   "result": "gameover",
+   "time": 138.267,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 7,
+   "wave": 2,
+   "hash": "837b686df1511ef2caef0df6b2a963cc2136d793bf462c218c1abe979aa99dec",
+   "result": "gameover",
+   "time": 164.967,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 7,
+   "wave": 3,
+   "hash": "f827eb905ebc3554d494a607da1c09520d69e9a3273d40cc40d3797fd6f996b4",
+   "result": "gameover",
+   "time": 173.967,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 8,
+   "wave": 1,
+   "hash": "eb8deaf81a6742c072c4c38fdabdf9ff2a9f2822e228dd1cc27942a9157a37f7",
+   "result": "result",
+   "time": 148.467,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 6,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 8,
+   "wave": 2,
+   "hash": "e5daa983dfa1eec9ce38de92285a871bd6c507d99d222af4a8df9037b3151244",
+   "result": "gameover",
+   "time": 140.3,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 8,
+   "wave": 3,
+   "hash": "bfaa71383368556efb05e562062f9f675a94ca7af465a401417fee04a0433d25",
+   "result": "gameover",
+   "time": 97.1,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 9,
+   "wave": 1,
+   "hash": "2c696d8d265f2c90fc513b77a1257446e4171d8b9ff3f64c14afea49f1b6ba33",
+   "result": "result",
+   "time": 223,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 9,
+   "wave": 2,
+   "hash": "9cdb6f240eaa6b73623ad09a9cbfa0452ae3c493b4f6eab17b8a5af85e5fd3d5",
+   "result": "gameover",
+   "time": 133.467,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 9,
+   "wave": 3,
+   "hash": "af57a95c05ef0f652a2d7fcbffc92498d6b06233ed367818a56739c17a6c9376",
+   "result": "gameover",
+   "time": 136.533,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 10,
+   "wave": 1,
+   "hash": "711eaa2cc17ab0e0f659ba153408658a19571fc29b0e937fd74391dc2f9e0b91",
+   "result": "gameover",
+   "time": 235.967,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 10,
+   "wave": 2,
+   "hash": "891d9faa90f16b687aefa96cd300f56cbc72b0ba62635c0d6ee8290c40b63cb9",
+   "result": "gameover",
+   "time": 227.233,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 10,
+   "wave": 3,
+   "hash": "8ad726e3fac5e9c5ceac0e217c73a92f76f5865fc0d323d0ec583adc568497f9",
+   "result": "gameover",
+   "time": 231.4,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 11,
+   "wave": 1,
+   "hash": "6b6c4f0cfb2f424ed83c84435ef31b794e8d037711d0cde8b0873d2238d685e5",
+   "result": "result",
+   "time": 160.667,
+   "escaped": 4,
+   "downed": 0,
+   "dead": 9,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 11,
+   "wave": 2,
+   "hash": "245837c7c12c1a63808144594a85149ba694a84567e215e4e6f7bd67f9df5eca",
+   "result": "gameover",
+   "time": 168.6,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 11,
+   "wave": 3,
+   "hash": "b7fbd6f2fb02a36ec78a0c95a564e51f16c96567eada7a31ba87d732d8ab7bf1",
+   "result": "gameover",
+   "time": 171.6,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 12,
+   "wave": 1,
+   "hash": "27103cae08a3f4ff6a5148f8cb4bdc9e6ea2c672b7239f66343a595645c6ae71",
+   "result": "gameover",
+   "time": 173.567,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 12,
+   "wave": 2,
+   "hash": "bca9f368230d8d66edcbfdee19d7060d4edaeeefe839307bf42f2ad4a61f9f24",
+   "result": "gameover",
+   "time": 127.133,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 12,
+   "wave": 3,
+   "hash": "1feb466b3cfdb4a6172f9b3257d36904f25fda677403effefbd25eb86411ff04",
+   "result": "gameover",
+   "time": 153.767,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 13,
+   "wave": 1,
+   "hash": "d3ebb8d0c21540858d8619f2f5bbb601bcebac238fc4d4b9eb7a1822f6ac3437",
+   "result": "result",
+   "time": 133.333,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 13,
+   "wave": 2,
+   "hash": "6d7bdf3eb505a47469f5c2b0f7301c95490bd3f63573b06a729feb414820adf4",
+   "result": "gameover",
+   "time": 258.233,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 6,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 13,
+   "wave": 3,
+   "hash": "dad42b75a8e85bd89d422728f2af75d6c018790e09f3da99e9a87e0638f9f38f",
+   "result": "gameover",
+   "time": 164.167,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 14,
+   "wave": 1,
+   "hash": "e06273f3758a8e92c61098bd550b9ceced6198b684ebb961d76f0089b5360394",
+   "result": "gameover",
+   "time": 269.6,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 14,
+   "wave": 2,
+   "hash": "4e51389c41bb1c33f33da6d9c512ceba641beb64f5ed29c74bddc74dd26da0fb",
+   "result": "gameover",
+   "time": 106.733,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 14,
+   "wave": 3,
+   "hash": "cfa54c257267ba150e7a5bd04b47a61bb7d355d259f09ab5aa6e09e3e45c562f",
+   "result": "gameover",
+   "time": 216.1,
+   "escaped": 13,
+   "downed": 0,
+   "dead": 5,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 15,
+   "wave": 1,
+   "hash": "41bffb93e515656af027a19d0e5e80de2e832730a67cbeb2b844a309ab7329d6",
+   "result": "gameover",
+   "time": 228.133,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 15,
+   "wave": 2,
+   "hash": "c0c4d123fdc314ca260dc382f6b7834d8e80109d8d0555de494d7fb4350a1687",
+   "result": "gameover",
+   "time": 227.9,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 15,
+     "wave": 2,
+     "id": "entity350",
+     "name": "Hậu quân 2-7",
+     "faction": "hero",
+     "tile": "1:23,47",
+     "action": "regroup",
+     "time": 173.5,
+     "target": {
+      "x": 93.49910571831606,
+      "y": 45.00000000000857,
+      "floorId": 0,
+      "time": 145.13333333332767,
+      "mode": "explore",
+      "leaderId": "entity335",
+      "focus": null
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "regroup",
+       "score": 1.275,
+       "reason": "Kỷ luật: bám sát đội hình Leader"
+      },
+      {
+       "action": "regroup",
+       "score": 0.8999999999999999,
+       "reason": "Giữ gần tổ đội, tránh đi lẻ khi chưa giao chiến"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 59,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 229.79999999998964,
+        "source": "entity350"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity350",
+        "permanent": true,
+        "gearSlot": "weapon"
+       }
+      ],
+      "decision": 0.22143986346200112,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 158.46666666666025
+     }
+    },
+    {
+     "seed": 15,
+     "wave": 2,
+     "id": "entity350",
+     "name": "Hậu quân 2-7",
+     "faction": "hero",
+     "tile": "1:22,48",
+     "action": "regroup",
+     "time": 192.8,
+     "target": {
+      "x": 93.49910571831606,
+      "y": 45.00000000000857,
+      "floorId": 0,
+      "time": 145.13333333332767,
+      "mode": "explore",
+      "leaderId": "entity335",
+      "focus": null
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "regroup",
+       "score": 1.275,
+       "reason": "Kỷ luật: bám sát đội hình Leader"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 59,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 229.79999999998964,
+        "source": "entity350"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity350",
+        "permanent": true,
+        "gearSlot": "weapon"
+       }
+      ],
+      "decision": 0.3938714168034494,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 177.89999999999247
+     }
+    }
+   ]
+  },
+  {
+   "seed": 15,
+   "wave": 3,
+   "hash": "7ae5d04971f95fdde52ddf2e5094146ae5f7a0f3e844f82c35c9d1fc6ea1a726",
+   "result": "gameover",
+   "time": 229.9,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 16,
+   "wave": 1,
+   "hash": "fce39b42e342613a93f647e593f425c108b67673d6b7144a4044cc7f4a66cbf4",
+   "result": "gameover",
+   "time": 138.367,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 16,
+   "wave": 2,
+   "hash": "cc9a3b2937a7331042e6752a157d3e1fb1ac270f3c7b9a908fe50d21ba3cd9dc",
+   "result": "gameover",
+   "time": 137.4,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 16,
+   "wave": 3,
+   "hash": "286573eee871ee89871b72a263033c2844c65f7663873bc5c38eccd11e74c57a",
+   "result": "gameover",
+   "time": 155.767,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 17,
+   "wave": 1,
+   "hash": "9b947a72bf6e84164caca71802154548c3e077e0f5706be5f08a7f6aab3cdcbe",
+   "result": "result",
+   "time": 332.6,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 10,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 17,
+   "wave": 2,
+   "hash": "dac4cc68839a688998d485c9fa348d030bc7b5ae30b89bb1281d4cfd5cf8d84d",
+   "result": "gameover",
+   "time": 140.067,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 17,
+   "wave": 3,
+   "hash": "c7779a53c33d9aa08a0ef38eebbfcbe855d73f4ae3c7ed63fadd5279d0a0bde6",
+   "result": "gameover",
+   "time": 211.233,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 6,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 18,
+   "wave": 1,
+   "hash": "db0e398fa4c0b0e5f8544d09f3b1dc7020b4b671b5f6af00eea78ce746f0a34d",
+   "result": "result",
+   "time": 162.967,
+   "escaped": 4,
+   "downed": 0,
+   "dead": 9,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 18,
+   "wave": 2,
+   "hash": "14def401ad56304f650ce7c4a2e4732a5db8751d140780c58d4e0936ac36a350",
+   "result": "gameover",
+   "time": 186.867,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 18,
+   "wave": 3,
+   "hash": "e27bb99a0bf9a1f9aee249af4b9f5f2597d2d36270f4f75941c9324cc643a0a5",
+   "result": "gameover",
+   "time": 128.3,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 19,
+   "wave": 1,
+   "hash": "c6122411640bdcdb81933c2fa43a4ef5114ecbcb2d32b404f685f3425083401f",
+   "result": "gameover",
+   "time": 101.067,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 19,
+   "wave": 2,
+   "hash": "8367d00e71c704c2c58ccf0ae2c6ba1b1fbf2f4799846273347e753a288841e8",
+   "result": "gameover",
+   "time": 134.667,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 19,
+   "wave": 3,
+   "hash": "ca9200df02438ea65d69857b1f8594cdf5fb43986b6fff8f8a855ecffc101d14",
+   "result": "gameover",
+   "time": 118.267,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 20,
+   "wave": 1,
+   "hash": "dc13c8db6adcf582f219fa21772781e2aa7d4e391567a79d2fd0e6bba328dbe2",
+   "result": "gameover",
+   "time": 236.733,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 20,
+   "wave": 2,
+   "hash": "bbe9ca1ba6f48ba6aa0698f73b5c3c75eded48bae33af67b20676431953f3098",
+   "result": "gameover",
+   "time": 236.267,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 20,
+   "wave": 3,
+   "hash": "8a0aac3979375975a0d7dd33f8118767131aa3a0b4336aa4c3006f8d26efa230",
+   "result": "gameover",
+   "time": 255.367,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 21,
+   "wave": 1,
+   "hash": "7763dfaff47f6a661b2c74571a6996284526e18447dc6c509ba6aadbd6e9a8b5",
+   "result": "gameover",
+   "time": 173.5,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 21,
+   "wave": 2,
+   "hash": "20f45b5f8252ac00a8d2c17fa07ee155aa228079ed79c3826984f17818279209",
+   "result": "gameover",
+   "time": 137.4,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 21,
+   "wave": 3,
+   "hash": "ab6b3194dc0b883ce37436ac82d553a22388d1b6c4a6b16c3ac0b8db53fe1876",
+   "result": "gameover",
+   "time": 136.333,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 22,
+   "wave": 1,
+   "hash": "5f9a493769b13b771ee128d634001757c710fb0c625aa2d7c065092b658e9cdb",
+   "result": "gameover",
+   "time": 156.167,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 22,
+   "wave": 2,
+   "hash": "c538b8397c0d8c5dcb47e0a92b7a5efa10fc53456143f47d7a7fd54c9c40e51b",
+   "result": "result",
+   "time": 143.267,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 9,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 22,
+   "wave": 3,
+   "hash": "2e78032700e07bb2657bb241d52d8e9609954f5518677e18fce047dc15ab9b7c",
+   "result": "gameover",
+   "time": 133.667,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 23,
+   "wave": 1,
+   "hash": "76fb7e6c63c9ca37fa2960a7e7f68f937ca301d57c7de17b3785f10df5356a31",
+   "result": "gameover",
+   "time": 110.3,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 23,
+   "wave": 2,
+   "hash": "d6611cb265a857850bc1ba9fcd49ebdb4607a9780bf25fb834c5997f7b19a652",
+   "result": "gameover",
+   "time": 131.667,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 23,
+   "wave": 3,
+   "hash": "01b0606a8665086c28df4e1a9acfd801fa2a4666d66ca1df3135c83b18c592a6",
+   "result": "gameover",
+   "time": 115.867,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 24,
+   "wave": 1,
+   "hash": "dd3a1ae44be0b42a9bd34faf07e65b747f461d459550ac4045a3d22f82078e04",
+   "result": "result",
+   "time": 210.1,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 9,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 24,
+   "wave": 2,
+   "hash": "0d8ee3a0d2b7be6a2cd477ce9e6f612a48ba67e0d98fe22aede0a280fb599171",
+   "result": "gameover",
+   "time": 220.767,
+   "escaped": 15,
+   "downed": 0,
+   "dead": 5,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 24,
+   "wave": 3,
+   "hash": "cebc20f1ec3206135a15a65a1d282d0e9618dc1330b3074b4c51dfbab8a003ed",
+   "result": "gameover",
+   "time": 115.7,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 25,
+   "wave": 1,
+   "hash": "a41b65787d305363eb729fb7bb13fb6d8812260156d99d284828083ca49abf99",
+   "result": "gameover",
+   "time": 225.067,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 25,
+   "wave": 2,
+   "hash": "42c595a26d7f2d54cda85153ea5e9e11255605455dd071bfd120d479d528b76e",
+   "result": "gameover",
+   "time": 225.4,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 25,
+   "wave": 3,
+   "hash": "00cfbba60db1e1322f244ab03ca4a6a4e70d1be6a2a49c15fb1c425e3ada1eb1",
+   "result": "gameover",
+   "time": 227.067,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 26,
+   "wave": 1,
+   "hash": "d2a910b991a4e83bb213d1b4672f4fa08df10a772ba20d9973210370480fac0e",
+   "result": "gameover",
+   "time": 140.633,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 26,
+   "wave": 2,
+   "hash": "db8d55df34a58744aa7ababf6c8043b37b78ac077eb9eb3f53f00f123070c6d3",
+   "result": "gameover",
+   "time": 118.367,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 26,
+     "wave": 2,
+     "id": "entity231",
+     "name": "Arthur II",
+     "faction": "hero",
+     "tile": "0:44,44",
+     "action": "wait",
+     "time": 81.133,
+     "target": {
+      "x": 43.9549705203102,
+      "y": 44.09281516787438,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.78,
+       "reason": "Leader chờ tuyến sau tập hợp trước khi vào phòng mới"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 171,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "block",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity231",
+        "permanent": true,
+        "gearSlot": "armor"
+       }
+      ],
+      "decision": 4.163336342344337e-17,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 66.33333333333213
+     }
+    }
+   ]
+  },
+  {
+   "seed": 26,
+   "wave": 3,
+   "hash": "5e34382b708e7099e58f44cc62b8ddd43a3c4daab30c1a5e834109a923537254",
+   "result": "gameover",
+   "time": 148.633,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 27,
+   "wave": 1,
+   "hash": "4ea1635f35bf72386195f74d569adee35ac6d5764a1c26727dc1e0002a4550e6",
+   "result": "result",
+   "time": 172.7,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 27,
+   "wave": 2,
+   "hash": "ea6135159be5bd174e31a9a14b41c894484779a3d64e182834a6c8af0748db7c",
+   "result": "result",
+   "time": 141.233,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 27,
+   "wave": 3,
+   "hash": "309004b50fabcfffb928739dbbbb545cfc71fd64048ca45b035956000def98a1",
+   "result": "result",
+   "time": 141.333,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 10,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 28,
+   "wave": 1,
+   "hash": "6a0eb505868ede99d48e639894ba24145e6d10af302e031b86f6110c37e46d99",
+   "result": "gameover",
+   "time": 192.867,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 28,
+   "wave": 2,
+   "hash": "fc47e9d890e1ffd258b2a80481afb9824c7ed3cbae4c2f4cb8428a664783db3b",
+   "result": "gameover",
+   "time": 159.2,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 28,
+   "wave": 3,
+   "hash": "0d4fa4dc5e34e37c0e4fa3d2d77173a529ad0fb0def30fc798c37c073238e582",
+   "result": "gameover",
+   "time": 155.767,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 29,
+   "wave": 1,
+   "hash": "bf93081f929da8a9a6515ceeff75274f886f17806e8fe575c378169afb0ee5e7",
+   "result": "gameover",
+   "time": 149.1,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 29,
+   "wave": 2,
+   "hash": "9dfce452b2a3f7570bad8915ac478ec81e6ef7cb745d41f1c409a1eb3ba8bf96",
+   "result": "gameover",
+   "time": 148.567,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 29,
+   "wave": 3,
+   "hash": "6f221b61184a3912d5b7abba32adcdbbfef2e496e4dd17cde63f9a24a6b8b091",
+   "result": "gameover",
+   "time": 127.867,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 30,
+   "wave": 1,
+   "hash": "d0c1bf7d6932b034a640e481ed5722c84a3a768a76d115d43a8c9f68c780db63",
+   "result": "gameover",
+   "time": 300.867,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 30,
+   "wave": 2,
+   "hash": "0dcf98fdb0660b5a61611b5506f8bb1d96f26c17514a31bbc78e20447f75ab55",
+   "result": "gameover",
+   "time": 285.333,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 30,
+   "wave": 3,
+   "hash": "5af57fe4840f60c4f0907cbd8459567a569aee2fda3bee35e26d18699e2aa9f2",
+   "result": "gameover",
+   "time": 302.1,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 31,
+   "wave": 1,
+   "hash": "8dac8494bf859e75b97f2e82954144f76a01ea0c35f30357fdc9b2c69a899454",
+   "result": "result",
+   "time": 175.467,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 10,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 31,
+     "wave": 1,
+     "id": "entity265",
+     "name": "Hậu quân 1-5",
+     "faction": "hero",
+     "tile": "0:30,45",
+     "action": "investigate",
+     "time": 102.533,
+     "target": {
+      "x": 44.846892849412804,
+      "y": 46.41248314844979,
+      "floorId": 0,
+      "time": 102.53333333333008,
+      "firstSeen": 87.3999999999976,
+      "source": "sight"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.87,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ],
+     "detail": {
+      "hp": 49,
+      "mana": 125,
+      "statuses": [],
+      "decision": 0,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 87.36666666666427
+     }
+    },
+    {
+     "seed": 31,
+     "wave": 1,
+     "id": "entity184",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:45,46",
+     "action": "guard-body",
+     "time": 105.333,
+     "target": {
+      "id": "entity251",
+      "x": 40.414546007808966,
+      "y": 45.99819501118238,
+      "floorId": 0,
+      "time": 104.59999999999663,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      }
+     ],
+     "detail": {
+      "hp": 70,
+      "mana": 4,
+      "statuses": [],
+      "decision": 0.04271577581142393,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 87.76666666666425
+     }
+    },
+    {
+     "seed": 31,
+     "wave": 1,
+     "id": "entity255",
+     "name": "Hậu quân 1-3",
+     "faction": "hero",
+     "tile": "0:30,46",
+     "action": "investigate",
+     "time": 105.867,
+     "target": {
+      "x": 44.846892849412804,
+      "y": 46.41248314844979,
+      "floorId": 0,
+      "time": 105.86666666666322,
+      "firstSeen": 91.16666666666406,
+      "source": "sight"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.93,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ],
+     "detail": {
+      "hp": 49,
+      "mana": 125,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 144.03333333332785,
+        "source": "entity255"
+       }
+      ],
+      "decision": 0,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 91.13333333333073
+     }
+    },
+    {
+     "seed": 31,
+     "wave": 1,
+     "id": "entity270",
+     "name": "Hậu quân 1-6",
+     "faction": "hero",
+     "tile": "0:30,47",
+     "action": "investigate",
+     "time": 108.967,
+     "target": {
+      "x": 44.846892849412804,
+      "y": 46.41248314844979,
+      "floorId": 0,
+      "time": 108.96666666666304,
+      "firstSeen": 92.29999999999733,
+      "source": "sight"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.86,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "loot",
+       "score": 0.53,
+       "reason": "Chiến lợi phẩm trong tầm nhìn, túi còn chỗ"
+      }
+     ],
+     "detail": {
+      "hp": 49,
+      "mana": 125,
+      "statuses": [],
+      "decision": 0,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 93.79999999999724
+     }
+    }
+   ]
+  },
+  {
+   "seed": 31,
+   "wave": 2,
+   "hash": "899fac0210349f22143671671b34d20056a121cbc3b3202ff88a83403dbfbd80",
+   "result": "gameover",
+   "time": 202.967,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 5,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 31,
+   "wave": 3,
+   "hash": "952f79ba912f64a6b9cfa6eb70dfbaadc90006cefce02afc6070cda973ed8d28",
+   "result": "gameover",
+   "time": 162.5,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 32,
+   "wave": 1,
+   "hash": "0fce752cc9d7f077c3a5b3fb963c6e867c548840973b6bd96a683cdc3db71de6",
+   "result": "gameover",
+   "time": 176.233,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 32,
+   "wave": 2,
+   "hash": "8385e57288eb4bc8c0fa1bb91ac0822c2f4cf0b4890947cbd1aba6c49caf094d",
+   "result": "gameover",
+   "time": 107.367,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 32,
+   "wave": 3,
+   "hash": "0a59d9c86b3d64b8a462286922f9c5909ada207e55f7c823376570479fb45d93",
+   "result": "gameover",
+   "time": 146.033,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 32,
+     "wave": 3,
+     "id": "entity232",
+     "name": "Arthur II",
+     "faction": "hero",
+     "tile": "0:28,47",
+     "action": "wait",
+     "time": 61.633,
+     "target": {
+      "x": 28.49770190226377,
+      "y": 46.87955241595892,
+      "floorId": 0
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "wait",
+       "score": 0.78,
+       "reason": "Leader chờ tuyến sau tập hợp trước khi vào phòng mới"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 177,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "anchored",
+        "value": 0.8,
+        "until": 22.966666666666892,
+        "source": "entity232",
+        "permanent": true
+       },
+       {
+        "type": "block",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity232",
+        "permanent": true,
+        "gearSlot": "armor"
+       }
+      ],
+      "decision": 0.16666666666666669,
+      "cooldown": 0,
+      "gate": {
+       "x": 43,
+       "y": 47,
+       "floorId": 0
+      },
+      "lastMovedAt": 47.33333333333321
+     }
+    }
+   ]
+  },
+  {
+   "seed": 33,
+   "wave": 1,
+   "hash": "87cb7138aa20618e74124d075ad3fad5136e3e46e9ad3a474c4804a1646d59f4",
+   "result": "gameover",
+   "time": 149.233,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 33,
+   "wave": 2,
+   "hash": "3d4f500e4108c192affeb7ca82e564d1f75d8cdb96f62032b54a0c2644b5dc7d",
+   "result": "gameover",
+   "time": 159.7,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 33,
+   "wave": 3,
+   "hash": "1416f8a372f3178eec623cbf7e63fde48aaef936621f53aa492bfde5482b8554",
+   "result": "result",
+   "time": 205.967,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 10,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 33,
+     "wave": 3,
+     "id": "entity193",
+     "name": "Goblin 192",
+     "faction": "monster",
+     "tile": "0:45,44",
+     "action": "attack",
+     "time": 76.733,
+     "target": "entity247",
+     "path": [],
+     "scores": [
+      {
+       "action": "attack",
+       "score": 0.98,
+       "reason": "Theo chỉ huy: tập trung mục tiêu cả tổ thực sự nhìn thấy"
+      },
+      {
+       "action": "attack",
+       "score": 0.68,
+       "reason": "Nhìn thấy đối thủ; cân nhắc hỗ trợ tập trung mục tiêu"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ],
+     "detail": {
+      "hp": 65,
+      "mana": 0,
+      "statuses": [],
+      "decision": 0.0707690591923893,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 61.69999999999906,
+      "targetEntity": {
+       "x": 44.275114113275706,
+       "y": 44.99246953176272,
+       "floorId": 0,
+       "status": "active",
+       "hp": 67.76392000000001
+      }
+     }
+    }
+   ]
+  },
+  {
+   "seed": 34,
+   "wave": 1,
+   "hash": "e03af639096fc17bd41cae832db1603b0e8a7c2bc9d4537a99e1897aad4c47de",
+   "result": "gameover",
+   "time": 131.667,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 34,
+   "wave": 2,
+   "hash": "e5886f1ee45d5fbe0ef1fa8fcf38797c2c2cb0825dc00aaa4495f9b15c5ec9d9",
+   "result": "gameover",
+   "time": 133.167,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 34,
+   "wave": 3,
+   "hash": "81d8584e36ae508b74e320fe469f9bd3e38c50c1b6231ad6ac7cbeafdbc96162",
+   "result": "gameover",
+   "time": 143.967,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 35,
+   "wave": 1,
+   "hash": "dbe3441e0dc97f9059e70aa7df38dfe5b348df7dcc1faff070dd3aa7d1c1095c",
+   "result": "gameover",
+   "time": 208.3,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 35,
+   "wave": 2,
+   "hash": "55c918d68cfb72872293c4b6b46754304aae730b4bcd4b5dded12d71ecc60881",
+   "result": "gameover",
+   "time": 213.667,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 35,
+   "wave": 3,
+   "hash": "8656d97ba702fd5dcf58060d4c198a1b8a0c6a4e33ecc4011c75dce33ad5fe39",
+   "result": "gameover",
+   "time": 217.7,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 36,
+   "wave": 1,
+   "hash": "576e2b2c39bdb16bfa93c80555b048a0df872a58989fa3759c50a738c20e4d7e",
+   "result": "gameover",
+   "time": 187.167,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 36,
+   "wave": 2,
+   "hash": "36556698e71b9e71455a7d31a08124c87dad55e19af3649dbaf50a7b81d0da3c",
+   "result": "gameover",
+   "time": 115.7,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 36,
+   "wave": 3,
+   "hash": "88fd96932f76ec92a5ba6a15bde5dcfbb60ff582723b594d8c4367f5532c12d7",
+   "result": "gameover",
+   "time": 162.533,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 37,
+   "wave": 1,
+   "hash": "c670614ad2618c90b097adc98f9252e2d2015fdd6aa12104d1f08895adbb6eab",
+   "result": "result",
+   "time": 201.233,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 16,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 37,
+     "wave": 1,
+     "id": "entity180",
+     "name": "Thằn Lằn Xạ Thủ",
+     "faction": "monster",
+     "tile": "0:44,47",
+     "action": "guard-body",
+     "time": 32.3,
+     "target": {
+      "id": "entity184",
+      "x": 42.0685643223708,
+      "y": 46.00000275287443,
+      "floorId": 0,
+      "time": 31.700000000000735,
+      "faction": "hero"
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "guard-body",
+       "score": 0.85,
+       "reason": "Canh vị trí người gục đã thấy để cản cứu hộ; không đọc vị trí mới sau fog"
+      },
+      {
+       "action": "patrol",
+       "score": 0.46,
+       "reason": "Trở về vị trí giữ phòng sau giao chiến"
+      },
+      {
+       "action": "guard",
+       "score": 0.25,
+       "reason": "Giữ phòng được phân công, không đuổi ra hành lang"
+      }
+     ],
+     "detail": {
+      "hp": 70,
+      "mana": 27,
+      "statuses": [],
+      "decision": 0.08839880141119166,
+      "cooldown": 0.5300000000000005,
+      "gate": null,
+      "lastMovedAt": 17.30000000000002
+     }
+    }
+   ]
+  },
+  {
+   "seed": 37,
+   "wave": 2,
+   "hash": "f962dc33194ec72350cfe8a797b23929930bfab63e4e2ed532c763720d51c54a",
+   "result": "gameover",
+   "time": 131.967,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 37,
+   "wave": 3,
+   "hash": "481cd4be32b8a61881cd90006c661b35063d548f8d32ab8d49a4a6e1bc43c199",
+   "result": "gameover",
+   "time": 162.533,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 38,
+   "wave": 1,
+   "hash": "56d296d06b8b861bb0230165376fca8db7de5fd1e67651ec47108dda87821853",
+   "result": "gameover",
+   "time": 180.333,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 38,
+   "wave": 2,
+   "hash": "fd3802fccb494909e0e932c6ab3af231f3542d55fe6f96cd59b6deaabfd2c63a",
+   "result": "gameover",
+   "time": 140.667,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 38,
+   "wave": 3,
+   "hash": "1c3f5eb6bed06efa63e2528cbcf777981c8f63226023ee9814b0dcd0b14f5ced",
+   "result": "gameover",
+   "time": 141.633,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 39,
+   "wave": 1,
+   "hash": "481e0ca0bb0a86e274fbead646244d5f071ac9e50f090157b4c75cc5aafbe89b",
+   "result": "gameover",
+   "time": 242.933,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 10,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 39,
+   "wave": 2,
+   "hash": "48f58709cb35b012695dda242f31763a9456873c588060eea098a621c0ad71df",
+   "result": "gameover",
+   "time": 169.8,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 39,
+   "wave": 3,
+   "hash": "ed9b9df3b62f04d49897fa44335053b13ea8153cb86aa9aee77f4c8bdd05a540",
+   "result": "gameover",
+   "time": 178.667,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 40,
+   "wave": 1,
+   "hash": "2e76bb09917b9200f31d80125fd4df1fa875a886d4b8a67d36c9a8216127a880",
+   "result": "gameover",
+   "time": 231.833,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 40,
+   "wave": 2,
+   "hash": "9eb2f919e334660b8dba29e435ecea1471329dcdce58fc796b1e03e443118c8b",
+   "result": "gameover",
+   "time": 233.8,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 40,
+   "wave": 3,
+   "hash": "e3ddcbc91769c2f946af18b45704d129ae29071b2f315c261d0f73dc1739c3dc",
+   "result": "gameover",
+   "time": 194.7,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 41,
+   "wave": 1,
+   "hash": "ccbb710e5e141228bc9b2a9c9c193c81b1f49c438bc01a487ea72b8b26f545c5",
+   "result": "gameover",
+   "time": 169.467,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 41,
+   "wave": 2,
+   "hash": "9053a8bbf4d0a211c8da6d4dd1b5b5194619df8bcd4dd91ac43c1aa3868d9cd6",
+   "result": "gameover",
+   "time": 131.433,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 41,
+   "wave": 3,
+   "hash": "58376099cf86429bc8d61929994cde31e7ff8613fa3dbbf824579694c6d96175",
+   "result": "gameover",
+   "time": 130.867,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 42,
+   "wave": 1,
+   "hash": "300077136da0ede46242dffa9897ce921b0f4da8bd21021de44f073c80496c3d",
+   "result": "gameover",
+   "time": 138.833,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 42,
+   "wave": 2,
+   "hash": "036658609a16a30d7d7fea894f918b1c4f08be0ccefaad323812270db4905327",
+   "result": "gameover",
+   "time": 171.1,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 42,
+   "wave": 3,
+   "hash": "32a3e00ebd2599ceec40bb5ae1995ed9c67db29006c9336276f8beb792ad85ac",
+   "result": "gameover",
+   "time": 112.667,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 43,
+   "wave": 1,
+   "hash": "88d1e7d4307e7ab84169bf00ed9c68aec7f2dff887b25b428153b3b5cf324998",
+   "result": "result",
+   "time": 182.067,
+   "escaped": 2,
+   "downed": 0,
+   "dead": 14,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": [
+    {
+     "seed": 43,
+     "wave": 1,
+     "id": "entity198",
+     "name": "Arthur",
+     "faction": "hero",
+     "tile": "0:46,46",
+     "action": "item",
+     "time": 60.4,
+     "target": "item201",
+     "path": [],
+     "scores": [
+      {
+       "action": "item",
+       "score": 1.5,
+       "reason": "Dùng Thuốc Hồi Máu theo nhu cầu và khả năng thực tế"
+      },
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "heal",
+       "score": 1.22,
+       "reason": "Có thuốc và có thể hồi HP"
+      }
+     ],
+     "detail": {
+      "hp": 68.18529392500012,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "burn",
+        "value": 1,
+        "until": 88.0666666666644,
+        "source": "entity183"
+       },
+       {
+        "type": "block",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity198",
+        "permanent": true,
+        "gearSlot": "armor"
+       }
+      ],
+      "decision": 0,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 45.33333333333332
+     }
+    },
+    {
+     "seed": 43,
+     "wave": 1,
+     "id": "entity260",
+     "name": "Hậu quân 1-6",
+     "faction": "hero",
+     "tile": "0:41,47",
+     "action": "take-key",
+     "time": 104.5,
+     "target": {
+      "x": 53,
+      "y": 47,
+      "floorId": 0,
+      "time": 41.43333333333354
+     },
+     "path": [
+      {
+       "x": 42,
+       "y": 47,
+       "floorId": 0
+      }
+     ],
+     "scores": [
+      {
+       "action": "take-key",
+       "score": 1.25,
+       "reason": "Đi tới vị trí chìa thực sự nhìn thấy hoặc được đồng đội báo"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 95,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 141.9666666666613,
+        "source": "entity260"
+       }
+      ],
+      "decision": 0.12587971322548885,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": {
+       "x": 43,
+       "y": 47,
+       "floorId": 0
+      },
+      "lastMovedAt": 104.49999999999663
+     }
+    }
+   ]
+  },
+  {
+   "seed": 43,
+   "wave": 2,
+   "hash": "131b03e20388fe6a90acb907bfdb0b4206a864da1945d2c4eb7b47a56cdcca68",
+   "result": "gameover",
+   "time": 201.1,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 43,
+   "wave": 3,
+   "hash": "4da7c9adad0d1878cc8f2d5e9e91a7f501a4ae576c613203e2197c47459b5d1a",
+   "result": "gameover",
+   "time": 133.133,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 44,
+   "wave": 1,
+   "hash": "0a0ed1f7f37ed7d3941acdc55c62cb27d25675cba0c6da96aa6e06670df400e6",
+   "result": "gameover",
+   "time": 158.8,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 44,
+   "wave": 2,
+   "hash": "e3db02d5afa0dd7c49453abdd34e2f60a0873d8b50a596640893b9b6ab3b33d5",
+   "result": "gameover",
+   "time": 134.2,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 44,
+   "wave": 3,
+   "hash": "22d6c2309faff428f4eae96c48af63a79dcdf713885e9e1fa72ae0cc2cf3aec5",
+   "result": "gameover",
+   "time": 110.4,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 45,
+   "wave": 1,
+   "hash": "3d53a803b1c52115aa8ac1f9fc159a5a15e5045ec59830b403d8a5522d32a1d2",
+   "result": "gameover",
+   "time": 251.333,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 45,
+   "wave": 2,
+   "hash": "545357d800a2f89b4d672fd502f82ba4fc742841576882c6dd651960d46043ad",
+   "result": "gameover",
+   "time": 199.333,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 45,
+   "wave": 3,
+   "hash": "6ef3b90859577c7cd44a03ff3da698660da0ef316cfc31a0eabe10275e53fd97",
+   "result": "gameover",
+   "time": 250.433,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 46,
+   "wave": 1,
+   "hash": "13a1c4bc1083acdbeb5790930c6b64f59b075f1e9d674c78ddef8f2695627db4",
+   "result": "gameover",
+   "time": 248.5,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 11,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 46,
+   "wave": 2,
+   "hash": "2a3da5168c3e4638cd09e663c3df47b744e66221330c7d2594fc37effdd729f1",
+   "result": "gameover",
+   "time": 271,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 46,
+   "wave": 3,
+   "hash": "a1b89720955947f4c91a3d42d81d2eefba20e70c1c155efce3f7fb1399a95ddf",
+   "result": "result",
+   "time": 336.633,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 14,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 47,
+   "wave": 1,
+   "hash": "efa863911195fe263ba0458226af979105beb7ec3aeb8516b81c658975d6a8d2",
+   "result": "result",
+   "time": 207.967,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 15,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 47,
+   "wave": 2,
+   "hash": "935459f3e9b2932297454ba54e95a6e5c210939c5d4ad02753cadc689abf71d6",
+   "result": "gameover",
+   "time": 165.233,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 47,
+   "wave": 3,
+   "hash": "c132c7eeffa0e75529ebea79f390cfbcedf2f8477d2d3e9839291e473f00c010",
+   "result": "gameover",
+   "time": 185,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 48,
+   "wave": 1,
+   "hash": "74203a73649bba95dfdca3457611611a6afefb70f478190bfd0db36c09af6c40",
+   "result": "gameover",
+   "time": 139.267,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 48,
+   "wave": 2,
+   "hash": "0c28da25369b10f237e780c94050d795feceb9b84b686eb3566ca257af57c98c",
+   "result": "gameover",
+   "time": 184.433,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 48,
+   "wave": 3,
+   "hash": "6ad456e701ef52a8361dd1191471403135a36f8170b40af51508f405b6979f6f",
+   "result": "gameover",
+   "time": 154.967,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 49,
+   "wave": 1,
+   "hash": "7d0a0cfa6733590c3d6320ff5fe13d579cde56f58a1570a7a547fb7a58f930a3",
+   "result": "gameover",
+   "time": 137.267,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 49,
+   "wave": 2,
+   "hash": "27a7cc50345944be890d3661fe4bd323cfcb2a3203692185186694de947bc810",
+   "result": "gameover",
+   "time": 112.333,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 49,
+   "wave": 3,
+   "hash": "84ec2c2182d3f5c99aabc61bb6b1ea904a574aa1b99870b8325b4562d1e9e3f3",
+   "result": "gameover",
+   "time": 121.533,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 50,
+   "wave": 1,
+   "hash": "19e6745daa755d6bedd04459722aa3fb911ad89b1333d92bfd47ac83952a8443",
+   "result": "gameover",
+   "time": 226.833,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 50,
+   "wave": 2,
+   "hash": "8ede62608c71b9db0bd78744c7397b3758a1d6fd418b74eaf47da0a2d3225a1e",
+   "result": "gameover",
+   "time": 236.9,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  },
+  {
+   "seed": 50,
+   "wave": 3,
+   "hash": "caab369a4f2293646f880cb822073ca90cb8b8a4d05892fafecbb3a763d2974e",
+   "result": "gameover",
+   "time": 232.367,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 0,
+   "limit": false,
+   "stuck": []
+  }
+ ]
+}

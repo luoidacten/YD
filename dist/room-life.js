@@ -39,7 +39,8 @@ export function installRoomLife(Game){
  target,
  dt,
  stop){
-  if(e.faction==='hero'&&target&&distance(e,
+  const gateBlocked=e.waitingGate&&!this.walkable(e.waitingGate.x,e.waitingGate.y,e.floorId,e);
+  if(e.faction==='hero'&&!gateBlocked&&target&&distance(e,
   target)>2){
    const priority=a=>this.state.treasure.carrier===a.id?3:a.action==='retreat'?2:1;
    const dx=target.x-e.x,

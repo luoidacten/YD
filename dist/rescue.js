@@ -236,8 +236,10 @@ e.name
    }
    )){
     if(m.faction===e.faction||s.time-m.time>7)continue;
+    const post=this.approach(e,m,2.3);
+    if(!post||distance(e,post)>.6&&!this.path(e,post).length)continue;
     if(!enemies.length||enemies.some(a=>distance(a,
-    m)<5))add('guard-body',
+    m)<5))add(distance(e,m)<=2.3?'guard':'guard-body',
     (.85+(e.charms.includes('CH35')?.5:0)),
     {
      ...m

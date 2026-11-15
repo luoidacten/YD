@@ -29,18 +29,22 @@ export function runBattle(seed,wave=1){
  for(let step=0;step<30*482&&g.state.phase==='battle';step++){
   g.tick(1/30);const time=g.state.battleTime;
   for(const e of g.state.entities){
-   if(e.status!=='active')continue;
+   if(e.status!=='active'){tracking.delete(e.id);continue}
    const tile=`${e.floorId}:${Math.round(e.x)},${Math.round(e.y)}`;
    const channel=[e.channel||0,e.chestChannel||0,e.rescueChannel||0,e.keyChannel||0];
    const skill=JSON.stringify(e.skillCooldowns),prev=tracking.get(e.id);
    const active=e.strike>0||e.channelCast?.resolveAt>g.state.time||channel.some((n,i)=>n>0&&n>(prev?.channel[i]||0));
-   const progressed=!prev||tile!==prev.tile||active||e.cooldown>(prev.cooldown||0)||skill!==prev.skill;
-   const last=progressed?time:prev.last;
    const allowed=['guard','ambush'].includes(e.action);
+   const progressed=!prev||allowed||tile!==prev.tile||active||e.cooldown>(prev.cooldown||0)||skill!==prev.skill;
+   const last=progressed?time:prev.last;
    const reported=progressed?false:prev.reported;
    if(time-last>=15&&!allowed&&!reported){
     const issue={seed,wave,id:e.id,name:e.name,faction:e.faction,tile,action:e.action,time:+time.toFixed(3),target:e.target,
-     path:e.path?.slice(0,4),scores:e.scores?.slice(0,3)};
+     path:e.path?.slice(0,4),scores:e.scores?.slice(0,3),
+     detail:{hp:e.hp,mana:e.mana,statuses:e.statuses,decision:e.decision,cooldown:e.cooldown,
+      traffic:e.trafficYield,gate:e.waitingGate,channelCast:e.channelCast,lastMovedAt:e.lastMovedAt,
+      targetEntity:g.entity(typeof e.target==='string'?e.target:e.target?.targetId)&&
+       {...Object.fromEntries(['x','y','floorId','status','hp'].map(k=>[k,g.entity(typeof e.target==='string'?e.target:e.target?.targetId)[k]]))}}};
     stuck.push(issue);
    }
    tracking.set(e.id,{tile,channel,cooldown:e.cooldown,skill,last,reported:reported||time-last>=15&&!allowed});
@@ -62,7 +66,8 @@ export function summarize(battles){
 
 async function main(){
  const args=process.argv.slice(2),get=(key,fallback)=>{const i=args.indexOf(key);return i<0?fallback:args[i+1]};
- const range=get('--seeds','1-50').split('-').map(Number),seeds=Array.from({length:(range[1]||range[0])-range[0]+1},(_,i)=>range[0]+i);
+ const spec=get('--seeds','1-50'),range=spec.split('-').map(Number);
+ const seeds=spec.includes(',')?spec.split(',').map(Number):Array.from({length:(range[1]||range[0])-range[0]+1},(_,i)=>range[0]+i);
  const waves=Number(get('--waves','3')),jobs=Number(get('--jobs','4')),tasks=seeds.flatMap(seed=>Array.from({length:waves},(_,i)=>({seed,wave:i+1})));
  const results=[];let next=0;
  await Promise.all(Array.from({length:Math.min(jobs,tasks.length)},async()=>{

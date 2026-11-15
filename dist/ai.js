@@ -220,6 +220,13 @@ e){
  score,
  target,
  reason)=>{
+  if(action==='attack'&&!hero){
+   const a=game.entity(target),reach=d.magic&&e.mana<5?1.4:d.range;
+   if(a&&distance(e,a)>reach){
+    const p=game.approach(e,a,Math.max(1.1,reach*.85));
+    if(!p||distance(e,p)>.6&&!game.path(e,p).length)return;
+   }
+  }
   if(score>0)candidates.push({
    action,
    score:Math.round(score*100)/100,
@@ -384,7 +391,8 @@ e){
   e.charms.includes('greedy')?.92:.5,
   lure.id,
   'Phát hiện rương hoặc kho vàng nhử');
-  const loot=s.items.find(i=>!i.owner&&i.x!==null&&i.floorId===e.floorId&&distance(i,
+  const loot=s.items.find(i=>!i.owner&&i.x!==null&&i.floorId===e.floorId&&
+   game.usedSlots(e)+(i.slotCost||1)<=e.capacity&&distance(i,
   e)<9&&game.lineOfSight(e,
   i));
   if(loot&&!filled)add('loot',
@@ -516,6 +524,10 @@ e){
   if(c.action==='rescue')c.score*=1+game.charmMod(e,
   'rescue');
  }
+ if(!candidates.length&&hero&&!locked)add('retreat',
+ .3,
+ null,
+ 'Không còn mục tiêu khám phá nhìn thấy: quay về cổng thay vì đứng chờ vô hạn');
  if(!candidates.length)add('wait',
  .1,
  {

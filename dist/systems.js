@@ -1635,15 +1635,15 @@ k.description
    if(leader===e&&!enemy){
     const trailing=allies.find(a=>a.squadId===e.squadId&&distance(a,
     e)>7);
-    if(trailing)add('wait',
+    if(trailing)add('regroup',
     .78,
     {
-     x:e.x,
-     y:e.y,
+     x:(e.x+trailing.x)/2,
+     y:(e.y+trailing.y)/2,
      floorId:e.floorId
     }
     ,
-    'Leader chờ tuyến sau tập hợp trước khi vào phòng mới')
+    'Leader gặp tuyến sau ở giữa đường để tránh chờ nhau vô hạn')
    }
   }
  }

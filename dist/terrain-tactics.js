@@ -515,6 +515,16 @@ Math.round(y)
   if(e.faction!=='hero'||!k?.locked)return;
   const core=s.rooms.find(r=>r.type==='treasure');
   if(!core)return;
+  // Seeing an empty remembered tile is knowledge too. Do not rebroadcast stale
+  // ground-key snapshots after a visible ally has already picked the key up.
+  e.emptyKeyTiles??={};
+  const keyTile=p=>`${p.floorId}:${Math.round(p.x)},${Math.round(p.y)}`;
+  if(e.knownKey&&e.knownKey.floorId===e.floorId&&
+   distance(e,e.knownKey)<=this.vision(e)&&this.lineOfSight(e,e.knownKey)&&
+   !(k.placed&&!k.owner&&k.floorId===e.floorId&&distance(k,e.knownKey)<.6)){
+   e.emptyKeyTiles[keyTile(e.knownKey)]=s.time;
+   e.knownKey=null;
+  }
   if(k.placed&&!k.owner&&k.floorId===e.floorId&&distance(e,
   k)<=this.vision(e)&&this.lineOfSight(e,
   k))e.knownKey={
@@ -526,7 +536,9 @@ Math.round(y)
   ;
   for(const ally of s.entities.filter(a=>a.faction===e.faction&&a.id!==e.id&&a.status==='active'&&a.floorId===e.floorId&&distance(a,
   e)<6&&this.lineOfSight(a,
-  e)))if(ally.knownKey&&s.time-ally.knownKey.time>.35&&(!e.knownKey||e.knownKey.time<ally.knownKey.time))e.knownKey={
+  e)))if(ally.knownKey&&s.time-ally.knownKey.time>.35&&
+   (e.emptyKeyTiles[keyTile(ally.knownKey)]??-1)<ally.knownKey.time&&
+   (!e.knownKey||e.knownKey.time<ally.knownKey.time))e.knownKey={
    ...ally.knownKey
   }
   ;
@@ -639,7 +651,7 @@ Math.round(y)
    if(this.move(e,
    p,
    dt,
-   .8)){
+   1.15)){
     if(k.placed&&!k.owner&&k.floorId===e.floorId&&distance(e,
     k)<1.4&&this.freeKeySlot(e)){
      Object.assign(k,

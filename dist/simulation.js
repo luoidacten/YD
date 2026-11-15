@@ -658,6 +658,11 @@ y
   );
   let count=0;
   const hazards=new Map();
+  const allies=new Set();
+  if(actor)for(const e of this.state.entities){
+   if(e!==actor&&e.status==='active'&&e.faction===actor.faction&&e.floorId===floor&&
+    distance(e,actor)<=5&&this.lineOfSight(actor,e))allies.add(tileKey(e.x,e.y));
+  }
   if(actor)for(const id of actor.knownTraps||[]){
    const t=this.state.traps.find(t=>t.id===id&&!t.disabled&&t.floorId===floor);
    if(t)hazards.set(tileKey(t.x,
@@ -707,8 +712,9 @@ y
     ,
     'pit',
     1.5)?3:0;
+    const crowded=key!==goal&&allies.has(tileKey(x,y))?8:0;
     const g=n.g+1+(hazards.get(tileKey(x,
-    y))||0)+edgeFear;
+    y))||0)+edgeFear+crowded;
     if(g>=(cost.get(key)??Infinity))continue;
     cost.set(key,
     g);
@@ -774,19 +780,46 @@ Math.round(end.x)
 },${
 Math.round(end.y)
 }`;
+  const first=e.path[0];
+  if(first&&this.state.entities.some(a=>a!==e&&a.status==='active'&&
+   a.faction===e.faction&&a.floorId===e.floorId&&distance(a,first)<.8&&
+   distance(e,first)>.4&&this.lineOfSight(e,a)))e.path=[];
   if(e.navRevision!==this.navRevision||e.pathEnd!==key||!e.path.length){
    e.path=this.path(e,
    end);
+   e.waitingGate=null;
+   if(!e.path.length&&e.faction==='hero'){
+    const route=this.path(e,end,{ignoreGates:true});
+    const gate=route.findIndex(p=>!this.walkable(p.x,p.y,p.floorId,e));
+    if(gate>=0){
+     e.path=route.slice(0,gate);
+     e.waitingGate=route[gate];
+    }
+   }
    e.pathEnd=key;
    e.navRevision=this.navRevision;
-   if(!e.path.length)return distance(e,
-   target)<=stop;
+   if(!e.path.length){
+    if(e.waitingGate){
+     e.action='guard';
+     e.target={x:e.x,y:e.y,floorId:e.floorId};
+     e.decision=.3;
+    }
+    return distance(e,target)<=stop;
+   }
   }
   const next=e.path[0],
   dx=next.x-e.x,
   dy=next.y-e.y,
   dist=Math.hypot(dx,
   dy);
+  if(e.waitingGate&&!this.walkable(e.waitingGate.x,e.waitingGate.y,e.floorId,e)&&
+   e.path.length<=2&&distance(e,e.waitingGate)<2.3&&this.lineOfSight(e,e.waitingGate)){
+   e.action='guard';
+   e.target={x:e.x,y:e.y,floorId:e.floorId};
+   e.decision=.3;
+   e.moving=false;
+   return false;
+  }
   if(dist<.3&&e.path.length>1){
    e.path.shift();
    return this.move(e,
@@ -1735,7 +1768,7 @@ target.name
    }
    if(!this.lineOfSight(e,
    target)||distance(e,
-   target)>SETTINGS.vision+1){
+   target)>this.vision(e)+1){
     const last=e.seen[target.id];
     e.action=last?'investigate':'guard';
     e.target=last?{
@@ -1952,7 +1985,7 @@ e.name
    if(this.move(e,
    item,
    dt,
-   .8)){
+   1.15)){
     if(this.transfer(item,
     e))this.event('coin');
     e.decision=0

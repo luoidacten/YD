@@ -674,6 +674,7 @@ export function installContent(Game){
  enemies){
   const d=ITEMS[item.definitionId];
   if(!d||item.owner!==e.id||item.location!=='bag')return false;
+  if(d.channel&&this.state.time-(e.lastDamaged??-100)<d.channel+.1)return false;
   if(d.slot)return !e.gearSlots[d.slot];
   if(d.kind==='heal')return e.hp/e.maxHp<.65&&!e.charms.includes('forsaken')&&!this.effect(e,
   'wounded');
@@ -1601,7 +1602,8 @@ e,
   'Giả rương, chờ mạo hiểm giả đến gần thay vì đuổi khỏi chỗ nấp')
  }
  ;
- if(e.charms.includes('CH10')&&e.teamOrder&&!enemies.length&&distance(e,
+ if(e.charms.includes('CH10')&&e.teamOrder&&e.teamOrder.floorId===e.floorId&&
+  s.time-e.teamOrder.time<4&&!enemies.length&&distance(e,
  e.teamOrder)>3)add('regroup',
  .85,
  {
