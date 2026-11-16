@@ -1,6 +1,8 @@
 import {BOSS_POOL} from './boss-data.js';
 import {createReviewGame} from './review-fixtures.js';
 import {auditUI} from './ui-audit.js';
+import {bossPickerHTML,bossSkillText} from './boss-picker.js';
+import {loadPresentationSettings,savePresentationSettings} from './combat-fx.js';
 import {equipControl,weaponSummary} from './weapon-ui.js';
 import {loadIcons,hydrateIcons,icon,roomIcon,cardFrame} from './icons.js';
 import {
@@ -166,17 +168,18 @@ function save(quiet=true){
 function modal(html,
 mode=null){
  modalMode=mode;
+ $('#close-modal').hidden=mode==='floor-boss';$('#modal').classList.toggle('boss-picker',mode==='floor-boss');
  $('#modal-content').innerHTML=html;
  hydrateIcons($('#modal-content'));
  if(!$('#modal').open)$('#modal').showModal()
 }
 function closeModal(){
+ if(modalMode==='floor-boss'){showMenu();return}
  modalMode=null;
  $('#modal').close()
 }
 $('#close-modal').onclick=closeModal;
-$('#modal').addEventListener('cancel',
-()=>modalMode=null);
+$('#modal').addEventListener('cancel',e=>{if(modalMode==='floor-boss'){e.preventDefault();showMenu()}else modalMode=null});
 $('#modal').addEventListener('click',
 event=>{
  if(event.target===$('#modal')){
@@ -1275,6 +1278,10 @@ hưa có campaign đầy đủ, điều khiển hành động trực tiếp ho�
 }
 function update(){
  const s=game.state;
+ painter.hudCanvas??=$('#presentation-overlay');painter.hudCtx??=painter.hudCanvas.getContext('2d');
+ if(painter.hudCanvas.width!==innerWidth||painter.hudCanvas.height!==innerHeight){painter.hudCanvas.width=innerWidth;painter.hudCanvas.height=innerHeight}
+ const mapRect=$('#game').getBoundingClientRect();painter.hudOrigin={x:mapRect.x,y:mapRect.y};painter.hudTargets={};
+ for(const id of ['gold','souls']){const r=$('#'+id).getBoundingClientRect();painter.hudTargets[id]={x:r.x+r.width/2,y:r.y+r.height/2}}
  for(const [id,value]of [['gold',s.gold],['mana',s.mana],['souls',s.souls]]){
   const node=$('#'+id),next=Math.floor(value),before=Number(node.textContent);
   if(before!==next){node.classList.remove('value-up','value-down');void node.offsetWidth;
@@ -1632,6 +1639,14 @@ e=>painter.miniHit(e.clientX,
 e.clientY));
 window.addEventListener('keydown',
 e=>{
+ if(modalMode==='floor-boss'){
+  if(['ArrowLeft','ArrowRight','Enter','r','R','Escape'].includes(e.key))e.preventDefault();
+  const cards=$$('.floor-boss-card'),current=Math.max(0,cards.findIndex(c=>c.classList.contains('focused')));
+  if(['ArrowLeft','ArrowRight'].includes(e.key)){const next=(current+(e.key==='ArrowRight'?1:2))%3;
+   cards.forEach((c,i)=>c.classList.toggle('focused',i===next));cards[next].querySelector('[data-boss-choice]').focus()}
+  if(e.key==='Enter')cards[current].querySelector('[data-boss-choice]').click();
+  if(e.key.toLowerCase()==='r')$('#reroll-floor-boss').click();if(e.key==='Escape')showMenu();return;
+ }
  if(e.key==='Escape'&&!$('#modal').open&&!chosen&&!relocating&&!placingKey){
   e.preventDefault();
   showMenu();
@@ -1680,7 +1695,7 @@ function frame(now){
  const dt=Math.min(.15,
  (now-previous)/1000);
  previous=now;
- const suspended=document.hidden||$('#modal').open;
+ const suspended=document.hidden||$('#modal').open&&modalMode!=='floor-boss';
  if(!suspended){
   accumulator+=dt*game.state.speed;
   let steps=0;
@@ -1752,6 +1767,13 @@ v>`
   $('#audio').click();
   closeModal()
  }
+ const settings=loadPresentationSettings(),section=document.createElement('div');section.className='presentation-settings';
+ section.innerHTML='<h3>Cảm giác đòn đánh</h3>'+Object.entries({shake:'Rung màn hình',numbers:'Số sát thương',hitstop:'Hit-stop'}).map(([id,label])=>
+  `<button data-fx-setting="${id}" aria-pressed="${settings[id]}">${label}: ${settings[id]?'Bật':'Tắt'}</button>`).join('');
+ $('#modal-content').append(section);for(const b of $$('[data-fx-setting]'))b.onclick=()=>{
+  const key=b.dataset.fxSetting;settings[key]=!settings[key];savePresentationSettings(settings);painter.presentationSettings=loadPresentationSettings();
+  b.setAttribute('aria-pressed',String(painter.presentationSettings[key]));b.textContent=b.textContent.split(':')[0]+': '+(painter.presentationSettings[key]?'Bật':'Tắt');
+ };
 }
 
 function hearts(e){
@@ -1768,20 +1790,16 @@ function showFloorBosses(floorId=game.pendingFloorBosses()[0]){
  const record=game.state.floorBoss[floorId];
  if(record?.id){toast('Tầng này đã có '+BOSS_POOL[record.id].name);return}
  const offers=game.floorBossOffers(floorId);
- modal(`<span class="eyebrow">TẦNG ${floorId+1}</span><h2>Chọn Tầng Chủ</h2><p>Chọn một trong ba ứng viên. Ấn chỉ còn khi chủ tầng đang sống.</p>
-  <div class="floor-boss-grid">${offers.map(d=>{
-   const cost=game.floorBossCost(floorId,d.id);
-   return `<article class="floor-boss-card"><img src="assets/frames/${d.sprite}_idle_anim_f0.png" alt="${esc(d.name)}">
-    <h3>${esc(d.name)}</h3><p>${esc(d.style)}</p><ul>${d.skills.map(k=>`<li title="${esc(k.name+' · '+k.kind+' · '+k.damage+' sát thương · '+k.cd+'s CD')}">
-    ${esc(k.name)}${k.phase?' · GĐ'+(k.phase+1):''}</li>`).join('')}</ul><p>${d.seals.map(x=>esc(x.name+': '+x.description)).join('<br>')}</p>
-    <button class="primary" data-boss-choice="${d.id}" ${game.state.gold<cost?'disabled':''}
-     title="${game.state.gold<cost?'Thiếu '+(cost-game.state.gold)+' vàng':'Chọn '+esc(d.name)}">Chọn · ${cost} vàng</button></article>`;
-  }).join('')}</div><div class="actions"><button id="reroll-floor-boss" ${record.rerolled||game.state.gold<50?'disabled':''}>
-  ${record.rerolled?'Đã đổi bộ':'Đổi bộ · 50 vàng (1 lần)'}</button><button id="boss-menu">Menu</button></div>`, 'floor-boss');
+ modal(bossPickerHTML(game,floorId), 'floor-boss');
+
  for(const button of $$('[data-boss-choice]'))button.onclick=()=>{
   const e=game.hireFloorBoss(floorId,button.dataset.bossChoice);
   if(!e){toast('Chưa đủ vàng hoặc phòng không còn 4 ô quân.');return}
-  closeModal();save();update();
+  modalMode=null;closeModal();save();update();
+ };
+ for(const button of $$('[data-boss-skill]'))button.onclick=()=>{
+  const [boss,id]=button.dataset.bossSkill.split(':'),skill=BOSS_POOL[boss].skills.find(k=>k.id===id),box=button.closest('article').querySelector('.boss-skill-detail');
+  box.textContent=bossSkillText(skill);box.hidden=!box.hidden;
  };
  $('#reroll-floor-boss').onclick=()=>{if(game.rerollFloorBosses(floorId)){save();showFloorBosses(floorId)}};
  $('#boss-menu').onclick=showMenu;

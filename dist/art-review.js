@@ -17,7 +17,12 @@ async function load(name){
  const ready=document.querySelector('#scene-ready');ready.dataset.ready='false';ready.textContent='Đang nạp asset…';
  scene=name;game=new Game();game.state.wave=3;game.addRoom(1,1,'boss');game.state.props=[];game.state.keyQuest.locked=false;game.rebuild();
  units=[];
- if(name==='performance'){
+ if(name==='combat08'){
+  game.addRoom(0,1,'entrance');game.addRoom(2,1,'treasure');game.rebuild();
+  for(let i=0;i<20;i++)units.push(game.spawn(i<10?'knight':'goblin',i<10?'hero':'monster',
+   50+(i%5)*1.5,42+Math.floor(i/5)*2,'Combat '+(i+1),[],{roomId:game.state.rooms[0].id}));
+  game.state.phase='battle';game.state.encounter={spawnQueue:[],reinforcements:[],spawnTimer:999};
+ }else if(name==='performance'){
   for(let i=0;i<60;i++)units.push(game.spawn(i%2?'skeleton':'goblin',i%2?'hero':'monster',
    47+i%10*1.6,41+Math.floor(i/10)*1.7,'Render '+(i+1),[]));
  }else for(const [row,ids]of config[name].entries())for(const [i,id]of ids.entries()){
@@ -33,7 +38,7 @@ async function load(name){
   document.querySelector('#art-info').innerHTML=`<h2>${e.name}</h2>${weaponSummary(game,e)}<p>Đang đề nghị: ${ITEMS.W39.name}</p>`+equipControl(game,e,offered);
  }else document.querySelector('#art-info').innerHTML='<h2>'+({heroes04:'Đoàn hero mới',monsters04:'Quái mới',fx04:'Hỏa cầu + chữa lành',
   heroes05:'Ninja · Tư tế · Nỏ thủ',monsters05:'Minotaur · Troll',performance:'Render benchmark',
-  companions06:'Sói · Chim Ưng · Dạng Gấu',necro06:'Kẻ Chiêu Hồn và vệ binh',bones06:'Vua Xương và quân đoàn'})[name]+'</h2>'+
+  companions06:'Sói · Chim Ưng · Dạng Gấu',necro06:'Kẻ Chiêu Hồn và vệ binh',bones06:'Vua Xương và quân đoàn',combat08:'20 đơn vị · ×4 gameplay'})[name]+'</h2>'+
   units.slice(0,12).map(e=>`<p>${e.name} · ${game.weaponDefinition(e)?.name||'Đòn bẩm sinh'}</p>`).join('');
  lastPulse=-1;frames=0;renderTotal=0;measureStart=performance.now();
  const current=painter,names=new Set(['wall_top_mid','wall_mid','wall_left','wall_right','column',
@@ -60,7 +65,8 @@ function applyHold(){
 load('heroes04');let previous=performance.now();
 function frame(now){
  const dt=Math.min(.1,(now-previous)/1000);previous=now;game.state.time+=dt;
- if(game.state.time-lastPulse>.45){
+ if(scene==='combat08')for(let i=0;i<4;i++)game.tick(1/30);
+ if(scene!=='combat08'&&game.state.time-lastPulse>.45){
   lastPulse=game.state.time;
   if(scene==='performance')for(let i=0;i<40;i++)game.visualCue(['heal','poison','frost','holy'][i%4],units[i]);
   else if(scene!=='equipment05')for(const e of units){
@@ -84,15 +90,16 @@ function frame(now){
 }requestAnimationFrame(frame);
 
 document.querySelector('#perf-burst').onclick=()=>{
- if(scene!=='performance')return;
+ if(!['performance','combat08'].includes(scene))return;
  const start=performance.now();let maxFx=0;
  for(let f=0;f<120;f++){
-  for(let i=0;i<40;i++)game.visualCue(['heal','poison','frost','holy'][i%4],units[i]);
+  if(scene==='combat08')for(let i=0;i<4;i++)game.tick(1/30);
+  else for(let i=0;i<40;i++)game.visualCue(['heal','poison','frost','holy'][i%4],units[i]);
   painter.draw(1/60);maxFx=Math.max(maxFx,painter.renderedFx||0);
   painter.ctx.getImageData(0,0,1,1);
  }
  const ms=performance.now()-start;
  document.querySelector('#burst-data').textContent=JSON.stringify({mode:'synchronous-render-throughput-with-readback',
-  entities:60,activeFx:maxFx,frames:120,elapsedMs:+ms.toFixed(2),fps:+(120000/ms).toFixed(1),
-  includesAI:false},null,1);
+  entities:units.length,activeFx:maxFx,frames:120,elapsedMs:+ms.toFixed(2),fps:+(120000/ms).toFixed(1),
+  includesAI:scene==='combat08',speed:scene==='combat08'?4:1},null,1);
 };

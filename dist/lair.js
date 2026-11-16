@@ -620,5 +620,7 @@ owner.name
  installFloorBosses(Game);
  installBones(Game);
  installCompanions(Game);
+ installPresentation(Game);
 }
 import {installCompanions} from './companions.js';
+import {installPresentation} from './presentation.js';

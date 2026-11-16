@@ -3,3 +3,21 @@
 .hire-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.hire-grid .list-row{margin:0}.hire-grid .list-row>span:last-child{color:var(--gold)}
 .floor-boss-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:16px 0}.floor-boss-card{padding:16px;border:8px solid transparent;border-image:url('assets/ui/kit/panel_inset.png') 4 fill / 8px round}.floor-boss-card>img{display:block;width:128px;height:160px;object-fit:contain;margin:auto}.floor-boss-card li,.floor-boss-card h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.floor-boss-card ul{padding-left:16px}.floor-boss-card h3{font-size:28px;line-height:28px}.floor-boss-card p{line-height:20px}.floor-boss-card>button{width:100%}
 @media(max-width:800px){.pack-grid,.hire-grid{grid-template-columns:1fr 1fr}.floor-boss-grid{gap:8px}.floor-boss-card{padding:8px}.floor-boss-card>img{width:96px;height:128px}.floor-boss-card h3{font-size:14px}}
+.boss-picker{width:min(1168px,calc(100vw - 32px));max-height:calc(100dvh - 24px);padding:8px;overflow:auto}
+.boss-pick-title{border:16px solid transparent;border-image:url('assets/ui/kit/ribbon.png') 8 fill / 16px round;text-align:center;line-height:28px;margin:0}
+.boss-pick-sub{text-align:center;margin:8px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.boss-picker .floor-boss-grid{gap:16px;margin:8px 0}.boss-picker .floor-boss-card{height:min(508px,calc(100dvh - 208px));min-height:396px;position:relative;display:flex;flex-direction:column;gap:4px;padding:8px;border:32px solid transparent;border-image:url('assets/ui/kit/card_boss.png') 16 fill / 32px round}
+.boss-portrait{height:112px;position:relative;flex:none;border:8px solid transparent;border-image:url('assets/ui/kit/panel_inset.png') 4 fill / 8px round;background:url('assets/frames/floor_1.png') left bottom/32px 32px repeat-x}
+.boss-idle{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);object-fit:contain;image-rendering:pixelated;animation:boss-idle .667s steps(1) infinite;opacity:0}
+.boss-idle-1{animation-delay:-.5s}.boss-idle-2{animation-delay:-.334s}.boss-idle-3{animation-delay:-.167s}
+@keyframes boss-idle{0%,25%{opacity:1}25.01%,100%{opacity:0}}
+.boss-picker .floor-boss-card h3{border:8px solid transparent;border-image:url('assets/ui/kit/ribbon.png') 8 fill / 8px round;font-size:28px;line-height:28px;text-align:center;margin:0;flex:none}
+.boss-picker .boss-style{margin:0;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);flex:none}
+.boss-moves{display:grid;gap:4px;flex:none}.boss-skill{display:flex;align-items:center;gap:8px;text-align:left;padding:0;border:0;min-height:20px;line-height:20px;white-space:nowrap;background:none}.boss-skill>img{width:20px;height:20px;flex:none}.boss-skill>span{flex:1;overflow:hidden;text-overflow:ellipsis}.boss-skill>small{width:3ch;color:var(--muted)}
+.boss-seals{border:16px solid transparent;border-image:url('assets/ui/kit/panel_parchment.png') 8 fill / 16px round;color:#38242c;margin-top:auto;min-height:60px;padding:0}
+.boss-seals p{display:flex;gap:8px;margin:0;line-height:20px;white-space:nowrap}.boss-seals img{width:20px;height:20px;flex:none}.boss-seals span{overflow:hidden;text-overflow:ellipsis}.home-tag{color:#725525;font-size:14px}
+.boss-picker .floor-boss-card>button{flex:none;min-height:36px;line-height:20px}.boss-picker .focused{outline:2px solid var(--gold);outline-offset:-8px}.boss-picker .floor-boss-card:hover{transform:translateY(-6px)}.boss-pick-actions{justify-content:center;margin:8px 0 0}
+.boss-skill-detail{position:absolute;left:8px;right:8px;top:40%;padding:16px;background:#d9c2a4;color:#38242c;border:4px solid #65504b;z-index:2;white-space:normal}
+.presentation-settings{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.presentation-settings h3{width:100%}#presentation-overlay{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10}
+@media(max-height:740px){.boss-picker .boss-portrait{height:80px}.boss-picker .floor-boss-card{border-width:24px;padding:4px}.boss-picker .floor-boss-card h3{font-size:14px;line-height:20px}.boss-picker .boss-seals{border-width:8px}.boss-pick-sub{margin:4px 0}}
+@media(prefers-reduced-motion:reduce){.boss-idle{animation:none}.boss-idle-0{opacity:1}.boss-picker .floor-boss-card:hover{transform:none}}

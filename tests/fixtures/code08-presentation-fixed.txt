@@ -1,0 +1,11 @@
+✔ presentation queue, merging, hitstop and reduced motion never mutate a serialized simulation (69.8473ms)
+✔ actual damage, downing and healing emit measured values without changing gameplay results (65.1722ms)
+✔ boss picker renders three supplied cards, four phased skills each, seals and unaffordable disabled actions (21.2716ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 559.6953

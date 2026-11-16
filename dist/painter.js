@@ -1,4 +1,5 @@
 import {ART_SIZE} from './art-metadata.js';
+import {installCombatFx} from './combat-fx.js';
 import {FX_KINDS} from './bestiary-data.js';
 import {iconAsset} from './icons.js';
 import {
@@ -714,6 +715,10 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   e.y);
   if(e.status==='escaped'||e.status==='surrendered'||!this.isUnitVisible(e))return;
   if(e.status==='downed'||e.status==='dead'){
+   const death=this.downPoses?.get(e.id),age=this.fxClock-death;
+   if(death!==undefined&&age<.3){c.save();c.globalAlpha=[1,.66,.33][Math.min(2,Math.floor(age/.1))];
+    const sprite=this.bodySprite(e,0);if(sprite.startsWith('yd/'))this.nativeSprite(sprite,e.x,e.y+.35,e.flip);
+    else this.sprite(sprite,e.x-.5,e.y-1.15,1,1.5,e.flip);c.restore()}
    if(this.level!=='overview')this.sprite('skull',
    e.x-.3,
    e.y-.2,
@@ -789,6 +794,9 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   c.filter=SPECIES[e.species].sprite.startsWith('yd/')?'none':
    e.variant==='frost'?'hue-rotate(125deg) saturate(.75)':e.variant==='fire'?'sepia(.5) saturate(1.3)':e.variant==='shadow'?'hue-rotate(220deg)':e.variant==='poison'?
   'hue-rotate(40deg)':'none';
+  const flash=this.hitFlashes?.get(e.id);
+  if(flash){c.filter='brightness(0) invert(1)';const length=Math.hypot(flash.dx,flash.dy)||1;
+   c.translate(Math.round(flash.dx/length),Math.round(flash.dy/length))}
   if(sprite.startsWith('yd/'))this.nativeSprite(sprite,e.x,e.y+.35,e.flip);
   else this.sprite(sprite,
   e.x-size/2+(e.strike?Math.sin(e.strike*20)*.13:0),
@@ -891,9 +899,11 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
  }
  draw(delta){
   this.labelRects=[];
-  this.time+=delta;
+  this.capturePresentation(delta);
+  if(this.presentationSettings.hitstop&&this.fxClock<this.hitStopUntil)return;
+  this.time+=delta*(this.fxClock<this.slowRenderUntil?.3:1);
   this.captureAttacks();
-  this.fxBudget=40;
+  this.fxBudget=Math.min(40,Math.max(0,64-this.combatFx.length));
   const{
    w,
    h,
@@ -907,6 +917,9 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    y:Math.round(h/2-this.camera.y*tile)
   }
   ;
+  if(this.presentationSettings.shake&&this.fxClock<this.shakeUntil){
+   const step=Math.floor(this.fxClock*60);this.bounds.x+=step%2?3:-3;this.bounds.y+=step%3?2:-2;
+  }
   this.updateFog();
   c.fillStyle='#10181b';
   c.fillRect(0,
@@ -1218,6 +1231,7 @@ t.windup>0||t.cooldown>4?2:0
    }
   }
   for(const t of s.telegraphs.filter(a=>a.floorId===this.floor)){
+   if(this.drawPixelTelegraph(t))continue;
    const p=this.point(t.x,
    t.y),
    progress=(s.time-t.createdAt)/(t.resolveAt-t.createdAt);
@@ -1356,6 +1370,7 @@ t.windup>0||t.cooldown>4?2:0
    if(age<0||age>.3)continue;this.drawProjectile({...f,life:.3-age,maxLife:.3});
   }
   this.drawFx();
+  this.drawCombatFx();
   const key=s.keyQuest;
   if(key?.locked){
    const holder=this.game.entity(key.owner),
@@ -1761,3 +1776,5 @@ selected.status
   this.camera.y=(y-r.top-b.oy)/b.scale
  }
 }
+
+installCombatFx(Painter);
