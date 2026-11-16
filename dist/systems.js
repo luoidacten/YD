@@ -1166,7 +1166,7 @@ ROOMS[room.type].name
  P.updateSquads=function(){
   const s=this.state;
   for(const id of new Set(s.entities.filter(e=>e.squadId).map(e=>e.squadId))){
-   const members=s.entities.filter(e=>e.squadId===id&&e.status==='active');
+   const members=s.entities.filter(e=>e.squadId===id&&e.status==='active'&&!e.ownerId);
    let squad=s.squads.find(a=>a.id===id);
    if(!squad){
     squad={
@@ -1436,7 +1436,7 @@ s.wave
  P.finish=function(){
   const s=this.state;
   if(s.phase!=='battle')return;
-  const lostScouts=s.entities.filter(e=>e.role==='scout'&&e.faction==='hero'&&e.status!=='escaped').length;
+  const lostScouts=s.entities.filter(e=>e.role==='scout'&&e.faction==='hero'&&!e.ownerId&&e.status!=='escaped').length;
   s.world.scoutsLost+=lostScouts;
   if(lostScouts)s.world.rumors.unshift({
    title:'Đội thăm dò mất liên lạc',

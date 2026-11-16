@@ -8,13 +8,14 @@ export function installSpecies(Game){
  P.createTrap=function(kind,p,actor=null){
   const room=this.roomAt(p.x,p.y,p.floorId),corridor=this.corridorAt(p.x,p.y,p.floorId);
   if(!['spikes','dart','frost'].includes(kind)||!this.walkable(p.x,p.y,p.floorId,actor)||!room&&!corridor||
-   actor&&room?.id!==actor.roomId||this.state.traps.some(t=>t.floorId===p.floorId&&distance(t,p)<1)||
+   actor?.faction==='monster'&&room?.id!==actor.roomId||this.state.traps.some(t=>t.floorId===p.floorId&&distance(t,p)<1)||
    this.state.entities.some(e=>e.status==='active'&&e.floorId===p.floorId&&distance(e,p)<1))return null;
   const trap={id:this.id('trap'),type:kind,x:Math.round(p.x),y:Math.round(p.y),floorId:p.floorId,
    roomId:room?.id,corridorId:corridor?.id,disabled:false,revealed:false,cooldown:0,windup:0,
    sourceActor:actor?.id||null};
   this.state.traps.push(trap);
-  for(const e of this.state.entities.filter(e=>e.faction==='monster'&&e.floorId===p.floorId&&e.roomId===room?.id))
+  for(const e of this.state.entities.filter(e=>e.faction===(actor?.faction||'monster')&&e.floorId===p.floorId&&
+   (e.faction==='monster'?e.roomId===room?.id:distance(e,p)<6)))
    if(!e.knownTraps.includes(trap.id))e.knownTraps.push(trap.id);
   return trap;
  };

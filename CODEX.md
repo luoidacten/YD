@@ -222,3 +222,10 @@ Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegrap
 - Ấn Chiêu Hồn lên lịch hồi sinh tại chỗ sau 8 giây, một lần/đợt, 50% HP, kiểm tra seal/quota/walkable; boss gục hủy lịch. Dùng reviveAlly chung, không có hệ hồi sinh riêng.
 - Đính chính brief: đại kiếm là W43, W42 là đại pháo tay. Kỵ Sĩ Xương dùng W43 đúng loại; vệ binh dùng W32 tay phụ.
 - Test C: 4 regression mới và v2/boss suite xanh; build/format xanh.
+
+## CODEX_06 D — Class và bạn đồng hành
+
+- companions-data/companions.js thêm Thuần Thú Sư, Druid, Thợ Săn qua pool có trọng số dùng chung đoàn chính/viện binh. Thông thạo dùng family hiện có: roi/liềm→exotic, giáo→polearm, dao→blade.
+- ownerId là quan hệ pet, không phải squad member: không loot/chìa/rương, không báo cáo Công hội, không tính kết thúc trận/hồn thưởng. Sói theo chủ, đánh mục tiêu thấy được, canh chủ gục 10s; chim không đánh, chia snapshot/bẫy trong bán kính 6 mỗi 3s, không biết tầng khác. Qua tầng dùng stairs/path, không teleport qua seal.
+- Druid giữ species và tỉ lệ HP khi bật/tắt bearForm: 10s, maxHP ×1,6, melee, không cast, CD25s. Thợ Săn đánh dấu +20% sát thương hero/6s và đặt bẫy rễ 0,8s dùng 8 mana qua createTrap chung. Bẫy hero không tự tiết lộ cho quái.
+- 165/165 tests xanh; 6 regression pet/class.

@@ -1,0 +1,20 @@
+✔ companions preserve owner ID through save, cannot loot or join squads, and do not report as adventurers (29.6995ms)
+✔ a living pet cannot keep a finished expedition alive or earn a guild report (58.4236ms)
+✔ wolf follows its owner, attacks the owner target, guards a downed owner then leaves after ten seconds (12.8004ms)
+✔ hawk shares radius-six snapshots and known traps without revealing another floor or distant enemy (9.4579ms)
+✔ druid bear form preserves HP ratio, species and save, suppresses spells and ends after ten seconds (7.6682ms)
+✔ new classes enter weighted main and reinforcement selection and hunter traps use shared construction (15.2186ms)
+✔ sixteen species hire and contract correctly with valid room favorites, kits and quota rejection (239.198ms)
+✔ harpy steals only a light bag item through transfer with a single owner (14.1958ms)
+✔ gnoll pack and werewolf loss response require living same-room allies (12.5645ms)
+✔ burn stops troll regeneration; treant takes extra fire and immunities reject both status and periodic damage (12.1248ms)
+✔ minotaur push stops at a wall and lich resurrection needs an operational grave (13.1124ms)
+✔ kobold lays one nonblocking trap per wave with an interruptible channel and spends personal mana (25.2619ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 582.5706

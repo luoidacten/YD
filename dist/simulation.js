@@ -1461,7 +1461,7 @@ s.statistics.reinforced+i+1
    floorId:e.floorId
   }
   );
-  if(e.faction==='hero'){
+  if(e.faction==='hero'&&!e.ownerId){
    s.statistics.downed++;
    if(e.gold){
     s.items.push({
@@ -2162,6 +2162,7 @@ stage+1
        trap:true
       }
       );
+      if(t.rootTrap)this.applyStatus(e,'root',2,1,this.entity(t.activatedBy));
       if(t.type==='frost')e.slowUntil=s.time+3+(this.floorSeals?.(e.floorId).trapSlow||0)
      }
      t.cooldown=5;
@@ -2307,7 +2308,8 @@ stage+1
    this.log('Đoàn thám hiểm kiệt sức và đầu hàng, không thoát qua cửa khóa.',
    'warning')
   }
-  if(!s.encounter.spawnQueue.length&&s.encounter.reinforcements.every(r=>r.state==='resolved')&&s.entities.filter(e=>e.faction==='hero').every(e=>e.status!=='active'&&e.status!=='downed')
+  if(!s.encounter.spawnQueue.length&&s.encounter.reinforcements.every(r=>r.state==='resolved')&&
+   s.entities.filter(e=>e.faction==='hero'&&!e.ownerId).every(e=>e.status!=='active'&&e.status!=='downed')
   )this.finish()
  }
  progress(e){
@@ -2388,7 +2390,7 @@ e.evolution
    }
    s.items=s.items.filter(i=>i.id!==item.id)
   }
-  for(const e of s.entities.filter(e=>e.faction==='hero'))s.reports.push({
+  for(const e of s.entities.filter(e=>e.faction==='hero'&&!e.ownerId))s.reports.push({
    name:e.name,
    species:e.species,
    level:e.level,
