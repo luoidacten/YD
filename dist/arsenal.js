@@ -230,6 +230,7 @@ e.name
    if(last?.beam){
     Object.assign(last,
     {
+     source:e.id,
      projectile:w?.projectile||(SPECIES[e.species].magic?'magic':'arrow'),
      life:.3,
      maxLife:.3

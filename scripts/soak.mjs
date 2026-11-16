@@ -77,7 +77,10 @@ async function main(){
   });results.push(r);if(results.length%5===0)console.log(`Soak ${results.length}/${tasks.length}`)}
  }));
  results.sort((a,b)=>a.seed-b.seed||a.wave-b.wave);const summary=summarize(results);
- const report={schema:1,fixture:'seeded-independent-waves-v1',step:1/30,generatedAt:new Date().toISOString(),summary,battles:results};
+ const weapons=results.reduce((sum,b)=>{for(const[k,v]of Object.entries(b.weaponMetrics||{}))sum[k]=(sum[k]||0)+v;return sum},{});
+ weapons.techniqueRate=(weapons.techniqueUses||0)/Math.max(1,(weapons.basicAttacks||0)+(weapons.techniqueUses||0));
+ weapons.jamRate=weapons.jamAttempts?weapons.jams/weapons.jamAttempts:null;
+ const report={weapons,schema:1,fixture:'seeded-independent-waves-v1',step:1/30,generatedAt:new Date().toISOString(),summary,battles:results};
  const output=get('--out','soak-report.json');fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify(report,null,1)+'\n');
  console.table({...summary,defenderWinRate:summary.defenderWins/summary.battles});
  if(args.includes('--compare')){

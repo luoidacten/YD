@@ -5,6 +5,9 @@ import {PROFICIENCY,ROLE_PROFICIENCY} from './weapon-data.js';
 
 export function installWeapons(Game){
  const P=Game.prototype;
+ P.usesMagicAttack=function(e){
+  const w=this.weaponDefinition(e);return w?.family?!!w.magic||['staff','wand','holy'].includes(w.family):SPECIES[e.species].magic;
+ };
  P.brain=function(e){return e.intelligence??SPECIES[e.species]?.brain??50};
  P.proficiency=function(e,family){
   return PROFICIENCY[e.species]?.[family]??(e.faction==='monster'?ROLE_PROFICIENCY[e.role]?.[family]:undefined)??1;
@@ -67,7 +70,7 @@ export function installWeapons(Game){
   if(this.weaponDefinition(e)?.family==='gun'&&e.gunState?.ready===false&&k.kind==='strike')return false;
   return available.call(this,e,k);
  };
- P.metrics=function(){return this.state.weaponMetrics??={shots:0,jamAttempts:0,jams:0,techniqueOffers:0,techniqueUses:0,bombs:0,blocks:0}};
+ P.metrics=function(){return this.state.weaponMetrics??={basicAttacks:0,shots:0,jamAttempts:0,jams:0,techniqueOffers:0,techniqueUses:0,bombs:0,blocks:0}};
  const setup=P.setupLair;P.setupLair=function(){
   setup.call(this);this.metrics();for(const e of this.state.entities)e.gearSlots.offhand??=null;
  };
@@ -117,7 +120,7 @@ export function installWeapons(Game){
   const blast={id:this.id('thrown-bomb'),type:'explosive',hp:1,...landing};
   this.damageProp(blast,1,e);this.metrics().bombs++;
   if(d.fireBomb)this.state.hazards.push({...landing,type:'fire',radius:2,until:this.state.time+3});
-  this.effects.push({x:e.x,y:e.y,tx:landing.x,ty:landing.y,floorId:e.floorId,projectile:'bomb',life:.4,maxLife:.4});
+  this.effects.push({x:e.x,y:e.y,tx:landing.x,ty:landing.y,floorId:e.floorId,source:e.id,projectile:'bomb',life:.4,maxLife:.4});
   item.charges--;if(item.charges<=0){e.inventory=e.inventory.filter(id=>id!==item.id);this.state.items=this.state.items.filter(i=>i!==item)}
   return true;
  };
@@ -176,6 +179,8 @@ export function installWeapons(Game){
  };
  // The single proficiency damage multiplier. Other wrappers must not multiply it again.
  const damage=P.damage;P.damage=function(e,n,source=null,ctx={}){
+  if(source&&!ctx.secondary&&!ctx.skill&&source.action==='attack'&&this.weaponDefinition(source)?.family==='gun'&&
+   (!this.gunReady(source)||this.jamGun(source)))return;
   if(source&&!ctx.secondary)n*=this.weaponFactor(source);
   if(source&&!ctx.aoe&&!ctx.secondary&&distance(source,e)>2.8){
    const guard=this.frontShield(e,source);
@@ -191,10 +196,9 @@ export function installWeapons(Game){
    if(e.gunState.ready)e.action='guard';return;
   }
   if(e.action==='reload'&&ready){e.action='guard';e.decision=0}
-  if(w?.family==='gun'&&e.action==='attack'&&e.cooldown<=0&&target&&distance(e,target)<=this.range(e)&&
-   this.lineOfSight(e,target)&&this.jamGun(e))return;
   act.call(this,e,dt);
-  if(e.cooldown>before&&e.strike>0){
+  if(e.cooldown>before&&e.strike>0&&!(w?.family==='gun'&&e.gunState?.jammed)){
+   const metrics=this.metrics();metrics.basicAttacks=(metrics.basicAttacks||0)+1;
    // The single proficiency attack-speed adjustment, once per committed basic attack.
    e.cooldown/=Math.max(.1,this.weaponSpeedFactor(e,w));
    if(w?.family==='gun'&&e.gunState?.ready!==false)this.gunFired(e);

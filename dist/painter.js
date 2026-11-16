@@ -630,7 +630,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    this.fx.push({...cue,expires:this.time+.5});this.lastVisualEvent=cue.id;
   }
   this.fx=this.fx.filter(f=>f.expires>this.time).slice(-40);
-  if(this.level==='overview')return;
+  this.renderedFx=0;if(this.level==='overview')return;
   const shields=this.game.state.entities.filter(e=>e.status==='active'&&e.floorId===this.floor&&
    this.game.effect(e,'shield')&&this.isUnitVisible(e)).map(e=>({...e,kind:'shield'}));
   const effects=this.fxBudget>0?[...shields,...this.fx].slice(-this.fxBudget):[];this.renderedFx=0;
@@ -640,15 +640,49 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    this.nativeSprite(frames[Math.floor(this.time*8)%4],f.x,f.y-.7,false,'center');this.renderedFx++;
   }
  }
- bodySprite(e,frame){
-  const d=SPECIES[e.species];
-  const hit=['knight_m','knight_f','elf_m','elf_f','lizard_m','lizard_f','dwarf_m','dwarf_f','wizzard_m','wizzard_f'];
-  if(this.game.state.time-(e.lastDamaged??-100)<.15&&(hit.includes(d.sprite)||ART_SIZE[d.sprite+'_hit_anim_f0']))
-   return d.sprite+'_hit_anim_f0';
-  if(e.species==='mimic')return 'chest_mimic_open_anim_f'+(e.disguised?0:frame%3);
-  if(['slime','shaman'].includes(e.species)||d.animation==='single')return d.sprite+'_anim_f'+frame;
-  return d.sprite+'_'+(e.moving?'run':'idle')+'_anim_f'+frame;
+ captureAttacks(){
+  if(this.visualGame!==this.game){
+   this.visualGame=this.game;this.lastAttackEvent=0;this.lastVisualEvent=0;
+   this.attackPoses=new Map();this.projectiles=[];this.fx=[];
+  }
+  this.attackPoses??=new Map();this.projectiles??=[];this.lastAttackEvent??=0;
+  for(const event of this.game.attackEvents||[])if(event.id>this.lastAttackEvent){
+   this.attackPoses.set(event.entityId,{...event,started:this.time});this.lastAttackEvent=event.id;
+   if(event.projectile)this.projectiles.push({...event,born:this.time});
+  }
+  for(const[id,pose]of this.attackPoses)if(this.time-pose.started>=.3)this.attackPoses.delete(id);
+  this.projectiles=this.projectiles.filter(f=>this.time-f.born<.45).slice(-40);
  }
+ attackFrame(e){
+  const pose=this.attackPoses?.get(e.id);
+  return pose&&this.time-pose.started<.3?Math.min(3,Math.floor((this.time-pose.started)/.075)):-1;
+ }
+ bodySprite(e,frame){
+  const d=SPECIES[e.species],sprite=e.elite&&d.eliteSprite?d.eliteSprite:d.sprite;
+  const hit=['knight_m','knight_f','elf_m','elf_f','lizard_m','lizard_f','dwarf_m','dwarf_f','wizzard_m','wizzard_f'];
+  if(this.game.state.time-(e.lastDamaged??-100)<.15&&(hit.includes(sprite)||ART_SIZE[sprite+'_hit_anim_f0']))
+   return sprite+'_hit_anim_f0';
+  if(e.species==='mimic')return 'chest_mimic_open_anim_f'+(e.disguised?0:frame%3);
+  const attack=this.attackFrame(e),base=sprite.split('/').at(-1),name=`yd/attack/${base}_attack_anim_f${Math.max(0,attack)}`;
+  if(attack>=0&&ART_SIZE[name])return name;
+  if(['slime','shaman'].includes(e.species)||d.animation==='single')return sprite+'_anim_f'+(attack>=0?0:frame);
+  return sprite+'_'+(e.moving&&attack<0?'run':'idle')+'_anim_f'+(attack>=0?0:frame);
+ }
+ drawWeapon(e,weapon,offhand=false){
+  const pose=this.attackPoses?.get(e.id),f=this.attackFrame(e),w=!offhand&&pose?.weapon||weapon;
+  if(!w)return;const family=w.family,throwing=['thrown','bomb'].includes(family);
+  if(throwing&&f>=2)return;
+  const im=this.image(w.art);if(!im.complete||!im.naturalWidth)return;
+  const c=this.ctx,scale=Math.max(1,Math.round(this.bounds.tile/16)),horizontal=['gun','crossbow','bow'].includes(family);
+  const p=this.point(e.x+(e.flip?-.45:.45)*(offhand?-1:1),e.y-.65);
+  c.save();c.imageSmoothingEnabled=false;c.translate(Math.round(p.x),Math.round(p.y));if(e.flip)c.scale(-1,1);
+  if(!offhand)c.rotate(horizontal?Math.PI/2:f>=0?[-60,-20,20,60][f]*Math.PI/180:0);
+  if(horizontal&&f===1)c.translate(0,scale);
+  if(throwing&&f===1)c.translate(scale,0);
+  c.drawImage(im,-Math.round(im.naturalWidth*scale/2),-im.naturalHeight*scale,
+   im.naturalWidth*scale,im.naturalHeight*scale);c.restore();
+ }
+
  entity(e){
   const c=this.ctx,
   t=this.bounds.tile,
@@ -740,14 +774,10 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   e.flip);
   c.restore();
   const weapon=this.game.weaponDefinition(e);
-  if(weapon&&!e.disguised&&this.level==='detail'&&weapon.art.startsWith('yd/'))
-   this.nativeSprite(weapon.art,e.x+(e.flip?-.6:.6),e.y-.3,e.flip);
-  else if(weapon&&!e.disguised&&this.level==='detail')this.sprite(weapon.art,
-  e.x+(e.flip?-.85:.25),
-  e.y-1.2+(e.strike?-.12:0),
-  .65,
-  1.15,
-  e.flip);
+  if(weapon&&!e.disguised&&this.level==='detail')this.drawWeapon(e,weapon);
+  const offhand=this.game.offhandDefinition(e);
+  if(offhand&&!e.disguised&&this.level!=='overview')this.drawWeapon(e,offhand,true);
+
   if(e.variantColor){
    c.strokeStyle=e.variantColor;
    c.lineWidth=1.5;
@@ -837,6 +867,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
  }
  draw(delta){
   this.time+=delta;
+  this.captureAttacks();
   this.fxBudget=40;
   const{
    w,
@@ -1253,7 +1284,7 @@ t.windup>0||t.cooldown>4?2:0
   }
   for(const f of this.game.effects.filter(f=>f.floorId===this.floor)){
    if(f.projectile){
-    this.drawProjectile(f)
+    if(!f.source)this.drawProjectile(f)
    }
    else if(f.beam){
     const p=this.point(f.x,
@@ -1290,6 +1321,11 @@ t.windup>0||t.cooldown>4?2:0
    f.y-1.5-(1-f.life),
    f.color,
    12)
+  }
+  for(const f of this.projectiles){
+   if(f.floorId!==this.floor||this.visibleTiles&&!this.visibleTiles[Math.round(f.y)*WIDTH+Math.round(f.x)])continue;
+   const throwing=['knife','axe','bomb'].includes(f.projectile),delay=throwing?.15:0,age=this.time-f.born-delay;
+   if(age<0||age>.3)continue;this.drawProjectile({...f,life:.3-age,maxLife:.3});
   }
   this.drawFx();
   const key=s.keyQuest;
@@ -1355,6 +1391,8 @@ t.windup>0||t.cooldown>4?2:0
   x=f.x+(f.tx-f.x)*progress,
   y=f.y+(f.ty-f.y)*progress-.5,
   c=this.ctx;
+  if(f.projectile==='bullet'){this.rect(x-.12,y-.04,.24,.08,'#f0d594');return}
+  if(f.projectile==='bomb'){this.nativeSprite('bomb_f0',x,y-Math.sin(progress*Math.PI)*1.5,false,'center');return}
   const frames=this.fxSprite(f.projectile);
   if(frames&&this.level!=='overview'){
    if(this.fxBudget<=0)return;this.fxBudget--;

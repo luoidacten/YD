@@ -11,7 +11,7 @@ export function auditSprites(root=process.cwd()){
   .map(n=>fs.readFileSync(path.join(root,'dist',n),'utf8')).join('\n').replace(/\\\r?\n/g,'');
  const used=new Set(frames.filter(n=>new RegExp(`(?<![a-zA-Z0-9_])${n}(?![a-zA-Z0-9_])`).test(source)));
  // Expand the actual unit frame selector rather than guessing every matching prefix.
- const painter={game:{state:{time:10}}};
+ const painter=Object.assign(Object.create(Painter.prototype),{game:{state:{time:10}},time:10});
  for(const species of Object.keys(SPECIES))for(const moving of [false,true])for(const lastDamaged of [0,10])
   for(const disguised of [false,true])for(let f=0;f<4;f++){
    const frame=Painter.prototype.bodySprite.call(painter,{species,moving,lastDamaged,disguised},f);

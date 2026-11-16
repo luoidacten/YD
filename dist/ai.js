@@ -198,6 +198,7 @@ e){
  const s=game.state,
  d={
   ...SPECIES[e.species],
+  magic:game.usesMagicAttack(e),
   range:game.range(e)
  }
  ,

@@ -1,0 +1,23 @@
+✔ every delivered v0.4-v0.5 project PNG is referenced and byte-identical to the handoff (287.1411ms)
+✔ attack events do not change saved simulation state; four poses last exactly 0.3 renderer seconds (26.7764ms)
+✔ Mimic retains opening frames and a missing attack frame falls back to a real idle frame (0.99ms)
+✔ native project sprites use integer nearest-neighbor scaling and gun poses are horizontal (0.944ms)
+✔ changing Game clears old renderer attack and spell queues without touching either save (1.7054ms)
+✔ weapon requirements distinguish prohibited families, strict brain and usable weapons with Vietnamese UI reasons (30.109ms)
+✔ proficiency factors are 0.7, 1, 1.1 and insufficient brain adds one 0.6 penalty (12.4239ms)
+✔ offhand and two-handed weapons are mutually exclusive and saved without duplicating item ownership (12.909ms)
+✔ gun jams repeat exactly after restoring the seeded save and reloading interrupts on damage (15.3397ms)
+✔ firing a gun uses LOS, starts reload and creates a noise without leaking targets through walls (17.831ms)
+✔ bomb consumes one charge and shares barrel friendly-fire and chain-once behavior (12.2285ms)
+✔ front-facing shield protects its carrier and an ally behind it but not a rear shot or AoE (11.5271ms)
+✔ weapon techniques require both proficiency and brain; off-class upgrades remain in the bag (10.4968ms)
+✔ physical firearms and crossbows remain physical on a spellcaster with no mana (15.1552ms)
+✔ a gunner whose decision changes from guard to attack still rolls jam at the actual shot boundary (14.2669ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 620.8178

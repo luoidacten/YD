@@ -1770,7 +1770,7 @@ target.name
     e.decision=0;
     return
    }
-   const range=(d.magic&&e.mana<5?1.4:this.range(e))+(target.boss?.9:0);
+   const magical=this.usesMagicAttack(e),range=(magical&&e.mana<5?1.4:this.range(e))+(target.boss?.9:0);
    e.combatTime+=dt;
    e.frenzy=e.charms.includes('frenzy')?Math.min(8,
    Math.floor(e.combatTime/5)):0;
@@ -1784,7 +1784,7 @@ target.name
     return
    }
    if(e.cooldown===0){
-    const magic=d.magic&&e.mana>=5;
+    const magic=magical&&e.mana>=5;
     if(magic)e.mana-=5;
     const power=(d.attack+(e.equipment?.durability>0?e.equipment.power:0)+e.level*1.5)*(e.elite?1.22:1)*(e.powerScale||1)*(e.charms.includes('violent')?1.2:1)*(e.charms.includes('blessed')?
     1.1:1)*(1+e.frenzy*.05);
@@ -1822,7 +1822,7 @@ target.name
     e.decision=0;
     return
    }
-   const range=!d.magic||e.mana>=5?this.range(e):1.4;
+   const magical=this.usesMagicAttack(e),range=!magical||e.mana>=5?this.range(e):1.4;
    if(distance(e,
    prop)>range){
     this.move(e,
@@ -1832,7 +1832,7 @@ target.name
     return
    }
    if(e.cooldown===0){
-    if(d.magic&&e.mana>=5)e.mana-=5;
+    if(magical&&e.mana>=5)e.mana-=5;
     this.damageProp(prop,
     d.attack+8,
     e);

@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 export function writeArtMetadata(root=process.cwd()){
- const metadata={};
+ const metadata={},scopeFile=path.join(root,'tests/fixtures/art-scope-v05.json');
+ const allowed=fs.existsSync(scopeFile)?new Set(Object.keys(JSON.parse(fs.readFileSync(scopeFile,'utf8')).frames)):null;
  function walk(dir){for(const name of fs.readdirSync(dir)){const file=path.join(dir,name);
   if(fs.statSync(file).isDirectory())walk(file);else if(name.endsWith('.png')){
    const bytes=fs.readFileSync(file),key=path.relative(path.join(root,'dist/assets/frames'),file).replaceAll('\\','/').slice(0,-4);
-   metadata[key]=[bytes.readUInt32BE(16),bytes.readUInt32BE(20)];
+   if(!allowed||allowed.has(key))metadata[key]=[bytes.readUInt32BE(16),bytes.readUInt32BE(20)];
   }
  }}
  walk(path.join(root,'dist/assets/frames/yd'));

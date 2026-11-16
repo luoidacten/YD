@@ -17,7 +17,7 @@ for(const[id,family]of Object.entries({I01:'blade',I02:'blade',I03:'bow',I04:'cr
  Object.assign(ITEMS[id],{family,hands:['bow','crossbow','staff'].includes(family)?2:1,
   req:{brain:family==='staff'?35:15,technique:45},strict:false,technique:FAMILY_TECHNIQUE[family]});
 export const NEW_WEAPONS=[
- ['W31','Cung Ma Thuật','magic_bow','bow',2,55,65,{reach:7,power:.15,projectile:'curse'}],
+ ['W31','Cung Ma Thuật','magic_bow','bow',2,55,65,{reach:7,power:.15,projectile:'curse',magic:true}],
  ['W32','Khiên Tròn','shield_round','shield',1,10,30,{slot:'offhand',shieldBlock:.5,armor:.1}],
  ['W33','Khiên Tháp','shield_tower','shield',1,20,40,{slot:'offhand',shieldBlock:.75,speed:-.1}],
  ['W34','Kích','halberd','polearm',2,30,50,{reach:3,power:.2,attackSpeed:-.1}],

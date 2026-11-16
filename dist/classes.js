@@ -6,6 +6,7 @@ export function installClasses(Game){
  const P=Game.prototype;
  P.setupClass=function(e){
   if(e.classKit)return;e.classKit=true;
+  if(e.species==='crossbowman'&&this.random()<.35)this.equipItem(e,this.createItem('W39',e));
   const extras={ninja:['W08'],paladin:['W33'],crossbowman:['W35','W39']};
   for(const id of extras[e.species]||[]){
    if(this.state.items.some(i=>i.owner===e.id&&i.definitionId===id))continue;

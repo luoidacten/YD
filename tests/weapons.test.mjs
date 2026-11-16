@@ -66,3 +66,16 @@ test('weapon techniques require both proficiency and brain; off-class upgrades r
  assert.equal(g.weaponTechnique(e),null);e.intelligence=60;assert.ok(g.weaponTechnique(e));
  const gun=g.createItem('W39',e);assert.equal(g.itemUseful(e,gun,[]),false);assert.equal(gun.location,'bag');
 });
+
+test('physical firearms and crossbows remain physical on a spellcaster with no mana',()=>{
+ const {g}=fixture(),e=unit(g,'shaman','monster',51),enemy=unit(g,'knight','hero',56);
+ g.equipItem(e,g.createItem('W23',e));e.mana=0;e.action='attack';e.target=enemy.id;
+ assert.equal(g.usesMagicAttack(e),false);g.act(e,1/30);assert.ok(enemy.hp<1000);assert.equal(e.mana,0);
+});
+
+test('a gunner whose decision changes from guard to attack still rolls jam at the actual shot boundary',()=>{
+ const {g}=fixture(),e=unit(g,'goblin','monster',51),enemy=unit(g,'knight','hero',56);
+ g.equipItem(e,g.createItem('W39',e));e.action='guard';e.decision=0;
+ g.decide=actor=>{actor.action='attack';actor.target=enemy.id;actor.decision=100};g.random=()=>0;
+ g.act(e,1/30);assert.equal(enemy.hp,1000);assert.equal(e.gunState.jammed,true);assert.equal(g.metrics().jams,1);
+});

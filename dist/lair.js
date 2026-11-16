@@ -1,3 +1,4 @@
+import {installAttackVisuals} from './attack-visuals.js';
 import {installSpecies} from './species.js';
 import {installClasses} from './classes.js';
 import {installWeapons} from './weapons.js';
@@ -611,4 +612,5 @@ owner.name
  installWeapons(Game);
  installClasses(Game);
  installSpecies(Game);
+ installAttackVisuals(Game);
 }

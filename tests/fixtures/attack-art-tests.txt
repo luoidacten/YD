@@ -1,0 +1,13 @@
+✔ every delivered v0.4-v0.5 project PNG is referenced and byte-identical to the handoff (272.4119ms)
+✔ attack events do not change saved simulation state; four poses last exactly 0.3 renderer seconds (27.3897ms)
+✔ Mimic retains opening frames and a missing attack frame falls back to a real idle frame (1.3183ms)
+✔ native project sprites use integer nearest-neighbor scaling and gun poses are horizontal (1.0017ms)
+✔ changing Game clears old renderer attack and spell queues without touching either save (1.0912ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 560.4753
