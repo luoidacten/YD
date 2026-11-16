@@ -1,3 +1,4 @@
+import {BOSS_POOL} from './boss-data.js';
 import {equipControl,weaponSummary} from './weapon-ui.js';
 import {loadIcons,hydrateIcons,icon,roomIcon,cardFrame} from './icons.js';
 import {
@@ -958,6 +959,9 @@ q.name
  $$('[data-hire]').forEach(b=>b.onclick=()=>hire(b.dataset.hire));
  $('#random-hire').onclick=()=>hire(null);
  function hire(species){
+  if(['warden','lord'].includes(species)){const r=game.state.rooms.find(r=>r.id===$('#hire-room').value);
+   if(r){showFloorBosses(r.floorId);return;}
+  }
   const e=game.hire($('#hire-room').value,
   species);
   if(!e)toast('Không đủ vàng, không có chỗ, hoặc đang tạm dừng.');
@@ -1376,6 +1380,7 @@ boss.hp/boss.maxHp*100
  ;
  renderCards();
  renderInspector();
+ if(s.phase==='prepare'&&!$('#modal').open&&game.pendingFloorBosses().length)showFloorBosses();
  if(s.phase!==lastPhase){
   lastPhase=s.phase;
   if(s.phase!=='prepare')clearCard();
@@ -1722,4 +1727,28 @@ function hearts(e){
   return `<img src="assets/frames/ui_heart_${frame}.png" alt="">`;
  }).join('');
  return `<div class="health-hearts" aria-label="Sinh lực ${Math.round(ratio*100)}%">${images}</div>`;
+}
+
+function showFloorBosses(floorId=game.pendingFloorBosses()[0]){
+ if(floorId===undefined||!game.floorBossRoom(floorId))return;
+ const record=game.state.floorBoss[floorId];
+ if(record?.id){toast('Tầng này đã có '+BOSS_POOL[record.id].name);return}
+ const offers=game.floorBossOffers(floorId);
+ modal(`<span class="eyebrow">TẦNG ${floorId+1}</span><h2>Chọn Tầng Chủ</h2><p>Chọn một trong ba ứng viên. Ấn chỉ còn khi chủ tầng đang sống.</p>
+  <div class="floor-boss-grid">${offers.map(d=>{
+   const cost=game.floorBossCost(floorId,d.id);
+   return `<article class="floor-boss-card"><img src="assets/frames/${d.sprite}_idle_anim_f0.png" alt="${esc(d.name)}">
+    <h3>${esc(d.name)}</h3><p>${esc(d.style)}</p><ul>${d.skills.map(k=>`<li title="${esc(k.name+' · '+k.kind+' · '+k.damage+' sát thương · '+k.cd+'s CD')}">
+    ${esc(k.name)}${k.phase?' · GĐ'+(k.phase+1):''}</li>`).join('')}</ul><p>${d.seals.map(x=>esc(x.name+': '+x.description)).join('<br>')}</p>
+    <button class="primary" data-boss-choice="${d.id}" ${game.state.gold<cost?'disabled':''}
+     title="${game.state.gold<cost?'Thiếu '+(cost-game.state.gold)+' vàng':'Chọn '+esc(d.name)}">Chọn · ${cost} vàng</button></article>`;
+  }).join('')}</div><div class="actions"><button id="reroll-floor-boss" ${record.rerolled||game.state.gold<50?'disabled':''}>
+  ${record.rerolled?'Đã đổi bộ':'Đổi bộ · 50 vàng (1 lần)'}</button><button id="boss-menu">Menu</button></div>`, 'floor-boss');
+ for(const button of $$('[data-boss-choice]'))button.onclick=()=>{
+  const e=game.hireFloorBoss(floorId,button.dataset.bossChoice);
+  if(!e){toast('Chưa đủ vàng hoặc phòng không còn 4 ô quân.');return}
+  closeModal();save();update();
+ };
+ $('#reroll-floor-boss').onclick=()=>{if(game.rerollFloorBosses(floorId)){save();showFloorBosses(floorId)}};
+ $('#boss-menu').onclick=showMenu;
 }

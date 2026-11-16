@@ -1,3 +1,4 @@
+import {installFloorBosses} from './floor-bosses.js';
 import {installBossCombat} from './boss-combat.js';
 import {installAttackVisuals} from './attack-visuals.js';
 import {installSpecies} from './species.js';
@@ -615,4 +616,5 @@ owner.name
  installSpecies(Game);
  installAttackVisuals(Game);
  installBossCombat(Game);
+ installFloorBosses(Game);
 }

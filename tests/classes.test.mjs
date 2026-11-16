@@ -3,13 +3,15 @@ import assert from 'node:assert/strict';
 import {Game} from '../dist/simulation.js';
 import {KITS} from '../dist/catalog.js';
 import {CLASSES} from '../dist/classes-data.js';
+import {SPECIES} from '../dist/data.js';
 import {makeFixture} from '../scripts/soak.mjs';
 
 test('all eight requested classes have legal starting gear, kit and default personality',()=>{
  const ids=[...Object.keys(CLASSES),'paladin','berserker','knight'];
  for(const id of ids){const g=new Game();g.addRoom(1,1,'boss');const e=g.spawn(id,'hero',54,46,id,[]);
   assert.ok(g.weaponDefinition(e),id);assert.ok(g.canEquip(e,g.weaponDefinition(e)),id);
-  assert.equal(KITS[id].skills.length,4);assert.ok(id==='knight'?KITS[id].passives.length>=2:KITS[id].passives.length===2);assert.ok(e.charms.length);
+  assert.equal(KITS[id].skills.length,4);assert.ok(id==='knight'?KITS[id].passives.length>=2:KITS[id].passives.length===2);
+  for(const charm of SPECIES[id].charms||[])assert.ok(e.charms.includes(charm),id+': '+charm);
  }
 });
 test('weighted selection covers new classes while strong classes respect wave gates',()=>{

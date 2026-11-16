@@ -135,10 +135,10 @@ e.name
  species=null){
   if(!species||NEW_MONSTERS[species]){
    const r=this.state.rooms.find(r=>r.id===roomId),
-   random=!species,
-   cost=Math.ceil((random?110:75)*(this.state.deck.activeFate?.id==='F02'?1.5:1));
+   random=!species;
    const chosen=species||this.pickWeighted(MONSTER_HIRES.map(id=>[id,
     id==='pumpkin'?(this.state.world.event==='Chợ phiên'?.1:0):SPECIES[id]?.rare?.15:1]));
+   const cost=this.hirePrice(r,chosen,random);
    if(!this.canPrepare()||!r||!this.roomOperational(r)||!this.roomHasSpace(r,
    {
     species:chosen

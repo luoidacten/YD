@@ -40,13 +40,6 @@ export function installBestiary(Game){
   }
   return skillTarget.call(this,e,k,enemies,allies);
  };
- const hire=P.hire;P.hire=function(roomId,species=null){
-  const cost=SPECIES[species]?.hireCost,room=this.state.rooms.find(r=>r.id===roomId);
-  if(!cost)return hire.call(this,roomId,species);
-  const multiplier=this.state.deck.activeFate?.id==='F02'?1.5:1,extra=Math.ceil(cost*multiplier)-Math.ceil(75*multiplier);
-  if(this.state.gold<cost*multiplier||!room)return null;
-  const e=hire.call(this,roomId,species);if(e)this.state.gold-=extra;return e;
- };
  const choices=P.extendChoices;P.extendChoices=function(e,context){
   choices.call(this,e,context);
   if(['assassin'].includes(e.species)&&context.enemies.length){

@@ -550,7 +550,8 @@ Math.round(y)
    e.destinationRoom=null;
    if(!e.visitedRooms.includes(core.id))e.visitedRooms.push(core.id)
   }
-  if(k.owner===e.id&&!locked){
+  // Explore/clear this floor first: stairs cannot descend past a living boss.
+  if(k.owner===e.id&&!locked&&core.floorId===e.floorId){
    add('unlock-core',
    2.4,
    approach,

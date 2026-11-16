@@ -2162,7 +2162,7 @@ stage+1
        trap:true
       }
       );
-      if(t.type==='frost')e.slowUntil=s.time+3
+      if(t.type==='frost')e.slowUntil=s.time+3+(this.floorSeals?.(e.floorId).trapSlow||0)
      }
      t.cooldown=5;
      this.event('trap',

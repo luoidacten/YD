@@ -844,7 +844,7 @@ export function installContent(Game){
  species=null){
   const room=this.state.rooms.find(r=>r.id===roomId),
   random=!species,
-  cost=Math.ceil((random?110:75)*(this.state.deck.activeFate?.id==='F02'?1.5:1));
+  cost=this.hirePrice(room,species,random);
   if(!this.canPrepare()||!room||room.owner!=='dungeon'||this.state.gold<cost||this.state.entities.filter(e=>e.faction==='monster').length>=40)return null;
   species=species||['goblin',
   'skeleton',

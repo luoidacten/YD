@@ -19,6 +19,7 @@ export function makeFixture(seed,wave=1){
   const pool=['goblin','skeleton','shaman','lizardArcher','orc'];
   for(let i=0;i<3;i++)if(!g.hire(guard.id,pool[(seed+i)%pool.length]))throw Error('Fixture hire rejected');
  }
+ for(const floor of g.pendingFloorBosses())g.hireFloorBoss(floor,g.floorBossOffers(floor)[0].id);
  if(!g.placeKey(entry.x,entry.y,0).ok||g.layoutIssues().length)throw Error('Invalid fixture');
  return g;
 }

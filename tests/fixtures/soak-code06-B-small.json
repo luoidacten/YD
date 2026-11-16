@@ -1,0 +1,1526 @@
+{
+ "weapons": {
+  "basicAttacks": 1997,
+  "shots": 7,
+  "jamAttempts": 7,
+  "jams": 0,
+  "techniqueOffers": 88248,
+  "techniqueUses": 246,
+  "bombs": 8,
+  "blocks": 0,
+  "souls": 122,
+  "techniqueRate": 0.10967454302273741,
+  "jamRate": 0
+ },
+ "schema": 1,
+ "fixture": "seeded-independent-waves-v1",
+ "step": 0.03333333333333333,
+ "generatedAt": "2026-11-16T06:30:44.896Z",
+ "summary": {
+  "battles": 30,
+  "defenderWins": 1,
+  "medianSeconds": 150.4,
+  "limitHits": 0,
+  "stuckEpisodes": 11
+ },
+ "battles": [
+  {
+   "seed": 1,
+   "wave": 1,
+   "hash": "38eec7238e2d80803feaebc0c7e0109cdfb300d845f47787009e5141fac3e0b0",
+   "result": "gameover",
+   "time": 148.8,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 43,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2181,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 1,
+   "wave": 2,
+   "hash": "b9d5e8580451e1a734c3186360152b7625d06623acc44a9a6a55b0e366f63734",
+   "result": "gameover",
+   "time": 152.733,
+   "escaped": 4,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 39,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 3102,
+    "techniqueUses": 10,
+    "bombs": 1,
+    "blocks": 0,
+    "souls": 4
+   },
+   "stuck": []
+  },
+  {
+   "seed": 1,
+   "wave": 3,
+   "hash": "459bc00af37c526d67bd34ff8e500f5e135f70b07c27423c2b5da889a44076e1",
+   "result": "gameover",
+   "time": 139.8,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 35,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2674,
+    "techniqueUses": 4,
+    "bombs": 3,
+    "blocks": 0,
+    "souls": 4
+   },
+   "stuck": []
+  },
+  {
+   "seed": 2,
+   "wave": 1,
+   "hash": "9032547529e25333a1ff4c3da1075eb914b004de03118f6f5df6d52d3bd37730",
+   "result": "gameover",
+   "time": 145.1,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 59,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2561,
+    "techniqueUses": 10,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "stuck": []
+  },
+  {
+   "seed": 2,
+   "wave": 2,
+   "hash": "e319d2da8fc305893db3e268a2712a08000a1d3e19dea475656a329499f70a01",
+   "result": "gameover",
+   "time": 143.367,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 31,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2699,
+    "techniqueUses": 9,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "stuck": []
+  },
+  {
+   "seed": 2,
+   "wave": 3,
+   "hash": "5412cc199637260009a08b9007b48bedb34adfdd8aa8de68fcca9da8083f1a1a",
+   "result": "gameover",
+   "time": 126.4,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 17,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2633,
+    "techniqueUses": 4,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 3,
+   "wave": 1,
+   "hash": "437a4b972664f71d8227e99ab4b5475f9e2ce9e5893c5b784573a6b882aedfd5",
+   "result": "gameover",
+   "time": 167,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 43,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2947,
+    "techniqueUses": 14,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "stuck": []
+  },
+  {
+   "seed": 3,
+   "wave": 2,
+   "hash": "b96a3659099cad777a3c9f8272e497912f0628724597f7c684e78d204539b8d7",
+   "result": "gameover",
+   "time": 161.767,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 192,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2098,
+    "techniqueUses": 2,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "stuck": []
+  },
+  {
+   "seed": 3,
+   "wave": 3,
+   "hash": "f64cda568e25c9f992501226e55f1680097325dc8b7e55a529f9f78cb852a3aa",
+   "result": "gameover",
+   "time": 136.5,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 16,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2693,
+    "techniqueUses": 6,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 4,
+   "wave": 1,
+   "hash": "30c37057feef29c301e50508467a0286299e9fb61a2853e945a171e542088650",
+   "result": "result",
+   "time": 133.933,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 40,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 366,
+    "techniqueUses": 0,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 14
+   },
+   "stuck": []
+  },
+  {
+   "seed": 4,
+   "wave": 2,
+   "hash": "21247c59174b130b877267a5ef2185e0d0254032445153783956876f4e17cc65",
+   "result": "gameover",
+   "time": 120.067,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 30,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1540,
+    "techniqueUses": 3,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "stuck": []
+  },
+  {
+   "seed": 4,
+   "wave": 3,
+   "hash": "e077b1fcf24a13bc451d4f8a51ca596e2c0006294bc4a72d65f2ba550d43e20b",
+   "result": "gameover",
+   "time": 122.6,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 24,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2171,
+    "techniqueUses": 3,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 5,
+   "wave": 1,
+   "hash": "24922e63ceecfd954f9e508af77afd3995fbad123dd273f1f0d7d89aff5ace5f",
+   "result": "gameover",
+   "time": 375.567,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 167,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 5608,
+    "techniqueUses": 17,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 10
+   },
+   "stuck": [
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity267",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,45",
+     "action": "unlock-core",
+     "time": 15.4,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 70,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 114.06666666666287,
+        "source": "entity267"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.35,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.25396087891422214,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 0.6666666666666666
+     }
+    },
+    {
+     "seed": 5,
+     "wave": 1,
+     "id": "entity267",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,46",
+     "action": "unlock-core",
+     "time": 39.633,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 70,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 114.06666666666287,
+        "source": "entity267"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.35,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.13212808102058876,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 24.73333333333372
+     }
+    }
+   ]
+  },
+  {
+   "seed": 5,
+   "wave": 2,
+   "hash": "d0641c384177a95159b6182d5e4af123b03c78f2541b9215c72c3247df5d8303",
+   "result": "gameover",
+   "time": 355.567,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 73,
+    "shots": 1,
+    "jamAttempts": 1,
+    "jams": 0,
+    "techniqueOffers": 4331,
+    "techniqueUses": 7,
+    "bombs": 1,
+    "blocks": 0,
+    "souls": 6
+   },
+   "stuck": [
+    {
+     "seed": 5,
+     "wave": 2,
+     "id": "entity267",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "unlock-core",
+     "time": 16.467,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 76,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 114.06666666666287,
+        "source": "entity267"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.0006699521249781543,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 1.5333333333333348
+     }
+    },
+    {
+     "seed": 5,
+     "wave": 2,
+     "id": "entity267",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "unlock-core",
+     "time": 40.433,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 76,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 114.06666666666287,
+        "source": "entity267"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.25485425124255323,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 25.500000000000426
+     }
+    }
+   ]
+  },
+  {
+   "seed": 5,
+   "wave": 3,
+   "hash": "3b1bd2333b358ba4fb193912603498e5935b377c6285e998a0c85a7710149ede",
+   "result": "gameover",
+   "time": 355.733,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 97,
+    "shots": 1,
+    "jamAttempts": 1,
+    "jams": 0,
+    "techniqueOffers": 6919,
+    "techniqueUses": 14,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 8
+   },
+   "stuck": [
+    {
+     "seed": 5,
+     "wave": 3,
+     "id": "entity267",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "unlock-core",
+     "time": 18,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 82,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 107.86666666666322,
+        "source": "entity267"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.23585437671281395,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 3.0999999999999988
+     }
+    },
+    {
+     "seed": 5,
+     "wave": 3,
+     "id": "entity267",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "unlock-core",
+     "time": 38.367,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 82,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 107.86666666666322,
+        "source": "entity267"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity267",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.15175089673139153,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 23.466666666666992
+     }
+    }
+   ]
+  },
+  {
+   "seed": 6,
+   "wave": 1,
+   "hash": "010abe69d860328cb9678d214607f9cb9009b3cd7febad81dac6a77431095ac7",
+   "result": "gameover",
+   "time": 122.267,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 22,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1341,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "stuck": []
+  },
+  {
+   "seed": 6,
+   "wave": 2,
+   "hash": "80784ae5588691b8b68516cfea532a0c68cb0bac77c282311dba764ba3836ca9",
+   "result": "gameover",
+   "time": 163.467,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 45,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1717,
+    "techniqueUses": 16,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "stuck": []
+  },
+  {
+   "seed": 6,
+   "wave": 3,
+   "hash": "80e68e64b259f4f40a06a16e0be706e2e7b19ae40c813780a4d912128db86889",
+   "result": "gameover",
+   "time": 105.9,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 5,
+    "shots": 5,
+    "jamAttempts": 5,
+    "jams": 0,
+    "techniqueOffers": 1746,
+    "techniqueUses": 2,
+    "bombs": 3,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 7,
+   "wave": 1,
+   "hash": "0cea67b49fd4c43812561d2c52465e31d95876ddf3d96ab6c07f9c0428e9e24e",
+   "result": "gameover",
+   "time": 147.633,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 26,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1957,
+    "techniqueUses": 3,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 7,
+   "wave": 2,
+   "hash": "ab9003c764c9aa6c1e532c9d599e84cef002819af9aa5c9147151ef72694497b",
+   "result": "gameover",
+   "time": 129.667,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 51,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2404,
+    "techniqueUses": 9,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "stuck": []
+  },
+  {
+   "seed": 7,
+   "wave": 3,
+   "hash": "9e6842f1fb2feaa4e03e1dba29ed5d8cd6f03e3ba5e0852cf2d2ef7505a12d87",
+   "result": "gameover",
+   "time": 170,
+   "escaped": 14,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 46,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2334,
+    "techniqueUses": 12,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "stuck": []
+  },
+  {
+   "seed": 8,
+   "wave": 1,
+   "hash": "d506838ad3c4addd6225fe9e7bf1164cf1924f72bb74fb24b2b0dbc49acbd99c",
+   "result": "gameover",
+   "time": 156.4,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 42,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1855,
+    "techniqueUses": 15,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "stuck": []
+  },
+  {
+   "seed": 8,
+   "wave": 2,
+   "hash": "2e59c9848294a209aac131f8c9bbca6ff92baa8ad4c921e80cdaa6c604538aaa",
+   "result": "gameover",
+   "time": 152,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 178,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2411,
+    "techniqueUses": 1,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 8,
+   "wave": 3,
+   "hash": "e6cee7856182b172d54e0a5a12050f8a8625a5f41779bd5614e312ab14532715",
+   "result": "gameover",
+   "time": 152.6,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 36,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2461,
+    "techniqueUses": 11,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "stuck": []
+  },
+  {
+   "seed": 9,
+   "wave": 1,
+   "hash": "ca1976a2b3088687db781a32ba5d7c02b0e79fe36123f839fc9f31454708f1e6",
+   "result": "gameover",
+   "time": 236.7,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 319,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1829,
+    "techniqueUses": 4,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 16
+   },
+   "stuck": []
+  },
+  {
+   "seed": 9,
+   "wave": 2,
+   "hash": "4936b1c9f6f6afe4fdfbb7cbdc07ebf955060a8d85ddee46514a3dfcde3b20e0",
+   "result": "gameover",
+   "time": 143.967,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 24,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1895,
+    "techniqueUses": 4,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "stuck": []
+  },
+  {
+   "seed": 9,
+   "wave": 3,
+   "hash": "cc5f6b4f5e6fbbbacebec3314a479f7601b3c66ed75fb260e8cca3d9031fc957",
+   "result": "gameover",
+   "time": 139.767,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 12,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2571,
+    "techniqueUses": 4,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "stuck": []
+  },
+  {
+   "seed": 10,
+   "wave": 1,
+   "hash": "dcc4ac823021d233930f6a9a606790b05d216a39abbbf413a348e735f28fc086",
+   "result": "gameover",
+   "time": 332.833,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 8,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 131,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 7049,
+    "techniqueUses": 22,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 10
+   },
+   "stuck": [
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity275",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:18,47",
+     "action": "unlock-core",
+     "time": 15.933,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 70,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 102.69999999999685,
+        "source": "entity275"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.018298382079228778,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 0.9999999999999999
+     }
+    },
+    {
+     "seed": 10,
+     "wave": 1,
+     "id": "entity275",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:20,48",
+     "action": "unlock-core",
+     "time": 40.133,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 70,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 102.69999999999685,
+        "source": "entity275"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.2168081734174242,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 25.233333333333746
+     }
+    }
+   ]
+  },
+  {
+   "seed": 10,
+   "wave": 2,
+   "hash": "e3e680c7cf8eff0e5f408abc87abdc87811a8d0a059bc98662b751c2b51db7a4",
+   "result": "gameover",
+   "time": 375.767,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 8,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 70,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 6496,
+    "techniqueUses": 8,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "stuck": [
+    {
+     "seed": 10,
+     "wave": 2,
+     "id": "entity275",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:19,47",
+     "action": "unlock-core",
+     "time": 18.167,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 76,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 113.0333333333296,
+        "source": "entity275"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.34528574350600444,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 3.299999999999998
+     }
+    }
+   ]
+  },
+  {
+   "seed": 10,
+   "wave": 3,
+   "hash": "5b9c3e90a23e33be851a1c6fb09a151966301a3f9bb5deeb18ddb0ce364b89bf",
+   "result": "gameover",
+   "time": 350.067,
+   "escaped": 12,
+   "downed": 0,
+   "dead": 3,
+   "monstersDowned": 5,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 84,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 5659,
+    "techniqueUses": 18,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 8
+   },
+   "stuck": [
+    {
+     "seed": 10,
+     "wave": 3,
+     "id": "entity275",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:18,45",
+     "action": "unlock-core",
+     "time": 17.067,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 82,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 159.53333333332696,
+        "source": "entity275"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.13697645788391433,
+      "cooldown": 0,
+      "gate": null,
+      "lastMovedAt": 2.1333333333333355
+     }
+    },
+    {
+     "seed": 10,
+     "wave": 3,
+     "id": "entity275",
+     "name": "Iris · Trinh sát",
+     "faction": "hero",
+     "tile": "0:18,46",
+     "action": "unlock-core",
+     "time": 37.233,
+     "target": {
+      "x": 73,
+      "y": 46,
+      "floorId": 1
+     },
+     "path": [],
+     "scores": [
+      {
+       "action": "unlock-core",
+       "score": 2.4,
+       "reason": "Mang chìa thật tới mở cổng phòng rương, tương tác 2 giây"
+      },
+      {
+       "action": "retreat",
+       "score": 0.95,
+       "reason": "Bị thương nặng hoặc túi đầy; cửa không bị khóa"
+      },
+      {
+       "action": "explore",
+       "score": 0.5,
+       "reason": "Theo cửa và hành lang đã thấy để khám phá phòng tiếp theo"
+      }
+     ],
+     "detail": {
+      "hp": 82,
+      "mana": 0,
+      "statuses": [
+       {
+        "type": "overburdened",
+        "value": 0.15,
+        "until": 159.53333333332696,
+        "source": "entity275"
+       },
+       {
+        "type": "armorPierce",
+        "value": 0.25,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "weapon"
+       },
+       {
+        "type": "truesight",
+        "value": 5,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       },
+       {
+        "type": "trapSense",
+        "value": 0.3,
+        "until": 0,
+        "source": "entity275",
+        "permanent": true,
+        "gearSlot": "trinket"
+       }
+      ],
+      "decision": 0.3014877606959393,
+      "cooldown": 0,
+      "traffic": null,
+      "gate": null,
+      "lastMovedAt": 22.366666666666937
+     }
+    }
+   ]
+  }
+ ]
+}

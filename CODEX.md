@@ -208,3 +208,10 @@ Hai lỗi phát hiện khi tích hợp đã có regression: physical bow/gun tr�
 Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegraph đã chín, không resolve hai lần với world resolver. Beam và blizzard có zone tick, nguồn gục thì dừng; summon/eggs dùng quota phòng; charge/push kiểm walkable từng bước; leap/blink có điểm đáp hợp lệ trong phòng. Boss có style di chuyển, ambusher lộ khi hero vào phòng, summoner blink khi bị áp sát. Curse là status bad mới (41 status), giảm 25% hit trực tiếp; cleanse dùng cùng registry. Chưa áp Ấn Tầng hoặc màn chọn ở commit A, đó là CODEX_06-B tiếp theo.
 
 `tests/boss-combat.test.mjs` chạy từng boss 95s ở giai đoạn cuối: đủ cả 4 chiêu được dùng, boss vẫn trong phòng, telegraph không gây damage sớm, summon không vượt quota và zone hủy khi nguồn gục. Đại Lễ không bị tiêu hao khi không có xương gục.
+
+## CODEX_06 B — Chọn chủ và Ấn Tầng
+
+- floor-bosses.js là nơi duy nhất tính floorSeals(floorId); damage/move/status/hire/HP đọc modifiers tại đây. Boss gục hoặc suppression tắt Ấn, giữ tỉ lệ HP khi đổi maxHP. Không cộng lặp qua load/tick.
+- state.floorBoss giữ id/entityId, ba offered và rerolled; seed chỉ rút khi tạo/chủ động đổi bộ. Save cũ suy ra boss đang có, không rút lại. Phòng boss tầng 0/rương tầng 1 yêu cầu chọn chủ trước start.
+- hirePrice tập trung giá hợp đồng, Fate, giảm giá họ Xương. Hero gục trả 2 hồn (3 khi có Ấn Chiêu Hồn), một lần/đợt; pet không trả hồn.
+- Soak 30 trận seed 1–10 ×3: trước sửa có 11 kẹt unlock-core khác tầng; sau sửa 0 kẹt/0 chạm 480s, 2 thắng phòng thủ. Giữ cả báo cáo trước/sau. Người mang chìa phải khám phá/dọn tầng trước khi chọn tương tác cổng cùng tầng.

@@ -89,6 +89,15 @@ test('five seeded battles finish naturally without a living entity stagnating fo
  assert.equal(s.stuckEpisodes,0,JSON.stringify(battles.flatMap(b=>b.stuck)));
 });
 
+test('a key carrier explores its floor instead of trying to unlock across a guarded staircase',()=>{
+ const {g,entry,core}=fixture(),e=unit(g,'rogue','hero',18,46);
+ core.floorId=1;g.addRoom(3,1,'boss',0);g.rebuild();g.placeKey(entry.x,entry.y,0);g.state.keyQuest.owner=e.id;
+ const choices=[];g.extendChoices(e,{enemies:[],allies:[],room:entry,locked:null,add:a=>choices.push(a)});
+ assert.ok(!choices.includes('unlock-core'));
+ core.floorId=0;g.extendChoices(e,{enemies:[],allies:[],room:entry,locked:null,add:a=>choices.push(a)});
+ assert.ok(choices.includes('unlock-core'));
+});
+
 test('movement finishes a fractional melee slot inside the current tile',()=>{
  const {g}=fixture(),e=unit(g,'goblin','monster',50.08,43.9);
  const target=unit(g,'rogue','hero',48.56,43.8);

@@ -1,0 +1,14 @@
+✔ three floor-boss offers are seeded, saved, and cannot duplicate a selected boss on another floor (75.4976ms)
+✔ reroll is a new seeded set, costs fifty once, and cannot happen after a choice (20.2884ms)
+✔ a built boss chamber blocks start until its master is chosen and rejects unaffordable choices without mutation (14.6073ms)
+✔ Titan HP seal preserves health ratios, disappears on downing, and logs the broken seal (16.4822ms)
+✔ legacy boss saves infer their master without rerolling or replacing entity identity (15.6046ms)
+✔ bone hire discount and necromancer soul multiplier use central seal modifiers (35.6259ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 471.0539
