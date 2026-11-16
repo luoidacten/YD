@@ -1,6 +1,6 @@
 # YOUR DUNGEON? — Hầm ngục của bạn
 
-Playable prototype v0.4, pixel 16×16 theo 0x72. Hai tầng, phòng boss lớn, hành lang dài, zoom ba mức, pause và ×1/×2/×4.
+Playable prototype v0.5, pixel 16×16 theo 0x72. Hai tầng, phòng boss lớn, hành lang dài, zoom ba mức, pause và ×1/×2/×4.
 
 ## Chạy
 
@@ -24,7 +24,7 @@ Mở http://127.0.0.1:4173. Host nguyên thư mục `dist`.
 - Sau trận chọn Fate trước màn tiếp. Công trình mất quyền phải chiếm lại và sửa nếu bị phá.
 - Space pause; 1/2/3 camera; G lưới; WASD/kéo chuột phải pan; cuộn zoom; nhấp đôi phòng nhìn gần.
 
-Catalog: 58 kỹ năng, 58 nội tại, 40 effects, 47 Charms, 22 loại phòng, 45 items (28 vũ khí), 30 species, 6 phẩm chất, 7 biến thể. Đây vẫn là prototype cần cân bằng, nhiều kỹ năng chia sẻ handler/animation; chưa phải toàn bộ campaign GDD. Xem [CODEX.md](CODEX.md) để biết kiến trúc, bất biến và giới hạn chính xác.
+Catalog: 58 kỹ năng, 58 nội tại, 40 effects, 47 Charms, 22 loại phòng, 76 items (55 vũ khí chính, 2 khiên, 2 bom), 67 species, 6 phẩm chất, 7 biến thể. Đây vẫn là prototype cần cân bằng, nhiều kỹ năng chia sẻ handler/animation; chưa phải toàn bộ campaign GDD. Xem [CODEX.md](CODEX.md) để biết kiến trúc, bất biến và giới hạn chính xác.
 
 Save LocalStorage `your-dungeon-v2` theo origin, tự lưu và có nút Lưu; giữ save v1 khi chuyển bản. Save localhost và Site không tự chuyển nhau.
 
@@ -38,3 +38,6 @@ Kiểm chứng: `node --run test`, `node scripts/build.mjs`, `node scripts/forma
 
 
 V0.4 dùng thêm 10 vũ khí W13–W22, nữ kỵ sĩ, hai người lùn, thiên sứ và bốn quái 0x72. Có tim HP, goo/vết tường hỏng, cần gạt/nút cổng; HUD nạp icon director duyệt từ manifest và giữ glyph khi chưa có ảnh. Số catalog được đo từ runtime, không tính artwork chưa kích hoạt. `showcase.html` phục vụ kiểm tra sprite cận cảnh, tách save thật. Đọc `CODEX-REVIEW.md` để kiểm bản bàn giao; chưa deploy bản này.
+
+
+V0.5 kích hoạt bộ art CODEX_04–05: W23–W53, class mới, 16 chủng loài, thông thạo/yêu cầu trí khôn, kỹ thuật, khiên tay phụ, súng nạp đạn/kẹt đạn seeded, bom friendly fire và 67 bộ attack. `art-review.html` là fixture QA riêng, có cảnh 60 entity +40 FX. Các PNG v0.4–v0.5 được kiểm hash bất biến và tham chiếu 646/646; art v0.6+ chỉ kích hoạt theo brief tiếp theo. Đo readback nặng hiện 36,7 render frame/s sau cache sàn; tiêu chí 50 FPS chưa xác nhận đạt. Soak v0.5: 150 trận, 0 kẹt/limit, 9/150 thắng.

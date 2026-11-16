@@ -58,6 +58,12 @@ export function buildIconManifest(root=process.cwd()){
    if(entry.status!=='done')continue;
    if(!/^[a-zA-Z0-9_-]+$/.test(id))throw Error(`Unsafe icon ID ${id}`);
    const relative=`assets/ui/${group}/${id}.png`,file=path.join(root,'dist',relative);
+   if(entry.file){
+    if(!/^ui\/kit\/[a-zA-Z0-9_-]+\.png$/.test(entry.file))throw Error('Unsafe icon source: '+entry.file);
+    const source=path.join(root,'dist/assets',entry.file);
+    if(!fs.existsSync(source))throw Error('Approved kit source missing: '+entry.file);
+    fs.mkdirSync(path.dirname(file),{recursive:true});fs.copyFileSync(source,file);
+   }
    if(!fs.existsSync(file))throw Error(`Approved icon missing: ${relative}`);
    manifest[group][id]={src:relative,...validateIcon(file,entry.size,group)};
   }

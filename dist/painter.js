@@ -79,8 +79,7 @@ name
  }
  resize(canvas){
   const r=canvas.getBoundingClientRect(),
-  dpr=Math.min(devicePixelRatio||1,
-  2);
+  dpr=1; // Pixel art uses integer CSS pixels; avoid fractional high-DPI oversampling.
   if(canvas.width!==Math.round(r.width*dpr)||canvas.height!==Math.round(r.height*dpr)){
    canvas.width=Math.round(r.width*dpr);
    canvas.height=Math.round(r.height*dpr)
@@ -613,6 +612,24 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   def.color,
   10);
  }
+ floorLayer(){
+  const terrain=this.game.terrain[this.floor],seed=this.game.state.worldSeed;
+  const key=this.floor+':'+this.game.navRevision+':'+seed+':'+this.level;
+  if(this.floorCache?.game===this.game&&this.floorCache.terrain===terrain&&this.floorCache.key===key)return this.floorCache.canvas;
+  const images=Array.from({length:8},(_,i)=>this.image('floor_'+(i+1)));
+  if(images.some(im=>!im.complete||!im.naturalWidth))return null;
+  const canvas=document.createElement('canvas');canvas.width=WIDTH*16;canvas.height=HEIGHT*16;
+  const c=canvas.getContext('2d');c.imageSmoothingEnabled=false;
+  for(let y=0;y<HEIGHT;y++)for(let x=0;x<WIDTH;x++){
+   if(terrain?.[y]?.[x]){
+    const hash=(x*13+y*71+seed)%29,index=hash<20?1:2+hash%7;
+    c.drawImage(images[index-1],x*16,y*16,16,16);
+    if(!terrain[y-1]?.[x]){c.fillStyle='#050c1099';c.fillRect(x*16,y*16,16,2)}
+    if(hash===2&&this.level==='detail'){c.fillStyle='#71827a22';c.fillRect(x*16+4,y*16+10,3,1)}
+   }else if((x*17+y*13)%29===0){c.fillStyle='#29333466';c.fillRect(x*16+8,y*16+8,3,1)}
+  }
+  this.floorCache={game:this.game,terrain,key,canvas};return canvas;
+ }
  nativeSprite(name,x,y,flip=false,anchor='feet'){
   const im=this.image(name);if(!im.complete||!im.naturalWidth)return;
   const scale=Math.max(1,Math.round(this.bounds.tile/16)),p=this.point(x,y),c=this.ctx;
@@ -915,7 +932,10 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    }
   }
   else{
-   for(let y=minY;
+   const layer=this.useFloorCache===false?null:this.floorLayer();
+   if(layer){const p=this.point(-.5,-.5);c.drawImage(layer,Math.round(p.x),Math.round(p.y),
+    Math.round(WIDTH*tile),Math.round(HEIGHT*tile));}
+   else for(let y=minY;
    y<=maxY;
    y++)for(let x=minX;
    x<=maxX;

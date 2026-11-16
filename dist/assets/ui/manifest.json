@@ -35,6 +35,11 @@
    "width": 16,
    "height": 16
   },
+  "audio_off": {
+   "src": "assets/ui/hud/audio_off.png",
+   "width": 16,
+   "height": 16
+  },
   "save": {
    "src": "assets/ui/hud/save.png",
    "width": 16,
@@ -52,6 +57,21 @@
   },
   "pause": {
    "src": "assets/ui/hud/pause.png",
+   "width": 16,
+   "height": 16
+  },
+  "speed1": {
+   "src": "assets/ui/hud/speed1.png",
+   "width": 16,
+   "height": 16
+  },
+  "speed2": {
+   "src": "assets/ui/hud/speed2.png",
+   "width": 16,
+   "height": 16
+  },
+  "speed4": {
+   "src": "assets/ui/hud/speed4.png",
    "width": 16,
    "height": 16
   },

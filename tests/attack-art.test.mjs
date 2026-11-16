@@ -38,3 +38,16 @@ test('changing Game clears old renderer attack and spell queues without touching
  p.attackPoses.set('old',{started:1});p.fx=[{}];p.game=new Game();p.captureAttacks();
  assert.equal(p.attackPoses.size,0);assert.deepEqual(p.fx,[]);
 });
+
+test('static floor raster is reused until terrain or floor revision changes, without gameplay RNG',()=>{
+ const {WIDTH,HEIGHT}= {WIDTH:148,HEIGHT:94},previous=globalThis.document;let draws=0;
+ const terrain=Array.from({length:HEIGHT},()=>Array(WIDTH).fill(0));terrain[4][4]=1;
+ const g={state:{worldSeed:1},terrain:[terrain],navRevision:1};
+ const p=Object.assign(Object.create(Painter.prototype),{game:g,floor:0,camera:{tile:32},
+  image:()=>({complete:true,naturalWidth:16})});
+ try{
+  globalThis.document={createElement:()=>({getContext:()=>({drawImage(){draws++},fillRect(){}})})};
+  const first=p.floorLayer();assert.equal(draws,1);assert.equal(p.floorLayer(),first);assert.equal(draws,1);
+  g.navRevision++;assert.notEqual(p.floorLayer(),first);assert.equal(draws,2);
+ }finally{globalThis.document=previous}
+});

@@ -1,4 +1,4 @@
-# CODEX — YOUR DUNGEON? v0.4
+# CODEX — YOUR DUNGEON? v0.5
 
 Đọc trước khi sửa code. Đây là prototype chạy hoàn toàn trong trình duyệt. `GDD.md` là thiết kế gốc; các bản thiết kế từ ChatGPT không phải bằng chứng mọi tương tác đã hoàn thiện.
 
@@ -186,3 +186,16 @@ Kỹ thuật dùng skill catalog hiện có: blade B03, katana S10, axe S02, blu
 Troll dùng P31 nhưng wrapper pulse đánh dấu regeneration context để burn chặn hồi từ pulse, không chặn healer bình thường. Treant nhận burn/fire ×1,5. Salamander miễn burn; living_armor miễn poison/bleed ở cả applyStatus và damage tick. Gargoyle dùng order ambush/P38 đã có, không tạo hệ ẩn thân thứ hai. Lich/vua xương cần nghĩa địa hoạt động cùng tầng và chỉ hồi skeleton cùng phòng.
 
 `Game.createTrap` là constructor chung cho player.place và Kobold. Kobold chỉ đặt trong battle, tối đa 1 bẫy/đợt, channel 0,6s, tốn 8 mana cá nhân, sát thương ngắt, không đặt lên người/vật cản/bẫy khác hoặc ngoài phòng. Bẫy không chặn di chuyển. Run trống và lúc chuẩn bị không tự mọc bẫy. Soak đo cả reloadChannel/trapChannel thực tăng tiến độ và xuất weaponMetrics, không nới ngưỡng 15s.
+
+
+## CODEX_05-D — animation và kiểm chứng v0.5
+
+`attack-visuals.js` cài cuối sau species, chỉ phát attackEvents ngoài state. Painter giữ 0,3s / bốn pose theo thời gian renderer, hit 0,15s được ưu tiên, Mimic vẫn mở rương; thiếu attack thì idle. Melee vung −60..60 độ, gun/crossbow/bow nằm ngang, thrown rời tay ở f2, đạn là clone renderer riêng. Damage timing không đổi. Queue/pose xóa khi đổi Game; image sprite yd không tint. `floorLayer` cache sàn tĩnh theo Game/terrain/navRevision/floor/LOD; canvas dùng CSS-pixel raster nguyên để không oversample sprite pixel.
+
+`project-art-audit.mjs` kiểm **646/646 PNG** trong phạm vi bàn giao commit `409eb1c`, hash từng PNG không đổi. Metadata không coi art v0.6+ là gameplay đã có. Bộ nguồn mới được director thêm trong lúc làm (v0.6/UI/FX/biome) vẫn giữ nguyên. ICON-MANIFEST có thêm file alias từ ui/kit: build chép nguyên PNG approved sang vị trí HUD chuẩn; không sửa nguồn kit/manifest.
+
+Kiểm thử cuối gameplay: 144/144 pass (`tests/fixtures/code05-tests.txt`), gồm regression cache sàn trong `attack-art.test.mjs`. Soak `soak-code05.json`: 150 trận, 0 kẹt, 0 limit, trung vị 150,25s, 9/150 thắng (baseline v0.4.0 8/150, +0,67 điểm phần trăm). 897 kỹ thuật / (6799 đòn thường +897 kỹ thuật) = 11,66%; 17 phát/17 lần thử súng, 0 jam trong fixture này. Unskilled jam có kiểm thử 100 lần seeded lặp lại chính xác; không suy ra xác suất thật bằng 17 phát của người thạo.
+
+Hai lỗi phát hiện khi tích hợp đã có regression: physical bow/gun trên species magic không được mất tầm khi hết mana; jam phải roll ở damage boundary sau khi Utility có thể đổi từ guard sang attack. Không nhân proficiency damage ở chỗ thứ hai.
+
+**Giới hạn kiểm chứng còn mở:** IAB ở nền bị throttle RAF; phép đo render đồng bộ 120 frame có GPU readback, 60 entity +40 FX đạt 36,7 frame/s sau cache (trước cache 24,5), không gồm AI. Chưa đánh dấu đạt ≥50 FPS hoặc ≥55 FPS của CODEX_08. `render-benchmark-v05.json` giữ kết quả thực, không thay đổi ngưỡng. Trang art-review có chế độ giữ f2 chỉ để nhìn pose, không thay state save người chơi. Bộ ảnh kiểm chứng còn cần bổ sung khi chuyển sang HUD mới.

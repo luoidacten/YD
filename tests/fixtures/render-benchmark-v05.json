@@ -1,0 +1,9 @@
+{
+ "mode": "synchronous-render-throughput-with-readback",
+ "entities": 60,
+ "activeFx": 40,
+ "frames": 120,
+ "elapsedMs": 3271.1,
+ "fps": 36.7,
+ "includesAI": false
+}

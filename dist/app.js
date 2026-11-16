@@ -361,7 +361,9 @@ e.variant!=='normal'?' · '+variant.name:''
 }${
 e.status!=='active'?' · '+(e.status==='downed'?'Đang gục':e.status==='dead'?'Đã chết':'Đã rời đi'):''
 }</div>${
-weaponSummary(game,e)+hearts(e)+meter('Sinh lực',
+weaponSummary(game,e)+
+ (chosen?.def.kind==='item'&&ITEMS[chosen.def.id]?.family?`<p class="equip-reason">${esc(game.equipIssue(e,ITEMS[chosen.def.id]))}</p>`:'')+
+ hearts(e)+meter('Sinh lực',
 e.hp,
 e.maxHp)
 }${
