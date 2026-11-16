@@ -9,7 +9,10 @@ let game,painter,units,scene,hold=false,lastPulse=-1,frames=0,renderTotal=0,meas
 const config={heroes04:[['paladin','assassin','pyromancer','frost_mage','berserker'],['goblin','skeleton']],
  monsters04:[['knight','mage'],['ghost','spider','rock_golem','eyeball','bat','fire_elemental','mushroom','cube_slime']],
  fx04:[['pyromancer','paladin'],['rock_golem']],heroes05:[['ninja','priestess','crossbowman'],['minotaur','troll']],
- monsters05:[['knight','dwarfMiner'],['minotaur','troll','werewolf','lich']],equipment05:[[],['zombie']]};
+ monsters05:[['knight','dwarfMiner'],['minotaur','troll','werewolf','lich']],equipment05:[[],['zombie']],
+ companions06:[['beastmaster','hunter','druid'],['skeleton_guard','skeleton_archer']],
+ necro06:[['knight','mage'],['necro_lord','skeleton_archer','skeleton_guard']],
+ bones06:[['paladin'],['bone_king','bone_giant','skeleton_knight','skeleton_mage','bone_hound','ember_skeleton']]};
 async function load(name){
  const ready=document.querySelector('#scene-ready');ready.dataset.ready='false';ready.textContent='Đang nạp asset…';
  scene=name;game=new Game();game.state.wave=3;game.addRoom(1,1,'boss');game.state.props=[];game.state.keyQuest.locked=false;game.rebuild();
@@ -22,12 +25,15 @@ async function load(name){
  }
  for(const e of units){e.hp=e.maxHp=10000;e.mana=e.maxMana=1000;e.lastDamaged=-100;e.quality='common';
   e.charms=e.charms.filter(id=>id!=='forsaken');e.visibleIds=units.filter(a=>a.faction!==e.faction).map(a=>a.id)}
+ if(name==='companions06'){game.setBearForm(units.find(e=>e.species==='druid'),true);
+  units.push(...game.state.entities.filter(e=>e.ownerId))}
  painter=new Painter(canvas,mini,game);painter.camera={x:54,y:46,tile:32};painter.setFogMode('all');painter.selected=units[0]?.id;
  if(name==='equipment05'){
   const e=units[0],offered={id:'proposed-gun',definitionId:'W39'};
   document.querySelector('#art-info').innerHTML=`<h2>${e.name}</h2>${weaponSummary(game,e)}<p>Đang đề nghị: ${ITEMS.W39.name}</p>`+equipControl(game,e,offered);
  }else document.querySelector('#art-info').innerHTML='<h2>'+({heroes04:'Đoàn hero mới',monsters04:'Quái mới',fx04:'Hỏa cầu + chữa lành',
-  heroes05:'Ninja · Tư tế · Nỏ thủ',monsters05:'Minotaur · Troll',performance:'Render benchmark'})[name]+'</h2>'+
+  heroes05:'Ninja · Tư tế · Nỏ thủ',monsters05:'Minotaur · Troll',performance:'Render benchmark',
+  companions06:'Sói · Chim Ưng · Dạng Gấu',necro06:'Kẻ Chiêu Hồn và vệ binh',bones06:'Vua Xương và quân đoàn'})[name]+'</h2>'+
   units.slice(0,12).map(e=>`<p>${e.name} · ${game.weaponDefinition(e)?.name||'Đòn bẩm sinh'}</p>`).join('');
  lastPulse=-1;frames=0;renderTotal=0;measureStart=performance.now();
  const current=painter,names=new Set(['wall_top_mid','wall_mid','wall_left','wall_right','column',

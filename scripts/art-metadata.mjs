@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 export function writeArtMetadata(root=process.cwd()){
- const metadata={},scopeFile=path.join(root,'tests/fixtures/art-scope-v05.json');
- const allowed=fs.existsSync(scopeFile)?new Set(Object.keys(JSON.parse(fs.readFileSync(scopeFile,'utf8')).frames)):null;
+ const metadata={},scopes=['v05','v06'].map(v=>path.join(root,`tests/fixtures/art-scope-${v}.json`));
+ const allowed=new Set(scopes.filter(f=>fs.existsSync(f)).flatMap(f=>Object.keys(JSON.parse(fs.readFileSync(f,'utf8')).frames)));
  function walk(dir){for(const name of fs.readdirSync(dir)){const file=path.join(dir,name);
   if(fs.statSync(file).isDirectory())walk(file);else if(name.endsWith('.png')){
    const bytes=fs.readFileSync(file),key=path.relative(path.join(root,'dist/assets/frames'),file).replaceAll('\\','/').slice(0,-4);

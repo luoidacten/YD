@@ -362,7 +362,9 @@ e.variant!=='normal'?' · '+variant.name:''
 }${
 e.status!=='active'?' · '+(e.status==='downed'?'Đang gục':e.status==='dead'?'Đã chết':'Đã rời đi'):''
 }</div>${
-weaponSummary(game,e)+
+weaponSummary(game,e)+(e.boss?`<div class="part"><b>Ấn Tầng ${e.floorId+1}</b><p>${
+ (BOSS_POOL[e.floorBossId||e.boss]?.seals||[]).map(x=>esc(x.name+': '+x.description)).join('<br>')
+ }</p><span>${game.floorSeals(e.floorId)&&e.status==='active'?'Đang hoạt động':'Đã vỡ'}</span></div>`:'')+
  (chosen?.def.kind==='item'&&ITEMS[chosen.def.id]?.family?`<p class="equip-reason">${esc(game.equipIssue(e,ITEMS[chosen.def.id]))}</p>`:'')+
  hearts(e)+meter('Sinh lực',
 e.hp,

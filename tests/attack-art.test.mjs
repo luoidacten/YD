@@ -6,8 +6,8 @@ import {ART_SIZE} from '../dist/art-metadata.js';
 import {auditProjectArt} from '../scripts/project-art-audit.mjs';
 import {ITEMS} from '../dist/expansion.js';
 
-test('every delivered v0.4-v0.5 project PNG is referenced and byte-identical to the handoff',()=>{
- const result=auditProjectArt();assert.equal(result.total,646);assert.deepEqual(result.unused,[]);
+test('every delivered v0.4-v0.6 project PNG is referenced and byte-identical to the handoff',()=>{
+ const result=auditProjectArt();assert.equal(result.total,877);assert.deepEqual(result.unused,[]);
 });
 test('attack events do not change saved simulation state; four poses last exactly 0.3 renderer seconds',()=>{
  const g=new Game();g.addRoom(1,1,'boss');const e=g.spawn('ninja','hero',54,46,'Ninja',[]);e.lastDamaged=-100;
@@ -37,6 +37,17 @@ test('changing Game clears old renderer attack and spell queues without touching
  const g=new Game(),p=Object.assign(Object.create(Painter.prototype),{game:g,time:1});p.captureAttacks();
  p.attackPoses.set('old',{started:1});p.fx=[{}];p.game=new Game();p.captureAttacks();
  assert.equal(p.attackPoses.size,0);assert.deepEqual(p.fx,[]);
+});
+
+test('boss windup holds frame one, resolve begins at frame two, and bear form uses its supplied animations',()=>{
+ const g=new Game(),room=g.addRoom(1,1,'boss'),e=g.spawn('necro_lord','monster',54,46,'Boss',[],{roomId:room.id,boss:'necro_lord'});
+ const p=Object.assign(Object.create(Painter.prototype),{game:g,time:10,attackPoses:new Map()});
+ e.bossWindupUntil=1;e.bossCastSkill='N01';assert.equal(p.bodySprite(e,0),'yd/attack/necro_lord_attack_anim_f1');
+ g.state.time=1;g.recordAttack(e);p.captureAttacks();assert.equal(p.bodySprite(e,0),'yd/attack/necro_lord_attack_anim_f2');
+ p.time+=.08;assert.equal(p.bodySprite(e,0),'yd/attack/necro_lord_attack_anim_f3');
+ const druid=g.spawn('druid','hero',56,46,'Druid',[]);g.setBearForm(druid,true);p.attackPoses.clear();
+ assert.equal(p.bodySprite(druid,2),'yd/monsters/druid_bear_idle_anim_f2');
+ druid.moving=true;assert.equal(p.bodySprite(druid,3),'yd/monsters/druid_bear_run_anim_f3');
 });
 
 test('static floor raster is reused until terrain or floor revision changes, without gameplay RNG',()=>{

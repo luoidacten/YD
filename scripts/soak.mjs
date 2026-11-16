@@ -55,7 +55,8 @@ export function runBattle(seed,wave=1){
  const hash=createHash('sha256').update(g.serialize()).digest('hex');
  return{seed,wave,hash,result:s.phase,time:+s.battleTime.toFixed(3),escaped:heroes.filter(e=>e.status==='escaped').length,
   downed:heroes.filter(e=>e.status==='downed').length,dead:heroes.filter(e=>e.status==='dead').length,
-  monstersDowned:monsters.filter(e=>e.status==='downed').length,limit:s.battleTime>=480,weaponMetrics:s.weaponMetrics,stuck};
+  monstersDowned:monsters.filter(e=>e.status==='downed').length,limit:s.battleTime>=480,weaponMetrics:s.weaponMetrics,
+  bosses:monsters.filter(e=>e.boss).map(e=>({id:e.floorBossId||e.boss,floorId:e.floorId,status:e.status,moves:e.bossSkillUsed||{}})),stuck};
 }
 
 export function summarize(battles){

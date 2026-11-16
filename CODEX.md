@@ -1,4 +1,4 @@
-# CODEX — YOUR DUNGEON? v0.5
+# CODEX — YOUR DUNGEON? v0.6
 
 Đọc trước khi sửa code. Đây là prototype chạy hoàn toàn trong trình duyệt. `GDD.md` là thiết kế gốc; các bản thiết kế từ ChatGPT không phải bằng chứng mọi tương tác đã hoàn thiện.
 
@@ -229,3 +229,9 @@ Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegrap
 - ownerId là quan hệ pet, không phải squad member: không loot/chìa/rương, không báo cáo Công hội, không tính kết thúc trận/hồn thưởng. Sói theo chủ, đánh mục tiêu thấy được, canh chủ gục 10s; chim không đánh, chia snapshot/bẫy trong bán kính 6 mỗi 3s, không biết tầng khác. Qua tầng dùng stairs/path, không teleport qua seal.
 - Druid giữ species và tỉ lệ HP khi bật/tắt bearForm: 10s, maxHP ×1,6, melee, không cast, CD25s. Thợ Săn đánh dấu +20% sát thương hero/6s và đặt bẫy rễ 0,8s dùng 8 mana qua createTrap chung. Bẫy hero không tự tiết lộ cho quái.
 - 165/165 tests xanh; 6 regression pet/class.
+
+## CODEX_06 E — Animation và art
+
+- 877/877 PNG phạm vi v0.4–v0.6 được tham chiếu thực tế, SHA256 byte giữ nguyên từ commit bàn giao 409eb1c + f4b338b. art-scope-v06.json thêm 231 PNG; build sinh metadata trước khi nạp audit để tránh cache module cũ.
+- Boss windup giữ attack f1; resolve bắt đầu f2 rồi f3. Druid bearForm đổi sprite qua Painter, không đổi species; pet dùng idle/run thật. Mọi sự kiện pose ở root Game ngoài state, không dùng RNG gameplay.
+- 7 test renderer/art xanh; ảnh UI/soak đầy đủ còn đang kiểm chứng. Catalog runtime: 85 species, 41 status, 58 skill/58 passive, 76 item, 47 charm, 22 phòng.

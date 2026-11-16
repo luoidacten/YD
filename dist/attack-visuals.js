@@ -7,7 +7,7 @@ export function installAttackVisuals(Game){
   if(this.attackTimes[e.id]===this.state.time)return;
   this.attackTimes[e.id]=this.state.time;
   const w=weapon||this.weaponDefinition(e);
-  this.attackEvents.push({id:(this.attackSequence=(this.attackSequence||0)+1),entityId:e.id,
+  this.attackEvents.push({id:(this.attackSequence=(this.attackSequence||0)+1),entityId:e.id,startFrame:e.boss&&e.bossCastSkill?2:0,
    x:e.x,y:e.y,tx:target?.x??e.x,ty:target?.y??e.y,floorId:e.floorId,
    weapon:w,projectile:projectile||(target&&this.range(e)>2.8?(w?.projectile||(SPECIES[e.species].magic?'magic':'arrow')):null)});
   if(this.attackEvents.length>80)this.attackEvents.splice(0,this.attackEvents.length-80);

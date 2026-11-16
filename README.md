@@ -1,6 +1,6 @@
 # YOUR DUNGEON? — Hầm ngục của bạn
 
-Playable prototype v0.5, pixel 16×16 theo 0x72. Hai tầng, phòng boss lớn, hành lang dài, zoom ba mức, pause và ×1/×2/×4.
+Playable prototype v0.6, pixel 16×16 theo 0x72. Hai tầng, phòng boss lớn, hành lang dài, zoom ba mức, pause và ×1/×2/×4.
 
 ## Chạy
 

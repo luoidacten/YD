@@ -672,10 +672,13 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
  }
  attackFrame(e){
   const pose=this.attackPoses?.get(e.id);
-  return pose&&this.time-pose.started<.3?Math.min(3,Math.floor((this.time-pose.started)/.075)):-1;
+  return pose&&this.time-pose.started<.3?Math.min(3,(pose.startFrame||0)+Math.floor((this.time-pose.started)/.075)):-1;
  }
  bodySprite(e,frame){
-  const d=SPECIES[e.species],sprite=e.elite&&d.eliteSprite?d.eliteSprite:d.sprite;
+  const d=SPECIES[e.species],sprite=e.bearForm?'yd/monsters/druid_bear':e.elite&&d.eliteSprite?d.eliteSprite:d.sprite;
+  if(e.boss&&e.bossWindupUntil>this.game.state.time){
+   const cast=`yd/attack/${sprite.split('/').at(-1)}_attack_anim_f1`;if(ART_SIZE[cast])return cast;
+  }
   const hit=['knight_m','knight_f','elf_m','elf_f','lizard_m','lizard_f','dwarf_m','dwarf_f','wizzard_m','wizzard_f'];
   if(this.game.state.time-(e.lastDamaged??-100)<.15&&(hit.includes(sprite)||ART_SIZE[sprite+'_hit_anim_f0']))
    return sprite+'_hit_anim_f0';

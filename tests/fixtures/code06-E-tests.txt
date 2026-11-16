@@ -1,0 +1,15 @@
+✔ every delivered v0.4-v0.6 project PNG is referenced and byte-identical to the handoff (403.2028ms)
+✔ attack events do not change saved simulation state; four poses last exactly 0.3 renderer seconds (38.1287ms)
+✔ Mimic retains opening frames and a missing attack frame falls back to a real idle frame (1.42ms)
+✔ native project sprites use integer nearest-neighbor scaling and gun poses are horizontal (1.5385ms)
+✔ changing Game clears old renderer attack and spell queues without touching either save (2.1724ms)
+✔ boss windup holds frame one, resolve begins at frame two, and bear form uses its supplied animations (11.165ms)
+✔ static floor raster is reused until terrain or floor revision changes, without gameplay RNG (3.6147ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 779.8824
