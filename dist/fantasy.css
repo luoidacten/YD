@@ -83,3 +83,5 @@
 @media (max-width:760px){.title-logo{font-size:42px}.title-sub{font-size:14px}.title-menu button{font-size:14px}
  .title-shade{background:rgba(16,10,14,.78)}.title-hint{display:none}}
 @media (prefers-reduced-motion:reduce){#title-screen.closing{transition:none}}
+
+.mg-alarm{border-color:#da4e38}.mg-alarm b{color:#da4e38}

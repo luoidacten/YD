@@ -1070,6 +1070,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   }
   if(level!=='overview')this.drawMasterDecor(s);
   if(level!=='overview')for(const t of s.traps.filter(t=>t.floorId===this.floor)){
+   if(t.plus&&!t.disabled){if(!t.spent&&(t.revealed||this.fogMode==='all'))this.nativeSprite('yd/traps/trap_'+t.type,t.x,t.y+.45,false,'feet');continue}
    if(t.disabled){
     this.rect(t.x-.3,
     t.y-.3,

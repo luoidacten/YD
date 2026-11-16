@@ -299,3 +299,27 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
   - `?title=0` bỏ qua Menu chính; `?review=` không hiện nó.
 - Phát hành: `package.json` 0.1.0, `CHANGELOG.md`. `.github/workflows/pages.yml` chạy test + build rồi đăng `dist` lên GitHub Pages. Chủ repo cần bật một lần: Settings → Pages → Source: GitHub Actions.
 - Tag `v0.1.0` là bản công khai đầu tiên; các tag `v0.3`–`v0.6.0` là mốc nguyên mẫu.
+
+## v0.2.0 — Bẫy mới, Zombie, Vương Quốc, tấn công (Claude)
+- Thứ tự cài: … `installManagement` → `installTrapsPlus` → `installZombies` → `installKingdom` (ngoài cùng).
+- **`traps-plus.js`:**
+  - 20 bẫy `T01`–`T20` nằm trong `state.traps` với `plus:true`, nên phát hiện, gỡ, chi phí đường đi và save giữ nguyên.
+  - Mỗi tick, vòng bẫy gốc bị vô hiệu cho chúng (cooldown tạm 1e9 rồi khôi phục); `updatePlusTraps` xử lý.
+  - Ụ bắn đạn thật qua `state.projectiles` (faction monster, `ctx.trap`). Hiệu ứng status gắn theo đạn (`ctx.trapEffect`).
+  - Mìn `spent` cho tới đợt sau. Thẻ đặt bằng vàng qua wrapper `place`.
+- **`zombies.js`:**
+  - Họ `zombie` (miễn độc; FAMILY_AFFINITY lửa ×1,6, thánh ×1,3).
+  - Hồi sinh theo `revives`: lịch `state.zombieRise` sau 5 giây, qua `reviveAlly`; hủy nếu đòn cuối là lửa hoặc đang burn.
+  - Hồi 15% HP/giây khi 3 giây không trúng đòn (×2 nếu Vua Xác Sống còn sống trên tầng).
+  - Bloater nổ độc; Plague tỏa độc mỗi 2 giây.
+  - "Ngu" qua `extendChoices` dùng hash (id, cửa sổ 2 giây), **không** dùng RNG.
+  - `zombie_king` có trong `BOSS_POOL` (9 boss).
+- **`kingdom.js`:**
+  - 5 hero Vương Quốc trang bị qua `createItem`/`equipItem`.
+  - Tấn công rút ở `finish` (`mgmt().nextOffensive`); Càn Quét cố định đợt 10 rồi mỗi 5 đợt.
+  - `start` thêm quân chính và `encounter.extraWaves`. Tick thả đợt đúng giờ.
+  - Wrapper `finish` **giữ trận** nếu còn đợt chưa thả, bằng cách thả ngay đợt kế; quá 480 giây thì hủy các đợt còn lại.
+  - `heroSense` mỗi giây: ụ trong tầm nhìn vào `knownTraps`; hero `trapWise` dò bẫy ẩn trong 2,5–3,5 ô.
+  - Choices: phá ụ, hạ Chủ phòng, đốt zombie.
+- Test: 191 (thêm `tests/horde.test.mjs`). Đếm có chủ ý: BOSS_POOL 9, NEW_MONSTERS 58.
+- Thử 9 trận Đột Kích/Tiến Công/Càn Quét: đều kết thúc, các đợt được thả đủ, không kẹt.

@@ -3,7 +3,7 @@
 import {Game} from './simulation.js';
 import {Painter} from './painter.js';
 
-export const VERSION='0.1.0';
+export const VERSION='0.2.0';
 const SCENES=[
  {biome:'crypt',boss:'necro_lord',guards:['skeleton_guard','skeleton_archer','skeleton_mage']},
  {biome:'cave',boss:'spider_queen',guards:['kobold','gargoyle','spider']},
@@ -35,7 +35,7 @@ export function installTitle({onContinue,onNewRun,onHelp,onCredits,onSettings,ha
    <button class="${hasSave?'':'primary'}" data-title="new">✦ Run mới</button>
    <button data-title="help">? Hướng dẫn</button><button data-title="settings">⚙ Cài đặt</button>
    <button data-title="credits">♥ Ghi công</button></nav>
-  <p class="title-version">v${VERSION} · Bản chính thức đầu tiên</p></div>
+  <p class="title-version">v${VERSION} · Bầy Xác Sống & Quân Vương Quốc</p></div>
  <p class="title-hint">Trận đấu phía sau là AI tự chơi · Nhấn Enter để vào</p>`;
  document.body.append(root);
  const canvas=root.querySelector('#title-bg'),mini=root.querySelector('#title-mini');

@@ -17,6 +17,8 @@ function reportTab(g){
  return `<div class="mg-grid"><div class="mg-card"><b>Đợt ${r.wave} · ${r.count} mạo hiểm giả</b>
   <p class="mg-muted">Đội hình dự kiến (class gốc, Công hội có thể đổi sang class khắc chế):</p>
   <div class="mg-chips">${r.classes.map(c=>`<span class="mg-chip">${esc(NAMES[c]||c)}</span>`).join('')}</div></div>
+  ${r.offensive?`<div class="mg-card mg-wide mg-alarm"><b>⚠ ${esc(r.offensive.name)}</b><p>${esc(r.offensive.text)}</p></div>`
+   :`<p class="mg-muted mg-wide">Càn Quét cuối game sẽ đến ở đợt ${r.purgeWave||10}.</p>`}
   <div class="mg-card"><b>Công hội đã học</b>${r.lesson?`<p>${esc(r.lesson.name)} · mang ${esc(r.lesson.item||'chiến thuật khắc chế')}</p>
    <p class="mg-muted">Ưu tiên: ${esc((r.lesson.classes||[]).map(id=>SPECIES[id]?.name||id).join(', '))}</p>`:'<p class="mg-muted">Chưa rút ra bài học nào.</p>'}
    ${r.veterans?`<p>${r.veterans} Kẻ Sống Sót đang chờ báo thù.</p>`:''}</div>

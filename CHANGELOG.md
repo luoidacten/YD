@@ -1,5 +1,38 @@
 # Changelog
 
+## v0.2.0 — Bầy Xác Sống và Quân Vương Quốc (2026-11-17)
+
+### Bẫy
+- **20 bẫy mới**, đều có hình riêng:
+  - **Ụ:** nỏ, súng, phun lửa, băng, tháp sét (lan 3 hero), pháo cối (nổ vùng có báo trước), phun độc, hắc ấn.
+  - **Mìn:** mìn nổ, ụ thuốc nổ, mìn băng, mìn khói độc.
+  - **Cơ khí:** lưỡi cưa, búa lắc (đánh văng), lưới bắt, hố chông, nam châm (hút + tước vũ khí).
+  - **Ma thuật:** vòng rút mana, bia nguyền, cột hồi sinh quái.
+- Ụ bắn bằng **đạn thật** (né được, tường chặn). Mìn nổ một lần mỗi đợt và có sát thương lan sang cả quái.
+
+### Họ Zombie
+- **10 loài:** Xác Sống, Xác Chạy, Xác Phun Axit, Xác Giáp Sắt, Xác Thợ Mỏ, Xác Bò, Xác Khổng Lồ, Xác Trương Phình (nổ mây độc khi gục), Xác Dịch Hạch (tỏa độc), Hiệp Sĩ Xác Sống (chỉ huy).
+- **Boss tầng mới: Vua Xác Sống.** Gọi bầy xác, đập thối rữa, lao xác. Ấn: zombie hồi sinh thêm 1 lần và hồi máu nhanh gấp đôi.
+- **Cơ chế:**
+  - Rất trâu; hồi sinh 1–2 lần, trừ khi bị **lửa** kết liễu hoặc đang cháy.
+  - Hồi đầy máu rất nhanh khi rời giao tranh.
+  - Biết cầm trang bị.
+  - **Lơ ngơ** khi không có Chủ phòng, tinh anh hoặc zombie chỉ huy cùng phòng.
+
+### Công hội tấn công
+- **Cuộc Đột Kích** (từ đợt 3): thêm 2 đợt nhỏ trong trận.
+- **Cuộc Tiến Công** (từ đợt 6): đoàn chính đông hơn 50% và 3 đợt lớn có quân Vương Quốc.
+- **Càn Quét** (đợt 10, sau đó mỗi 5 đợt): 5 đợt cực đông, phần lớn là quân Vương Quốc tinh nhuệ.
+- Báo cáo Công hội cảnh báo trước khi đợt sau là một cuộc tấn công.
+- **Quân Vương Quốc:** Vệ Binh, Xạ Thủ, Pháp Sư, Giáo Sĩ, Đội Trưởng. Trí khôn 75–90, có sẵn trang bị và skill AOE.
+
+### AI mạo hiểm giả
+- Thấy ụ là ghi nhớ, và ưu tiên phá ụ/cột khi không bị áp sát.
+- Hero đã được Công hội dạy về bẫy thì dò được bẫy ẩn ở gần.
+- Hạ Chủ phòng trước để phá hào quang.
+- Ưu tiên đốt zombie để chúng không đứng dậy.
+- Vẫn giữ các hành vi cũ: bắn thùng nổ khi quái đứng tụm, đánh vào điểm yếu, ngắt phép, dồn đánh kẻ yếu.
+
 ## v0.1.0 — Bản chính thức đầu tiên (2026-11-17)
 
 Bản phát hành công khai đầu tiên của **YOUR DUNGEON? — Hầm ngục của bạn**. Các tag `v0.3`–`v0.6.0` trước đây là mốc nguyên mẫu nội bộ.

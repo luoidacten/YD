@@ -624,9 +624,15 @@ owner.name
  installBiomes(Game);
  installRpg(Game);
  installManagement(Game);
+ installTrapsPlus(Game);
+ installZombies(Game);
+ installKingdom(Game);
 }
 import {installCompanions} from './companions.js';
 import {installPresentation} from './presentation.js';
 import {installRpg} from './rpg.js';
 import {installBiomes} from './biomes.js';
 import {installManagement} from './management.js';
+import {installTrapsPlus} from './traps-plus.js';
+import {installZombies} from './zombies.js';
+import {installKingdom} from './kingdom.js';

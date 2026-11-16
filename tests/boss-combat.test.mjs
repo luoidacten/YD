@@ -9,8 +9,8 @@ function fixture(id){const d=BOSS_POOL[id],g=new Game(),room=g.addRoom(1,1,'boss
  const hero=g.spawn('knight','hero',57,46,'Test',[]);hero.hp=hero.maxHp=100000;hero.charms=[];hero.skillIds=[];hero.passiveIds=[];
  return{g,e,hero,room};}
 
-test('all eight floor bosses have four distinct moves, permitted floors and supplied sprites',()=>{
- assert.equal(Object.keys(BOSS_POOL).length,8);
+test('all nine floor bosses have four distinct moves, permitted floors and supplied sprites',()=>{
+ assert.equal(Object.keys(BOSS_POOL).length,9);
  for(const d of Object.values(BOSS_POOL)){assert.equal(d.skills.length,4);assert.equal(new Set(d.skills.map(k=>k.id)).size,4);
   assert.ok(d.floors.length);assert.ok(d.seals.length>=1&&d.seals.length<=3)}
 });
