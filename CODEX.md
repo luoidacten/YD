@@ -215,3 +215,10 @@ Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegrap
 - state.floorBoss giữ id/entityId, ba offered và rerolled; seed chỉ rút khi tạo/chủ động đổi bộ. Save cũ suy ra boss đang có, không rút lại. Phòng boss tầng 0/rương tầng 1 yêu cầu chọn chủ trước start.
 - hirePrice tập trung giá hợp đồng, Fate, giảm giá họ Xương. Hero gục trả 2 hồn (3 khi có Ấn Chiêu Hồn), một lần/đợt; pet không trả hồn.
 - Soak 30 trận seed 1–10 ×3: trước sửa có 11 kẹt unlock-core khác tầng; sau sửa 0 kẹt/0 chạm 480s, 2 thắng phòng thủ. Giữ cả báo cáo trước/sau. Người mang chìa phải khám phá/dọn tầng trước khi chọn tương tác cổng cùng tầng.
+
+## CODEX_06 C — Họ Xương
+
+- bone-data.js đăng ký 7 loài, họ bone/undead, miễn poison/bleed; bones.js dùng damageProp cho nổ Xương Lửa (friendly fire), bossSpawn/quota cho Khổng Lồ vỡ ra hai skeleton. Corpse vẫn chiếm quota.
+- Ấn Chiêu Hồn lên lịch hồi sinh tại chỗ sau 8 giây, một lần/đợt, 50% HP, kiểm tra seal/quota/walkable; boss gục hủy lịch. Dùng reviveAlly chung, không có hệ hồi sinh riêng.
+- Đính chính brief: đại kiếm là W43, W42 là đại pháo tay. Kỵ Sĩ Xương dùng W43 đúng loại; vệ binh dùng W32 tay phụ.
+- Test C: 4 regression mới và v2/boss suite xanh; build/format xanh.

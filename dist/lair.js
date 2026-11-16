@@ -1,3 +1,4 @@
+import {installBones} from './bones.js';
 import {installFloorBosses} from './floor-bosses.js';
 import {installBossCombat} from './boss-combat.js';
 import {installAttackVisuals} from './attack-visuals.js';
@@ -617,4 +618,5 @@ owner.name
  installAttackVisuals(Game);
  installBossCombat(Game);
  installFloorBosses(Game);
+ installBones(Game);
 }
