@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.2.1 — Sửa lỗi và đội hình thông minh (2026-11-17)
+- **Sửa crash** khi bấm chọn nhân vật trong lúc đang cầm thẻ (`Cannot read properties of undefined (reading 'kind')`).
+- **Vũ khí:**
+  - Cầm ở tay thay vì neo ở vai, nên không còn bay trên đầu.
+  - Giới hạn chiều cao khoảng một ô.
+  - Kiếm nghiêng nhẹ khi đứng yên, vung khi đánh.
+  - **Cung cầm dựng đứng**; súng và nỏ chĩa ngang; khiên cầm bên tay kia.
+- **Mạo hiểm giả đi như một đội thật:**
+  - Tới cửa phòng chưa khám phá thì đợi đồng đội tụt lại (tối đa 6 giây) để cùng vào.
+  - Dọn sạch phòng mà cả đội dưới 75% máu thì nghỉ (tối đa 10 giây, mỗi giây hồi 4% máu và 3% mana, có "Zzz"). Thấy địch là dậy ngay.
+  - Người mang kho báu không bao giờ dừng.
+- Repo có `index.html` ở gốc, chuyển hướng vào game trong `dist/`.
+
 ## v0.2.0 — Bầy Xác Sống và Quân Vương Quốc (2026-11-17)
 
 ### Bẫy

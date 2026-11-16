@@ -695,19 +695,26 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   return sprite+'_'+(e.moving&&attack<0?'run':'idle')+'_anim_f'+(attack>=0?0:frame);
  }
  drawWeapon(e,weapon,offhand=false){
+  // Held at the hand (not the shoulder), grip as pivot, never taller than ~1 tile so it does not tower over the 16px body.
   const pose=this.attackPoses?.get(e.id),f=this.attackFrame(e),w=!offhand&&pose?.weapon||weapon;
   if(!w)return;const family=w.family,throwing=['thrown','bomb'].includes(family);
   if(throwing&&f>=2)return;
   const im=this.image(w.art);if(!im.complete||!im.naturalWidth)return;
-  const c=this.ctx,scale=Math.max(1,Math.round(this.bounds.tile/16)),horizontal=['gun','crossbow','bow'].includes(family);
-  const p=this.point(e.x+(e.flip?-.45:.45)*(offhand?-1:1),e.y-.65);
+  const c=this.ctx,tile=this.bounds.tile,scale=Math.max(1,Math.round(tile/16));
+  const aimed=['gun','crossbow'].includes(family),bow=family==='bow',shield=offhand||family==='shield';
+  const maxH=tile*(shield?.7:bow?1:.95),k=Math.min(1,maxH/(im.naturalHeight*scale));
+  const W=Math.max(1,Math.round(im.naturalWidth*scale*k)),H=Math.max(1,Math.round(im.naturalHeight*scale*k));
+  const side=(e.flip?-1:1)*(offhand?-1:1),p=this.point(e.x+side*(shield?.3:.35),e.y-(shield?.15:.2));
   c.save();c.imageSmoothingEnabled=false;c.translate(Math.round(p.x),Math.round(p.y));if(e.flip)c.scale(-1,1);
-  if(!offhand)c.rotate(horizontal?Math.PI/2:f>=0?[-60,-20,20,60][f]*Math.PI/180:0);
-  if(horizontal&&f===1)c.translate(0,scale);
+  if(shield){c.drawImage(im,-Math.round(W/2),-Math.round(H/2),W,H);c.restore();return}
+  if(aimed){c.rotate(Math.PI/2);if(f===1)c.translate(0,scale)}                 // gun / crossbow point forward, recoil
+  else if(bow){if(f===1)c.translate(-scale,0)}                                  // bow held upright, draw back on release
+  else c.rotate((f>=0?[-60,-20,20,60][f]:-15)*Math.PI/180);                     // melee: slight lean, swing on attack
   if(throwing&&f===1)c.translate(scale,0);
-  c.drawImage(im,-Math.round(im.naturalWidth*scale/2),-im.naturalHeight*scale,
-   im.naturalWidth*scale,im.naturalHeight*scale);c.restore();
+  const gripY=aimed||bow?Math.round(H/2):Math.round(H*.75);                     // centred for ranged, grip near the bottom for melee
+  c.drawImage(im,-Math.round(W/2),-gripY,W,H);c.restore();
  }
+
 
  entity(e){
   const c=this.ctx,

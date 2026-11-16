@@ -323,3 +323,11 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
   - Choices: phá ụ, hạ Chủ phòng, đốt zombie.
 - Test: 191 (thêm `tests/horde.test.mjs`). Đếm có chủ ý: BOSS_POOL 9, NEW_MONSTERS 58.
 - Thử 9 trận Đột Kích/Tiến Công/Càn Quét: đều kết thúc, các đợt được thả đủ, không kẹt.
+
+## v0.2.1 (Claude)
+- `squad-tactics.js` cài sau `kingdom.js`. Đợi đồng đội ở cửa phòng chưa thăm và nghỉ sau khi dọn phòng đều dùng action `guard` với điểm cố định, kèm giới hạn cứng: đợi 6 giây (một lần mỗi phòng), nghỉ 10 giây (một lần mỗi phòng). Hồi máu khi nghỉ chạy trong tick, chỉ khi action là `guard`. Thấy địch hoặc trúng đòn thì hủy.
+- Painter `drawWeapon`:
+  - Neo ở tay (y−0,2), tâm xoay ở chuôi 25% với cận chiến, giữa với tầm xa.
+  - Chiều cao tối đa khoảng 0,95 ô (khiên 0,7).
+  - Cung không xoay; súng/nỏ xoay 90°.
+- Inspector: `chosen` là thẻ đã gộp với định nghĩa (không có `.def`), nên đọc `chosen.kind`/`chosen.definitionId`.
