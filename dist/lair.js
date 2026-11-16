@@ -1,3 +1,4 @@
+import {installBossCombat} from './boss-combat.js';
 import {installAttackVisuals} from './attack-visuals.js';
 import {installSpecies} from './species.js';
 import {installClasses} from './classes.js';
@@ -613,4 +614,5 @@ owner.name
  installClasses(Game);
  installSpecies(Game);
  installAttackVisuals(Game);
+ installBossCombat(Game);
 }

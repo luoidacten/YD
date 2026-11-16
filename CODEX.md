@@ -199,3 +199,12 @@ Kiểm thử cuối gameplay: 144/144 pass (`tests/fixtures/code05-tests.txt`), 
 Hai lỗi phát hiện khi tích hợp đã có regression: physical bow/gun trên species magic không được mất tầm khi hết mana; jam phải roll ở damage boundary sau khi Utility có thể đổi từ guard sang attack. Không nhân proficiency damage ở chỗ thứ hai.
 
 **Giới hạn kiểm chứng còn mở:** IAB ở nền bị throttle RAF; phép đo render đồng bộ 120 frame có GPU readback, 60 entity +40 FX đạt 36,7 frame/s sau cache (trước cache 24,5), không gồm AI. Chưa đánh dấu đạt ≥50 FPS hoặc ≥55 FPS của CODEX_08. `render-benchmark-v05.json` giữ kết quả thực, không thay đổi ngưỡng. Trang art-review có chế độ giữ f2 chỉ để nhìn pose, không thay state save người chơi. Bộ ảnh kiểm chứng còn cần bổ sung khi chuyển sang HUD mới.
+
+
+## CODEX_06-A — dữ liệu và AI Tầng Chủ
+
+`boss-data.js` định nghĩa 8 boss / 32 chiêu riêng, `boss-combat.js` thay bossTick bằng Utility theo phase 60%/30%, cooldown chung 8,5/7/5,5s và cooldown từng chiêu. Titan/Ác Ma giữ id warden/inferno (species lord) và model cũ. Các model mới chưa được đưa vào gói thuê thường.
+
+Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegraph đã chín, không resolve hai lần với world resolver. Beam và blizzard có zone tick, nguồn gục thì dừng; summon/eggs dùng quota phòng; charge/push kiểm walkable từng bước; leap/blink có điểm đáp hợp lệ trong phòng. Boss có style di chuyển, ambusher lộ khi hero vào phòng, summoner blink khi bị áp sát. Curse là status bad mới (41 status), giảm 25% hit trực tiếp; cleanse dùng cùng registry. Chưa áp Ấn Tầng hoặc màn chọn ở commit A, đó là CODEX_06-B tiếp theo.
+
+`tests/boss-combat.test.mjs` chạy từng boss 95s ở giai đoạn cuối: đủ cả 4 chiêu được dùng, boss vẫn trong phòng, telegraph không gây damage sớm, summon không vượt quota và zone hủy khi nguồn gục. Đại Lễ không bị tiêu hao khi không có xương gục.

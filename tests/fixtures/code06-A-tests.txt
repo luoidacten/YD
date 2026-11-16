@@ -1,0 +1,12 @@
+✔ all eight floor bosses have four distinct moves, permitted floors and supplied sprites (6.0636ms)
+✔ every boss uses its four moves over a long phased fight and remains confined to its room (351.8119ms)
+✔ a damaging boss move cannot hit before its telegraph resolves or strike another floor (12.8877ms)
+✔ boss summons cannot exceed quota and channel zones stop when their owner falls (16.1276ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 639.4985
