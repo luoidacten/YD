@@ -1,6 +1,8 @@
 # YOUR DUNGEON? — Hầm ngục của bạn
 
-Playable prototype v0.6, pixel 16×16 theo 0x72. Hai tầng, phòng boss lớn, hành lang dài, zoom ba mức, pause và ×1/×2/×4.
+**v0.1.0 — bản chính thức đầu tiên.** Game chiến thuật xây hầm ngục pixel 16×16 (phong cách 0x72): bạn là chủ hầm ngục, đặt phòng, quái, bẫy và Tầng Chủ để chặn những đoàn mạo hiểm giả biết học hỏi.
+
+**Chơi ngay trên trình duyệt:** https://luoidacten.github.io/YD/ (khi GitHub Pages đã bật). Xem thay đổi ở [CHANGELOG.md](CHANGELOG.md).
 
 ## Chạy
 

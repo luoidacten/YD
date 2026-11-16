@@ -64,3 +64,22 @@
 .mg-event{display:flex;flex-direction:column;text-align:left;gap:2px;min-width:0}
 .mg-event small{white-space:normal;overflow-wrap:anywhere}
 .mg-mini{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:8px 0}
+
+/* v0.1.0 title screen: live attract-mode battle behind a pixel menu */
+#title-screen{position:fixed;inset:0;z-index:50;overflow:hidden;background:#100a0e;font-family:'YD Pixel',Consolas,monospace}
+#title-screen.closing{opacity:0;transition:opacity .25s steps(4)}
+#title-bg{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.title-shade{position:absolute;inset:0 52% 0 0;background:rgba(16,10,14,.8)}
+.title-shade::after{content:'';position:absolute;left:100%;top:0;bottom:0;width:10vw;background:rgba(16,10,14,.5)}
+.title-panel{position:absolute;left:6vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;max-width:min(520px,88vw)}
+.title-sigil{width:64px;height:64px;image-rendering:pixelated}
+.title-logo{margin:0;font-size:56px;white-space:nowrap;line-height:1.05;color:#ffcc68;letter-spacing:2px;
+ text-shadow:4px 0 #140c11,-4px 0 #140c11,0 4px #140c11,0 -4px #140c11,4px 4px #9b1a0a,8px 8px #140c11}
+.title-sub{margin:0 0 8px;color:#d3bfa9;font-size:28px}
+.title-menu{display:flex;flex-direction:column;gap:8px;width:min(320px,80vw)}
+.title-menu button{font-size:28px;padding:6px 14px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.title-version{color:#a4aa98;margin:8px 0 0}
+.title-hint{position:absolute;right:16px;bottom:12px;margin:0;color:#d3bfa9;text-shadow:2px 2px #140c11}
+@media (max-width:760px){.title-logo{font-size:42px}.title-sub{font-size:14px}.title-menu button{font-size:14px}
+ .title-shade{background:rgba(16,10,14,.78)}.title-hint{display:none}}
+@media (prefers-reduced-motion:reduce){#title-screen.closing{transition:none}}

@@ -275,3 +275,27 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
   - Ô chất lỏng của biome chưa đặt được bằng thẻ (luật biome đang áp cho cả tầng).
   - Báo cáo Công hội, tổng kết, research, upkeep (CODEX_10) chưa làm.
   - Icon trạng thái 8×8 vẫn dùng fallback.
+
+## v0.10 — Quản lý giữa đợt (Claude)
+- `management.js` cài sau `rpg.js` (ngoài cùng). Wrapper damage của nó là nơi **duy nhất** nhân:
+  - mệt mỏi (−8%/mức, tối đa 3);
+  - sức mạnh sự kiện đợt sau;
+  - research: giáp quái 5%, bẫy +20%, đánh trúng điểm yếu +10%.
+  Wrapper này cũng ghi metrics: sát thương theo phòng/quái, số hạ, bẫy, hero gục.
+- Research chỉ đọc qua `researchMods()`. Các wrapper `manaCapacity`/`gainXP`/`roomCapacity`/`hirePrice`/`masterInfo`/`setFloorBiome` gọi nó.
+- `state.management`: research, infamy, wave metrics (heatmap ô 2×2 mỗi 0,5 giây, tối đa 3000 ô), `last` (tổng kết), history, events, nextWave, upkeepPaid.
+- **Finish:**
+  - Thưởng vàng theo Tai tiếng; hồn ×1,5 khi có research bậc 4.
+  - Thoát −5 Tai tiếng, hero gục +3.
+  - Mệt mỏi +1 nếu quái tham chiến, −1 nếu không.
+  - Trả phí duy trì (thiếu thì **tối đa một** quái yếu nhất rời đi).
+  - Rút 3 sự kiện bằng `Game.random()`.
+- `guildReport()` chỉ dự đoán, không tiêu RNG: số hero, class gốc, bài học, Kẻ Sống Sót, mức Tai tiếng. Phòng gián điệp mở bảng điểm Công hội.
+- UI: `management-ui.js`, nút "Quản lý" cạnh Menu (rule ẩn topbar trừ `#menu`/`#management`) và trong Menu. Sự kiện và tổng kết rút gọn hiện trên màn kết quả.
+
+## v0.1.0 — Bản chính thức (Claude)
+- `title.js`: Menu chính phủ trên app; game thật dừng mô phỏng và không vẽ khi title mở.
+  - Nền là **attract mode**: `buildAttract(round)` dựng một Game riêng (6 cảnh boss + biome), có Painter riêng, camera theo chỗ đang đánh. Game này không đọc/ghi save. Hết trận hoặc quá 150 giây thì sang cảnh mới.
+  - `?title=0` bỏ qua Menu chính; `?review=` không hiện nó.
+- Phát hành: `package.json` 0.1.0, `CHANGELOG.md`. `.github/workflows/pages.yml` chạy test + build rồi đăng `dist` lên GitHub Pages. Chủ repo cần bật một lần: Settings → Pages → Source: GitHub Actions.
+- Tag `v0.1.0` là bản công khai đầu tiên; các tag `v0.3`–`v0.6.0` là mốc nguyên mẫu.

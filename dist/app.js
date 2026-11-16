@@ -1,3 +1,4 @@
+import {installTitle} from './title.js';
 import {managementHTML,eventsHTML,summaryMini,drawHeat} from './management-ui.js';
 import {rpgInspector} from './rpg-ui.js';
 import {BOSS_POOL} from './boss-data.js';
@@ -1703,6 +1704,15 @@ if(reviewScene){const qa=document.createElement('button');qa.textContent='QA: ki
  document.addEventListener('keydown',e=>{if(e.key==='F9'){e.preventDefault();qa.click()}});document.body.append(qa,output)}
 requestAnimationFrame(()=>{if(game.entity(selection))select(selection,true);
  else painter.focus(game.state.rooms.find(r=>r.id===selection)||game.rooms(0)[0])});
+let titleScreen=null;
+if(!reviewScene&&new URLSearchParams(location.search).get('title')!=='0'){
+ let hasSave=false;try{hasSave=!!localStorage.getItem(key)||!!localStorage.getItem('your-dungeon-v1')}catch{}
+ titleScreen=installTitle({hasSave,
+  onContinue:()=>{update()},
+  onNewRun:()=>{if(hasSave&&!confirm('Bắt đầu run mới? Tiến trình đã lưu sẽ bị thay thế.'))return false;reset();update();
+   toast('Run mới: chọn thẻ Cổng hầm ngục để bắt đầu.')},
+  onHelp:()=>help(),onSettings:()=>showMenu(),onCredits:()=>$('#credits').click()});
+}
 let previous=performance.now(),
 accumulator=0,
 ui=0,
@@ -1711,7 +1721,7 @@ function frame(now){
  const dt=Math.min(.15,
  (now-previous)/1000);
  previous=now;
- const suspended=document.hidden||$('#modal').open&&modalMode!=='floor-boss';
+ const suspended=document.hidden||titleScreen?.isOpen()||$('#modal').open&&modalMode!=='floor-boss';
  if(!suspended){
   accumulator+=dt*game.state.speed;
   let steps=0;
@@ -1727,7 +1737,7 @@ function frame(now){
   if(keys.has('s')||keys.has('arrowdown'))painter.camera.y+=step
  }
  else accumulator=0;
- painter.draw(dt);
+ if(!titleScreen?.isOpen())painter.draw(dt);
  sound.consume(game.events.splice(0),
  painter.floor);
  ui+=dt;
@@ -1763,7 +1773,8 @@ function showMenu(){
  modal(
  `<div class="game-menu"><span class="eyebrow">YOUR DUNGEON?</span><h2>Menu hầm ngục</h2><p>Mô phỏng tạm dừng khi mở menu.</p><div class="menu-grid"><b\
 utton id="menu-resume" class="primary">▶ Tiếp tục</button><button id="menu-save">${icon('hud','save','↓')} Lưu tiến trình</button><button id="menu-layout">${icon('hud','layout','▦')} Bản thiết kế</but\
-ton><button id="menu-management">♜ Quản lý</button><button id="menu-roster">♟ Cư dân / Tuyển quái</button><button id="menu-packs">▣ Gói bài</button><button id="menu-catalog">${icon('hud','catalog','✦')} Vũ khí & Bách khoa</b\
+ton><button id="menu-management">♜ Quản lý</button>\
+<button id="menu-roster">♟ Cư dân / Tuyển quái</button><button id="menu-packs">▣ Gói bài</button><button id="menu-catalog">${icon('hud','catalog','✦')} Vũ khí & Bách khoa</b\
 utton><button id="menu-world">${icon('hud','world','⚑')} Tình hình bên ngoài</button><button id="menu-help">${icon('hud','help','?')} Hướng dẫn</button><button id="menu-audio">♪ ${
 sound.enabled?'Tắt':'Bật'
 } âm thanh</button><button id="menu-reset" class="reset-menu">${icon('hud','reset','↻')} Reset run</button></div><small>Esc đóng menu · Space tạm dừng ngoài bản đồ</small></di\
