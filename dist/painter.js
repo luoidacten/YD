@@ -57,6 +57,7 @@ export class Painter {
   this.floor=game.state.currentFloor||0;
   this.fogMode='all';
  }
+ tile(name){const b=this.game.floorBiome?.(this.floor);return b&&b!=='dungeon'?'yd/tiles/'+b+'/'+name:name}
  image(name){
   if(!this.images[name]){
    const im=new Image();
@@ -467,14 +468,14 @@ count
   x<b.x+b.w;
   x++){
    if(!this.game.terrain[this.floor][b.y]?.[x]){
-    this.sprite('wall_top_mid',
+    this.sprite(this.tile('wall_top_mid'),
     x-.5,
     b.y-1);
-    this.sprite('wall_mid',
+    this.sprite(this.tile('wall_mid'),
     x-.5,
     b.y)
    }
-   if(!this.game.terrain[this.floor][b.y+b.h-1]?.[x])this.sprite('wall_top_mid',
+   if(!this.game.terrain[this.floor][b.y+b.h-1]?.[x])this.sprite(this.tile('wall_top_mid'),
    x-.5,
    b.y+b.h-1)
   }
@@ -619,9 +620,9 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
  }
  floorLayer(){
   const terrain=this.game.terrain[this.floor],seed=this.game.state.worldSeed;
-  const key=this.floor+':'+this.game.navRevision+':'+seed+':'+this.level;
+  const key=this.floor+':'+this.game.navRevision+':'+seed+':'+this.level+':'+(this.game.floorBiome?.(this.floor)||'dungeon');
   if(this.floorCache?.game===this.game&&this.floorCache.terrain===terrain&&this.floorCache.key===key)return this.floorCache.canvas;
-  const images=Array.from({length:8},(_,i)=>this.image('floor_'+(i+1)));
+  const images=Array.from({length:8},(_,i)=>this.image(this.tile('floor_'+(i+1))));
   if(images.some(im=>!im.complete||!im.naturalWidth))return null;
   const canvas=document.createElement('canvas');canvas.width=WIDTH*16;canvas.height=HEIGHT*16;
   const c=canvas.getContext('2d');c.imageSmoothingEnabled=false;
@@ -670,7 +671,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   this.attackPoses??=new Map();this.projectiles??=[];this.lastAttackEvent??=0;
   for(const event of this.game.attackEvents||[])if(event.id>this.lastAttackEvent){
    this.attackPoses.set(event.entityId,{...event,started:this.time});this.lastAttackEvent=event.id;
-   if(event.projectile)this.projectiles.push({...event,born:this.time});
+   if(event.projectile==='bomb'||event.projectile&&!this.game.state.projectiles)this.projectiles.push({...event,born:this.time});
   }
   for(const[id,pose]of this.attackPoses)if(this.time-pose.started>=.3)this.attackPoses.delete(id);
   this.projectiles=this.projectiles.filter(f=>this.time-f.born<.45).slice(-40);
@@ -898,6 +899,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   10);
  }
  draw(delta){
+  delta=Math.max(0,Number(delta)||0);
   this.labelRects=[];
   this.capturePresentation(delta);
   if(this.presentationSettings.hitstop&&this.fxClock<this.hitStopUntil)return;
@@ -937,7 +939,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   s=this.game.state,
   level=this.level,
   rooms=this.game.rooms(this.floor),
-  frame=Math.floor(this.time*5)%4;
+  frame=((Math.floor(this.time*5)%4)+4)%4;
   if(level==='overview'){
    for(const co of this.game.corridors.filter(co=>co.floorId===this.floor)){
     this.rect(co.x-.5,
@@ -963,7 +965,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    x++)if(this.game.terrain[this.floor]?.[y]?.[x]){
     const hash=(x*13+y*71+s.worldSeed)%29,
     index=hash<20?1:2+hash%7;
-    this.sprite('floor_'+index,
+    this.sprite(this.tile('floor_'+index),
     x-.5,
     y-.5);
     if(!this.game.terrain[this.floor]?.[y-1]?.[x])this.rect(x-.5,
@@ -1058,14 +1060,15 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
     '#89917f')
    }
    else{
-    this.sprite('wall_mid',
+    this.sprite(this.tile('wall_mid'),
     p.x-.5,
     p.y-.5);
-    this.sprite('wall_top_mid',
+    this.sprite(this.tile('wall_top_mid'),
     p.x-.5,
     p.y-1)
    }
   }
+  if(level!=='overview')this.drawMasterDecor(s);
   if(level!=='overview')for(const t of s.traps.filter(t=>t.floorId===this.floor)){
    if(t.disabled){
     this.rect(t.x-.3,
@@ -1364,6 +1367,10 @@ t.windup>0||t.cooldown>4?2:0
    f.color,
    12)
   }
+  for(const p of s.projectiles||[]){
+   if(p.floorId!==this.floor||this.visibleTiles&&!this.visibleTiles[Math.round(p.y)*WIDTH+Math.round(p.x)])continue;
+   this.drawProjectile({x:p.x,y:p.y+.3,tx:p.x,ty:p.y+.3,life:0,maxLife:1,projectile:p.kind==='bolt'?'arrow':p.kind,vx:p.vx,vy:p.vy});
+  }
   for(const f of this.projectiles){
    if(f.floorId!==this.floor||this.visibleTiles&&!this.visibleTiles[Math.round(f.y)*WIDTH+Math.round(f.x)])continue;
    const throwing=['knife','axe','bomb'].includes(f.projectile),delay=throwing?.15:0,age=this.time-f.born-delay;
@@ -1425,6 +1432,19 @@ t.windup>0||t.cooldown>4?2:0
   minY,
   maxY);
   this.drawMini();
+ }
+ drawMasterDecor(s){
+  // Render-only decor for rooms with a living room master: rug + throne at the north side, aura banners on the wall.
+  for(const r of s.rooms){
+   if(r.floorId!==this.floor)continue;const m=this.game.entity(r.commanderId);
+   if(!m||m.status!=='active'||!m.isCommander||!this.game.masterInfo)continue;
+   const top=r.y-r.h/2,info=this.game.masterInfo(m);
+   this.nativeSprite('yd/tiles/master/master_rug',r.x,top+3.6,false,'feet');
+   this.nativeSprite('yd/tiles/master/master_throne',r.x,top+2.6,false,'feet');
+   const colors={power:'red',fortify:'blue',haste:'green',regen:'green',focus:'purple'};
+   info.auras.slice(0,3).forEach((a,i)=>{const dx=[-3,3,-6][i];
+    this.nativeSprite('yd/tiles/master/master_banner_'+(colors[a]||'red'),r.x+dx,top+1.4,false,'feet')});
+  }
  }
  drawProjectile(f){
   const t=this.bounds.tile,

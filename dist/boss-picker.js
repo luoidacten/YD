@@ -1,4 +1,5 @@
 import {ART_SIZE} from './art-metadata.js';
+import {BIOMES} from './biomes.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const STYLES={juggernaut:'Áp sát · chịu đòn',zoner:'Kiểm soát vùng',summoner:'Triệu hồi · giữ xa',ambusher:'Ẩn nấp · vồ mồi',
  controller:'Khống chế · giữ xa',commander:'Chỉ huy đội hình',duelist:'Đấu tay đôi','warlord-summoner':'Chỉ huy quân xương'};
@@ -8,6 +9,8 @@ export function bossPickerHTML(game,floorId){
  const record=game.state.floorBoss[floorId],offers=game.floorBossOffers(floorId),home=game.biomeRules?.(floorId)?.homeBosses||[];
  return `<h2 class="boss-pick-title">CHỌN TẦNG CHỦ · TẦNG ${floorId+1}</h2>
  <p class="boss-pick-sub">Boss canh tầng và ban Ấn cho mọi phòng. ← → chọn thẻ · Enter xác nhận · R đổi bộ</p>
+ <div class="biome-pick"><span>ĐỊA HÌNH</span>${(game.biomeOffers?.(floorId)||[]).map(id=>`<button data-biome="${id}" class="${game.floorBiome(floorId)===id?'active':''}"
+  title="${esc(BIOMES[id].rule)}">${esc(BIOMES[id].name)}</button>`).join('')}<small title="${esc(BIOMES[game.floorBiome(floorId)].rule)}">${esc(BIOMES[game.floorBiome(floorId)].rule)}</small></div>
  <div class="floor-boss-grid">${offers.map((d,index)=>{
   const size=ART_SIZE[d.sprite+'_idle_anim_f0']||[32,32],cost=game.floorBossCost(floorId,d.id);
   return `<article class="floor-boss-card ${index===0?'focused':''}" data-boss-index="${index}">

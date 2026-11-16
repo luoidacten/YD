@@ -179,7 +179,7 @@ export function installWeapons(Game){
  };
  // The single proficiency damage multiplier. Other wrappers must not multiply it again.
  const damage=P.damage;P.damage=function(e,n,source=null,ctx={}){
-  if(source&&!ctx.secondary&&!ctx.skill&&source.action==='attack'&&this.weaponDefinition(source)?.family==='gun'&&
+  if(source&&!ctx.fromProjectile&&!ctx.secondary&&!ctx.skill&&source.action==='attack'&&this.weaponDefinition(source)?.family==='gun'&&
    (!this.gunReady(source)||this.jamGun(source)))return;
   if(source&&!ctx.secondary)n*=this.weaponFactor(source);
   if(source&&!ctx.aoe&&!ctx.secondary&&distance(source,e)>2.8){

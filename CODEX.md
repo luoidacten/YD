@@ -256,3 +256,22 @@ Soak kế tiếp lộ seed25/wave3 chạm482s. Nguyên nhân thực: applyStatus
 ### CODEX_06 kiểm chứng cuối
 
 soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắng phòng thủ (19,33%),median151,4665s. boss-balance-v06.json ghi số chiêu, số hồi sinh và tỷ lệ theo từng boss. Mẫu boss thuộc các trận hai tầng và thường có hai boss cùng trận, vì vậy chênh lệch so với19,33% toàn bộ mẫu bị nhiễu bởi cấu trúc phòng; chưa đủ để kết luận nerf/buff riêng boss. Test giả lập95s chứng minh mỗi boss dùng đủ4chiêu theo phase, không rời phòng.
+
+## v0.9 — Lớp RPG, đạn thật, biome, Chủ phòng (Claude, 2026-11-17)
+
+- `rpg-data.js` (dữ liệu thuần) + `rpg.js` cài **cuối cùng** sau `biomes.js`/`presentation.js`. `installBiomes` → `installRpg`.
+- **Nguyên tố và kháng/yếu:** `damageElement(source,ctx)` (ctx.element > skill > effect > vũ khí thánh > nguyên tố caster > vật lý) và `affinity(e,el)` (bảng loài > họ, × (1−wards)). Hệ số nhân **đúng một lần**, ở wrapper damage ngoài cùng, chỉ cho hit không `secondary`, kèm hệ số biome của tầng. Không lặp các ngoại lệ cũ: treant burn×1,5, salamander miễn burn, living_armor/xương miễn độc, xương vs thánh ×1,5 (`bones.js`; A17 đi qua bằng ctx.effect='holy').
+- **Mana:** mọi loài có pool (`manaPool` theo role; caster 100). Regen trong trận theo `manaRegen`, cộng aura "Tập Trung". Skill trước đây miễn phí nay có giá (`MANA_COST`). `BLOOD_CASTERS` trả bằng HP (giữ ≥20% HP); A16 có `bloodCost` riêng. Bình mana dùng item kind `mana` sẵn có.
+- **20 AoE:** A11–A20 đăng ký vào `SKILLS` khi import (catalog 68 skill); thêm vào kit qua `AOE_KITS` lúc spawn (chèn vị trí 1, một lần). `impacts` nhân telegraph lệch góc cố định, `knock` đẩy từng bước 0,25 ô theo `walkable`, `blind` áp lúc resolve. Tất cả đi qua telegraph/resolver hiện có.
+- **Đạn thật:** trong battle, hit tầm xa (>2,8 ô, basic `action==='attack'` hoặc skill `strike`) thành `state.projectiles` (được save). Đạn bay theo dt cố định, trúng **kẻ địch đầu tiên** trong bán kính, vỡ khi `blocksSight`, hết `left` thì "NÉ". Khi trúng gọi damage với `ctx.fromProjectile` → chuỗi wrapper trong chạy đúng một lần. Gate kẹt súng chạy lúc bắn (rpg.js), `weapons.js` bỏ qua gate khi `fromProjectile`. `attack-visuals` không ghi pose lần hai; painter vẽ đạn từ state (bom vẫn là clone thị giác).
+- **Công hội học:** `state.guildLore.score` cộng theo nguyên tố đòn hạ hero, bẫy, boss, bất tử; giảm ×0,7 mỗi đợt. `topLesson` (≥2) → `chooseHeroSpecies` ưu tiên class khắc chế (≤40%), hero mới có `wards[el]` 15–45%, log "Công hội rút kinh nghiệm". Hero thoát vào `veterans` (≤6) và có 30% quay lại ở đoàn chính: +2 cấp, +20% HP, danh hiệu "Kẻ Sống Sót". Mọi xác suất dùng `Game.random()`.
+- **AI:** `extendChoices` thêm skill đánh vào điểm yếu (affinity ≥1,2), và tập trung mục tiêu (HP thấp, đang channel/ngắt phép, healer; trí khôn ≥35).
+- **Chủ phòng:** commander của phòng (`updateCommanders` có sẵn) phát hào quang mỗi 1 giây trong trận cho quái trong phòng mình (100%) và các phòng nối hành lang (60%, theo `this.corridors`). Hào quang gốc theo role (`ROLE_AURA`). Mỗi cấp trên 1 cho một lựa chọn `chooseMasterPath`: **strong** (+50%), **far** (+1 vòng phòng), **varied** (+1 loại hào quang). Chỉ chọn khi chuẩn bị, lưu ở `e.masterPath`. Painter vẽ thảm, ngai và cờ theo hào quang (`yd/tiles/master`), chỉ là trình bày.
+- **Biome:** `state.floorBiomes[floorId]`, offer = dungeon + 2 biome rút từ `worldSeed` (không tiêu RNG). Đổi lần đầu miễn phí, sau đó 40 vàng, chỉ khi chuẩn bị (chọn trong màn Tầng Chủ). Luật đọc qua `biomeRules`/`biomeElement`: tầm nhìn hang −30%, hero chậm ở rừng/đầm, bỏng nhẹ ở lò dung nham, xương +10% HP ở hầm mộ, băng đẩy xa +1. Painter đổi tile qua `tile(name)`; cache sàn có khóa biome.
+- **Kiểm chứng:**
+  - 180/180 test (thêm `tests/rpg.test.mjs` 7 test). Hai test cơ chế khiên/buff cũ trung hòa `affinity` vì knight nay kháng vật lý.
+  - Soak `tests/fixtures/soak-rpg-v09.json`: 150 trận, **0 kẹt, 0 limit**, 33/150 phòng thủ thắng (22%, so với 19,33% của v0.6), median 158,6 giây.
+- **Còn mở:**
+  - Ô chất lỏng của biome chưa đặt được bằng thẻ (luật biome đang áp cho cả tầng).
+  - Báo cáo Công hội, tổng kết, research, upkeep (CODEX_10) chưa làm.
+  - Icon trạng thái 8×8 vẫn dùng fallback.

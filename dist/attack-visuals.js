@@ -13,7 +13,7 @@ export function installAttackVisuals(Game){
   if(this.attackEvents.length>80)this.attackEvents.splice(0,this.attackEvents.length-80);
  };
  const damage=P.damage;P.damage=function(e,n,source=null,ctx={}){
-  const basic=source&&!ctx.secondary&&!ctx.skill&&source.action==='attack';
+  const basic=source&&!ctx.fromProjectile&&!ctx.secondary&&!ctx.skill&&source.action==='attack';
   const result=damage.call(this,e,n,source,ctx);
   if(basic&&!source.gunState?.jammed)this.recordAttack(source,e);return result;
  };

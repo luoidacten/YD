@@ -1,3 +1,4 @@
+import {rpgInspector} from './rpg-ui.js';
 import {BOSS_POOL} from './boss-data.js';
 import {createReviewGame} from './review-fixtures.js';
 import {auditUI} from './ui-audit.js';
@@ -379,7 +380,7 @@ weaponSummary(game,e)+(e.boss?`<div class="part"><b>Ấn Tầng ${e.floorId+1}</
  (BOSS_POOL[e.floorBossId||e.boss]?.seals||[]).map(x=>esc(x.name+': '+x.description)).join('<br>')
  }</p><span>${game.floorSeals(e.floorId)&&e.status==='active'?'Đang hoạt động':'Đã vỡ'}</span></div>`:'')+
  (chosen?.def.kind==='item'&&ITEMS[chosen.def.id]?.family?`<p class="equip-reason">${esc(game.equipIssue(e,ITEMS[chosen.def.id]))}</p>`:'')+
- hearts(e)+meter('Sinh lực',
+ rpgInspector(game,e)+hearts(e)+meter('Sinh lực',
 e.hp,
 e.maxHp)
 }${
@@ -644,6 +645,8 @@ function renderInspector(){
  if(modalMode==='inspect'&&$('#modal').open)$('#modal-content').innerHTML=html
 }
 function inspectorClick(event){
+ const path=event.target.closest('[data-master-path]');
+ if(path){const result=game.chooseMasterPath(selection,path.dataset.masterPath);toast(result.ok?'Đã tiến hóa hào quang chủ phòng.':result.message);if(result.ok){save();update()}return}
  const remove=event.target.closest('[data-unequip]');
  if(remove){const e=game.entity(selection);
   if(game.canPrepare()&&e?.faction==='monster'&&game.unequipItem(e,remove.dataset.unequip)){save();update()}return;
@@ -1802,5 +1805,6 @@ function showFloorBosses(floorId=game.pendingFloorBosses()[0]){
   box.textContent=bossSkillText(skill);box.hidden=!box.hidden;
  };
  $('#reroll-floor-boss').onclick=()=>{if(game.rerollFloorBosses(floorId)){save();showFloorBosses(floorId)}};
+ for(const button of $$('[data-biome]'))button.onclick=()=>{const r=game.setFloorBiome(floorId,button.dataset.biome);if(!r.ok){toast(r.message);return}save();update();showFloorBosses(floorId)};
  $('#boss-menu').onclick=showMenu;
 }
