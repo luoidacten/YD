@@ -1,3 +1,4 @@
+import {managementHTML,eventsHTML,summaryMini,drawHeat} from './management-ui.js';
 import {rpgInspector} from './rpg-ui.js';
 import {BOSS_POOL} from './boss-data.js';
 import {createReviewGame} from './review-fixtures.js';
@@ -890,7 +891,7 @@ r.recovered
 }</strong><small>Vàng thu hồi</small></div></div><p>Người thoát mang tin về Công hội. Công trình bị chiếm/phá vẫn giữ trạng thái; hãy kiểm tra trước m\
 àn sau.</p>`
 :''
-}<div class="result-actions"><button id="continue" class="primary">${
+}${!r.lost?summaryMini(game)+eventsHTML(game):''}<div class="result-actions"><button id="continue" class="primary">${
 r.lost?'Run mới ↻':'Chọn thẻ định mệnh ↗'
 }</button><button id="inspect-result" class="secondary">Xem hầm ngục</button></div></div>`
  ,
@@ -1481,6 +1482,18 @@ $('#audio').onclick=async()=>{
 ;
 $('#save').onclick=()=>save(false);
 $('#menu').onclick=showMenu;
+$('#management').onclick=()=>showManagement('report');
+function showManagement(tab='report'){
+ modal(managementHTML(game,tab),'management');drawHeat(game,$('#modal-content'));
+}
+$('#modal-content').addEventListener('click',event=>{
+ const t=event.target.closest('[data-mg-tab]');if(t){showManagement(t.dataset.mgTab);return}
+ const open=event.target.closest('[data-open-management]');if(open){showManagement(open.dataset.openManagement);return}
+ const rest=event.target.closest('[data-rest]');if(rest){const r=game.restMonster(rest.dataset.rest);toast(r.ok?'Quái đã hồi sức.':r.message);if(r.ok){save();update();showManagement('legion')}return}
+ const learn=event.target.closest('[data-research]');if(learn){const r=game.learnResearch(learn.dataset.research);toast(r.ok?'Đã học.':r.message);if(r.ok){save();update();showManagement('research')}return}
+ const ev=event.target.closest('[data-event]');if(ev){const r=game.chooseEvent(ev.dataset.event);toast(r.ok?'Đã chọn sự kiện.':r.message);if(r.ok){save();update();showResult()}return}
+ if(event.target.closest('[data-event-skip]')){game.skipEvents();save();showResult()}
+});
 $('#reset').onclick=confirmReset;
 $('#help').onclick=help;
 $('#world').onclick=showWorld;
@@ -1750,7 +1763,7 @@ function showMenu(){
  modal(
  `<div class="game-menu"><span class="eyebrow">YOUR DUNGEON?</span><h2>Menu hầm ngục</h2><p>Mô phỏng tạm dừng khi mở menu.</p><div class="menu-grid"><b\
 utton id="menu-resume" class="primary">▶ Tiếp tục</button><button id="menu-save">${icon('hud','save','↓')} Lưu tiến trình</button><button id="menu-layout">${icon('hud','layout','▦')} Bản thiết kế</but\
-ton><button id="menu-roster">♟ Cư dân / Tuyển quái</button><button id="menu-packs">▣ Gói bài</button><button id="menu-catalog">${icon('hud','catalog','✦')} Vũ khí & Bách khoa</b\
+ton><button id="menu-management">♜ Quản lý</button><button id="menu-roster">♟ Cư dân / Tuyển quái</button><button id="menu-packs">▣ Gói bài</button><button id="menu-catalog">${icon('hud','catalog','✦')} Vũ khí & Bách khoa</b\
 utton><button id="menu-world">${icon('hud','world','⚑')} Tình hình bên ngoài</button><button id="menu-help">${icon('hud','help','?')} Hướng dẫn</button><button id="menu-audio">♪ ${
 sound.enabled?'Tắt':'Bật'
 } âm thanh</button><button id="menu-reset" class="reset-menu">${icon('hud','reset','↻')} Reset run</button></div><small>Esc đóng menu · Space tạm dừng ngoài bản đồ</small></di\
@@ -1758,6 +1771,7 @@ v>`
  ,
  'menu');
  $('#menu-resume').onclick=closeModal;
+ $('#menu-management').onclick=()=>showManagement('report');
  $('#menu-save').onclick=()=>save(false);
  $('#menu-layout').onclick=showLayout;
  $('#menu-roster').onclick=roster;

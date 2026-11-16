@@ -623,8 +623,10 @@ owner.name
  installPresentation(Game);
  installBiomes(Game);
  installRpg(Game);
+ installManagement(Game);
 }
 import {installCompanions} from './companions.js';
 import {installPresentation} from './presentation.js';
 import {installRpg} from './rpg.js';
 import {installBiomes} from './biomes.js';
+import {installManagement} from './management.js';
