@@ -50,7 +50,7 @@ test('boss windup holds frame one, resolve begins at frame two, and bear form us
  druid.moving=true;assert.equal(p.bodySprite(druid,3),'yd/monsters/druid_bear_run_anim_f3');
 });
 
-test('static floor raster is reused until terrain or floor revision changes, without gameplay RNG',()=>{
+test('static floor raster is reused until terrain or biome changes (props/navRevision never re-render it), without gameplay RNG',()=>{
  const {WIDTH,HEIGHT}= {WIDTH:148,HEIGHT:94},previous=globalThis.document;let draws=0;
  const terrain=Array.from({length:HEIGHT},()=>Array(WIDTH).fill(0));terrain[4][4]=1;
  const g={state:{worldSeed:1},terrain:[terrain],navRevision:1};
@@ -59,6 +59,7 @@ test('static floor raster is reused until terrain or floor revision changes, wit
  try{
   globalThis.document={createElement:()=>({getContext:()=>({drawImage(){draws++},fillRect(){}})})};
   const first=p.floorLayer();assert.equal(draws,1);assert.equal(p.floorLayer(),first);assert.equal(draws,1);
-  g.navRevision++;assert.notEqual(p.floorLayer(),first);assert.equal(draws,2);
+  g.navRevision++;assert.equal(p.floorLayer(),first,'placing props/walls must not re-render the floor (no hitch)');assert.equal(draws,1);
+  g.terrain=[terrain.map(r=>[...r])];assert.notEqual(p.floorLayer(),first,'new terrain re-renders');assert.equal(draws,2);
  }finally{globalThis.document=previous}
 });

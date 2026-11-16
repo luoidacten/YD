@@ -96,3 +96,14 @@
 .diff-field span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .diff-field b{text-align:right;font-variant-numeric:tabular-nums}
 .diff-field input{width:100%;accent-color:#facb3e}
+
+/* v0.4 wall editor */
+#wall-editor{position:absolute;left:50%;top:8px;transform:translateX(-50%);z-index:20;display:flex;flex-direction:column;gap:6px;
+ padding:10px 12px;background:#221a1fee;border:2px solid #545454;max-width:min(760px,94%)}
+#wall-editor b{color:#ffcc68}
+#wall-editor .we-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+#wall-editor .we-row span{flex:1 1 200px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#wall-editor button{white-space:nowrap}
+#wall-editor button.active{outline:2px solid #facb3e}
+#wall-editor small{color:#a4aa98;overflow-wrap:anywhere}
+.wall-edit-btn{width:100%;margin-bottom:8px}

@@ -386,6 +386,13 @@ name
   0,
   Math.PI*2);
   c.fill();
+  if(p.custom){                                                         // player-built walls
+   if(p.type==='wall'){this.sprite(this.tile('wall_top_mid'),p.x-.5,p.y-1.4,1,1);this.sprite(this.tile('wall_mid'),p.x-.5,p.y-.5,1,1)}
+   else this.sprite(p.type==='wood'?'crate':'yd/tiles/walls/'+p.type,p.x-.5,p.y-.6,1,1);
+   if(p.hp<p.maxHp&&p.maxHp<999){this.rect(p.x-.4,p.y-.85,.8,.08,'#202425');this.rect(p.x-.4,p.y-.85,.8*p.hp/p.maxHp,.08,'#caa16f')}
+   if(this.wallEditor?.roomId===p.roomId)this.stroke(p.x-.5,p.y-.5,1,1,'#facb3e');
+   return;
+  }
   if(p.type==='pillar')this.sprite('column',
   p.x-.5,
   p.y-1.5,
@@ -620,7 +627,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
  }
  floorLayer(){
   const terrain=this.game.terrain[this.floor],seed=this.game.state.worldSeed;
-  const key=this.floor+':'+this.game.navRevision+':'+seed+':'+this.level+':'+(this.game.floorBiome?.(this.floor)||'dungeon');
+  const key=this.floor+':'+seed+':'+this.level+':'+(this.game.floorBiome?.(this.floor)||'dungeon');   // terrain identity is checked separately; props do not invalidate the floor
   if(this.floorCache?.game===this.game&&this.floorCache.terrain===terrain&&this.floorCache.key===key)return this.floorCache.canvas;
   const images=Array.from({length:8},(_,i)=>this.image(this.tile('floor_'+(i+1))));
   if(images.some(im=>!im.complete||!im.naturalWidth))return null;
@@ -1076,6 +1083,12 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    }
   }
   if(level!=='overview')this.drawMasterDecor(s);
+  if(this.wallEditor&&this.wallHover&&this.wallHover.floorId===this.floor){
+   const h=this.wallHover,room=s.rooms.find(r=>r.id===this.wallEditor.roomId),x=Math.round(h.x),y=Math.round(h.y);
+   const issue=this.wallEditor.type==='erase'?null:room&&this.game.wallIssue(room,x,y,this.wallEditor.type);
+   this.rect(x-.5,y-.5,1,1,issue?'#da4e3866':'#facb3e55');this.stroke(x-.5,y-.5,1,1,issue?'#da4e38':'#facb3e');
+   if(issue)this.label(issue,x,y-1,'#f78697',11);
+  }
   if(level!=='overview')for(const t of s.traps.filter(t=>t.floorId===this.floor)){
    if(t.plus&&!t.disabled){if(!t.spent&&(t.revealed||this.fogMode==='all'))this.nativeSprite('yd/traps/trap_'+t.type,t.x,t.y+.45,false,'feet');continue}
    if(t.disabled){

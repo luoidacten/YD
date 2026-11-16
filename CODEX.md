@@ -340,3 +340,26 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
   - Vàng/mana khởi đầu chỉ áp khi run còn mới (`freshRun`: đợt 1, chuẩn bị, chưa có phòng).
 - `REQUIRED_ROOMS` (entrance/treasure/boss/arrival): thẻ cost 0; wrapper `build` hoàn 5 mana (và cho xây khi mana dưới 5).
 - UI: `difficulty-ui.js`, có trong Menu và tự mở sau "Run mới" ở Menu chính.
+
+## v0.3.1 (Claude)
+- `squad-tactics.js`:
+  - **Ready check:** `squad.rally` (lưu trong `state.squads`) được đặt khi một thành viên tới cửa phòng chưa thăm. Thành viên ở xa hơn 3 ô thì `regroup` về đó; thành viên đã tới thì `guard` "Bàn bạc".
+  - **Go:** khi tất cả cách điểm tập hợp ≤3 ô, hoặc quá 12 giây, xóa rally, đặt `enteredRoom` và reset `decision` cho cả đội.
+  - Có thành viên cách quá 6 ô thì bỏ qua bàn bạc, để luật "Leader gặp tuyến sau" của AI gốc kéo đội lại gần trước.
+  - **Combat:** kite cho caster/tầm xa/support khi địch dưới 3,2 ô; lùi sau tank khi HP dưới 35%; skirmisher `guard` chờ tank tối đa 3 giây; tách ra khi đứng chồng dưới 0,7 ô.
+  - **Nghỉ:** `restStyle` eat|sleep cố định theo charm greedy / aggression > 1 / hash id; không dùng RNG.
+
+## v0.3.2 (Claude)
+- `walls.js` cài cuối cùng. Tường tự xây là `state.props` với `custom:true`, `wallType` và `paid`.
+  - Đá → `wall` (solid, không phá). Gỗ → `wood` (solid, hp 60, phá qua `damageProp`).
+  - Rào → `fence` (solid, nhưng `blocksSight` trả false).
+  - Bụi → `hedge` (không solid; `hedgeTiles` chặn tầm nhìn; tick làm chậm 30%).
+- `wallIssue` chặn:
+  - ngoài phòng;
+  - làn cửa (|dx| hoặc |dy| ≤1 quanh tâm);
+  - cầu thang dưới 3 ô;
+  - ô đã có vật cản/bẫy/cư dân;
+  - quá nửa phòng; thiếu vàng;
+  - mất liên thông (`connectedInterior` chỉ xét vật cản trong phòng).
+- `indexProp` cập nhật `propsByTile` từng ô, không gọi `rebuild`.
+- Painter: khóa cache sàn bỏ `navRevision` (chỉ còn danh tính terrain, tầng, LOD, biome), nên vật cản không làm vẽ lại sàn.

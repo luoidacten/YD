@@ -1,5 +1,34 @@
 # Changelog
 
+## v0.3.2 — Tự xây tường trong phòng, xây mượt hơn (2026-11-17)
+- **Xây tường trong phòng:** chọn một phòng → **🧱 Xây tường trong phòng**, rồi nhấp hoặc kéo trên sàn để tô.
+  - **4 loại tường:**
+    - **Tường đá:** chặn đi lại và tầm nhìn, không phá được.
+    - **Tường gỗ:** chặn như đá nhưng phá được (60 HP).
+    - **Bụi rậm:** đi xuyên được nhưng chậm 30%, che tầm nhìn.
+    - **Rào thấp:** chặn đi lại nhưng nhìn và bắn qua được.
+  - **3 mẫu có sẵn:** Bốn cột, Ụ nấp, Lùm cây. Có công cụ **Gỡ** (hoàn 50% vàng).
+  - **Ngân sách:** mỗi cấp phòng cho 4 ô miễn phí; vượt thì trả vàng (đá 12, rào 8, gỗ 6, bụi 4); tối đa nửa phòng.
+  - Tường đá dùng tile tường của biome nên đổi theo địa hình.
+- **Ba quy tắc luôn hoàn thành được:**
+  - lối giữa các cửa và quanh cầu thang luôn trống;
+  - phòng không bao giờ bị cắt đôi;
+  - cổng vào, phòng rương và đường nối vẫn hợp lệ để mở trận.
+- **Xây mượt hơn:** đặt bẫy, tường, thùng hay phá vật cản không còn vẽ lại cả lớp sàn (trước đây gây khựng hình); tường cập nhật đường đi tức thì mà không dựng lại toàn bộ bản đồ.
+
+## v0.3.1 — Mạo hiểm giả chơi như một tổ đội (2026-11-17)
+- **Bàn bạc rồi cùng vào phòng:**
+  - Người đầu tiên tới cửa phòng chưa khám phá đặt điểm tập hợp.
+  - Cả tổ đội (3–5 người) kéo về, hiện "…" trong lúc bàn bạc.
+  - Khi **tất cả sẵn sàng** thì cùng tiến vào một lượt. Chờ quá 12 giây thì vẫn vào.
+  - Đồng đội tụt quá xa thì trưởng nhóm quay lại đón trước.
+- **Nghỉ theo tính cách:** người tham lam hoặc hiếu chiến lấy **lương khô ra ăn** (hồi 6% máu/giây, "Nhai…"); người còn lại **ngủ** (hồi 4% máu và 4% mana mỗi giây, "Zzz").
+- **Đánh có đội hình thay vì cùng lao vào:**
+  - Pháp sư, cung thủ, tu sĩ giữ khoảng cách.
+  - Sát thủ chờ hộ vệ lao lên giữ chân trước (tối đa 3 giây).
+  - Người máu dưới 35% lùi ra sau lưng hộ vệ.
+  - Không đứng chồng lên đồng đội.
+
 ## v0.3.0 — Độ khó tùy chỉnh (2026-11-17)
 - **Phòng bắt buộc miễn phí mana:** Cổng hầm ngục, Phòng rương trung tâm (kho báu), Đại sảnh cầu thang, Bậc thang tầng sâu. Thẻ hiện "Miễn phí". Các phòng khác vẫn tốn 5 mana.
 - **Độ khó:**

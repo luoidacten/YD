@@ -629,6 +629,7 @@ owner.name
  installKingdom(Game);
  installSquadTactics(Game);
  installDifficulty(Game);
+ installWalls(Game);
 }
 import {installCompanions} from './companions.js';
 import {installPresentation} from './presentation.js';
@@ -640,3 +641,4 @@ import {installZombies} from './zombies.js';
 import {installKingdom} from './kingdom.js';
 import {installSquadTactics} from './squad-tactics.js';
 import {installDifficulty} from './difficulty.js';
+import {installWalls} from './walls.js';

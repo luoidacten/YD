@@ -1,3 +1,4 @@
+import {WALL_TYPES,WALL_TEMPLATES} from './walls.js';
 import {difficultyHTML,bindDifficulty} from './difficulty-ui.js';
 import {installTitle} from './title.js';
 import {managementHTML,eventsHTML,summaryMini,drawHeat} from './management-ui.js';
@@ -643,11 +644,15 @@ trap.cooldown.toFixed(1)
  return'<p class="empty">Chọn phòng, cư dân, vật thể hoặc bẫy để xem thông tin.</p>'
 }
 function renderInspector(){
- const html=inspectorHTML();
+ let html=inspectorHTML();
+ const room=game.state.rooms.find(r=>r.id===selection);
+ if(room&&game.canPrepare()&&room.owner!=='hero')html=`<button class="primary wall-edit-btn" data-wall-edit="${room.id}">🧱 Xây tường trong phòng</button>`+html;
  $('#inspector').innerHTML=html;
  if(modalMode==='inspect'&&$('#modal').open)$('#modal-content').innerHTML=html
 }
 function inspectorClick(event){
+ const wall=event.target.closest('[data-wall-edit]');
+ if(wall){openWallEditor(wall.dataset.wallEdit);return}
  const path=event.target.closest('[data-master-path]');
  if(path){const result=game.chooseMasterPath(selection,path.dataset.masterPath);toast(result.ok?'Đã tiến hóa hào quang chủ phòng.':result.message);if(result.ok){save();update()}return}
  const remove=event.target.closest('[data-unequip]');
@@ -1485,6 +1490,45 @@ $('#audio').onclick=async()=>{
 $('#save').onclick=()=>save(false);
 $('#menu').onclick=showMenu;
 $('#management').onclick=()=>showManagement('report');
+let wallEditor=null,wallLast='';
+function wallPanel(){
+ const room=game.state.rooms.find(r=>r.id===wallEditor.roomId),b=game.wallBudget(room);
+ const el=$('#wall-editor')||Object.assign(document.createElement('div'),{id:'wall-editor'});
+ el.innerHTML=`<b>XÂY TƯỜNG</b><div class="we-row">${Object.entries(WALL_TYPES).map(([id,t])=>
+  `<button data-we-type="${id}" class="${wallEditor.type===id?'active':''}" title="${t.text} · ${t.cost} vàng/ô khi hết ô miễn phí">${t.name}</button>`).join('')}
+  <button data-we-type="erase" class="${wallEditor.type==='erase'?'active':''}" title="Gỡ tường tự xây, hoàn 50% vàng">Gỡ</button></div>
+  <div class="we-row">${Object.entries(WALL_TEMPLATES).map(([id,t])=>`<button data-we-template="${id}" title="Áp mẫu (bỏ qua ô không hợp lệ)">Mẫu: ${t.name}</button>`).join('')}</div>
+  <div class="we-row"><span>Miễn phí ${Math.max(0,b.free-b.used)}/${b.free} · Đã dùng ${b.used}/${b.cap} ô · ${game.state.gold} vàng</span>
+  <button class="primary" data-we-done>Xong</button></div><small id="we-hint">Nhấp hoặc kéo trên sàn phòng để xây. Lối đi giữa cửa và cầu thang luôn được giữ trống.</small>`;
+ if(!el.parentNode)$('#viewport').append(el);
+ el.onclick=e=>{const t=e.target.closest('[data-we-type]');if(t){wallEditor.type=t.dataset.weType;painter.wallEditor=wallEditor;wallPanel();return}
+  const m=e.target.closest('[data-we-template]');if(m){const r=game.applyWallTemplate(wallEditor.roomId,m.dataset.weTemplate);
+   toast(r.ok?`Đã xây ${r.placed} ô theo mẫu.`:r.message);if(r.ok){save();update()}wallPanel();return}
+  if(e.target.closest('[data-we-done]'))closeWallEditor()};
+}
+function openWallEditor(roomId){
+ const room=game.state.rooms.find(r=>r.id===roomId);if(!room)return;
+ wallEditor={roomId,type:'stone'};painter.wallEditor=wallEditor;painter.focus(room,true);wallPanel();
+ toast('Chế độ xây tường: nhấp/kéo trên sàn phòng. Esc hoặc "Xong" để thoát.');
+}
+function closeWallEditor(){wallEditor=null;painter.wallEditor=null;$('#wall-editor')?.remove();update()}
+function wallClick(p){
+ const key=p.floorId+':'+Math.round(p.x)+','+Math.round(p.y);
+ const prop=game.state.props.find(q=>q.custom&&q.floorId===p.floorId&&q.x===Math.round(p.x)&&q.y===Math.round(p.y));
+ let r;
+ if(wallEditor.type==='erase'||prop&&wallLast!==key){r=prop?game.removeWall(prop.id):{ok:false,message:'Không có tường tự xây ở đây.'}}
+ else r=game.placeWall(wallEditor.roomId,p.x,p.y,wallEditor.type);
+ wallLast=key;
+ if(r.ok){save();update();wallPanel()}else if(r.message&&!wallEditor.dragging)toast(r.message);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&wallEditor){e.preventDefault();closeWallEditor()}});
+$('#game').addEventListener('mousedown',e=>{if(wallEditor&&e.button===0){wallEditor.dragging=false;wallLast=''}});
+$('#game').addEventListener('mousemove',e=>{
+ if(!wallEditor)return;const p=painter.hit(e.clientX,e.clientY);painter.wallHover=p;
+ if(e.buttons===1&&wallEditor.type!=='erase'){const key=p.floorId+':'+Math.round(p.x)+','+Math.round(p.y);
+  if(key!==wallLast){wallEditor.dragging=true;const r=game.placeWall(wallEditor.roomId,p.x,p.y,wallEditor.type);wallLast=key;if(r.ok){save();wallPanel()}}}
+});
+$('#game').addEventListener('mouseup',()=>{if(wallEditor)setTimeout(()=>{if(wallEditor)wallEditor.dragging=false},0)});
 function showDifficulty(){
  modal(difficultyHTML(game),'difficulty');
  bindDifficulty($('#modal-content'),game,{toast,onDone:changed=>{closeModal();if(changed){save();update()}}});
@@ -1526,6 +1570,7 @@ function clickMap(event){
  b)=>distance(a,
  p)-distance(b,
  p))[0];
+ if(wallEditor){wallClick(p);return}
  if(placingKey){
   const result=game.placeKey(p.x,
   p.y,
