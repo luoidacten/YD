@@ -1,0 +1,117 @@
+{
+ "summary": {
+  "battles": 150,
+  "defenderWins": 29,
+  "medianSeconds": 151.4665,
+  "limitHits": 0,
+  "stuckEpisodes": 0
+ },
+ "bosses": {
+  "warden": {
+   "battles": 30,
+   "wins": 16,
+   "casts": 185,
+   "moves": {
+    "titan_slam": 70,
+    "titan_sweep": 49,
+    "titan_rock": 40,
+    "titan_stone": 26
+   },
+   "boneRevivals": 18,
+   "winRate": 0.5333333333333333,
+   "castsPerBattle": 6.166666666666667,
+   "deviationFromAll": 0.33999999999999997
+  },
+  "death_knight": {
+   "battles": 3,
+   "wins": 0,
+   "casts": 17,
+   "moves": {
+    "death_rune": 7,
+    "death_dash": 5,
+    "death_shield": 4,
+    "death_execute": 1
+   },
+   "boneRevivals": 0,
+   "winRate": 0,
+   "castsPerBattle": 5.666666666666667,
+   "deviationFromAll": -0.19333333333333333
+  },
+  "bone_king": {
+   "battles": 9,
+   "wins": 7,
+   "casts": 55,
+   "moves": {
+    "king_rally": 20,
+    "king_order": 30,
+    "king_judge": 4,
+    "king_throne": 1
+   },
+   "boneRevivals": 0,
+   "winRate": 0.7777777777777778,
+   "castsPerBattle": 6.111111111111111,
+   "deviationFromAll": 0.5844444444444444
+  },
+  "inferno": {
+   "battles": 6,
+   "wins": 4,
+   "casts": 45,
+   "moves": {
+    "inferno_ring": 17,
+    "inferno_rain": 15,
+    "inferno_imps": 10,
+    "inferno_burst": 3
+   },
+   "boneRevivals": 0,
+   "winRate": 0.6666666666666666,
+   "castsPerBattle": 7.5,
+   "deviationFromAll": 0.4733333333333333
+  },
+  "frost_witch": {
+   "battles": 3,
+   "wins": 1,
+   "casts": 15,
+   "moves": {
+    "frost_fan": 7,
+    "frost_pillar": 5,
+    "frost_storm": 1,
+    "frost_armor": 2
+   },
+   "boneRevivals": 0,
+   "winRate": 0.3333333333333333,
+   "castsPerBattle": 5,
+   "deviationFromAll": 0.13999999999999999
+  },
+  "necro_lord": {
+   "battles": 6,
+   "wins": 4,
+   "casts": 39,
+   "moves": {
+    "necro_bones": 12,
+    "necro_drain": 21,
+    "necro_curse": 5,
+    "necro_ritual": 1
+   },
+   "boneRevivals": 18,
+   "winRate": 0.6666666666666666,
+   "castsPerBattle": 6.5,
+   "deviationFromAll": 0.4733333333333333
+  },
+  "spider_queen": {
+   "battles": 3,
+   "wins": 0,
+   "casts": 9,
+   "moves": {
+    "spider_web": 3,
+    "spider_leap": 3,
+    "spider_fang": 2,
+    "spider_eggs": 1
+   },
+   "boneRevivals": 0,
+   "winRate": 0,
+   "castsPerBattle": 3,
+   "deviationFromAll": -0.19333333333333333
+  }
+ },
+ "limitation": "Boss samples share two-floor encounters and are not isolated balance trials; do not infer causal win-rate differences."
+}

@@ -252,3 +252,7 @@ Soak kế tiếp lộ seed25/wave3 chạm482s. Nguyên nhân thực: applyStatus
 - ?review=prepare/battle/inspector/boss/result là fixture developer riêng: không đọc/ghi save người chơi. F9 chạy audit và ghi kết quả DOM; các nút QA không thuộc sản phẩm.
 - 168tests xanh; UI-only soak50seed ×1 trùng50/50 toàn save với mốc trướcUI (soak-code06-corrected.json wave1; trước sửa shield riêng). 0kẹt/0limit ở50trận này. Không dùng nó thay chứng nhận150trận gameplay. Ảnh và báo cáo ui-audit-v07.json đã lưu.
 - Chưa có art riêng cho scrollbar/checkbox/mũi tên dropdown; dùng nút đá/ký tự chuẩn và scrollbar hệ thống tại vùng cuộn. Không sửa PNG kit hay nguồn font.
+
+### CODEX_06 kiểm chứng cuối
+
+soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắng phòng thủ (19,33%),median151,4665s. boss-balance-v06.json ghi số chiêu, số hồi sinh và tỷ lệ theo từng boss. Mẫu boss thuộc các trận hai tầng và thường có hai boss cùng trận, vì vậy chênh lệch so với19,33% toàn bộ mẫu bị nhiễu bởi cấu trúc phòng; chưa đủ để kết luận nerf/buff riêng boss. Test giả lập95s chứng minh mỗi boss dùng đủ4chiêu theo phase, không rời phòng.
