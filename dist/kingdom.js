@@ -26,6 +26,7 @@ export const OFFENSIVES={
   kingdom:.8,mainBonus:1,elite:true},
 };
 export const PURGE_WAVE=10;
+export const HERO_HP=1.15,HERO_POWER=1.1;
 const BASES=['knight','rogue','mage','priest'],ROYAL=['royal_guard','royal_archer','royal_mage','royal_cleric'];
 const NAMES=['Aldric','Brienne','Cassian','Dara','Edric','Fiona','Gareth','Helena','Ivor','Jora','Kael','Lysa'];
 
@@ -77,6 +78,8 @@ export function installKingdom(Game){
  };
  const spawn=P.spawn;P.spawn=function(...args){
   const e=spawn.apply(this,args),k=KINGDOM[e.species];
+  if(e.faction==='hero'&&!e.ownerId&&this.state.phase==='battle'&&!e.hardened){   // v0.2 difficulty: tougher adventurers
+   e.hardened=true;e.maxHp=Math.round(e.maxHp*HERO_HP);e.hp=e.maxHp;e.powerScale=(e.powerScale||1)*HERO_POWER}
   if(k&&e.faction==='hero'){
    e.intelligence=Math.max(e.intelligence||0,k.brain);e.kingdom=true;if(e.species==='royal_captain')e.leadership=100;
    for(const id of [k.weapon,k.offhand].filter(Boolean))try{const item=this.createItem(id,e);if(item)this.equipItem(e,item)}catch{}
@@ -112,7 +115,10 @@ export function installKingdom(Game){
   if(e.faction==='monster'){
    // reached the edge spot where the noise came from (target clamped inside the room): stop investigating, hold the room
    const t=typeof e.target==='object'?e.target:null;
-   if(e.action==='investigate'&&t&&distance(e,t)<.8&&!context.enemies?.length)context.add('guard',.5,e.home,'Đã tới điểm nghe tiếng, về giữ phòng');
+   if(e.action==='investigate'&&t&&distance(e,t)<.8&&!context.enemies?.length)context.add('guard',.95,e.home,'Đã tới điểm nghe tiếng, về giữ phòng');
+   // patrol spot already taken by a standing unit (e.g. an idle zombie): hold here instead of waiting forever
+   if(e.action==='patrol'&&t&&!context.enemies?.length&&this.state.entities.some(a=>a!==e&&a.status==='active'&&a.floorId===e.floorId&&distance(a,t)<.9))
+    context.add('guard',.95,{x:e.x,y:e.y,floorId:e.floorId},'Điểm tuần tra đã có người đứng, giữ chỗ hiện tại');
    return;
   }
   if(e.faction!=='hero'||e.ownerId)return;

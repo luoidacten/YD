@@ -123,10 +123,7 @@ e.name
   const s=this.state;
   if(s.designedStart&&!s.arsenalStarter){
    s.arsenalStarter=true;
-   if(s.phase==='prepare'&&s.wave===1)for(const id of ['contract-lizardArcher',
-   'W01',
-   'W03',
-   'W10'])s.deck.hand.push(this.makeCard(id))
+   if(s.phase==='prepare'&&s.wave===1)for(const id of ['W01'])s.deck.hand.push(this.makeCard(id))
   }
  }
  ;

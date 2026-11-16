@@ -77,6 +77,7 @@ export function installZombies(Game){
    this.effects.push({x:e.x,y:e.y,floorId:e.floorId,radius:2.5,blast:true,life:.6,color:'#97da3f'});
    this.log(`${e.name} nổ tung thành mây độc!`,'warning');return;
   }
+  if(e.boss)return;                                   // floor bosses never self-revive (seals break when they fall)
   const burnt=e.lastHitElement==='fire'||this.effect(e,'burn');
   const extra=this.zombieKingOnFloor(e.floorId)&&e.species!=='zombie_king'&&!e.kingBonusUsed?1:0;
   if(extra){e.zombieRevives=(e.zombieRevives||0)+1;e.kingBonusUsed=true}
