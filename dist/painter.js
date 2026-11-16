@@ -214,6 +214,7 @@ name
    this.camera.y=before.y-(clientY-r.top-r.height/2)/this.camera.tile
   }
  }
+ glideTo(p){this.glide={x:p.x,y:p.y,floorId:p.floorId}}
  focus(room,
  detail=false){
   if(!room){
@@ -914,6 +915,11 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
  }
  draw(delta){
   delta=Math.max(0,Number(delta)||0);
+  if(this.glide){                                                  // smooth camera glide (no hard jump)
+   if(this.glide.floorId!==this.floor){this.floor=this.glide.floorId;this.game.state.currentFloor=this.floor}
+   const k=Math.min(1,delta*6);this.camera.x+=(this.glide.x-this.camera.x)*k;this.camera.y+=(this.glide.y-this.camera.y)*k;
+   if(Math.hypot(this.glide.x-this.camera.x,this.glide.y-this.camera.y)<.2)this.glide=null;
+  }
   this.labelRects=[];
   this.capturePresentation(delta);
   if(this.presentationSettings.hitstop&&this.fxClock<this.hitStopUntil)return;
@@ -1083,6 +1089,11 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
    }
   }
   if(level!=='overview')this.drawMasterDecor(s);
+  if(this.nextSlot&&this.nextSlot.floorId===this.floor&&s.phase==='prepare'){
+   const n=this.nextSlot,blink=Math.floor((performance.now()-n.since)/350)%2;
+   if(s.rooms.some(r=>r.floorId===n.floorId&&Math.abs(r.x-n.x)<2&&Math.abs(r.y-n.y)<2))this.nextSlot=null;
+   else{this.stroke(n.x-7.5,n.y-6.5,15,13,blink?'#facb3e':'#ee8e2e');this.label('Ô xây tiếp theo',n.x,n.y,'#ffcc68',13)}
+  }
   if(this.wallEditor&&this.wallHover&&this.wallHover.floorId===this.floor){
    const h=this.wallHover,room=s.rooms.find(r=>r.id===this.wallEditor.roomId),x=Math.round(h.x),y=Math.round(h.y);
    const issue=this.wallEditor.type==='erase'?null:room&&this.game.wallIssue(room,x,y,this.wallEditor.type);
@@ -1524,8 +1535,8 @@ t.windup>0||t.cooldown>4?2:0
   c.save();
   c.translate(Math.round(p.x),
   Math.round(p.y));
-  c.rotate(Math.atan2(f.ty-f.y,
-  f.tx-f.x)+Math.PI/2+(f.projectile==='axe'?progress*Math.PI*4:0));
+  const heading=f.vx!==undefined?Math.atan2(f.vy,f.vx):Math.atan2(f.ty-f.y,f.tx-f.x);   // real projectiles carry velocity
+  c.rotate(heading+Math.PI/2+(f.projectile==='axe'?(this.time*12)%(Math.PI*2):0));
   c.drawImage(im,
   -t*.2,
   -t*.5,

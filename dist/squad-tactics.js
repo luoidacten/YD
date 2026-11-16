@@ -22,11 +22,27 @@ export function installSquadTactics(Game){
   if(!e.squadId)return null;let q=this.state.squads.find(q=>q.id===e.squadId);
   if(!q){q={id:e.squadId,leaderId:e.id,mode:'explore',nextElection:0};this.state.squads.push(q)}return q;
  };
+ // safety nets: never stand still for long in a "moving" action
+ P.stallGuard=function(e,context){
+  const s=this.state,tile=Math.round(e.x)+','+Math.round(e.y)+','+e.floorId;
+  if(e.stallTile!==tile){e.stallTile=tile;e.stallSince=s.time;return}
+  const still=s.time-(e.stallSince??s.time);
+  if(e.faction==='monster'&&e.action==='guard-body'&&still>8)context.add('guard',1.0,e.home,'Canh xác quá lâu, quay về giữ phòng');
+  if(e.faction==='monster'&&['patrol','investigate'].includes(e.action)&&still>8)
+   context.add('guard',1.0,{x:e.x,y:e.y,floorId:e.floorId},'Lối đi bị chắn, giữ chỗ hiện tại');
+  if(e.faction==='hero'&&e.action==='explore'&&still>12&&!context.enemies?.length&&s.treasure?.carrier!==e.id)
+   context.add('retreat',1.3,null,'Bế tắc không tìm được đường tiếp, rút khỏi hầm ngục');
+  if(e.faction==='hero'&&['explore','regroup'].includes(e.action)&&still>10&&!context.enemies?.length){
+   if(e.destinationRoom&&!e.visitedRooms?.includes(e.destinationRoom))(e.visitedRooms??=[]).push(e.destinationRoom);
+   const q=this.squadRecord?.(e);if(q?.rally)q.rally=null;e.stallSince=s.time;e.path=[];
+  }
+ };
  P.restStyle=function(e){
   return e.restStyle??=(e.charms?.includes('greedy')||(e.personality?.aggression??1)>1||hash(e.id)<25)?'eat':'sleep';
  };
  const choices=P.extendChoices;P.extendChoices=function(e,context){
   choices.call(this,e,context);
+  this.stallGuard(e,context);
   if(e.faction!=='hero'||e.ownerId||e.status!=='active')return;
   const s=this.state,{enemies,add}=context,here={x:e.x,y:e.y,floorId:e.floorId},room=this.roomAt(e.x,e.y,e.floorId);
   const mates=this.squadOf(e),squad=this.squadRecord(e),carrier=s.treasure?.carrier===e.id;
@@ -47,6 +63,10 @@ export function installSquadTactics(Game){
      this.squadRecord(a)?.rally?.roomId===rally.roomId):mates;
     const team=[e,...allies],ready=team.filter(a=>distance(a,rally)<=RALLY);
     const far=team.some(a=>distance(a,rally)>6);                    // squad scattered: let the base AI close the gap first
+    const danger=(squad.danger?.[rally.roomId]||0),avgHp=team.reduce((n,a)=>n+a.hp/a.maxHp,0)/team.length;
+    if(danger>.6&&avgHp<.85&&s.time-rally.since<READY_MAX){                         // known kill-zone: heal up first
+     if(!e.restUntil||e.restUntil<s.time){e.restUntil=s.time+6}
+     add('guard',1.56,here,'Phòng này nguy hiểm — hồi sức đủ rồi mới vào');this.partyTalk?.(team,ready);return}
     if(ready.length===team.length||s.time-rally.since>READY_MAX){
      for(const a of team){const q=this.squadRecord(a);if(q){q.rally=null;q.enteredRoom=rally.roomId}}
      squad.rally=null;squad.enteredRoom=rally.roomId;
@@ -74,6 +94,10 @@ export function installSquadTactics(Game){
   const near=[...enemies].sort((a,b)=>distance(a,e)-distance(b,e))[0];if(!near)return;
   const tanks=mates.filter(a=>roleOf(this,a)==='tank'),tank=tanks.sort((a,b)=>distance(a,near)-distance(b,near))[0];
   const back=isBack(this,e),role=roleOf(this,e);
+  // coordinated focus: ranged/support shoot what the tank is holding (suppression-style support)
+  const held=tank&&typeof tank.target==='string'&&this.entity(tank.target);
+  if(back&&held&&held.status==='active'&&enemies.includes(held)&&distance(e,held)<=this.range(e)+1)
+   add('attack',1.2,held.id,`Dồn hỏa lực vào ${held.name} mà ${tank.name.split(' ')[0]} đang giữ chân`);
   // casters / archers / healers keep their distance
   if(back&&distance(e,near)<3.2){const p=choosePosition(this,e,near,'kite');if(p)add('kite',1.42,p,'Giữ khoảng cách, để hộ vệ chặn phía trước')}
   // wounded fall back behind the tank
@@ -92,6 +116,13 @@ export function installSquadTactics(Game){
    const dx=near.y-e.y,dy=e.x-near.x,l=Math.hypot(dx,dy)||1,p={x:e.x+dx/l*1.3,y:e.y+dy/l*1.3,floorId:e.floorId};
    if(this.walkable(p.x,p.y,p.floorId,e))add('regroup',1.12,p,'Tản ra, không đứng chồng lên đồng đội');
   }
+ };
+ // danger map (influence-map idea, per squad): damage taken inside a room raises that room's danger
+ const damage=P.damage;P.damage=function(e,n,source=null,ctx={}){
+  const hp=e.hp,r=damage.call(this,e,n,source,ctx),lost=Math.max(0,hp-e.hp);
+  if(lost&&e.faction==='hero'&&!e.ownerId&&e.squadId){const room=this.roomAt(e.x,e.y,e.floorId),q=room&&this.squadRecord(e);
+   if(q){q.danger??={};q.danger[room.id]=(q.danger[room.id]||0)+lost/Math.max(1,e.maxHp)}}
+  return r;
  };
  const tick=P.tick;P.tick=function(dt){
   const r=tick.call(this,dt),s=this.state;

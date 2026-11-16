@@ -1608,6 +1608,7 @@ function clickMap(event){
   entity?.id);
   if(result.ok){
    if(result.entity)select(result.entity.id);
+   if(result.room)jumpToNextSlot(result.room);
    toast('Đã sử dụng thẻ.');
    clearCard();
    save();
@@ -1637,12 +1638,33 @@ function clickMap(event){
  p.floorId);
  if(room)select(room.id)
 }
+// after building a room, glide the camera to the next free build cell next to it and mark it
+function jumpToNextSlot(room){
+ const taken=new Set(game.rooms(room.floorId).map(r=>r.col+','+r.row));
+ const order=[[1,0],[0,1],[0,-1],[-1,0]],cells=[];
+ for(const r of game.rooms(room.floorId))for(const[dx,dy]of order){const c=r.col+dx,w=r.row+dy;
+  if(c>=0&&c<4&&w>=0&&w<3&&!taken.has(c+','+w))cells.push({col:c,row:w,d:Math.abs(c-room.col)+Math.abs(w-room.row),o:order.findIndex(o=>o[0]===dx&&o[1]===dy)})}
+ if(!cells.length||game.rooms(room.floorId).length>=10){painter.nextSlot=null;return}
+ cells.sort((a,b)=>a.d-b.d||a.o-b.o);const next=cells[0];
+ painter.nextSlot={x:18+next.col*36,y:16+next.row*30,floorId:room.floorId,since:performance.now()};
+ painter.glideTo?.(painter.nextSlot);
+}
 let drag=null;
 const canvas=$('#game');
 canvas.addEventListener('contextmenu',
 e=>e.preventDefault());
+// two-finger pinch zoom on touch screens (pointer events)
+const touches=new Map();let pinch=null;
+canvas.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(touches.size===2){const[a,b]=[...touches.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y),cx:(a.x+b.x)/2,cy:(a.y+b.y)/2};drag=null}});
+canvas.addEventListener('pointermove',e=>{if(!touches.has(e.pointerId))return;touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(pinch&&touches.size===2){const[a,b]=[...touches.values()],d=Math.hypot(a.x-b.x,a.y-b.y);
+  if(Math.abs(d-pinch.d)>8){painter.zoom(d>pinch.d?1.06:1/1.06,pinch.cx,pinch.cy);pinch.d=d}}});
+const endTouch=e=>{touches.delete(e.pointerId);if(touches.size<2)pinch=null};
+canvas.addEventListener('pointerup',endTouch);canvas.addEventListener('pointercancel',endTouch);
 canvas.addEventListener('pointerdown',
 e=>{
+ if(pinch)return;
  drag={
   x:e.clientX,
   y:e.clientY,
@@ -1659,6 +1681,7 @@ canvas.addEventListener('pointermove',
 e=>{
  painter.hover=painter.hit(e.clientX,
  e.clientY);
+ if(pinch){drag=null;return}
  if(drag&&(drag.button===2||Math.hypot(e.clientX-drag.startX,
  e.clientY-drag.startY)>5)){
   painter.camera.x-=(e.clientX-drag.x)/painter.camera.tile;

@@ -115,3 +115,88 @@
 .squad-row i{height:6px;border:2px solid #140c11;background:#170f14}
 .squad-row i b{display:block;height:100%;background:#da4e38}
 .squad-row.me span{color:#ffcc68}
+
+/* ===== v0.3.4 phone layout (portrait ≤760px, landscape ≤500px tall) ===== */
+#game{touch-action:none}
+@media (max-width:760px){
+ .top{gap:6px;padding:4px 6px}
+ .brand{display:none!important}
+ .resources{gap:4px}
+ .resources small{display:none}
+ .stage{display:flex!important;flex:none;align-items:center}
+ .stage :not(:has(#start)):not(#start){display:none!important}
+ #start{font-size:14px;padding:6px 10px;white-space:nowrap}
+ .top-actions button{padding:4px 6px}
+ #management{font-size:0}#management::first-letter{font-size:14px}
+ .layout{grid-template-columns:0 minmax(0,1fr) 0!important;grid-template-rows:minmax(0,1fr) 156px!important}
+ .left{position:absolute!important;left:4px;top:4px;z-index:8;flex-direction:row!important;flex-wrap:wrap;gap:4px!important;
+  width:auto!important;max-width:60%;height:auto!important;background:none!important;border:0!important}
+ .left>*:not(:has([data-floor])):not([data-floor]){display:none!important}
+ .left button{min-width:40px;min-height:36px;padding:2px 6px}
+ .minimap-box{display:none!important}
+ .map-tools{transform:scale(.85);transform-origin:right bottom}
+ .map-bottom .time button{min-width:40px;min-height:36px}
+ #map-hint{display:none}
+ .dock{grid-template-columns:1fr!important;grid-template-rows:auto minmax(0,1fr);gap:4px!important;padding:2px!important}
+ .dock-head{grid-column:1!important;grid-row:1!important;flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none}
+ .dock-tabs{flex-wrap:nowrap!important}
+ .dock-tabs button{white-space:nowrap;min-height:32px}
+ #deck-hint{display:none}
+ .cards{grid-column:1!important;grid-row:2!important;overflow-x:auto;overflow-y:hidden;display:flex;gap:6px;scroll-snap-type:x mandatory}
+ .cards .card{flex:none;scroll-snap-align:start}
+ .right{width:min(320px,92vw)!important}
+ #wall-editor{top:48px;max-width:96%}
+ #wall-editor .we-row button{min-height:36px}
+ .floor-boss-grid{grid-template-columns:1fr!important;max-height:70vh;overflow:auto}
+ dialog{max-width:96vw}
+}
+@media (max-height:500px) and (orientation:landscape){
+ .layout{grid-template-rows:minmax(0,1fr) 112px!important}
+ .top{min-height:40px}
+ .dock .card{transform:scale(.8);transform-origin:left bottom}
+ .minimap-box{display:none!important}
+}
+@media (max-width:760px){
+ .left{top:52px!important}
+ .cards .card{flex:0 0 96px!important;width:96px!important;min-width:96px;height:108px!important}
+ .top{flex-wrap:nowrap}
+ .commandbar{gap:4px!important;min-width:0}
+ .resources span{gap:2px}
+ .resources img{width:14px;height:14px}
+ .top-actions{display:flex;gap:4px}
+ .top-actions>button{font-size:0!important;min-width:36px;min-height:36px;padding:2px!important}
+ .top-actions>button span,.top-actions>button img{font-size:14px}
+ .stage{margin-left:auto}
+}
+@media (max-width:760px){
+ #start{position:fixed!important;right:10px;bottom:272px;z-index:40;min-height:44px;padding:8px 14px!important;font-size:14px!important}
+}
+@media (max-height:500px) and (orientation:landscape){
+ #start{position:fixed!important;right:10px;bottom:124px;z-index:40}
+}
+@media (max-height:500px){
+ .top{min-height:40px!important;height:44px;padding:2px 6px!important}
+ .brand{display:none!important}
+ .resources small{display:none}
+ .layout{grid-template-columns:0 minmax(0,1fr) 0!important;grid-template-rows:minmax(0,1fr) 116px!important}
+ .left{position:absolute!important;left:4px;top:48px;z-index:8;flex-direction:row!important;flex-wrap:wrap;gap:4px!important;
+  width:auto!important;height:auto!important;background:none!important;border:0!important}
+ .left>*:not(:has([data-floor])):not([data-floor]){display:none!important}
+ .minimap-box,#map-hint{display:none!important}
+ .dock{grid-template-columns:minmax(0,1fr) auto!important;gap:4px!important;padding:2px!important}
+ .dock-head{flex-wrap:nowrap!important;overflow-x:auto}
+ .dock-tabs{flex-wrap:nowrap!important}
+ #deck-hint{display:none}
+ .cards{overflow-x:auto;overflow-y:hidden;display:flex;gap:6px}
+ .cards .card{flex:0 0 84px!important;width:84px!important;height:100px!important}
+ .top-actions>button{min-height:36px}
+}
+@media (max-height:500px){
+ .dock-head{align-self:start}
+ .dock-tabs button{min-height:28px!important;height:28px;padding:0 8px!important;font-size:14px}
+ .top-actions{display:flex!important;flex-direction:row!important;gap:4px}
+ .top-actions>button{font-size:0!important;min-width:36px;height:36px;padding:2px!important}
+ .top-actions>button span,.top-actions>button img{font-size:14px}
+ #start{position:fixed!important;right:8px!important;top:96px!important;bottom:auto!important;z-index:40}
+}
+@media (max-height:500px){#management::first-letter{font-size:16px}#menu span{font-size:16px}}

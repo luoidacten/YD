@@ -36,3 +36,22 @@ test('in combat casters keep distance and skirmishers let the tank engage first'
  assert.ok(ctx(mage).some(c=>c.action==='kite'),'mage kites');
  assert.ok(ctx(rogue).some(c=>c.reason.includes('lao lên giữ chân')),'rogue waits for the tank');
 });
+
+test('a squad remembers a dangerous room and heals up before going back in',()=>{
+ const g=fixture(),rooms=g.state.rooms.filter(r=>r.type==='guard'),dest=rooms[1];
+ const c=g.corridors.find(c=>[c.a,c.b].includes(dest.id)),door={x:c.x+c.w-2,y:c.y+1};
+ const a=hero(g,'knight',door.x,door.y,'A'),b=hero(g,'mage',door.x-1,door.y,'B');
+ for(const e of [a,b]){e.destinationRoom=dest.id;e.visitedRooms=[];e.hp=e.maxHp*.5}
+ g.squadRecord(a).danger={[dest.id]:2};
+ g.decide(a);assert.ok(a.scores.some(s=>s.reason.includes('nguy hiểm')),'waits to heal before a known kill-zone');
+ assert.ok(g.squadRecord(a).rally,'still gathered at the door');
+});
+
+test('ranged heroes focus the enemy their tank is holding',()=>{
+ const g=fixture(),r=g.state.rooms.find(r=>r.type==='guard');
+ const tank=hero(g,'knight',r.x-3,r.y,'T'),archer=hero(g,'archer',r.x-7,r.y,'R');
+ const m1=g.spawn('goblin','monster',r.x-2,r.y,'G1',[],{floorId:0,roomId:r.id}),m2=g.spawn('goblin','monster',r.x+3,r.y+2,'G2',[],{floorId:0,roomId:r.id});
+ tank.target=m1.id;const list=[];
+ g.extendChoices(archer,{enemies:[m2,m1],allies:[tank],locked:false,add:(action,score,target,reason)=>list.push({action,target,reason})});
+ assert.ok(list.some(c=>c.action==='attack'&&c.target===m1.id&&c.reason.includes('Dồn hỏa lực')));
+});

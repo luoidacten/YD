@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.3.4 — Phòng tự triệu hồi quái, điện thoại, AI chiến thuật (2026-11-17)
+- **Phòng tự triệu hồi quái theo loại phòng:**
+  - Doanh trại ra lính, Nghĩa địa ra xương và xác sống, Hồ độc ra slime và bọ cạp…, chọn ngẫu nhiên trong các loài ưa phòng đó.
+  - **Phòng càng lên cấp:** mở thêm loài mạnh hơn và tăng sức quái (cấp 1: 57% máu, mỗi cấp +12%).
+  - Boss, vua và Mimic không bao giờ là quái hoang.
+- **Sửa lỗi lớn:** mạo hiểm giả mang đồ khởi đầu gần đầy túi nên nhặt một món là "túi đầy" và bỏ về ngay sau 2 giây. Túi giờ rộng thêm 3 ô; trận kéo dài đúng nghĩa.
+- **Mũi tên và đạn** xoay đúng hướng bay (trước đây luôn chĩa sang phải).
+- **Xây xong một phòng,** camera lướt mượt tới **ô xây tiếp theo** kề bên, có khung nhấp nháy.
+- **Giao diện điện thoại:**
+  - **Dọc:** bản đồ chiếm toàn chiều ngang; tab tầng nổi trên bản đồ; nút **Mở cổng** nổi to dễ bấm; khay thẻ cuộn ngang; ẩn bản đồ nhỏ.
+  - **Ngang:** topbar và khay thẻ gọn.
+  - **Thao tác:** chụm hai ngón để zoom, kéo một ngón để di chuyển.
+- **AI chiến thuật** (tham khảo F.E.A.R. squad AI và danh sách vùng nguy hiểm kiểu influence map):
+  - Tổ đội ghi nhớ phòng đã gây nhiều sát thương; lần sau phải hồi sức tới 85% rồi mới bàn bạc vào lại.
+  - Lính tầm xa và hỗ trợ **dồn hỏa lực** vào mục tiêu hộ vệ đang giữ chân.
+  - Xác sống quá ngu để kéo xác đồng đội.
+  - Lưới an toàn chống đứng im khi canh xác, khám phá hay tập hợp quá lâu; quái giữ chỗ khi lối đi bị chắn; đội bế tắc thì rút lui.
+- Soak 150 trận: 0 kẹt, 0 chạm giới hạn; phòng thủ thắng 44%.
+
 ## v0.3.3 — Quái hoang, tổ đội có chỉ huy, cùng vào phòng (2026-11-17)
 - **Quái hoang:**
   - Mọi phòng (trừ cổng vào và bậc thang đến) sinh **3–5 quái hoang** mỗi đợt, theo bậc đợt 1 / 4 / 8.

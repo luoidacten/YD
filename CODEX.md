@@ -379,3 +379,21 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
   - `sharePotions` dùng `transfer`.
 - `squad-tactics.js` gọi `partyTalk`, `sharePotions`, `blinkToGate`. `rpg-ui.squadHTML` hiện bảng tổ đội; painter `drawSpeech` vẽ bong bóng.
 - Test `lair.test.mjs` (tìm chìa) đặt `state.rules` tắt cả hai luật để giữ kịch bản cơ chế đã kiểm chứng.
+
+## v0.3.4 (Claude)
+- **`room-spawns.js`:**
+  - `wildPool(room)` lấy loài có `FAVORITES` chứa `room.type` (loại `NEVER_WILD`), bổ sung nhóm GENERIC nếu dưới 3 loài, sắp theo độ mạnh.
+  - Cấp L cho phép phần yếu nhất `min(1, .25+.25·L)` của danh sách; `wildScale` cho máu .45+.12·L, sức .5+.1·L.
+- **`party.js`:** hero (không phải pet) có thêm +3 ô túi một lần (`bagRoom`). Trước đó đồ khởi đầu chiếm 5/6 ô, làm luật "túi đầy" của AI kích hoạt rút ngay.
+- **`zombies.js`:** wrapper `canDrag` (zombie không kéo xác, trừ loài leader).
+- **`squad-tactics.js`:**
+  - `squad.danger[roomId]` cộng tỉ lệ HP mất trong phòng. Danger >0,6 và HP trung bình dưới 85% thì `guard` hồi sức trước khi vào (vẫn có giới hạn 12 giây).
+  - Back-line `attack` 1,2 vào `tank.target`.
+  - `stallGuard`: quái `guard-body` quá 8 giây thì về; hero explore/regroup đứng một ô quá 10 giây thì bỏ đích hoặc rally.
+- **Painter:**
+  - Đạn có `vx/vy` xoay theo vận tốc.
+  - `glideTo` lướt camera.
+  - `nextSlot` vẽ khung ô xây tiếp (app tính ô trống kề, lưới 4×3).
+- **CSS điện thoại** (`fantasy.css` cuối file): `max-width:760px` và `max-height:500px`.
+  - `#start` là nút nổi `position:fixed`; `.stage` hiển thị nhưng ẩn mọi thứ trừ `#start`; `.left` nổi trên bản đồ, chỉ giữ tab tầng.
+  - App có pinch zoom qua pointer events (`touch-action:none` trên canvas).

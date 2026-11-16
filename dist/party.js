@@ -32,6 +32,12 @@ export function installParty(Game){
   if(!e||this.speech?.get(e.id)?.until>this.state.time)return;
   this.say(e,ready.includes(e)&&e!==leader&&slot%2?pick(LINES.ready,hash(e.id)):this.talkLine(e,leader));
  };
+ // ---- adventurers carry their starting kit without already having a 'full bag' (which made them leave at once) ----
+ const spawn=P.spawn;P.spawn=function(...args){
+  const e=spawn.apply(this,args);
+  if(e.faction==='hero'&&!e.ownerId&&!e.bagRoom){e.bagRoom=true;e.capacity=(e.capacity||6)+3}
+  return e;
+ };
  // ---- first party: 3 heroes with proper roles ----
  const start=P.start;P.start=function(){
   const r=start.call(this);if(!r?.ok)return r;

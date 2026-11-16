@@ -114,6 +114,8 @@ export function installZombies(Game){
      this.applyStatus(a,'poison',3,1,e)}
   return r;
  };
+ // too dumb to drag fallen allies to safety (only zombie leaders can)
+ const canDrag=P.canDrag;P.canDrag=function(e){return isZombie(e)&&!SPECIES[e.species]?.leader?false:canDrag.call(this,e)};
  P.zombieLed=function(e){
   return this.state.entities.some(a=>a.status==='active'&&a.faction==='monster'&&a.floorId===e.floorId&&a.id!==e.id&&
    a.roomId===e.roomId&&(a.elite||a.isCommander&&(a.intelligence??0)>=35||SPECIES[a.species]?.leader));

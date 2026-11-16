@@ -41,3 +41,12 @@ test('talking is visible as speech, ranged heroes have higher agility, potions a
  if(potion){b.hp=b.maxHp*.3;b.inventory=[];a.lastShare=-99;const shared=g.sharePotions(a,[b]);
   assert.ok(shared,'potion shared');assert.ok(b.inventory.length>=1,'the wounded mate received a potion')}
 });
+
+test('rooms summon wild monsters that fit their type, and higher room levels unlock stronger species and stats',async()=>{
+ const {FAVORITES}=await import('../dist/expansion.js');
+ const g=new Game(),room={id:'r',type:'grave',level:1,floorId:0};
+ const low=g.wildPool(room);for(const id of low)assert.ok((FAVORITES[id]||[]).includes('grave'),id+' favours the graveyard');
+ const high=g.wildPool({...room,level:4});assert.ok(high.length>=low.length,'more species unlocked');
+ assert.ok(g.wildScale({level:4}).hp>g.wildScale({level:1}).hp,'stronger stats at higher level');
+ assert.ok(!g.wildPool({...room,type:'boss',level:5}).some(id=>['warden','lord','zombie_king'].includes(id)),'no bosses as wild monsters');
+});
