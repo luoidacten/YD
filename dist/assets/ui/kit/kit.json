@@ -1,0 +1,227 @@
+{
+ "panel_stone": {
+  "w": 24,
+  "h": 24,
+  "slice": 8
+ },
+ "panel_inset": {
+  "w": 16,
+  "h": 16,
+  "slice": 4
+ },
+ "panel_parchment": {
+  "w": 24,
+  "h": 24,
+  "slice": 8
+ },
+ "tab_on": {
+  "w": 16,
+  "h": 12,
+  "slice": 4
+ },
+ "tab_off": {
+  "w": 16,
+  "h": 12,
+  "slice": 4
+ },
+ "bar_frame": {
+  "w": 32,
+  "h": 8,
+  "slice": 3
+ },
+ "boss_bar": {
+  "w": 160,
+  "h": 16,
+  "slice": 14
+ },
+ "ribbon": {
+  "w": 48,
+  "h": 16,
+  "slice": 8
+ },
+ "btn_normal": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "btn_gold_normal": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "btn_hover": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "btn_gold_hover": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "btn_pressed": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "btn_gold_pressed": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "btn_disabled": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "btn_gold_disabled": {
+  "w": 16,
+  "h": 16,
+  "slice": 5
+ },
+ "card_room": {
+  "w": 52,
+  "h": 58,
+  "slice": 8
+ },
+ "card_resident": {
+  "w": 52,
+  "h": 58,
+  "slice": 8
+ },
+ "card_trap": {
+  "w": 52,
+  "h": 58,
+  "slice": 8
+ },
+ "card_barrel": {
+  "w": 52,
+  "h": 58,
+  "slice": 8
+ },
+ "card_elite": {
+  "w": 52,
+  "h": 58,
+  "slice": 8
+ },
+ "fill_hp": {
+  "w": 4,
+  "h": 4,
+  "slice": 0
+ },
+ "fill_mana": {
+  "w": 4,
+  "h": 4,
+  "slice": 0
+ },
+ "fill_soul": {
+  "w": 4,
+  "h": 4,
+  "slice": 0
+ },
+ "fill_xp": {
+  "w": 4,
+  "h": 4,
+  "slice": 0
+ },
+ "icon_speed1": {
+  "w": 16,
+  "h": 16,
+  "slice": 0
+ },
+ "icon_speed2": {
+  "w": 16,
+  "h": 16,
+  "slice": 0
+ },
+ "icon_speed4": {
+  "w": 16,
+  "h": 16,
+  "slice": 0
+ },
+ "icon_pause": {
+  "w": 16,
+  "h": 16,
+  "slice": 0
+ },
+ "icon_audio_off": {
+  "w": 16,
+  "h": 16,
+  "slice": 0
+ },
+ "capsule_gold": {
+  "w": 40,
+  "h": 16,
+  "slice": 0
+ },
+ "capsule_mana": {
+  "w": 40,
+  "h": 16,
+  "slice": 0
+ },
+ "capsule_souls": {
+  "w": 40,
+  "h": 16,
+  "slice": 0
+ },
+ "card_boss": {
+  "w": 48,
+  "h": 48,
+  "slice": 16
+ },
+ "seal": {
+  "w": 12,
+  "h": 12,
+  "slice": 0
+ },
+ "skill_circle": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_line": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_cone": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_summon": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_aura": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_leap": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_beam": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_taunt": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_shield": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ },
+ "skill_blink": {
+  "w": 10,
+  "h": 10,
+  "slice": 0
+ }
+}

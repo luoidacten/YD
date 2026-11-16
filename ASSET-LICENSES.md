@@ -69,3 +69,16 @@ The Titan and Ác Ma bosses reuse the original 0x72 `ogre` / `big_demon` frames.
 CODEX_02 adds the original stock 0x72 frames for W13–W22 (rusty/regular/duel sword, axe/waraxe/mace/cleaver/machete/lavish/anime sword), knight_f, dwarf_m, dwarf_f, angel, ice_zombie, muddy, swampy, pumpkin_dude, hearts, goo/holes and gate controls. All are unchanged frames from the already bundled CC0 archive; no new drawing, download or tint was used to create these species. `tests/fixtures/sprite-audit.json` records references and the remaining documented exceptions.
 
 CODEX_03 loads the 14 approved HUD PNGs recorded by the director in ICON-MANIFEST. These project UI assets are not CC0. The project artwork in `frames/yd/` described above has not been activated by CODEX_02; its presence on disk does not imply species/items or attack animations exist in the runtime catalog. No remote image/font/AI service is used by this pipeline.
+
+## UI kit v1 and YD Pixel font (2026-11-16, art director Claude)
+| Path | Content | Origin | License |
+|---|---|---|---|
+| `dist/assets/ui/kit/` | 9-slice panels, buttons, tabs, cards, bars, boss bar, resource capsules, icons (pause, speed ×1/×2/×4, audio off) | Drawn by script, pixel by pixel, in the 0x72 palette (`art/tools/ui_kit.py`); capsule icons reuse 0x72 coin/flask frames | Project asset (0x72 parts are CC0) |
+| `dist/assets/ui/font/ydpixel.json` | "YD Pixel 5x7" bitmap font, 214 glyphs including Vietnamese | Hand-designed (`art/tools/pixelfont.py`) | Project asset |
+
+## v0.8 art (2026-11-16, art director Claude)
+| Path | Content | Origin | License |
+|---|---|---|---|
+| `dist/assets/ui/kit/` (added) | card_boss, seal, skill_* (10 skill-kind icons), digits_{dmg,crit,heal,hurt} | Drawn by script (`ui_screens.py`, `combat_fx.py`) | Project asset |
+| `dist/assets/frames/yd/fx/` (added) | hit_spark, slash, crit, heal, death_puff, bone_chips, telegraph (+edge) | Drawn by script (`combat_fx.py`) | Project asset |
+| `dist/assets/frames/yd/tiles/<biome>/` | 6 biomes × 47 tiles (forest, cave, ice, lava, swamp, crypt), props, liquid animations | Recolor + decals of the 0x72 tiles; props hand-pixeled (`biome_tiles.py`) | Tiles derived from CC0; props project asset |

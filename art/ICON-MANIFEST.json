@@ -69,7 +69,8 @@
         16,
         16
       ],
-      "status": "todo",
+      "status": "done",
+      "file": "ui/kit/icon_audio_off.png",
       "brief": "brass hand bell with red cross"
     },
     "save": {
@@ -113,7 +114,8 @@
         16,
         16
       ],
-      "status": "todo",
+      "status": "done",
+      "file": "ui/kit/icon_speed1.png",
       "brief": "one gold chevron"
     },
     "speed2": {
@@ -121,7 +123,8 @@
         16,
         16
       ],
-      "status": "todo",
+      "status": "done",
+      "file": "ui/kit/icon_speed2.png",
       "brief": "two gold chevrons"
     },
     "speed4": {
@@ -129,7 +132,8 @@
         16,
         16
       ],
-      "status": "todo",
+      "status": "done",
+      "file": "ui/kit/icon_speed4.png",
       "brief": "four tiny gold chevrons 2x2"
     },
     "grid": {
