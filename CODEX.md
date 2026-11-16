@@ -331,3 +331,12 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
   - Chiều cao tối đa khoảng 0,95 ô (khiên 0,7).
   - Cung không xoay; súng/nỏ xoay 90°.
 - Inspector: `chosen` là thẻ đã gộp với định nghĩa (không có `.def`), nên đọc `chosen.kind`/`chosen.definitionId`.
+
+## v0.3.0 (Claude)
+- `difficulty.js` cài cuối cùng. `state.difficulty={preset,custom}`; mọi hệ số đọc qua `difficulty()`.
+  - Máu/sát thương hero nhân **một lần** lúc spawn (`kingdom.js`, cờ `hardened`).
+  - Số hero: scale đoàn chính trong wrapper `start`, thêm class gốc theo thứ tự, không RNG.
+  - Thưởng vàng: wrapper `finish` cộng/trừ phần chênh vào `result.reward`.
+  - Vàng/mana khởi đầu chỉ áp khi run còn mới (`freshRun`: đợt 1, chuẩn bị, chưa có phòng).
+- `REQUIRED_ROOMS` (entrance/treasure/boss/arrival): thẻ cost 0; wrapper `build` hoàn 5 mana (và cho xây khi mana dưới 5).
+- UI: `difficulty-ui.js`, có trong Menu và tự mở sau "Run mới" ở Menu chính.

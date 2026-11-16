@@ -1,3 +1,4 @@
+import {difficultyHTML,bindDifficulty} from './difficulty-ui.js';
 import {installTitle} from './title.js';
 import {managementHTML,eventsHTML,summaryMini,drawHeat} from './management-ui.js';
 import {rpgInspector} from './rpg-ui.js';
@@ -233,9 +234,9 @@ c.def.art
 }.png" alt=""><span class="card-name">${
 esc(c.def.name)
 }</span><span class="card-cost">${
-c.def.cost
+c.def.cost===0?'Miễn phí':c.def.cost
 } <small>${
-c.def.resource==='mana'?'mana':c.def.resource==='souls'?'hồn':'vàng'
+c.def.cost===0?'':c.def.resource==='mana'?'mana':c.def.resource==='souls'?'hồn':'vàng'
 }${
 c.quality?` · ${
 QUALITIES[c.quality].name
@@ -1484,6 +1485,10 @@ $('#audio').onclick=async()=>{
 $('#save').onclick=()=>save(false);
 $('#menu').onclick=showMenu;
 $('#management').onclick=()=>showManagement('report');
+function showDifficulty(){
+ modal(difficultyHTML(game),'difficulty');
+ bindDifficulty($('#modal-content'),game,{toast,onDone:changed=>{closeModal();if(changed){save();update()}}});
+}
 function showManagement(tab='report'){
  modal(managementHTML(game,tab),'management');drawHeat(game,$('#modal-content'));
 }
@@ -1710,7 +1715,7 @@ if(!reviewScene&&new URLSearchParams(location.search).get('title')!=='0'){
  titleScreen=installTitle({hasSave,
   onContinue:()=>{update()},
   onNewRun:()=>{if(hasSave&&!confirm('Bắt đầu run mới? Tiến trình đã lưu sẽ bị thay thế.'))return false;reset();update();
-   toast('Run mới: chọn thẻ Cổng hầm ngục để bắt đầu.')},
+   toast('Run mới: chọn độ khó rồi đặt thẻ Cổng hầm ngục.');setTimeout(showDifficulty,300)},
   onHelp:()=>help(),onSettings:()=>showMenu(),onCredits:()=>$('#credits').click()});
 }
 let previous=performance.now(),
@@ -1773,7 +1778,7 @@ function showMenu(){
  modal(
  `<div class="game-menu"><span class="eyebrow">YOUR DUNGEON?</span><h2>Menu hầm ngục</h2><p>Mô phỏng tạm dừng khi mở menu.</p><div class="menu-grid"><b\
 utton id="menu-resume" class="primary">▶ Tiếp tục</button><button id="menu-save">${icon('hud','save','↓')} Lưu tiến trình</button><button id="menu-layout">${icon('hud','layout','▦')} Bản thiết kế</but\
-ton><button id="menu-management">♜ Quản lý</button>\
+ton><button id="menu-management">♜ Quản lý</button><button id="menu-difficulty">⚔ Độ khó</button>\
 <button id="menu-roster">♟ Cư dân / Tuyển quái</button><button id="menu-packs">▣ Gói bài</button><button id="menu-catalog">${icon('hud','catalog','✦')} Vũ khí & Bách khoa</b\
 utton><button id="menu-world">${icon('hud','world','⚑')} Tình hình bên ngoài</button><button id="menu-help">${icon('hud','help','?')} Hướng dẫn</button><button id="menu-audio">♪ ${
 sound.enabled?'Tắt':'Bật'
@@ -1783,6 +1788,7 @@ v>`
  'menu');
  $('#menu-resume').onclick=closeModal;
  $('#menu-management').onclick=()=>showManagement('report');
+ $('#menu-difficulty').onclick=()=>showDifficulty();
  $('#menu-save').onclick=()=>save(false);
  $('#menu-layout').onclick=showLayout;
  $('#menu-roster').onclick=roster;

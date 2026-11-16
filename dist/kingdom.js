@@ -79,7 +79,8 @@ export function installKingdom(Game){
  const spawn=P.spawn;P.spawn=function(...args){
   const e=spawn.apply(this,args),k=KINGDOM[e.species];
   if(e.faction==='hero'&&!e.ownerId&&this.state.phase==='battle'&&!e.hardened){   // v0.2 difficulty: tougher adventurers
-   e.hardened=true;e.maxHp=Math.round(e.maxHp*HERO_HP);e.hp=e.maxHp;e.powerScale=(e.powerScale||1)*HERO_POWER}
+   const d=this.difficulty?.()||{heroHp:HERO_HP,heroPower:HERO_POWER};
+   e.hardened=true;e.maxHp=Math.round(e.maxHp*d.heroHp);e.hp=e.maxHp;e.powerScale=(e.powerScale||1)*d.heroPower}
   if(k&&e.faction==='hero'){
    e.intelligence=Math.max(e.intelligence||0,k.brain);e.kingdom=true;if(e.species==='royal_captain')e.leadership=100;
    for(const id of [k.weapon,k.offhand].filter(Boolean))try{const item=this.createItem(id,e);if(item)this.equipItem(e,item)}catch{}

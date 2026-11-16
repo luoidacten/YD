@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.3.0 — Độ khó tùy chỉnh (2026-11-17)
+- **Phòng bắt buộc miễn phí mana:** Cổng hầm ngục, Phòng rương trung tâm (kho báu), Đại sảnh cầu thang, Bậc thang tầng sâu. Thẻ hiện "Miễn phí". Các phòng khác vẫn tốn 5 mana.
+- **Độ khó:**
+  - 4 mức: **Dễ**, **Thường** (mặc định, giữ nguyên cân bằng v0.2), **Khó**, **Ác Mộng**.
+  - Chế độ **Tùy chỉnh** có 6 thanh trượt: máu hero, sát thương hero, số hero mỗi đợt, thưởng vàng, vàng khởi đầu, mana khởi đầu.
+  - Chọn khi bấm "Run mới" ở Menu chính; đổi bất cứ lúc nào trong Menu → ⚔ Độ khó (áp dụng từ đợt sau, không đổi được giữa trận).
+  - Lưu theo từng run.
+
 ## v0.2.1 — Sửa lỗi và đội hình thông minh (2026-11-17)
 - **Sửa crash** khi bấm chọn nhân vật trong lúc đang cầm thẻ (`Cannot read properties of undefined (reading 'kind')`).
 - **Vũ khí:**

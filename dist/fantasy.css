@@ -85,3 +85,14 @@
 @media (prefers-reduced-motion:reduce){#title-screen.closing{transition:none}}
 
 .mg-alarm{border-color:#da4e38}.mg-alarm b{color:#da4e38}
+
+/* v0.3 difficulty picker */
+.diff-presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}
+.diff-presets button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;min-width:0}
+.diff-presets button small{white-space:normal;overflow-wrap:anywhere;color:var(--muted,#a4aa98)}
+.diff-presets button.active{outline:2px solid #facb3e}
+.diff-fields{display:grid;gap:6px;margin:8px 0 12px}
+.diff-field{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,2fr) 72px;gap:10px;align-items:center}
+.diff-field span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.diff-field b{text-align:right;font-variant-numeric:tabular-nums}
+.diff-field input{width:100%;accent-color:#facb3e}
