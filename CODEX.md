@@ -235,3 +235,7 @@ Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegrap
 - 877/877 PNG phạm vi v0.4–v0.6 được tham chiếu thực tế, SHA256 byte giữ nguyên từ commit bàn giao 409eb1c + f4b338b. art-scope-v06.json thêm 231 PNG; build sinh metadata trước khi nạp audit để tránh cache module cũ.
 - Boss windup giữ attack f1; resolve bắt đầu f2 rồi f3. Druid bearForm đổi sprite qua Painter, không đổi species; pet dùng idle/run thật. Mọi sự kiện pose ở root Game ngoài state, không dùng RNG gameplay.
 - 7 test renderer/art xanh; ảnh UI/soak đầy đủ còn đang kiểm chứng. Catalog runtime: 85 species, 41 status, 58 skill/58 passive, 76 item, 47 charm, 22 phòng.
+
+### Regression sau soak CODEX_06
+
+150 trận seed 1–50 ×3 ban đầu: 0 kẹt nhưng seed25/wave2 chạm480s. Phù Thủy Băng hết mana, giữ khoảng cách trong khi đòn thường rơi về melee. Boss dùng đòn bẩm sinh theo hệ hồi chiêu thay pool mana hữu hạn của hero; regression kiểm tra đánh xa khi mana0. Seed25 waves1–2 sau sửa:0 kẹt/0limit (2 thắng). Báo cáo gốc soak-code06-final.json được giữ, tên final không phải chứng nhận tất cả đạt. Đang chạy soak-code06-corrected.json để kiểm chứng lại toàn bộ.

@@ -38,3 +38,9 @@ test('boss summons cannot exceed quota and channel zones stop when their owner f
  assert.ok(g.castBossSkill(e,BOSS_POOL.necro_lord.skills[1],hero));g.state.time=1.1;g.resolveWorld(1.1);
  e.status='downed';g.state.time=2.2;g.resolveWorld(1.1);assert.equal(g.state.bossZones.length,0);
 });
+
+test('a controller boss with no mana still makes its innate ranged attack instead of endlessly retreating',()=>{
+ const {g,e,hero}=fixture('frost_witch');e.mana=0;e.x=54;e.y=46;hero.x=57;hero.y=46;
+ e.decision=100;e.action='attack';e.target=hero.id;e.cooldown=0;e.castUntil=0;
+ assert.equal(g.usesMagicAttack(e),false);const hp=hero.hp;g.act(e,1/30);assert.ok(hero.hp<hp);
+});

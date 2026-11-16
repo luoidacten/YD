@@ -3,6 +3,9 @@ import {BOSS_POOL} from './boss-data.js';
 
 export function installBossCombat(Game){
  const P=Game.prototype;
+ // Floor masters' innate ranged strikes are not equipped mana weapons.
+ // Their spell economy is the phased cooldown system, not a finite hero pool.
+ const magic=P.usesMagicAttack;P.usesMagicAttack=function(e){return this.bossDefinition(e)?false:magic.call(this,e)};
  P.bossDefinition=function(e){return BOSS_POOL[e.floorBossId||e.boss]||null};
  P.bossTarget=function(e,skill,enemies){
   if(skill.target==='weakest')return [...enemies].sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
