@@ -363,3 +363,19 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
   - mất liên thông (`connectedInterior` chỉ xét vật cản trong phòng).
 - `indexProp` cập nhật `propsByTile` từng ô, không gọi `rebuild`.
 - Painter: khóa cache sàn bỏ `navRevision` (chỉ còn danh tính terrain, tầng, LOD, biome), nên vật cản không làm vẽ lại sàn.
+
+## v0.3.3 (Claude)
+- **`room-spawns.js`:**
+  - `start` thêm +15% một lần (`fixedBonus`) cho quái người chơi đặt, rồi sinh 3–5 quái `wild` mỗi phòng (trừ entrance/arrival), bằng `Game.random()`.
+  - Wrapper `roomSlotsUsed` loại quái `wild` khỏi quota.
+  - `finish` xóa quái `wild`.
+  - Tắt được bằng `state.rules.wildMonsters=false`.
+- **`party.js`:**
+  - Đợt 1: đoàn chính = knight/mage/priest; bỏ đội `scouts-*` và tắt `scouting`; giữ người do Fate/sự kiện thêm. Tắt được bằng `state.rules.smallFirstParty=false`.
+  - `say`/`speech` là trình bày, không vào state.
+  - `blinkToGate` đặt cả đội lên ô walkable ngoài phòng, ngay trước cửa gần nhất (không xuyên seal/gate).
+  - Từ đợt 5, rally các tổ đội cùng phòng dùng chung.
+  - `agility` + né đạn trong wrapper `updateProjectiles` (`Game.random()`, một lần mỗi viên).
+  - `sharePotions` dùng `transfer`.
+- `squad-tactics.js` gọi `partyTalk`, `sharePotions`, `blinkToGate`. `rpg-ui.squadHTML` hiện bảng tổ đội; painter `drawSpeech` vẽ bong bóng.
+- Test `lair.test.mjs` (tìm chìa) đặt `state.rules` tắt cả hai luật để giữ kịch bản cơ chế đã kiểm chứng.

@@ -21,9 +21,18 @@ export function rpgInspector(game,e){
     :info.picks?`<p class="rpg-note">Còn ${info.picks} lựa chọn tiến hóa (chọn khi chuẩn bị).</p>`:'<p class="rpg-note">Lên cấp để tiến hóa hào quang.</p>'}
   </div>`);
  }
+ if(e.faction==='hero'&&!e.ownerId)parts.unshift(squadHTML(game,e));
  return parts.join('');
 }
 
+const ROLE={tank:'Hộ vệ',ranged:'Tầm xa',support:'Hỗ trợ',scout:'Trinh sát',skirmisher:'Xung kích',ambusher:'Phục kích'};
+export function squadHTML(game,e){
+ const q=game.squadInfo?.(e);if(!q)return '';
+ return `<div class="part squad-panel"><div class="part-title">TỔ ĐỘI · ${q.members.length} NGƯỜI</div>
+  <p class="rpg-note">${esc(q.mode)}</p>${q.members.map(a=>`<div class="squad-row ${a.id===e.id?'me':''}" data-select="${a.id}">
+   <span title="${esc(a.name)}">${a.id===q.leaderId?'★ ':''}${esc(a.name)}</span><small>${esc(ROLE[a.role]||a.role||'')}</small>
+   <i><b style="width:${Math.round(100*Math.max(0,a.hp)/a.maxHp)}%"></b></i></div>`).join('')}</div>`;
+}
 export function guildLessonsHTML(game){
  const lore=game.state.guildLore;if(!lore?.lessons?.length)return '';
  return `<div class="part"><div class="part-title">CÔNG HỘI ĐÃ HỌC</div>${lore.lessons.slice(0,3).map(l=>

@@ -651,6 +651,7 @@ function renderInspector(){
  if(modalMode==='inspect'&&$('#modal').open)$('#modal-content').innerHTML=html
 }
 function inspectorClick(event){
+ const row=event.target.closest('[data-select]');if(row){select(row.dataset.select,true);return}
  const wall=event.target.closest('[data-wall-edit]');
  if(wall){openWallEditor(wall.dataset.wallEdit);return}
  const path=event.target.closest('[data-master-path]');

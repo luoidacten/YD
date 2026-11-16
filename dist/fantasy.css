@@ -107,3 +107,11 @@
 #wall-editor button.active{outline:2px solid #facb3e}
 #wall-editor small{color:#a4aa98;overflow-wrap:anywhere}
 .wall-edit-btn{width:100%;margin-bottom:8px}
+
+/* v0.3.3 squad panel */
+.squad-row{display:grid;grid-template-columns:minmax(0,1fr) 70px 60px;gap:6px;align-items:center;cursor:pointer;padding:1px 0}
+.squad-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.squad-row small{color:var(--muted,#a4aa98);white-space:nowrap}
+.squad-row i{height:6px;border:2px solid #140c11;background:#170f14}
+.squad-row i b{display:block;height:100%;background:#da4e38}
+.squad-row.me span{color:#ffcc68}

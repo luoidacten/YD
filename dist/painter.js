@@ -1399,6 +1399,7 @@ t.windup>0||t.cooldown>4?2:0
   }
   this.drawFx();
   this.drawCombatFx();
+  this.drawSpeech(s);
   const key=s.keyQuest;
   if(key?.locked){
    const holder=this.game.entity(key.owner),
@@ -1453,6 +1454,23 @@ t.windup>0||t.cooldown>4?2:0
   minY,
   maxY);
   this.drawMini();
+ }
+ drawSpeech(s){
+  // pixel parchment bubbles over talking adventurers (presentation only)
+  const speech=this.game.speech;if(!speech?.size||this.level==='overview')return;
+  const c=this.ctx,t=this.bounds.tile,size=Math.max(14,Math.round(t*.45/7)*7);
+  c.save();c.font=`${size}px "YD Pixel", Consolas, monospace`;c.textBaseline='middle';c.imageSmoothingEnabled=false;
+  for(const[id,sp]of speech){
+   if(sp.until<=s.time){speech.delete(id);continue}
+   const e=this.game.entity(id);if(!e||e.floorId!==this.floor||e.status!=='active'||!this.isUnitVisible?.(e))continue;
+   const p=this.point(e.x,e.y-1.95),w=Math.ceil(c.measureText(sp.text).width)+12,h=size+10;
+   const x=Math.round(p.x-w/2),y=Math.round(p.y-h);
+   c.fillStyle='#222222';c.fillRect(x-2,y-2,w+4,h+4);c.fillStyle='#e2b694';c.fillRect(x,y,w,h);
+   c.fillStyle='#d3bfa9';c.fillRect(x,y+h-3,w,3);
+   c.fillStyle='#222222';c.fillRect(Math.round(p.x)-3,y+h+2,6,4);c.fillStyle='#e2b694';c.fillRect(Math.round(p.x)-1,y+h,2,4);
+   c.fillStyle='#38262d';c.fillText(sp.text,x+6,y+h/2);
+  }
+  c.restore();
  }
  drawMasterDecor(s){
   // Render-only decor for rooms with a living room master: rug + throne at the north side, aura banners on the wall.

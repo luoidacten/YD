@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.3.3 — Quái hoang, tổ đội có chỉ huy, cùng vào phòng (2026-11-17)
+- **Quái hoang:**
+  - Mọi phòng (trừ cổng vào và bậc thang đến) sinh **3–5 quái hoang** mỗi đợt, theo bậc đợt 1 / 4 / 8.
+  - Quái hoang yếu hơn (70% máu, 75% sức), **không chiếm chỗ** nên không chặn việc thuê quái, và biến mất khi hết đợt.
+  - Quái bạn tự đặt là **quân cố định, mạnh hơn** (+15% máu và sức, áp một lần).
+- **Đoàn đầu tiên chỉ có 3 người đúng vai:** Hiệp sĩ, Pháp sư, Tu sĩ (không kèm đội trinh sát). Người do thẻ định mệnh/sự kiện thêm vào vẫn được giữ.
+- **Tổ đội 3–5 người có chỉ huy ★.** Bấm vào một mạo hiểm giả để xem bảng **Tổ đội**: chỉ huy, trạng thái (khám phá / bàn bạc / giao chiến / nghỉ / rút lui), vai trò và máu từng người. Bấm tên để chuyển sang người đó.
+- **Bàn bạc thấy rõ:** bong bóng hội thoại pixel trên đầu từng người (chỉ huy, hộ vệ, tầm xa, hỗ trợ, trinh sát nói câu riêng), cùng dòng nhật ký.
+- **Cả đội đồng ý thì dịch chuyển cùng lúc tới trước cổng** rồi ập vào phòng một lượt ("Vào!", "Rõ!").
+- **Từ đợt 5 các tổ đội gộp lại** khi cùng nhắm một phòng, thành nhóm đông hơn.
+- **Tầm xa né đạn:** tùy độ nhanh nhẹn (10–60%), bước tránh sang bên khi đạn tới gần ("Né!").
+- **Trao đồ:** khi bàn bạc, người có bình máu đưa cho đồng đội đang yếu.
+- Soak 150 trận: 0 kẹt, 0 chạm giới hạn; phòng thủ thắng 52%.
+
 ## v0.3.2 — Tự xây tường trong phòng, xây mượt hơn (2026-11-17)
 - **Xây tường trong phòng:** chọn một phòng → **🧱 Xây tường trong phòng**, rồi nhấp hoặc kéo trên sàn để tô.
   - **4 loại tường:**

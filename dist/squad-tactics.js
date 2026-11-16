@@ -35,20 +35,29 @@ export function installSquadTactics(Game){
   // ---- 1) ready check before an unexplored room ----
   if(squad&&mates.length){
    const dest=s.rooms.find(r=>r.id===e.destinationRoom&&r.floorId===e.floorId);
-   if(!squad.rally&&!room&&dest&&!e.visitedRooms?.includes(dest.id)&&distance(e,dest)<Math.max(dest.w,dest.h)/2+5&&squad.enteredRoom!==dest.id)
-    squad.rally={roomId:dest.id,x:e.x,y:e.y,floorId:e.floorId,since:s.time};
+   if(!squad.rally&&!room&&dest&&!e.visitedRooms?.includes(dest.id)&&distance(e,dest)<Math.max(dest.w,dest.h)/2+5&&squad.enteredRoom!==dest.id){
+    // from wave 5 squads heading for the same room join one rally (bigger strike)
+    const other=s.wave>=5&&s.squads.find(q=>q!==squad&&q.rally?.roomId===dest.id&&q.rally.floorId===e.floorId);
+    squad.rally=other?{...other.rally}:{roomId:dest.id,x:e.x,y:e.y,floorId:e.floorId,since:s.time};
+    if(other)this.log('Hai tổ đội hợp lực để cùng tấn công một phòng!','warning');
+   }
    const rally=squad.rally;
    if(rally&&rally.floorId===e.floorId){
-    const team=[e,...mates],ready=team.filter(a=>distance(a,rally)<=RALLY);
+    const allies=s.wave>=5?s.entities.filter(a=>a!==e&&a.faction==='hero'&&!a.ownerId&&a.status==='active'&&a.floorId===e.floorId&&
+     this.squadRecord(a)?.rally?.roomId===rally.roomId):mates;
+    const team=[e,...allies],ready=team.filter(a=>distance(a,rally)<=RALLY);
     const far=team.some(a=>distance(a,rally)>6);                    // squad scattered: let the base AI close the gap first
     if(ready.length===team.length||s.time-rally.since>READY_MAX){
+     for(const a of team){const q=this.squadRecord(a);if(q){q.rally=null;q.enteredRoom=rally.roomId}}
      squad.rally=null;squad.enteredRoom=rally.roomId;
+     this.blinkToGate?.(team,rally.roomId);
+     team.forEach((a,i)=>this.say?.(a,i===0?'Vào!':['Rõ!','Đi thôi.','Xông lên!','Tôi theo.'][i%4],1.6));
      this.log(`Tổ đội ${team.map(a=>a.name.split(' ')[0]).join(', ')} bàn bạc xong, cùng tiến vào phòng.`);
      for(const a of team){a.decision=0;a.waitedRoom=rally.roomId}
     }else if(far&&distance(e,rally)<=RALLY){/* go meet the stragglers (base regroup) instead of standing */}
     else if(distance(e,rally)>RALLY)add('regroup',1.6,{x:rally.x,y:rally.y,floorId:rally.floorId},'Tập hợp ở cửa phòng với tổ đội');
     else{add('guard',1.55,here,`Bàn bạc: ${ready.length}/${team.length} người sẵn sàng`);
-     if(Math.floor(s.time*2)%4===0)this.effects.push({x:e.x+.2,y:e.y-1.5,floorId:e.floorId,text:'…',color:'#fdf7ed',life:.5})}
+     this.partyTalk?.(team,ready);this.sharePotions?.(e,team.filter(a=>a!==e))}
    }
   }
   // ---- 2) rest after clearing a room ----

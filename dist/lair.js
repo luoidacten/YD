@@ -630,6 +630,8 @@ owner.name
  installSquadTactics(Game);
  installDifficulty(Game);
  installWalls(Game);
+ installRoomSpawns(Game);
+ installParty(Game);
 }
 import {installCompanions} from './companions.js';
 import {installPresentation} from './presentation.js';
@@ -642,3 +644,5 @@ import {installKingdom} from './kingdom.js';
 import {installSquadTactics} from './squad-tactics.js';
 import {installDifficulty} from './difficulty.js';
 import {installWalls} from './walls.js';
+import {installRoomSpawns} from './room-spawns.js';
+import {installParty} from './party.js';

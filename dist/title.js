@@ -3,7 +3,7 @@
 import {Game} from './simulation.js';
 import {Painter} from './painter.js';
 
-export const VERSION='0.3.2';
+export const VERSION='0.3.3';
 const SCENES=[
  {biome:'crypt',boss:'necro_lord',guards:['skeleton_guard','skeleton_archer','skeleton_mage']},
  {biome:'cave',boss:'spider_queen',guards:['kobold','gargoyle','spider']},
