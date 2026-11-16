@@ -243,3 +243,12 @@ Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegrap
 ### Khiên HP tuyệt đối và API status
 
 Soak kế tiếp lộ seed25/wave3 chạm482s. Nguyên nhân thực: applyStatus('shield', duration, value) nhận tỷ lệ maxHP, nhưng Ấn Băng truyền15 và chiêu boss truyền40/60 HP tuyệt đối, tạo khiên hàng nghìn HP. Đã đổi sang value/maxHP, clamp khiên Ấn lỗi khi load, không hồi đầy khiên đã hao mỗi tick. Thêm2 regression; seed25 cả3wave:0limit/0kẹt. Hai báo cáo lỗi vẫn giữ nguyên.
+
+## CODEX_07 — HUD pixel
+
+- HTML/CSS thay bố cục: top60, rail104, dock132, thẻ104×116 có art/plate riêng; panel260 thu gọn, drawer khi <1180. Menu gom các thao tác, bản đồ nhỏ18% (min96) thu gọn, dropdown góc nhìn vẫn giữ mặc định toàn cảnh.
+- build-font.mjs không dependency: mỗi pixel nguồn thành contour TrueType, unitsPerEm896, 214glyph+notdef, checksumSFNT đúng. Nguồn JSON thực tế cellHeight15 (brief ghi14); font14/28 dùng lưới14 theo yêu cầu, không sửa JSON. Quét toàn bộ chữ Latin/tiếng Việt runtime, fail khi thiếu. Ký hiệu trang trí ngoài bộ font dùng icon/fallback.
+- scripts/ui-audit.js được build copy sang dist: kiểm chữ<14, overflow, text-range overlap; bỏ vùng cuộn/clamp có tooltip và nội dung details/dialog đang ẩn. 18 trường hợp (6màn ×3viewport) không lỗi. Map chuẩn bị67,37% ở1280×720;62,89% ở1024;77,77% ở1920. Khi mở inspector1280, map52,48% (panel dùng diện tích); thu gọn trả67,37%.
+- ?review=prepare/battle/inspector/boss/result là fixture developer riêng: không đọc/ghi save người chơi. F9 chạy audit và ghi kết quả DOM; các nút QA không thuộc sản phẩm.
+- 168tests xanh; UI-only soak50seed ×1 trùng50/50 toàn save với mốc trướcUI (soak-code06-corrected.json wave1; trước sửa shield riêng). 0kẹt/0limit ở50trận này. Không dùng nó thay chứng nhận150trận gameplay. Ảnh và báo cáo ui-audit-v07.json đã lưu.
+- Chưa có art riêng cho scrollbar/checkbox/mũi tên dropdown; dùng nút đá/ký tự chuẩn và scrollbar hệ thống tại vùng cuộn. Không sửa PNG kit hay nguồn font.

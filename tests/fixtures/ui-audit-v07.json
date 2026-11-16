@@ -1,0 +1,218 @@
+[
+ {
+  "scene": "prepare",
+  "report": {
+   "viewport": [
+    1280,
+    720
+   ],
+   "mapShare": 0.6737,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "menu",
+  "report": {
+   "viewport": [
+    1280,
+    720
+   ],
+   "mapShare": 0.6737,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "inspector",
+  "report": {
+   "viewport": [
+    1280,
+    720
+   ],
+   "mapShare": 0.5248,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "boss",
+  "report": {
+   "viewport": [
+    1280,
+    720
+   ],
+   "mapShare": 0.6737,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "result",
+  "report": {
+   "viewport": [
+    1280,
+    720
+   ],
+   "mapShare": 0.6737,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "battle",
+  "report": {
+   "viewport": [
+    1280,
+    720
+   ],
+   "mapShare": 0.6737,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "prepare",
+  "report": {
+   "viewport": [
+    1024,
+    640
+   ],
+   "mapShare": 0.6289,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "battle",
+  "report": {
+   "viewport": [
+    1024,
+    640
+   ],
+   "mapShare": 0.6289,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "inspector",
+  "report": {
+   "viewport": [
+    1024,
+    640
+   ],
+   "mapShare": 0.6289,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "boss",
+  "report": {
+   "viewport": [
+    1024,
+    640
+   ],
+   "mapShare": 0.6289,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "result",
+  "report": {
+   "viewport": [
+    1024,
+    640
+   ],
+   "mapShare": 0.6289,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "menu",
+  "report": {
+   "viewport": [
+    1024,
+    640
+   ],
+   "mapShare": 0.6289,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "prepare",
+  "report": {
+   "viewport": [
+    1920,
+    1080
+   ],
+   "mapShare": 0.7777,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "battle",
+  "report": {
+   "viewport": [
+    1920,
+    1080
+   ],
+   "mapShare": 0.7777,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "inspector",
+  "report": {
+   "viewport": [
+    1920,
+    1080
+   ],
+   "mapShare": 0.6663,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "boss",
+  "report": {
+   "viewport": [
+    1920,
+    1080
+   ],
+   "mapShare": 0.7777,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "result",
+  "report": {
+   "viewport": [
+    1920,
+    1080
+   ],
+   "mapShare": 0.7777,
+   "documentOverflow": false,
+   "issues": []
+  }
+ },
+ {
+  "scene": "menu",
+  "report": {
+   "viewport": [
+    1920,
+    1080
+   ],
+   "mapShare": 0.7777,
+   "documentOverflow": false,
+   "issues": []
+  }
+ }
+]

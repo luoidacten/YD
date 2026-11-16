@@ -1,4 +1,6 @@
 import {BOSS_POOL} from './boss-data.js';
+import {createReviewGame} from './review-fixtures.js';
+import {auditUI} from './ui-audit.js';
 import {equipControl,weaponSummary} from './weapon-ui.js';
 import {loadIcons,hydrateIcons,icon,roomIcon,cardFrame} from './icons.js';
 import {
@@ -58,14 +60,15 @@ c=>({
 }
 [c]));
 const sandbox=new URLSearchParams(location.search).get('sandbox')==='1',
+reviewScene=new URLSearchParams(location.search).get('review'),
 key=sandbox?'your-dungeon-sandbox-v03':'your-dungeon-v2';
 let game,
 loadedOld=false;
 try{
- const latest=localStorage.getItem(key),
- old=sandbox?null:localStorage.getItem('your-dungeon-v1');
+ const latest=reviewScene?null:localStorage.getItem(key),
+ old=sandbox||reviewScene?null:localStorage.getItem('your-dungeon-v1');
  loadedOld=!latest&&!!old;
- game=new Game(JSON.parse(latest||old||'null'))
+ game=reviewScene?createReviewGame(reviewScene):new Game(JSON.parse(latest||old||'null'))
 }
 catch{
  game=new Game()
@@ -150,6 +153,7 @@ function toast(text){
  3600)
 }
 function save(quiet=true){
+ if(reviewScene)return;
  try{
   localStorage.setItem(key,
   game.serialize());
@@ -194,7 +198,7 @@ function renderCards(){
  const deck=game.state.deck,
  sig=JSON.stringify([deck.hand,
  chosen?.uid,
- filter,
+ filter,game.state.gold,game.state.mana,game.state.souls,
  deck.activeFate]);
  if(sig===lastCards)
  return;
@@ -212,10 +216,10 @@ alt=""><span class="card-name">Mở gói bài</span><span class="card-cost">80+ 
 c.def.tone
 } ${
 chosen?.uid===c.uid?'selected':''
-}"${cardFrame(c.def.tone)} data-card="${
+}" data-kind="${c.def.kind}" data-card="${
 c.uid
 }" title="${
-esc(c.def.description)
+esc(c.def.name+" · "+c.def.description)
 }" aria-pressed="${
 chosen?.uid===c.uid
 }"><img src="assets/frames/${
@@ -233,6 +237,11 @@ QUALITIES[c.quality].name
 }</small></span></button>`
  ).join('');
  $('#open-packs').onclick=showPacks;
+ for(const img of $$('#cards img')){const fit=()=>{const scale=Math.max(1,Math.floor(Math.min(48/img.naturalWidth,48/img.naturalHeight)));
+  img.style.width=img.naturalWidth*scale+'px';img.style.height=img.naturalHeight*scale+'px';
+  img.style.left=(104-img.naturalWidth*scale)/2+'px';};if(img.complete&&img.naturalWidth)fit();else img.onload=fit}
+ for(const button of $$('[data-card]')){const card=list.find(c=>c.uid===button.dataset.card);
+  button.classList.toggle('unaffordable',(game.state[card.def.resource]||0)<card.def.cost)}
  $$('[data-card]').forEach(b=>b.onclick=()=>{
   if(!game.canPrepare()){
    toast('Dùng bài khi chuẩn bị, không tạm dừng.');
@@ -289,6 +298,7 @@ $$('[data-floor]').forEach(b=>b.onclick=()=>setFloor(Number(b.dataset.floor)));
 function select(id,
 focus=false){
  selection=id;
+ if(id)document.body.classList.add("inspector-open");
  painter.selected=id;
  painter.updateFog();
  const e=game.entity(id),
@@ -448,7 +458,7 @@ e.visibleIds?.length||0
 } / ${
 Object.keys(e.seen).length
 }</b></div></div><div class="part"><div class="part-title">KỸ NĂNG ĐANG MỞ</div>${
-game.activeSkills(e).map(k=>
+(e.boss?BOSS_POOL[e.floorBossId||e.boss]?.skills||[]:game.activeSkills(e)).map(k=>
 `<div class="skill-row"><span>✦</span><div><b>${
 k.name
 }</b><small>${
@@ -1265,16 +1275,19 @@ hưa có campaign đầy đủ, điều khiển hành động trực tiếp ho�
 }
 function update(){
  const s=game.state;
- $('#gold').textContent=Math.floor(s.gold);
- $('#mana').textContent=Math.floor(s.mana);
+ for(const [id,value]of [['gold',s.gold],['mana',s.mana],['souls',s.souls]]){
+  const node=$('#'+id),next=Math.floor(value),before=Number(node.textContent);
+  if(before!==next){node.classList.remove('value-up','value-down');void node.offsetWidth;
+   node.classList.add(next>before?'value-up':'value-down');node.textContent=next}
+ }
  $('#mana-cap').textContent='/'+game.manaCapacity();
- $('#souls').textContent=s.souls;
  $('#wave').textContent=String(s.wave).padStart(2,
  '0');
  $('#resident-count').textContent=s.entities.filter(e=>e.faction==='monster').length;
  $('#report-count').textContent=s.reports.length;
  $('#phase').textContent=s.phase==='prepare'?'CHUẨN BỊ':s.phase==='battle'?'CUỘC THÁM HIỂM':'KẾT QUẢ';
  $('#headline').textContent=s.phase==='prepare'?'Tĩnh lặng trước giông bão':s.phase==='battle'?'Tiếng bước chân dưới đá':'Những câu chuyện được mang về';
+ $('#headline').title=$('#headline').textContent;
  const time=Math.max(0,
  Math.ceil(s.phase==='battle'?s.battleTime:s.remaining));
  $('#clock-label').textContent=s.phase==='battle'?'ĐÃ THÁM HIỂM':s.manualStart?'BẢN THIẾT KẾ':'ĐOÀN ĐẾN SAU';
@@ -1315,6 +1328,7 @@ army
  lvl==='tactical');
  $('#detail').classList.toggle('active',
  lvl==='detail');
+ $("#rail-count").textContent=game.rooms(painter.floor).length+"/10";
  const rooms=game.rooms(painter.floor),
  signature=JSON.stringify([painter.floor,
  selection,
@@ -1437,6 +1451,16 @@ $('#fog').onchange=()=>{
  if(painter.fogMode==='selected'&&!game.entity(selection))toast('Chọn một nhân vật để xem tầm nhìn và sương mù của họ.')
 }
 ;
+$('#fog-toggle').onclick=()=>{const open=$('#fog-options').hidden;$('#fog-options').hidden=!open;
+ $('#fog-toggle').setAttribute('aria-expanded',String(open))};
+for(const button of $$('[data-fog]'))button.onclick=()=>{
+ setFogMode(button.dataset.fog);$('#fog-options').hidden=true;$('#fog-toggle').setAttribute('aria-expanded','false');
+ $('#fog-toggle').textContent=button.dataset.fog==='all'?'Toàn cảnh':'Góc nhìn nhân vật';
+};
+$('#inspector-toggle').onclick=()=>{const open=document.body.classList.toggle('inspector-open');
+ $('#inspector-toggle').setAttribute('aria-expanded',String(open))};
+$('#minimap-toggle').onclick=()=>{const closed=$('.minimap-box').classList.toggle('collapsed');
+ $('#minimap-toggle').textContent=closed?'+':'−';$('#minimap-toggle').setAttribute('aria-expanded',String(!closed))};
 $('#audio').onclick=async()=>{
  const enabled=await sound.toggle();
  $('#audio').innerHTML=icon('hud',enabled?'audio_on':'audio_off','♪')+
@@ -1639,7 +1663,15 @@ window.addEventListener('beforeunload',
 ()=>save());
 game.on(update);
 update();
-requestAnimationFrame(()=>painter.focus(game.state.rooms.find(r=>r.id===selection)||game.rooms(0)[0]));
+if(reviewScene==='inspector'){const boss=game.state.entities.find(e=>e.boss);if(boss)select(boss.id,true)}
+if(reviewScene==='battle')requestAnimationFrame(()=>{painter.focus(game.state.rooms.find(r=>r.type==='boss'),true);update()});
+if(reviewScene){const qa=document.createElement('button');qa.textContent='QA: kiểm tra UI';qa.dataset.qa='true';
+ qa.id='audit-ui';qa.style.cssText='position:fixed;bottom:0;right:0;z-index:99';
+ const output=document.createElement('pre');output.id='ui-audit-report';output.hidden=true;output.dataset.qa='true';
+ qa.onclick=()=>output.textContent=JSON.stringify(auditUI());
+ document.addEventListener('keydown',e=>{if(e.key==='F9'){e.preventDefault();qa.click()}});document.body.append(qa,output)}
+requestAnimationFrame(()=>{if(game.entity(selection))select(selection,true);
+ else painter.focus(game.state.rooms.find(r=>r.id===selection)||game.rooms(0)[0])});
 let previous=performance.now(),
 accumulator=0,
 ui=0,

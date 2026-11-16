@@ -1,4 +1,5 @@
 import {writeArtMetadata} from './art-metadata.mjs';
+import {buildFont,fontCoverage} from './build-font.mjs';
 import {auditSprites} from './sprite-audit.mjs';
 import {buildIconManifest} from './icon-assets.mjs';
 import fs from 'node:fs';
@@ -6,6 +7,8 @@ import {spawnSync} from 'node:child_process';
 import {CARDS,ROOMS,SPECIES} from '../dist/data.js';
 import '../dist/species-data.js';
 writeArtMetadata();
+fs.copyFileSync('scripts/ui-audit.js','dist/ui-audit.js');
+fontCoverage();console.log('YD Pixel TrueType:',buildFont());
 const {auditProjectArt}=await import('./project-art-audit.mjs');
 const required=['index.html','app.css','fantasy.css','app.js','simulation.js','world.js','ai.js','systems.js','content-systems.js','lair.js','v04.js','v04-data.js','bestiary.js','bestiary-data.js','weapons.js','weapon-data.js','classes.js','classes-data.js','species.js','species-data.js','attack-visuals.js','boss-data.js','boss-combat.js','floor-bosses.js','bones.js','bone-data.js','companions.js','companions-data.js','weapon-ui.js','art-metadata.js','icons.js','showcase.js','art-review.html','art-review.js','room-life.js','arsenal.js','arsenal-data.js','lair-data.js','rescue.js','terrain-tactics.js','painter.js','audio.js','data.js','catalog.js','catalog-data.js','expansion.js','expansion-data.js'];
 for(const name of required){const file='dist/'+name;if(!fs.existsSync(file))throw Error(`Missing ${file}`);if(name.endsWith('.js')){const result=spawnSync(process.execPath,['--check',file],{encoding:'utf8'});if(result.status)throw Error(result.stderr)}}

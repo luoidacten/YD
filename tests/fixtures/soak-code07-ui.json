@@ -1,0 +1,1479 @@
+{
+ "weapons": {
+  "basicAttacks": 3757,
+  "shots": 0,
+  "jamAttempts": 0,
+  "jams": 0,
+  "techniqueOffers": 116235,
+  "techniqueUses": 476,
+  "bombs": 0,
+  "blocks": 5,
+  "souls": 393,
+  "boneRevivals": 8,
+  "techniqueRate": 0.11244979919678715,
+  "jamRate": null
+ },
+ "schema": 1,
+ "fixture": "seeded-independent-waves-v1",
+ "step": 0.03333333333333333,
+ "generatedAt": "2026-11-16T11:49:20.531Z",
+ "summary": {
+  "battles": 50,
+  "defenderWins": 14,
+  "medianSeconds": 158.9835,
+  "limitHits": 0,
+  "stuckEpisodes": 0
+ },
+ "battles": [
+  {
+   "seed": 1,
+   "wave": 1,
+   "hash": "28af66f8b3932bfac30b39feb1f411a075028cdaf4c4c0718251f574c1c8a3d7",
+   "result": "gameover",
+   "time": 148.8,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 43,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2181,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 2,
+   "wave": 1,
+   "hash": "9032547529e25333a1ff4c3da1075eb914b004de03118f6f5df6d52d3bd37730",
+   "result": "gameover",
+   "time": 145.1,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 59,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2561,
+    "techniqueUses": 10,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 3,
+   "wave": 1,
+   "hash": "437a4b972664f71d8227e99ab4b5475f9e2ce9e5893c5b784573a6b882aedfd5",
+   "result": "gameover",
+   "time": 167,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 43,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2947,
+    "techniqueUses": 14,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 4,
+   "wave": 1,
+   "hash": "29706a3964d17cba3253dda98ca1cd7160b3da3de96f5f155e7bb78131ef71aa",
+   "result": "result",
+   "time": 133.933,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 40,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 366,
+    "techniqueUses": 0,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 14
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 5,
+   "wave": 1,
+   "hash": "6b7ab1e8508c07320b90d1d36a62596539fcc9d3fd996655e63b210d9eaffdef",
+   "result": "gameover",
+   "time": 315.133,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 96,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 5167,
+    "techniqueUses": 18,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 10
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 1,
+      "titan_sweep": 1,
+      "titan_rock": 1,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "death_knight",
+     "floorId": 1,
+     "status": "downed",
+     "moves": {
+      "death_rune": 3,
+      "death_dash": 2,
+      "death_shield": 1,
+      "death_execute": 1
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 6,
+   "wave": 1,
+   "hash": "b769bc878f2b350bb7a0d8320152ec642657668f9c38c52d5097c42667bc3a1b",
+   "result": "gameover",
+   "time": 122.267,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 22,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1341,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 7,
+   "wave": 1,
+   "hash": "0cea67b49fd4c43812561d2c52465e31d95876ddf3d96ab6c07f9c0428e9e24e",
+   "result": "gameover",
+   "time": 147.633,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 26,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1957,
+    "techniqueUses": 3,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 8,
+   "wave": 1,
+   "hash": "d506838ad3c4addd6225fe9e7bf1164cf1924f72bb74fb24b2b0dbc49acbd99c",
+   "result": "gameover",
+   "time": 156.4,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 42,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1855,
+    "techniqueUses": 15,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 9,
+   "wave": 1,
+   "hash": "1e2f679d4bfb43630b3ac1ba48a54439705299f438eadf7d992ce056b7221e06",
+   "result": "gameover",
+   "time": 246.7,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 309,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1896,
+    "techniqueUses": 5,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 16
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 10,
+   "wave": 1,
+   "hash": "be2e97fbc2860930c87a0eb0e00272fb23248031e68c280f0fce8b78dc87f949",
+   "result": "result",
+   "time": 273.833,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 12,
+   "monstersDowned": 1,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 201,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 3311,
+    "techniqueUses": 19,
+    "bombs": 0,
+    "blocks": 5,
+    "souls": 30
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 1,
+      "titan_sweep": 1,
+      "titan_rock": 1
+     }
+    },
+    {
+     "id": "bone_king",
+     "floorId": 1,
+     "status": "active",
+     "moves": {
+      "king_rally": 3,
+      "king_order": 6
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 11,
+   "wave": 1,
+   "hash": "f659f4ad96acee172440da912ce551c36eefebd2d3cb3b2b15e5659151d46546",
+   "result": "result",
+   "time": 168.6,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 81,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1052,
+    "techniqueUses": 9,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 16
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 12,
+   "wave": 1,
+   "hash": "c2cf20e5a71a67711222b97f6bf07c3a293c46ca10109345c8110a723ecb9099",
+   "result": "gameover",
+   "time": 120.967,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 16,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1583,
+    "techniqueUses": 6,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 13,
+   "wave": 1,
+   "hash": "900c795013e5ffb84bcb36fe8520defeb18631d04e579f268b8552b1f679fe96",
+   "result": "gameover",
+   "time": 137.167,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 164,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2078,
+    "techniqueUses": 5,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 14,
+   "wave": 1,
+   "hash": "c3e211e4af2710e53a991b28e69883ab7d4450d2a66931ef49388485e14578a8",
+   "result": "gameover",
+   "time": 134.5,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 44,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1072,
+    "techniqueUses": 2,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 15,
+   "wave": 1,
+   "hash": "de81a96f3bc350712eed43778c282dfe78eac885002d3b6f61c0795eeb56f4d4",
+   "result": "result",
+   "time": 215.3,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 1,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 96,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1703,
+    "techniqueUses": 11,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 8
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 3,
+      "titan_sweep": 2,
+      "titan_rock": 2,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "bone_king",
+     "floorId": 1,
+     "status": "active",
+     "moves": {
+      "king_rally": 2,
+      "king_order": 1
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 16,
+   "wave": 1,
+   "hash": "320e7932dded117bfc9372e96637f5868b9fccd8ea813f8ef3f1b73b8307a054",
+   "result": "result",
+   "time": 162.333,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 59,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1089,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 14
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 17,
+   "wave": 1,
+   "hash": "289832f00eb54e5962f950f8e2dff79fb03a82065b99661b2958651d861a98bc",
+   "result": "result",
+   "time": 119.733,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 69,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 860,
+    "techniqueUses": 8,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 14
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 18,
+   "wave": 1,
+   "hash": "4e3e3637718d7919903aa3da729241861a21f9dccdfcb58ac6a6602422c0f7cb",
+   "result": "gameover",
+   "time": 113.433,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 30,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1533,
+    "techniqueUses": 8,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 19,
+   "wave": 1,
+   "hash": "07de8bc822f319c6b0e64e5f04d4279fa4f84cd490b39dfff0c071702bdcfbb5",
+   "result": "gameover",
+   "time": 140.833,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 33,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2101,
+    "techniqueUses": 3,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 20,
+   "wave": 1,
+   "hash": "b857305f5df08b984652ba438a4be888f548654b347b76a4e6b5870aef5ca07e",
+   "result": "result",
+   "time": 350.1,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 15,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 239,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 6219,
+    "techniqueUses": 43,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 32
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 6,
+      "titan_sweep": 4,
+      "titan_rock": 4,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "inferno",
+     "floorId": 1,
+     "status": "active",
+     "moves": {
+      "inferno_ring": 7,
+      "inferno_rain": 6,
+      "inferno_imps": 3
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 21,
+   "wave": 1,
+   "hash": "bd1469c4e04c6437300568386c6ec495e0d473b3078e0b9954c8690f6909e079",
+   "result": "gameover",
+   "time": 227.967,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 4,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 89,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2109,
+    "techniqueUses": 18,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 14
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 22,
+   "wave": 1,
+   "hash": "ef3e170c6ccf0c10445429ff48da6b9fb2996ef649ca78ef9f1c37ac29b33753",
+   "result": "gameover",
+   "time": 161.567,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 32,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2952,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 23,
+   "wave": 1,
+   "hash": "408218bb79f05a1861f00c6238d7c434ff25a3390729327cd6d3f3164dd02301",
+   "result": "gameover",
+   "time": 122.3,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 38,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1554,
+    "techniqueUses": 6,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 24,
+   "wave": 1,
+   "hash": "d202835fb1fce92f1e34048efdde7c7d000e345ed66bfe7fd238c88d7f79e0f0",
+   "result": "result",
+   "time": 197.867,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 9,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 42,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 892,
+    "techniqueUses": 1,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 18
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 25,
+   "wave": 1,
+   "hash": "b487e1561e96b1f9c2ed0748d7b6b87c1d72de1f599143dd2254adfca17a018d",
+   "result": "result",
+   "time": 405.3,
+   "escaped": 15,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 1,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 70,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 4887,
+    "techniqueUses": 3,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 2,
+      "titan_sweep": 1,
+      "titan_rock": 2,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "frost_witch",
+     "floorId": 1,
+     "status": "active",
+     "moves": {}
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 26,
+   "wave": 1,
+   "hash": "cb539de749c159b77ebd1035c297a3f5033fd9edb3fcf8705ba99cd8d3f5d933",
+   "result": "gameover",
+   "time": 122.467,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 41,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1571,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 27,
+   "wave": 1,
+   "hash": "dfccb74f4f20fae240b3b5b0434aa816124355c1141174cfa1503d22bc789cb3",
+   "result": "gameover",
+   "time": 218.133,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 5,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 121,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1720,
+    "techniqueUses": 19,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 10
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 28,
+   "wave": 1,
+   "hash": "f2b27328503ab295797dc3e5147aa0d064507bb08ee672ddd0f90ee0f3bacd3f",
+   "result": "gameover",
+   "time": 155.4,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 25,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2136,
+    "techniqueUses": 5,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 29,
+   "wave": 1,
+   "hash": "d0ba1bc549e45272431020ef88d7ddcfad0b78897df5998974f66eb20e20397a",
+   "result": "gameover",
+   "time": 130.667,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 193,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1247,
+    "techniqueUses": 4,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 30,
+   "wave": 1,
+   "hash": "054ab6be1e89c93147317a305a19582c5d788abc4135c4b95b59be300251041d",
+   "result": "gameover",
+   "time": 276.5,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 4,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 88,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 3115,
+    "techniqueUses": 13,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 2,
+      "titan_sweep": 1,
+      "titan_rock": 1,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "inferno",
+     "floorId": 1,
+     "status": "downed",
+     "moves": {
+      "inferno_ring": 3,
+      "inferno_rain": 2,
+      "inferno_imps": 2,
+      "inferno_burst": 1
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 31,
+   "wave": 1,
+   "hash": "afa067d5579977bf803637e830e3b45317e9d534d0d5e829fb54c80234d6c2ff",
+   "result": "gameover",
+   "time": 168.033,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 50,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2342,
+    "techniqueUses": 10,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 32,
+   "wave": 1,
+   "hash": "57e43272722d6dfe44067144a7d9ad1cedb1c2bb45be1cb670c6f9d5afab1a95",
+   "result": "gameover",
+   "time": 150.2,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 43,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2604,
+    "techniqueUses": 12,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 33,
+   "wave": 1,
+   "hash": "b08dadb373f5d7f15132e75ce8e8f9a37bf2548644459ef9e177cd9d76baac2e",
+   "result": "gameover",
+   "time": 168.033,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 58,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1644,
+    "techniqueUses": 8,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 34,
+   "wave": 1,
+   "hash": "e4b85d18d09eb0d818b01285d6d84008814eef3067d4b430d20d6e129a0011e0",
+   "result": "gameover",
+   "time": 150.3,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 41,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1890,
+    "techniqueUses": 2,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 35,
+   "wave": 1,
+   "hash": "f09d521f71b24ca0bd099b06a792e12ee181ae06744c2e6c9a0c61f3bfe30d88",
+   "result": "gameover",
+   "time": 399.733,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 5,
+   "monstersDowned": 8,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 206,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 6854,
+    "techniqueUses": 39,
+    "bombs": 0,
+    "blocks": 0,
+    "boneRevivals": 6,
+    "souls": 18
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 2,
+      "titan_sweep": 1,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "necro_lord",
+     "floorId": 1,
+     "status": "downed",
+     "moves": {
+      "necro_bones": 3,
+      "necro_drain": 8,
+      "necro_curse": 5,
+      "necro_ritual": 1
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 36,
+   "wave": 1,
+   "hash": "06fd88596c85472992a49244face85e57c8fe7bd20e731c2254f97369ece409f",
+   "result": "gameover",
+   "time": 171.833,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 14,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2169,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 37,
+   "wave": 1,
+   "hash": "463d681f2785357fef6ed023b9df68a9e8e9cf4783b95623cda0bbf6dc48e622",
+   "result": "result",
+   "time": 180.367,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 86,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1627,
+    "techniqueUses": 5,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 20
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 38,
+   "wave": 1,
+   "hash": "3fe254a669a45ef3c913c6aac549e00249ea7c2258c293e950c96fe0231b539e",
+   "result": "gameover",
+   "time": 115.233,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 15,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1014,
+    "techniqueUses": 5,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 39,
+   "wave": 1,
+   "hash": "3d3df1bd92c0a03673a7ff82531d8a177229981d68deb3cf1bc8f455529e0e54",
+   "result": "gameover",
+   "time": 127.2,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 25,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1853,
+    "techniqueUses": 2,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 40,
+   "wave": 1,
+   "hash": "aadd30d8386accdb9e8e5915a729cb1f2f6991dc7b4cb48d57e2af5f6324dbc4",
+   "result": "result",
+   "time": 390.367,
+   "escaped": 15,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 1,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 42,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 7073,
+    "techniqueUses": 4,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 1,
+      "titan_rock": 1,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "bone_king",
+     "floorId": 1,
+     "status": "active",
+     "moves": {}
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 41,
+   "wave": 1,
+   "hash": "d3f7467d1c89a54a401baf519870b3192d12a88e989cab3920797bd4cfbe2fb1",
+   "result": "gameover",
+   "time": 166.433,
+   "escaped": 10,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 45,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2223,
+    "techniqueUses": 12,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 42,
+   "wave": 1,
+   "hash": "ed15368f403d900cd0b553b2645bb2ae148e0e3aed8edd339abf5eb1de39afb2",
+   "result": "result",
+   "time": 138.867,
+   "escaped": 8,
+   "downed": 0,
+   "dead": 8,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 42,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 967,
+    "techniqueUses": 11,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 16
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 43,
+   "wave": 1,
+   "hash": "f83b2893741c8eb02f01c06461e1d2caccc78f088653428b71e8ce49e7978c8b",
+   "result": "gameover",
+   "time": 142.767,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 47,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1992,
+    "techniqueUses": 11,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 44,
+   "wave": 1,
+   "hash": "7e8d06a96b4f319c894ce0de54dfbd2d40175425eb437fd29300755237a75bc1",
+   "result": "gameover",
+   "time": 186.167,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 2,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 62,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2311,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 6
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 45,
+   "wave": 1,
+   "hash": "ede35133b41a8ecaadb6fd185b61b926736c53aa570c745946c7257138410b72",
+   "result": "gameover",
+   "time": 266.233,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 1,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 87,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 4093,
+    "techniqueUses": 16,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 2,
+      "titan_sweep": 2,
+      "titan_rock": 2,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "spider_queen",
+     "floorId": 1,
+     "status": "downed",
+     "moves": {
+      "spider_web": 1,
+      "spider_leap": 1
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 46,
+   "wave": 1,
+   "hash": "cf13e66399efc359074d639a2bd2e423a72bc110ddc4834d27d022a87faf03c8",
+   "result": "result",
+   "time": 201.833,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 14,
+   "monstersDowned": 0,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 93,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1766,
+    "techniqueUses": 5,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 28
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 47,
+   "wave": 1,
+   "hash": "e3b476f8835ae7e5b1d1fb550432172c2aa32484a1eaca2cc7a7a85af82810e8",
+   "result": "gameover",
+   "time": 143.933,
+   "escaped": 7,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 181,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2539,
+    "techniqueUses": 6,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 48,
+   "wave": 1,
+   "hash": "e18b0fc9095dd47c14d3571e09617d82947cce37534a6446b1caa72c19ce222b",
+   "result": "gameover",
+   "time": 138.633,
+   "escaped": 5,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 16,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1982,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 49,
+   "wave": 1,
+   "hash": "1bb4efc6335ad7fce91e1b60cf4466367d286791120b8b34bfab1be88a9f6577",
+   "result": "gameover",
+   "time": 114.667,
+   "escaped": 6,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 3,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 23,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 1367,
+    "techniqueUses": 5,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 2
+   },
+   "bosses": [],
+   "stuck": []
+  },
+  {
+   "seed": 50,
+   "wave": 1,
+   "hash": "4b0b19e328a77f7f6931b7c8d448e5730aa2e0d85af02d882029fb3c16b20452",
+   "result": "result",
+   "time": 270.4,
+   "escaped": 9,
+   "downed": 0,
+   "dead": 7,
+   "monstersDowned": 1,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 130,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 2870,
+    "techniqueUses": 19,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 19,
+    "boneRevivals": 2
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 3,
+      "titan_sweep": 2,
+      "titan_rock": 2,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "necro_lord",
+     "floorId": 1,
+     "status": "active",
+     "moves": {
+      "necro_bones": 3,
+      "necro_drain": 4
+     }
+    }
+   ],
+   "stuck": []
+  }
+ ]
+}

@@ -172,10 +172,14 @@ name
   const c=this.ctx,
   p=this.point(x,
   y);
-  c.font=`500 ${
-size
-}px "Segoe UI",sans-serif`;
+  c.font=`${size>=20?28:14}px "YD Pixel",Consolas,monospace`;
   c.textAlign='center';
+  this.labelRects??=[];
+  const width=c.measureText(text).width,height=size>=20?28:14;
+  let box={x:p.x-width/2,y:p.y-height,w:width,h:height};
+  for(let attempt=0;attempt<6&&this.labelRects.some(r=>Math.min(r.x+r.w,box.x+box.w)-Math.max(r.x,box.x)>2&&
+   Math.min(r.y+r.h,box.y+box.h)-Math.max(r.y,box.y)>2);attempt++){p.y-=8;box.y-=8}
+  this.labelRects.push(box);c.strokeStyle='#120e12';c.lineWidth=2;c.strokeText(text,p.x,p.y);
   c.fillStyle='#0b1010';
   c.fillText(text,
   p.x+1,
@@ -886,6 +890,7 @@ room.type==='treasure'?'blue':room.type==='boss'?'yellow':room.type==='grave'?'g
   10);
  }
  draw(delta){
+  this.labelRects=[];
   this.time+=delta;
   this.captureAttacks();
   this.fxBudget=40;
