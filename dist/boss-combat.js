@@ -123,7 +123,8 @@ export function installBossCombat(Game){
    if(k.target==='ally')allies=[...allies].sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp).slice(0,1);
    else if(k.target==='bones')allies=allies.filter(a=>a.family==='bone');
    else if(k.target!=='allies')allies=[e];
-   for(const a of allies){this.applyStatus(a,k.effect,k.duration,k.value,e);if(k.haste)this.applyStatus(a,'haste',k.duration,k.haste,e)}
+   for(const a of allies){this.applyStatus(a,k.effect,k.duration,k.effect==='shield'?k.value/a.maxHp:k.value,e);
+    if(k.haste)this.applyStatus(a,'haste',k.duration,k.haste,e)}
   }
   else if(k.kind==='taunt'&&target?.status==='active'){
    this.applyStatus(target,'taunt',k.duration,k.value,e);e.bossDuelTarget=target.id;e.bossDuelUntil=s.time+k.duration;

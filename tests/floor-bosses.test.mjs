@@ -46,3 +46,9 @@ test('bone hire discount and necromancer soul multiplier use central seal modifi
  assert.equal(other.state.souls,souls+3);other.reviveAlly(necro,hero);other.damage(hero,100000,necro);
  assert.equal(other.state.souls,souls+3);
 });
+
+test('frost seal is fifteen flat HP rather than fifteen times maximum HP, including loaded shields',()=>{
+ const {g}=fixture(),boss=g.hireFloorBoss(0,'frost_witch',{legacy:true});g.state.phase='battle';g.refreshFloorSeals();
+ assert.equal(g.effect(boss,'shield').value,15);g.effect(boss,'shield').value=8250;g.refreshFloorSeals();
+ assert.equal(g.effect(boss,'shield').value,15);g.effect(boss,'shield').value=6;g.refreshFloorSeals();assert.equal(g.effect(boss,'shield').value,6);
+});

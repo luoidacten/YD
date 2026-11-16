@@ -44,3 +44,8 @@ test('a controller boss with no mana still makes its innate ranged attack instea
  e.decision=100;e.action='attack';e.target=hero.id;e.cooldown=0;e.castUntil=0;
  assert.equal(g.usesMagicAttack(e),false);const hp=hero.hp;g.act(e,1/30);assert.ok(hero.hp<hp);
 });
+
+test('boss shield skills convert flat shield HP to the shared status API fraction',()=>{
+ const {g,e}=fixture('death_knight'),k=BOSS_POOL.death_knight.skills.find(k=>k.effect==='shield');
+ g.resolveBossSkill({source:e.id,bossSkill:k,targetId:e.id,x:e.x,y:e.y,floorId:e.floorId});assert.equal(g.effect(e,'shield').value,60);
+});

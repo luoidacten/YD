@@ -1,0 +1,21 @@
+✔ all eight floor bosses have four distinct moves, permitted floors and supplied sprites (5.1023ms)
+✔ every boss uses its four moves over a long phased fight and remains confined to its room (780.983ms)
+✔ a damaging boss move cannot hit before its telegraph resolves or strike another floor (21.5389ms)
+✔ boss summons cannot exceed quota and channel zones stop when their owner falls (26.9488ms)
+✔ a controller boss with no mana still makes its innate ranged attack instead of endlessly retreating (31.8049ms)
+✔ boss shield skills convert flat shield HP to the shared status API fraction (18.2079ms)
+✔ three floor-boss offers are seeded, saved, and cannot duplicate a selected boss on another floor (140.3401ms)
+✔ reroll is a new seeded set, costs fifty once, and cannot happen after a choice (33.8634ms)
+✔ a built boss chamber blocks start until its master is chosen and rejects unaffordable choices without mutation (25.5912ms)
+✔ Titan HP seal preserves health ratios, disappears on downing, and logs the broken seal (31.2824ms)
+✔ legacy boss saves infer their master without rerolling or replacing entity identity (34.2964ms)
+✔ bone hire discount and necromancer soul multiplier use central seal modifiers (50.8644ms)
+✔ frost seal is fifteen flat HP rather than fifteen times maximum HP, including loaded shields (23.6655ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1425.0561

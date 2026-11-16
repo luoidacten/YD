@@ -60,8 +60,10 @@ export function installFloorBosses(Game){
     if(!active)e.statuses=e.statuses.filter(status=>!status.floorSeal);
     if(this.state.phase==='battle'&&mods.initialShield&&e.status==='active'&&e.sealShieldWave!==this.state.wave){
      e.sealShieldWave=this.state.wave;
-     if(!this.effect(e,'shield')){this.applyStatus(e,'shield',0,mods.initialShield,e);const status=this.effect(e,'shield');if(status)status.floorSeal=true}
+     if(!this.effect(e,'shield')){this.applyStatus(e,'shield',0,mods.initialShield/e.maxHp,e);
+      const status=this.effect(e,'shield');if(status)status.floorSeal=true}
     }
+    for(const status of e.statuses)if(status.floorSeal)status.value=Math.min(status.value,mods.initialShield);
    }
    for(const r of this.rooms(floorId)){const previous=r.sealHpBonus||0;
     if(previous!==mods.hp&&r.buildingMaxHp){const ratio=r.buildingHp/r.buildingMaxHp;

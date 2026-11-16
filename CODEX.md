@@ -239,3 +239,7 @@ Mọi chiêu sát thương tạo telegraph; resolver riêng chỉ lấy telegrap
 ### Regression sau soak CODEX_06
 
 150 trận seed 1–50 ×3 ban đầu: 0 kẹt nhưng seed25/wave2 chạm480s. Phù Thủy Băng hết mana, giữ khoảng cách trong khi đòn thường rơi về melee. Boss dùng đòn bẩm sinh theo hệ hồi chiêu thay pool mana hữu hạn của hero; regression kiểm tra đánh xa khi mana0. Seed25 waves1–2 sau sửa:0 kẹt/0limit (2 thắng). Báo cáo gốc soak-code06-final.json được giữ, tên final không phải chứng nhận tất cả đạt. Đang chạy soak-code06-corrected.json để kiểm chứng lại toàn bộ.
+
+### Khiên HP tuyệt đối và API status
+
+Soak kế tiếp lộ seed25/wave3 chạm482s. Nguyên nhân thực: applyStatus('shield', duration, value) nhận tỷ lệ maxHP, nhưng Ấn Băng truyền15 và chiêu boss truyền40/60 HP tuyệt đối, tạo khiên hàng nghìn HP. Đã đổi sang value/maxHP, clamp khiên Ấn lỗi khi load, không hồi đầy khiên đã hao mỗi tick. Thêm2 regression; seed25 cả3wave:0limit/0kẹt. Hai báo cáo lỗi vẫn giữ nguyên.

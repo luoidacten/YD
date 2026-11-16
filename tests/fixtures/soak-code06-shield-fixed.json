@@ -1,0 +1,163 @@
+{
+ "weapons": {
+  "basicAttacks": 230,
+  "shots": 0,
+  "jamAttempts": 0,
+  "jams": 0,
+  "techniqueOffers": 13909,
+  "techniqueUses": 17,
+  "bombs": 0,
+  "blocks": 0,
+  "souls": 4,
+  "techniqueRate": 0.06882591093117409,
+  "jamRate": null
+ },
+ "schema": 1,
+ "fixture": "seeded-independent-waves-v1",
+ "step": 0.03333333333333333,
+ "generatedAt": "2026-11-16T11:49:06.832Z",
+ "summary": {
+  "battles": 3,
+  "defenderWins": 1,
+  "medianSeconds": 388.767,
+  "limitHits": 0,
+  "stuckEpisodes": 0
+ },
+ "battles": [
+  {
+   "seed": 25,
+   "wave": 1,
+   "hash": "1e92e38cb4ce6357f916ca1d3f5c3e4e77c8f4a1aa4cf836e66a3dfc7043cc39",
+   "result": "result",
+   "time": 405.3,
+   "escaped": 15,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 1,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 70,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 4887,
+    "techniqueUses": 3,
+    "bombs": 0,
+    "blocks": 0,
+    "souls": 4
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 2,
+      "titan_sweep": 1,
+      "titan_rock": 2,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "frost_witch",
+     "floorId": 1,
+     "status": "active",
+     "moves": {}
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 25,
+   "wave": 2,
+   "hash": "17aa0746ad42768205abaf4acadabbe37ae5ecddf9c9c6863f28e2913145d26b",
+   "result": "gameover",
+   "time": 388.767,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 85,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 5529,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 1,
+      "titan_rock": 1,
+      "titan_stone": 1,
+      "titan_sweep": 1
+     }
+    },
+    {
+     "id": "frost_witch",
+     "floorId": 1,
+     "status": "downed",
+     "moves": {
+      "frost_fan": 4,
+      "frost_pillar": 3,
+      "frost_storm": 1,
+      "frost_armor": 1
+     }
+    }
+   ],
+   "stuck": []
+  },
+  {
+   "seed": 25,
+   "wave": 3,
+   "hash": "7070fae276df05d8daddba98e921fae6341c61444f081ffbe0646ac3b1acba99",
+   "result": "gameover",
+   "time": 283.7,
+   "escaped": 11,
+   "downed": 0,
+   "dead": 0,
+   "monstersDowned": 2,
+   "limit": false,
+   "weaponMetrics": {
+    "basicAttacks": 75,
+    "shots": 0,
+    "jamAttempts": 0,
+    "jams": 0,
+    "techniqueOffers": 3493,
+    "techniqueUses": 7,
+    "bombs": 0,
+    "blocks": 0
+   },
+   "bosses": [
+    {
+     "id": "warden",
+     "floorId": 0,
+     "status": "downed",
+     "moves": {
+      "titan_slam": 1,
+      "titan_sweep": 1,
+      "titan_stone": 1
+     }
+    },
+    {
+     "id": "frost_witch",
+     "floorId": 1,
+     "status": "downed",
+     "moves": {
+      "frost_fan": 3,
+      "frost_pillar": 2,
+      "frost_armor": 1
+     }
+    }
+   ],
+   "stuck": []
+  }
+ ]
+}
