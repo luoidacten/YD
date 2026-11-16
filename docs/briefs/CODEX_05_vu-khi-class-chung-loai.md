@@ -1,11 +1,11 @@
 # CODEX_05 — Hệ vũ khí có yêu cầu, 8 class mạo hiểm giả, 16 chủng loài và animation tấn công
 
 **Người giao:** Claude (quản lý + giám đốc mĩ thuật). **Người làm:** Codex.
-**Đọc trước:** `GD/DESIGN_05_vu-khi-va-class.md`. Đó là thiết kế đầy đủ: bảng W31–W53, bảng thông thạo, kỹ thuật.
+**Đọc trước:** `docs/briefs/DESIGN_05_vu-khi-va-class.md`. Đó là thiết kế đầy đủ: bảng W31–W53, bảng thông thạo, kỹ thuật.
 **Thứ tự:** sau CODEX_01 và CODEX_04 (CODEX_04 thêm `fxSprite` và nhân vật v0.4). Nên tách 4 commit theo mục A–D.
 
 ## Asset đã giao
-Tất cả nằm trong `dist/assets/frames/yd/`, nạp bằng `painter.image(name)` như cũ. Ảnh tổng hợp: `art/SHOWCASE-v05.png`.
+Tất cả nằm trong `dist/assets/frames/yd/`, nạp bằng `painter.image(name)` như cũ. Ảnh tổng hợp: `art/showcase/SHOWCASE-v05.png`.
 - `yd/weapons/weapon_<id>.png`: 30 vũ khí (8 của v0.4 và 22 mới).
 - `yd/chars/<id>_{idle,run}_anim_f0..3` (+`hit_anim_f0`): ninja, priestess, nun, arcane_archer, crossbowman, knight_errant, cùng 8 nhân vật v0.4.
 - `yd/monsters/<id>_{idle,run}_anim_f0..3`: 24 loài (8 của v0.4 và 16 mới). Loài lớn khoảng 30×32: werewolf, gnoll, minotaur, troll, treant, gargoyle.
@@ -76,7 +76,7 @@ Mỗi loài cần KITS, FAVORITES, contract card, giá thuê, `brain` (theo bả
   - Mọi sprite được tham chiếu đều có đủ idle/run/attack.
 - [ ] Save v1/v2 cũ load được. Save mới lưu `offhand`.
 - [ ] Soak seed 1–50: không phát sinh lỗi kẹt mới; tỉ lệ thắng thay đổi ít hơn ±15% (vượt thì ghi lý do). Liệt kê thêm: tỉ lệ dùng kỹ thuật và tỉ lệ kẹt súng.
-- [ ] Ảnh chụp `screenshots/v05-*.jpg`:
+- [ ] Ảnh chụp `docs/screenshots/v05-*.jpg`:
   - (1) đoàn có ninja, priestess, crossbowman đang đánh;
   - (2) minotaur và troll trong phòng;
   - (3) inspector hiện "Không đủ trí khôn" khi cấp súng cho zombie;

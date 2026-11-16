@@ -6,11 +6,11 @@
  "changedPixels": 0,
  "over16": 0,
  "bbox": null,
- "before": "screenshots/v04-hud-before.jpg",
- "fallback": "screenshots/v04-hud-fallback.jpg",
+ "before": "docs/screenshots/v04-hud-before.jpg",
+ "fallback": "docs/screenshots/v04-hud-fallback.jpg",
  "sha256": {
-  "screenshots/v04-hud-before.jpg": "374682dbf197264318670c0db941fd58f105c56689308d8e00ea47fcfada3c20",
-  "screenshots/v04-hud-fallback.jpg": "374682dbf197264318670c0db941fd58f105c56689308d8e00ea47fcfada3c20"
+  "docs/screenshots/v04-hud-before.jpg": "374682dbf197264318670c0db941fd58f105c56689308d8e00ea47fcfada3c20",
+  "docs/screenshots/v04-hud-fallback.jpg": "374682dbf197264318670c0db941fd58f105c56689308d8e00ea47fcfada3c20"
  },
  "byteIdentical": true
 }

@@ -2,11 +2,11 @@
 
 **Người giao:** Claude. **Người làm:** Codex.
 **Đọc trước:**
-- `GD/DESIGN_06` (luật chọn boss, đã giao ở CODEX_06);
-- `GD/DESIGN_08` mục 1–2;
-- `GD/CODEX_07` (HUD pixel, bắt buộc xong trước).
+- `docs/briefs/DESIGN_06` (luật chọn boss, đã giao ở CODEX_06);
+- `docs/briefs/DESIGN_08` mục 1–2;
+- `docs/briefs/CODEX_07` (HUD pixel, bắt buộc xong trước).
 
-**Mockup:** `art/MOCKUP-BOSS-PICK.png`, `art/MOCKUP-COMBAT-FX.png`.
+**Mockup:** `art/showcase/MOCKUP-BOSS-PICK.png`, `art/showcase/MOCKUP-COMBAT-FX.png`.
 
 ## A. Màn chọn Tầng Chủ (UI của CODEX_06-B)
 - **Modal phủ tối:** nền game tối 80%, không pause mô phỏng (đang ở phase chuẩn bị).
@@ -53,7 +53,7 @@
 - [ ] Test và build xanh. **Soak hash seed 1–50 trùng 100% trước/sau** (vì FX chỉ là trình bày).
 - [ ] Test màn chọn: đủ 3 thẻ, nút disabled khi thiếu vàng, đổi bộ một lần, phím tắt chạy, không tràn chữ (dùng hàm audit của CODEX_07 trên modal).
 - [ ] Ở ×4 tốc độ với 20 đơn vị đánh nhau, FPS ≥ 55 trên máy dev. Giới hạn 64 hiệu ứng sống, bỏ cái cũ nhất khi vượt.
-- [ ] Ảnh `screenshots/v08-*.jpg`:
+- [ ] Ảnh `docs/screenshots/v08-*.jpg`:
   - (1) màn chọn Tầng Chủ;
   - (2) chí mạng có số vàng;
   - (3) telegraph boss;

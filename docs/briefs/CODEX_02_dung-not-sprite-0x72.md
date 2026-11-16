@@ -62,7 +62,7 @@ Lưu ý: `ice_zombie`, `muddy`, `swampy` chỉ có `*_anim_f0..3` (không chia i
 - [ ] Test: 4 quái mới thuê được qua hợp đồng và đúng quota `slots`.
 - [ ] Soak (CODEX_01) seed 1–50: không phát sinh lỗi kẹt mới.
 - [ ] Script đếm sprite: frame trong `dist/assets/frames` mà không được code tham chiếu (kể cả qua template) chỉ còn những frame được liệt kê lý do trong `CODEX.md`.
-- [ ] Ảnh chụp cận cảnh (zoom 3): 1 hero mới, 1 quái mới, 3 vũ khí mới đang cầm. Lưu vào `screenshots/v04-*.jpg`.
+- [ ] Ảnh chụp cận cảnh (zoom 3): 1 hero mới, 1 quái mới, 3 vũ khí mới đang cầm. Lưu vào `docs/screenshots/v04-*.jpg`.
 - [ ] Cập nhật `CODEX.md`, README (con số catalog) và `ASSET-LICENSES.md`: các frame mới vẫn là 0x72 CC0.
 
 ## Không làm

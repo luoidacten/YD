@@ -3,9 +3,9 @@
 **Người giao:** Claude (quản lý + giám đốc mĩ thuật). **Người làm:** Codex.
 **Mục tiêu:** UI hiện là dashboard web (Segoe UI/Consolas, panel phẳng xanh rêu, viền vàng 1 px, chữ nhỏ, 3 cột ăn mất nửa màn hình), lệch hẳn với thế giới pixel ấm của 0x72. Cần đổi sang khung đá pixel, font pixel, thẻ bài kiểu bài thật, và bản đồ là nhân vật chính.
 **Tham chiếu bắt buộc:**
-- `art/MOCKUP-HUD-v1.png`: bố cục và cảm giác đích, 640×360 phóng ×2.
-- `art/UI-KIT-v1.png`: toàn bộ chi tiết.
-- Ảnh hiện trạng: `screenshots/v04-hud-icons.jpg`.
+- `art/showcase/MOCKUP-HUD-v1.png`: bố cục và cảm giác đích, 640×360 phóng ×2.
+- `art/showcase/UI-KIT-v1.png`: toàn bộ chi tiết.
+- Ảnh hiện trạng: `docs/screenshots/v04-hud-icons.jpg`.
 **Không đổi gameplay.** Chỉ HTML/CSS/painter vẽ overlay. Soak hash phải giữ nguyên.
 
 ## Asset đã giao (`dist/assets/ui/kit/`, kèm `kit.json` ghi `w`, `h`, `slice`)
@@ -74,7 +74,7 @@ Mọi ảnh: `image-rendering: pixelated`, chỉ phóng **số nguyên lần** (
 - [ ] Không còn `Segoe UI`/`Georgia`/`border-radius`/gradient trong CSS (trừ fallback font).
 - [ ] Ở 1280×720, bản đồ chiếm ≥ 60% diện tích (hiện khoảng 45%). Ở 1920×1080, mọi UI ×2 đều nét, không pixel lẻ (kích thước chẵn).
 - [ ] Mọi chuỗi tiếng Việt hiển thị đúng dấu bằng YD Pixel (chụp màn hình cận cảnh).
-- [ ] Ảnh `screenshots/v07-*.jpg`, so với `art/MOCKUP-HUD-v1.png`:
+- [ ] Ảnh `docs/screenshots/v07-*.jpg`, so với `art/showcase/MOCKUP-HUD-v1.png`:
   - (1) chuẩn bị;
   - (2) đang đánh, có boss bar;
   - (3) inspector quái;

@@ -96,4 +96,4 @@ Thang thông thạo: 0 không dùng · 1 vụng · 2 thạo · 3 bậc thầy. C
 - Animation chỉ là hình ảnh: không đổi thời điểm sát thương, không tiêu thụ RNG gameplay.
 
 ## 6. Chủng loài quái mới
-Xem `art/SHOWCASE-v05.png` khi đã giao. Mỗi loài cần: KITS, FAVORITES phòng, contract card, quota `slots`, attack anim.
+Xem `art/showcase/SHOWCASE-v05.png` khi đã giao. Mỗi loài cần: KITS, FAVORITES phòng, contract card, quota `slots`, attack anim.

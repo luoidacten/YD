@@ -122,6 +122,7 @@ export function installZombies(Game){
   if(!isZombie(e)||SPECIES[e.species]?.leader||e.elite)return;
   if(this.zombieLed(e))return;
   // dumb without leadership: in ~40% of 2-second windows it just stands and groans
-  if(hash(e.id,Math.floor(this.state.time/2))<40)context.add('guard',2.4,e.home,'Xác sống lơ ngơ vì không có kẻ chỉ huy');
+  if(hash(e.id,Math.floor(this.state.time/2))<40&&!context.enemies?.some(a=>distance(a,e)<2))
+   context.add('guard',2.4,{x:e.x,y:e.y,floorId:e.floorId},'Xác sống lơ ngơ vì không có kẻ chỉ huy');
  };
 }

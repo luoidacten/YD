@@ -1,6 +1,6 @@
 # CODEX — YOUR DUNGEON? v0.6
 
-Đọc trước khi sửa code. Đây là prototype chạy hoàn toàn trong trình duyệt. `GDD.md` là thiết kế gốc; các bản thiết kế từ ChatGPT không phải bằng chứng mọi tương tác đã hoàn thiện.
+Đọc trước khi sửa code. Đây là prototype chạy hoàn toàn trong trình duyệt. `docs/design/GDD.md` là thiết kế gốc; các bản thiết kế từ ChatGPT không phải bằng chứng mọi tương tác đã hoàn thiện.
 
 ## Chạy
 
@@ -120,7 +120,7 @@ Nữ kỵ sĩ, thợ mỏ và thợ rèn có trọng số từ wave 2; thiên s�
 
 iceZombie làm chậm, muddy tank 1 slot, swampy gây độc, pumpkin nổ qua API thùng nổ đúng một lần khi active → downed, có friendly fire/chain. Pumpkin chỉ bán/roll hợp đồng ở sự kiện Chợ phiên; hợp đồng đã sở hữu dùng được sau sự kiện. Ba quái single-animation không dùng tên idle/run. Frame trúng đòn chỉ áp dụng những thân người có frame gốc tương ứng. Goo/hole lưu theo layoutSeed; cần gạt/nút không thay hình học khóa. Tim inspector: 5 tim, mỗi tim 20% HP.
 
-`showcase.html` là fixture QA sử dụng Game/Painter thật, không ghi LocalStorage. Ảnh `screenshots/v04-sprites.jpg` cho thấy bốn hero, bốn quái và W13/W18/W22 đang trang bị. Các file director cung cấp trong `assets/frames/yd/` chưa đăng ký vào gameplay của CODEX_02, không được gộp thành thành quả CC0.
+`showcase.html` là fixture QA sử dụng Game/Painter thật, không ghi LocalStorage. Ảnh `docs/screenshots/v04-sprites.jpg` cho thấy bốn hero, bốn quái và W13/W18/W22 đang trang bị. Các file director cung cấp trong `assets/frames/yd/` chưa đăng ký vào gameplay của CODEX_02, không được gộp thành thành quả CC0.
 
 ### Kiểm kê sprite còn chưa dùng
 
@@ -158,7 +158,7 @@ CODEX_02 phát hiện thêm lỗi slot cận chiến lệch tâm ô: A* kết th
 
 `art-metadata.js` được sinh từ header PNG bất biến bởi `scripts/art-metadata.mjs`. Painter vẽ asset yd ở kích thước gốc nhân số nguyên, chân trên cùng baseline, không tint. `fxSprite()` ánh xạ 8 bộ phép 4 frame, 8 FPS theo thời gian renderer. `Game.visualEvents` là queue ngoài save/RNG (tối đa 40); Painter nhận cue heal/poison/stun/holy và shield đang hiệu lực, chỉ vẽ khi LOD/POV cho phép. Không thêm damage/status song song. Arrow/axe/knife giữ kiểu cũ; fire/frost/curse dùng ảnh phép.
 
-Soak CODEX_04: `tests/fixtures/soak-code04.json`, 150 trận, 0 kẹt, 0 limit, 5/150 thắng, trung vị 151,083s. Baseline v0.4.0: 8/150 thắng; thay đổi −2 điểm phần trăm, trong ±15 điểm. Đây là fixture độc lập, không phải số đo cân bằng campaign. Các asset của CODEX_05 đã có trên đĩa nhưng chỉ được kích hoạt ở commit sau; không tính metadata là gameplay hoàn thiện.
+Soak CODEX_04: `tests/fixtures/soak/soak-code04.json`, 150 trận, 0 kẹt, 0 limit, 5/150 thắng, trung vị 151,083s. Baseline v0.4.0: 8/150 thắng; thay đổi −2 điểm phần trăm, trong ±15 điểm. Đây là fixture độc lập, không phải số đo cân bằng campaign. Các asset của CODEX_05 đã có trên đĩa nhưng chỉ được kích hoạt ở commit sau; không tính metadata là gameplay hoàn thiện.
 
 
 ## CODEX_05-A — vũ khí
@@ -270,7 +270,7 @@ soak-code06-verified.json:150/150 trận tự kết thúc,0kẹt/0limit,29 thắ
 - **Biome:** `state.floorBiomes[floorId]`, offer = dungeon + 2 biome rút từ `worldSeed` (không tiêu RNG). Đổi lần đầu miễn phí, sau đó 40 vàng, chỉ khi chuẩn bị (chọn trong màn Tầng Chủ). Luật đọc qua `biomeRules`/`biomeElement`: tầm nhìn hang −30%, hero chậm ở rừng/đầm, bỏng nhẹ ở lò dung nham, xương +10% HP ở hầm mộ, băng đẩy xa +1. Painter đổi tile qua `tile(name)`; cache sàn có khóa biome.
 - **Kiểm chứng:**
   - 180/180 test (thêm `tests/rpg.test.mjs` 7 test). Hai test cơ chế khiên/buff cũ trung hòa `affinity` vì knight nay kháng vật lý.
-  - Soak `tests/fixtures/soak-rpg-v09.json`: 150 trận, **0 kẹt, 0 limit**, 33/150 phòng thủ thắng (22%, so với 19,33% của v0.6), median 158,6 giây.
+  - Soak `tests/fixtures/soak/soak-rpg-v09.json`: 150 trận, **0 kẹt, 0 limit**, 33/150 phòng thủ thắng (22%, so với 19,33% của v0.6), median 158,6 giây.
 - **Còn mở:**
   - Ô chất lỏng của biome chưa đặt được bằng thẻ (luật biome đang áp cho cả tầng).
   - Báo cáo Công hội, tổng kết, research, upkeep (CODEX_10) chưa làm.

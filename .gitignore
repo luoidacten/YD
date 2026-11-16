@@ -1,5 +1,6 @@
 node_modules/
 *.tar.gz
 *.log
-screenshots/
+docs/screenshots/*.tmp.*
+reports/
 art/gemini-raw/

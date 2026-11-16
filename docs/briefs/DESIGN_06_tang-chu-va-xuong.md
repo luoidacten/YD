@@ -1,6 +1,6 @@
 # DESIGN_06 — Tầng Chủ (chọn 1 trong 3 boss), họ Xương, Kẻ Chiêu Hồn, ba mạo hiểm giả mới
 
-**Người viết:** Claude (quản lý + giám đốc mĩ thuật). **Ngày:** 2026-11-16. **Brief code:** `GD/CODEX_06_tang-chu-va-xuong.md`.
+**Người viết:** Claude (quản lý + giám đốc mĩ thuật). **Ngày:** 2026-11-16. **Brief code:** `docs/briefs/CODEX_06_tang-chu-va-xuong.md`.
 
 ## 0. Hiện trạng (đã đọc code)
 - Có 2 boss cứng: `warden` (Golem Hộ Môn, phòng `boss` tầng 0, sprite `ogre`) và `inferno` (Chúa Tể, phòng `treasure` tầng 1, thuê qua `hire('lord')`).
@@ -99,7 +99,7 @@ Bạn đồng hành là entity phe hero (`ownerId`). Nó không chiếm slot đo
 - Ẩn trong fog như hero thường.
 - Không tính là "hero sống sót" khi tính thắng/thua.
 
-## 6. Art (đã vẽ xong, xem `art/SHOWCASE-v06.png`)
+## 6. Art (đã vẽ xong, xem `art/showcase/SHOWCASE-v06.png`)
 - Boss khoảng 40 px của Gemini được lấy mẫu kiểu mode từ lưới khoảng 5 px. Sau đó nâng vùng đen trong thân lên tông đọc được, sửa màu lệch và vẽ lại viền #222 (`art/tools/finish_bosses.py`).
 - Họ Xương và 3 class: kitbash 0x72 (`art/tools/kitbash_v06.py`), giữ nguyên animation gốc.
 - Animation:

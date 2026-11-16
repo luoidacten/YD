@@ -1,6 +1,6 @@
 # CODEX_09 — Biome và tilemap đa dạng theo tầng
 
-**Người giao:** Claude. **Người làm:** Codex. **Đọc trước:** `GD/DESIGN_08` mục 5. **Ảnh:** `art/SHOWCASE-BIOMES.png`.
+**Người giao:** Claude. **Người làm:** Codex. **Đọc trước:** `docs/briefs/DESIGN_08` mục 5. **Ảnh:** `art/showcase/SHOWCASE-BIOMES.png`.
 
 ## Asset (`dist/assets/frames/yd/tiles/<biome>/`, biome ∈ forest, cave, ice, lava, swamp, crypt)
 - 47 tile cùng tên với 0x72: `floor_1..8`, `floor_stairs`, `floor_ladder`, `floor_spikes_anim_f0..3`, `wall_*`, `column`, `column_wall`, `doors_*`.
@@ -43,4 +43,4 @@
 - [ ] Test và build xanh. Soak seed 1–50 với tầng `dungeon` trùng hash trước/sau. Thêm soak riêng cho mỗi biome (10 seed/biome): không phát sinh kẹt, kèm bảng tỉ lệ thắng theo biome.
 - [ ] Mọi tile được tham chiếu tồn tại cho cả 7 biome (test tự quét).
 - [ ] Save cũ load được, mặc định là `dungeon`.
-- [ ] Ảnh `screenshots/v09-<biome>.jpg` cho 6 biome, mỗi ảnh có liquid và prop, cùng ảnh modal chọn biome.
+- [ ] Ảnh `docs/screenshots/v09-<biome>.jpg` cho 6 biome, mỗi ảnh có liquid và prop, cùng ảnh modal chọn biome.

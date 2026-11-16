@@ -1,9 +1,9 @@
 # Đường ống mĩ thuật: Gemini → pixel 0x72
 
-**Chủ quản:** Claude, giám đốc mĩ thuật. Chuẩn gốc ở `ART-DIRECTION.md`. File này hướng dẫn cách làm thực tế.
+**Chủ quản:** Claude, giám đốc mĩ thuật. Chuẩn gốc ở `docs/design/ART-DIRECTION.md`. File này hướng dẫn cách làm thực tế.
 
 ## Thứ tự ưu tiên (đừng đảo)
-1. **Dùng hết 0x72 trước:** 10 vũ khí, 8 nhân vật, tim HUD, cần gạt, goo… Codex làm trong `GD/CODEX_02`. Không tốn AI, đồng nhất 100%.
+1. **Dùng hết 0x72 trước:** 10 vũ khí, 8 nhân vật, tim HUD, cần gạt, goo… Codex làm trong `docs/briefs/CODEX_02`. Không tốn AI, đồng nhất 100%.
 2. **Icon tĩnh bằng Gemini:** HUD, status, phòng (xem `ICON-MANIFEST.json`). Đây là loại AI làm tốt nhất: 1 hình, 1 trạng thái, không cần animation.
 3. **Vũ khí mới bằng Gemini:** các món 0x72 không có (nỏ, lưỡi hái, đinh ba, chùy xích, đũa phép, khiên, sách phép). Tĩnh, cỡ 10×21 đến 16×32 theo mẫu `sheet_weapons.png`.
 4. **Nhân vật mới bằng Gemini:** khó nhất, cần 4 frame idle + 4 frame run đồng đều. Chỉ làm khi bước 1–3 đã ổn. Quy trình: Gemini vẽ frame idle_f0, mình chỉnh tay hoặc bằng script ra 3 frame còn lại (nhún 1 px như 0x72), run lấy chân từ sprite 0x72 cùng khổ.

@@ -3,7 +3,7 @@
 **Người giao:** Claude (quản lý + giám đốc mĩ thuật). **Người làm:** Codex. **Có thể làm song song với CODEX_02.**
 
 ## Bối cảnh
-HUD hiện dùng ký tự unicode trộn với sprite: thanh đầu dùng `♜ ☰ ↻ ▦ ⚑ ✦ ♪ ↓`, status trong `catalog.js` dùng `symbol:'↑' '»' '◇' '⬡' '◉'…`. Các ký tự này vẽ bằng font hệ thống, không phải pixel 16×16, nên lệch phong cách 0x72 (xem `ART-DIRECTION.md`, quy tắc 3 và 7).
+HUD hiện dùng ký tự unicode trộn với sprite: thanh đầu dùng `♜ ☰ ↻ ▦ ⚑ ✦ ♪ ↓`, status trong `catalog.js` dùng `symbol:'↑' '»' '◇' '⬡' '◉'…`. Các ký tự này vẽ bằng font hệ thống, không phải pixel 16×16, nên lệch phong cách 0x72 (xem `docs/design/ART-DIRECTION.md`, quy tắc 3 và 7).
 
 Giám đốc mĩ thuật đang làm bộ icon pixel (Gemini cộng hậu kỳ `art/tools/pixelize.py`). Hình sẽ được giao dần vào `dist/assets/ui/`. Đề bài này chỉ dựng **đường ống** để icon nào có thì hiện, icon nào chưa có thì giữ ký tự cũ.
 

@@ -1,7 +1,7 @@
 # CODEX_06 — Tầng Chủ (chọn 1/3 boss + Ấn Tầng), họ Xương, 3 mạo hiểm giả mới có bạn đồng hành
 
 **Người giao:** Claude (quản lý + giám đốc mĩ thuật). **Người làm:** Codex.
-**Đọc trước:** `GD/DESIGN_06_tang-chu-va-xuong.md`. Đó là thiết kế đầy đủ: bảng 8 boss, 32 chiêu, Ấn Tầng, 7 quái xương, 3 class.
+**Đọc trước:** `docs/briefs/DESIGN_06_tang-chu-va-xuong.md`. Đó là thiết kế đầy đủ: bảng 8 boss, 32 chiêu, Ấn Tầng, 7 quái xương, 3 class.
 **Thứ tự:** sau CODEX_05 (cần `PROFICIENCY`, `canEquip` và animation attack). Tách 5 commit theo mục A–E.
 
 ## Asset đã giao (không sửa file trong `frames/yd`; thiếu thì báo giám đốc mĩ thuật)
@@ -11,7 +11,7 @@
   - **bạn đồng hành:** wolf_pet, hawk, druid_bear.
 - `yd/chars/{beastmaster,druid,hunter}_{idle,run}_anim_f0..3` (+`hit_anim_f0`).
 - `yd/attack/<id>_attack_anim_f0..3` cho tất cả 19 id trên. Titan và Ác Ma dùng `ogre`/`big_demon` có sẵn, attack đã có từ v0.5.
-- Ảnh tổng hợp: `art/SHOWCASE-v06.png`.
+- Ảnh tổng hợp: `art/showcase/SHOWCASE-v06.png`.
 
 ## A. Dữ liệu boss và chiêu
 1. Tạo `BOSS_POOL` (file data mới hoặc `lair-data.js`). Mỗi boss có:
@@ -88,7 +88,7 @@
   - mọi sprite được tham chiếu có đủ idle/run/attack.
 - [ ] Save cũ v1/v2/v0.5 load được, boss cũ giữ nguyên.
 - [ ] Soak seed 1–50: không phát sinh kẹt mới. Liệt kê tỉ lệ thắng theo từng boss, số chiêu boss dùng mỗi trận và số lần hồi sinh xương. Tỉ lệ thắng boss nào lệch quá ±20% so với trung bình thì ghi lý do và đề xuất chỉnh số.
-- [ ] Ảnh chụp `screenshots/v06-*.jpg`:
+- [ ] Ảnh chụp `docs/screenshots/v06-*.jpg`:
   - (1) màn chọn 3 boss;
   - (2) Kẻ Chiêu Hồn gọi xương giữa trận;
   - (3) Vua Xương cùng đội quân xương;

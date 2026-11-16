@@ -109,6 +109,12 @@ export function installKingdom(Game){
  };
  const choices=P.extendChoices;P.extendChoices=function(e,context){
   choices.call(this,e,context);
+  if(e.faction==='monster'){
+   // reached the edge spot where the noise came from (target clamped inside the room): stop investigating, hold the room
+   const t=typeof e.target==='object'?e.target:null;
+   if(e.action==='investigate'&&t&&distance(e,t)<.8&&!context.enemies?.length)context.add('guard',.5,e.home,'Đã tới điểm nghe tiếng, về giữ phòng');
+   return;
+  }
   if(e.faction!=='hero'||e.ownerId)return;
   const {enemies,add}=context,smart=(e.intelligence??40)>=60||e.kingdom;
   // 1) dismantle known turrets / totems when nobody is in our face

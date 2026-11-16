@@ -57,7 +57,7 @@ Bản phát hành công khai đầu tiên của **YOUR DUNGEON? — Hầm ngục
 
 ### Kiểm chứng
 - 186/186 test tự động; build, format và kiểm tra UI (0 lỗi tràn chữ ở 3 cỡ màn hình) xanh.
-- Soak chứng nhận 150 trận (`tests/fixtures/soak-release-v0.1.0.json`): 0 trận kẹt, 0 trận chạm giới hạn thời gian.
+- Soak chứng nhận 150 trận (`tests/fixtures/soak/soak-release-v0.1.0.json`): 0 trận kẹt, 0 trận chạm giới hạn thời gian.
 
 ### Biết trước
 - Ô chất lỏng của biome chưa đặt được bằng thẻ; luật biome áp cho cả tầng.

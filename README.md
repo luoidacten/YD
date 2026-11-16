@@ -4,6 +4,22 @@
 
 **Chơi ngay trên trình duyệt:** https://luoidacten.github.io/YD/ (khi GitHub Pages đã bật). Xem thay đổi ở [CHANGELOG.md](CHANGELOG.md).
 
+## Cấu trúc thư mục
+
+```
+your-dungeon/
+├── dist/            Game chạy được (HTML/CSS/JS ES module + assets), được đăng nguyên lên GitHub Pages
+│   └── assets/      frames/ (0x72 + yd/), ui/ (kit, font, hud), audio/
+├── tests/           Test tự động (node --test) và fixtures/ (soak/, logs/, bằng chứng kiểm chứng)
+├── scripts/         Build, kiểm tra format/UI/sprite, soak (giả lập hàng trăm trận)
+├── art/             Nguồn mĩ thuật: tools/ (script Python), final/, reference/, showcase/ (ảnh tổng hợp, mockup)
+├── docs/            Thiết kế, đề bài, ảnh chụp, lưu trữ (xem docs/README.md)
+├── reports/         Báo cáo soak sinh ra khi chạy (không commit)
+├── CODEX.md         Kiến trúc, bất biến, giới hạn — đọc trước khi sửa code
+├── CHANGELOG.md     Lịch sử phiên bản
+└── ASSET-LICENSES.md
+```
+
 ## Chạy
 
 Node.js 20+, không cần dependency:
@@ -30,7 +46,7 @@ Catalog: 58 kỹ năng, 58 nội tại, 40 effects, 47 Charms, 22 loại phòng,
 
 Save LocalStorage `your-dungeon-v2` theo origin, tự lưu và có nút Lưu; giữ save v1 khi chuyển bản. Save localhost và Site không tự chuyển nhau.
 
-Nguồn art/audio CC0 ở [ASSET-LICENSES.md](ASSET-LICENSES.md), [AUDIO-SOURCES.md](AUDIO-SOURCES.md).
+Nguồn art/audio CC0 ở [ASSET-LICENSES.md](ASSET-LICENSES.md), [docs/design/AUDIO-SOURCES.md](docs/design/AUDIO-SOURCES.md).
 
 V0.3 thêm quota phòng, địa hình tường/vực liên thông theo seed, trí khôn/chỉ huy, AI tận dụng bẫy/thùng, cứu hộ chậm/kéo người gục/thuốc hồi sinh. Save cũ giữ nguyên; bắt đầu run mới trong Trợ giúp để thiết kế từ trống. `?sandbox=1` dành cho QA với save riêng.
 
@@ -39,7 +55,7 @@ Menu và Reset ở thanh đầu. Dọn sạch bất kỳ phòng nào đều có 
 Kiểm chứng: `node --run test`, `node scripts/build.mjs`, `node scripts/format-check.mjs`; soak 50 seed × 3 wave: `node scripts/soak.mjs --seeds 1-50 --waves 3 --strict`. So hash định dạng bằng `node scripts/compare-soak.mjs`. Lấy số catalog bằng `node scripts/catalog-counts.mjs`.
 
 
-V0.4 dùng thêm 10 vũ khí W13–W22, nữ kỵ sĩ, hai người lùn, thiên sứ và bốn quái 0x72. Có tim HP, goo/vết tường hỏng, cần gạt/nút cổng; HUD nạp icon director duyệt từ manifest và giữ glyph khi chưa có ảnh. Số catalog được đo từ runtime, không tính artwork chưa kích hoạt. `showcase.html` phục vụ kiểm tra sprite cận cảnh, tách save thật. Đọc `CODEX-REVIEW.md` để kiểm bản bàn giao; chưa deploy bản này.
+V0.4 dùng thêm 10 vũ khí W13–W22, nữ kỵ sĩ, hai người lùn, thiên sứ và bốn quái 0x72. Có tim HP, goo/vết tường hỏng, cần gạt/nút cổng; HUD nạp icon director duyệt từ manifest và giữ glyph khi chưa có ảnh. Số catalog được đo từ runtime, không tính artwork chưa kích hoạt. `showcase.html` phục vụ kiểm tra sprite cận cảnh, tách save thật. Đọc `docs/dev/CODEX-REVIEW.md` để kiểm bản bàn giao; chưa deploy bản này.
 
 
 V0.5 kích hoạt bộ art CODEX_04–05: W23–W53, class mới, 16 chủng loài, thông thạo/yêu cầu trí khôn, kỹ thuật, khiên tay phụ, súng nạp đạn/kẹt đạn seeded, bom friendly fire và 67 bộ attack. `art-review.html` là fixture QA riêng, có cảnh 60 entity +40 FX. Các PNG v0.4–v0.5 được kiểm hash bất biến và tham chiếu 646/646; art v0.6+ chỉ kích hoạt theo brief tiếp theo. Đo readback nặng hiện 36,7 render frame/s sau cache sàn; tiêu chí 50 FPS chưa xác nhận đạt. Soak v0.5: 150 trận, 0 kẹt/limit, 9/150 thắng.

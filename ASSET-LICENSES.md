@@ -12,7 +12,7 @@
 
 ## Audio — Kenney CC0
 
-10 local OGG clips are included in `dist/assets/audio`. Sources: [RPG Audio](https://kenney.nl/assets/rpg-audio) and [Digital Audio](https://kenney.nl/assets/digital-audio). Both packs are CC0. Exact original filenames, mappings and bundled license paths are recorded in `AUDIO-SOURCES.md`.
+10 local OGG clips are included in `dist/assets/audio`. Sources: [RPG Audio](https://kenney.nl/assets/rpg-audio) and [Digital Audio](https://kenney.nl/assets/digital-audio). Both packs are CC0. Exact original filenames, mappings and bundled license paths are recorded in `docs/design/AUDIO-SOURCES.md`.
 
 ## Fonts and generated presentation
 
@@ -42,7 +42,7 @@ The game loads these with the same pattern as the 0x72 frames: `sprite:'yd/chars
 | `yd/fx/` | 8 spell effects × 4 frames | **AI-generated (Google Gemini)**, animated with `animate.py` | Project asset, **not** CC0 |
 | `ui/hud/` (added) | menu, reset, sigil, souls, pause, grid, zoom_in, zoom_out | **AI-generated (Gemini)**; reset and the +/- of zoom are hand-fixed | Project asset, **not** CC0 |
 
-Prompts and source data: `art/gemini-raw/**`. Full preview: `art/SHOWCASE-v04.png`.
+Prompts and source data: `art/gemini-raw/**`. Full preview: `art/showcase/SHOWCASE-v04.png`.
 
 ## v0.5 additions (2026-11-15, art director Claude)
 | Folder | Content | Origin | License |
@@ -62,7 +62,7 @@ Prompts and source data: `art/gemini-raw/**`. Full preview: `art/SHOWCASE-v04.pn
 | `yd/chars/` (3 new) | beastmaster, druid, hunter | Kitbashed from 0x72 (`kitbash_v06.py`) | Derived from CC0; project asset |
 | `yd/attack/` (19 new) | attack animations for all of the above | `animate.attack` | Same license as the source sprite |
 
-The Titan and Ác Ma bosses reuse the original 0x72 `ogre` / `big_demon` frames. Preview: `art/SHOWCASE-v06.png`.
+The Titan and Ác Ma bosses reuse the original 0x72 `ogre` / `big_demon` frames. Preview: `art/showcase/SHOWCASE-v06.png`.
 
 ## CODEX_02 / CODEX_03 activation audit
 

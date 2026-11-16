@@ -1,6 +1,6 @@
 # CODEX_10 — Quản lý giữa các wave và chiều sâu gameplay
 
-**Người giao:** Claude. **Người làm:** Codex. **Đọc trước:** `GD/DESIGN_08` mục 2–4.
+**Người giao:** Claude. **Người làm:** Codex. **Đọc trước:** `docs/briefs/DESIGN_08` mục 2–4.
 **UI:** mọi màn dùng kit CODEX_07 (`panel_stone`, `panel_parchment`, `btn_*`, `tab_*`, `bar_*`) và quy tắc chống tràn chữ.
 Chia **6 commit** theo mục A–F. Mỗi mục có test và soak riêng.
 
@@ -56,7 +56,7 @@ Chia **6 commit** theo mục A–F. Mỗi mục có test và soak riêng.
   - 3 mục tiêu đoàn hoàn thành được.
 - [ ] Save cũ load được (field mới mặc định 0/rỗng).
 - [ ] Soak seed 1–50 cho mỗi commit: không phát sinh kẹt, tỉ lệ thắng thay đổi ±15% (ghi lý do nếu vượt), và liệt kê tần suất combo/mục tiêu.
-- [ ] Ảnh `screenshots/v10-*.jpg`:
+- [ ] Ảnh `docs/screenshots/v10-*.jpg`:
   - (1) báo cáo Công hội;
   - (2) tổng kết có heatmap;
   - (3) danh sách quái;

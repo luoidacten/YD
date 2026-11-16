@@ -16,7 +16,7 @@
 Ba trụ cột cần nâng: **đọc được trận đánh**, **quyết định có ý nghĩa giữa các wave**, **cảm giác tay**.
 
 ## 1. Cảm giác chơi (game feel)
-Asset đã vẽ: `yd/fx/{hit_spark,slash,crit,heal,death_puff,bone_chips,telegraph}`, `ui/kit/digits_{dmg,crit,heal,hurt}`. Xem `art/MOCKUP-COMBAT-FX.png`.
+Asset đã vẽ: `yd/fx/{hit_spark,slash,crit,heal,death_puff,bone_chips,telegraph}`, `ui/kit/digits_{dmg,crit,heal,hurt}`. Xem `art/showcase/MOCKUP-COMBAT-FX.png`.
 
 | Sự kiện | Phản hồi hình | Phản hồi chuyển động | Âm |
 |---|---|---|---|
@@ -77,7 +77,7 @@ Asset đã vẽ: `yd/fx/{hit_spark,slash,crit,heal,death_puff,bone_chips,telegra
 - **Mệt mỏi:** quái đánh liên tục 2 wave thì giảm 10% sát thương. Phòng nghỉ và barracks có ý nghĩa thật.
 
 ## 5. Biome cho tầng (tilemap đa dạng)
-Asset: `yd/tiles/<biome>/`. Mỗi biome có đủ 47 tile **cùng tên** với 0x72 (floor_1..8, wall_*, column, doors_*, floor_spikes…), cộng `prop_*` và `liquid_anim_f0..3` (lava, đầm, băng). Xem `art/SHOWCASE-BIOMES.png`.
+Asset: `yd/tiles/<biome>/`. Mỗi biome có đủ 47 tile **cùng tên** với 0x72 (floor_1..8, wall_*, column, doors_*, floor_spikes…), cộng `prop_*` và `liquid_anim_f0..3` (lava, đầm, băng). Xem `art/showcase/SHOWCASE-BIOMES.png`.
 
 | Biome | Tên | Luật tầng | Hợp với | Đạo cụ |
 |---|---|---|---|---|

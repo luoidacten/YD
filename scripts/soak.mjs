@@ -83,7 +83,7 @@ async function main(){
  weapons.techniqueRate=(weapons.techniqueUses||0)/Math.max(1,(weapons.basicAttacks||0)+(weapons.techniqueUses||0));
  weapons.jamRate=weapons.jamAttempts?weapons.jams/weapons.jamAttempts:null;
  const report={weapons,schema:1,fixture:'seeded-independent-waves-v1',step:1/30,generatedAt:new Date().toISOString(),summary,battles:results};
- const output=get('--out','soak-report.json');fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify(report,null,1)+'\n');
+ const output=get('--out','reports/soak-report.json');fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify(report,null,1)+'\n');
  console.table({...summary,defenderWinRate:summary.defenderWins/summary.battles});
  if(args.includes('--compare')){
   const baseline=JSON.parse(fs.readFileSync(get('--compare',''),'utf8'));

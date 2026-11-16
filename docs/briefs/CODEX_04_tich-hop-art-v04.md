@@ -4,7 +4,7 @@
 **Thứ tự:** sau CODEX_01. Có thể làm cùng CODEX_02 (nếu làm cùng thì nhập chung vào bảng `weapons` và danh sách quái). Phần HUD dựa vào CODEX_03.
 
 ## Asset đã giao (đừng sửa file PNG; cần sửa hình thì báo giám đốc mĩ thuật)
-Xem `art/SHOWCASE-v04.png`. Mọi frame nằm ở `dist/assets/frames/yd/`, nạp đúng cách cũ của `painter.image(name)` (`assets/frames/${name}.png`). Không cần đổi loader.
+Xem `art/showcase/SHOWCASE-v04.png`. Mọi frame nằm ở `dist/assets/frames/yd/`, nạp đúng cách cũ của `painter.image(name)` (`assets/frames/${name}.png`). Không cần đổi loader.
 
 | Nhóm | Tên sprite (giá trị `sprite`/`art`) | Frame | Khổ |
 |---|---|---|---|
@@ -76,6 +76,6 @@ Nếu CODEX_03 đã xong: 14 icon trong `ui/hud` hiện tự động qua manifes
 - [ ] `npm test` xanh. Có test mới: mỗi sprite yd được tham chiếu đều tồn tại đủ frame; mỗi W23–W30 trang bị được và `Game.range` trả đúng reach; 8 quái thuê được và đúng quota.
 - [ ] Script (thêm vào build): mọi file trong `frames/yd` đều được code tham chiếu ít nhất một lần.
 - [ ] Soak seed 1–50: không có lỗi kẹt mới; tỉ lệ thắng thay đổi ít hơn ±15% so với baseline, nếu vượt thì ghi lý do.
-- [ ] Ảnh chụp cận cảnh lưu vào `screenshots/v04-*.jpg`: (1) đoàn hero có paladin/assassin/pyromancer; (2) phòng có ghost/spider/rock_golem; (3) một fireball đang bay và fx_heal; (4) thanh HUD có icon mới.
+- [ ] Ảnh chụp cận cảnh lưu vào `docs/screenshots/v04-*.jpg`: (1) đoàn hero có paladin/assassin/pyromancer; (2) phòng có ghost/spider/rock_golem; (3) một fireball đang bay và fx_heal; (4) thanh HUD có icon mới.
 - [ ] Không có request ngoài, không font web. Fx không làm tụt FPS: 60 entity + 40 fx vẫn đạt ≥ 50 FPS trên máy dev.
 - [ ] Cập nhật `CODEX.md` (bảng file, giới hạn), README (con số catalog). **Không** sửa mục license của art (đã có).
